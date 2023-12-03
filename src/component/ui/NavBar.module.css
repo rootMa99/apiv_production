@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+.navBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    height: 3.5rem;
+    width: 100vw;
+    background-color: black;
+    color: aliceblue;
+    border-bottom: 5px solid #b80000;
+}
+.logo{
+    margin-left: 2rem;
+}
+.logo img{
+  width: 7rem;
+}
+.links{
+    margin-right: 2rem;
+    width: 40vw;
+}
+.links ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+}
+.links ul li{
+    font-weight: bold;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: Formular,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+.links ul li a {
+    text-decoration: none;
+    color: #ffffff;
+  }
+.link:hover,
+.link:active,
+.links ul li a.activeLink {
+  color: rgb(255, 255, 255);
+  padding-bottom: 0.5rem;
+  border-bottom: #b80000 3px solid;
+}
+
+.links ul li ::before {
+    content: "";
+  background-color: rgba(87, 6, 6, 0.75);
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  width: 100%;
+  height: 0px;
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+.link:hover::before {
+  bottom: 0;
+  height: 100%;
+}
