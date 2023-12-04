@@ -14,6 +14,7 @@ const ProjectCard = (p) => {
     setMouseIn(false);
   };
 
+  const classes= mouseIn ? `${c.cardContainer} ${c.dt}`: `${c.cardContainermini}`;
   return (
     <div
       className={c.cardContainers}
@@ -21,16 +22,16 @@ const ProjectCard = (p) => {
       onMouseLeave={mouseLeave}
     >
       <img src={aptivbg} alt="some backGround" />
-        <div className={c.cardContainer}>
+        <div className={classes}>
           <h4>K9 HAB</h4>
           <div className={c.efficiency}>
             <div className={c.efficiencyData}>
-              <h5>month</h5>
-              <span>78</span>
-            </div>
-            <div className={c.efficiencyData}>
               <h5>last day</h5>
               <span>47</span>
+            </div>
+            <div className={c.efficiencyData}>
+              <h5>month</h5>
+              <span>78</span>
             </div>
             <div className={c.efficiencyData}>
               <h5>year</h5>

@@ -1,6 +1,6 @@
 .cardContainers {
-  width: 22rem;
-  min-height:27rem ;
+  width: 20rem;
+  height: 26rem;
   background-color: transparent;
   backdrop-filter: blur(70px);
   border-radius: 17px;
@@ -17,7 +17,8 @@
   left: 0;
   border-radius: 17px;
 }
-.cardContainer {
+.cardContainer,
+.cardContainermini {
   width: 90%;
   padding: 5%;
   background-color: transparent;
@@ -25,12 +26,13 @@
   border-radius: 17px;
   cursor: pointer;
   margin-top: auto;
-
+  transition: transform 3s;
 }
 
 .cardContainers:hover,
 .cardContainer:hover {
-  transform: scale(1.01);
+  transform: scale(1.2, 1.1);
+  z-index: 3;
 }
 .cardContainer h4 {
   color: #f4dfc8;
@@ -46,9 +48,12 @@
   flex-direction: row;
   justify-content: space-evenly;
 }
+.efficiencyData {
+  text-align: center;
+}
 .efficiencyData span,
 .contentData span {
-    font-weight: bold;
+  font-weight: bold;
   color: #f3f3f3;
   font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -60,17 +65,32 @@
 .dataContainer {
   width: 100%;
 }
-.hcday{
-    animation: rsin 1s ease-out forwards;
+.hcday {
+  animation: rsin 0.25s ease-out forwards;
 }
-.abday{
-    animation: rsin 1.5s ease-out forwards;
+.abday {
+  animation: rsin 0.5s ease-out forwards;
 }
-.tloday{
-    animation: rsin 2s ease-out forwards;
+.tloday {
+  animation: rsin 0.75s ease-out forwards;
 }
-.dt{
-    animation: rsin 2.5s ease-out forwards;
+.dt {
+  animation: rsin 1s ease-out forwards;
+}
+.cardContainermini {
+  padding: 0 1rem 0.5rem 1rem;
+}
+.cardContainermini h4,
+.cardContainermini h5 {
+  color: #f4dfc8;
+  font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 .contentData {
   width: 100%;
@@ -79,17 +99,17 @@
   align-items: center;
 }
 @keyframes rsin {
-    0% {
-      opacity: 0;
-      transform: translateY(5rem);
-      display: none;
-    }
-    66% {
-      opacity: 0.6;
-      transform: translateY(0.5rem);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translateY(5rem);
+    display: none;
   }
+  70% {
+    opacity: 0.6;
+    transform: translateY(0.5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
