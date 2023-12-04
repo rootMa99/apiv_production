@@ -9,10 +9,10 @@ const Efficiency=p=>{
         <div className={c.efficiency}>
           <h3>efficiency</h3>
           <div className={c.efficiencyContent}>
+            <EfficiencyData title="last day" />      
             <EfficiencyData title="month" />  
             <EfficiencyData title="year" />      
             <EfficiencyData title="hc/day" />      
-            <EfficiencyData title="hc/target" />      
 
           </div>
         </div>

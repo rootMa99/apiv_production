@@ -1,50 +1,95 @@
-.cardContainer{
-    width: 20%;
-    padding: 1rem;
-    background-color: transparent;
-    backdrop-filter: blur(70px);
-    padding: 1rem;
-    border-radius: 17px;
-    margin-top: 1rem;
-    cursor: pointer;
-    border: 1px solid transparent;
+.cardContainers {
+  width: 22rem;
+  min-height:27rem ;
+  background-color: transparent;
+  backdrop-filter: blur(70px);
+  border-radius: 17px;
+  margin-top: 1rem;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+}
+.cardContainers img {
+  position: fixed;
+  z-index: -11;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  border-radius: 17px;
+}
+.cardContainer {
+  width: 90%;
+  padding: 5%;
+  background-color: transparent;
+  backdrop-filter: blur(70px);
+  border-radius: 17px;
+  cursor: pointer;
+  margin-top: auto;
 
 }
-.cardContainer:hover{
-    border: 1px solid #b80000;
-    background-color: rgba(128, 128, 128, 0.329);
-    transform: scale(1.05);
+
+.cardContainers:hover,
+.cardContainer:hover {
+  transform: scale(1.01);
 }
-.cardContainer h4{
-    color: #F4DFC8;
-    font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-align: center;
+.cardContainer h4 {
+  color: #f4dfc8;
+  font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
 }
-.efficiency{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+.efficiency {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 .efficiencyData span,
-.contentData span{
-color: #F3F3F3;
-font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-align: center;
+.contentData span {
+    font-weight: bold;
+  color: #f3f3f3;
+  font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
 }
-.dataContainer{
-    width: 100%;
+.dataContainer {
+  width: 100%;
 }
-.contentData{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.hcday{
+    animation: rsin 1s ease-out forwards;
 }
+.abday{
+    animation: rsin 1.5s ease-out forwards;
+}
+.tloday{
+    animation: rsin 2s ease-out forwards;
+}
+.dt{
+    animation: rsin 2.5s ease-out forwards;
+}
+.contentData {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@keyframes rsin {
+    0% {
+      opacity: 0;
+      transform: translateY(5rem);
+      display: none;
+    }
+    66% {
+      opacity: 0.6;
+      transform: translateY(0.5rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
