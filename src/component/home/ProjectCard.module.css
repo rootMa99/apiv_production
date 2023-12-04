@@ -1,0 +1,50 @@
+.cardContainer{
+    width: 20%;
+    padding: 1rem;
+    background-color: transparent;
+    backdrop-filter: blur(70px);
+    padding: 1rem;
+    border-radius: 17px;
+    margin-top: 1rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+
+}
+.cardContainer:hover{
+    border: 1px solid #b80000;
+    background-color: rgba(128, 128, 128, 0.329);
+    transform: scale(1.05);
+}
+.cardContainer h4{
+    color: #F4DFC8;
+    font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+}
+.efficiency{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.efficiencyData span,
+.contentData span{
+color: #F3F3F3;
+font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+}
+.dataContainer{
+    width: 100%;
+}
+.contentData{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
