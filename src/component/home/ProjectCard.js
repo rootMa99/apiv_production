@@ -5,12 +5,10 @@ import { useState } from "react";
 const ProjectCard = (p) => {
   const [mouseIn, setMouseIn] = useState(false);
   const clickHandler = (e) => {
-    console.log("this div clicked", e);
     setMouseIn(true);
   };
 
   const mouseLeave = (e) => {
-    console.log("mouse out");
     setMouseIn(false);
   };
 

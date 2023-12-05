@@ -5,7 +5,7 @@ const Projects=p=>{
 
     return(
         <div className={c.projectsContainer} >
-            <h3>Projects</h3>
+            <h3 className={c.title}>Projects</h3>
             
             <div className={c.projectCardContainer}>
                 <ProjectCard />

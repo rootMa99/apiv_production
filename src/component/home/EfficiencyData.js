@@ -2,6 +2,9 @@ import React from "react";
 import c from "./EfficiencyData.module.css";
 
 const EfficiencyData = (p) => {
+
+const classes=p.gap>=0 ? `${c.green}`:`${c.red}`;
+
   return (
     <div className={c.efficiencyData}>
       <h4 className={c.title}>{p.title} </h4>
@@ -9,24 +12,24 @@ const EfficiencyData = (p) => {
         <div className={c.total}>
           {p.title === "hc/day" ? (
             <React.Fragment>
-              <h5 className={c.title}>total</h5>
-              <span>67</span>
+              <h5 className={c.title}>total:</h5>
+              <span>{p.hc} </span>
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <h4 className={c.title}>70%</h4>
-              <progress value="70" max="100"></progress>
+              <h4 className={c.title}>{p.totalP} %</h4>
+              <progress value={p.totalP} max="100"></progress>
             </React.Fragment>
           )}
         </div>
         <div className={c.addData}>
           <div className={c.gap}>
             <h5 className={c.title}>gap:</h5>
-            <span>67</span>
+            <span className={classes}>{p.gap} </span>
           </div>
           <div className={c.target}>
             <h5 className={c.title}>target:</h5>
-            <span>67</span>
+            <span>{p.totalT} {p.title !== "hc/day" && "%"}</span>
           </div>
         </div>
       </div>
