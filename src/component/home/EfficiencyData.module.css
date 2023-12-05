@@ -1,11 +1,10 @@
 .efficiencyData {
-  width: 20%;
-  background-color: transparent;
+  width: 23%;
+  background-color: rgba(128, 128, 128, 0.267);
   backdrop-filter: blur(70px);
-  padding: 1rem;
   border-radius: 17px;
 }
-.efficiencyData h4, h5{
+.title, .total{
     color: #F4DFC8;
     font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -13,17 +12,44 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: center;
+    margin: 0;
 }
+
+.total{
+  width: 50%;
+}
+.total progress {
+  width: 100%;
+  height: 10px;
+  appearance: none; 
+}
+
+.total progress::-webkit-progress-bar {
+  background-color: #ecf0f162; 
+  border-radius: 10px; 
+}
+
+.total progress::-webkit-progress-value {
+  background-color: #b80000;
+  border-radius: 10px; 
+}
+
+
 .data {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.total,
+.addData{
+  width: 40%;
+}
+
 .gap,
 .target {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   color: #F3F3F3;
   font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
   "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
