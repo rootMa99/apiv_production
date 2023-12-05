@@ -1,23 +1,24 @@
+import { getFiltredProject } from "../hooks/getEfficiencyData";
 import ProjectCard from "./ProjectCard";
 import c from "./Projects.module.css";
 
-const Projects=p=>{
+const Projects = (p) => {
+    const data=p.data;
+    const datafiltred= getFiltredProject(data);
+    console.log(datafiltred);
 
-    return(
-        <div className={c.projectsContainer} >
-            <h3 className={c.title}>Projects</h3>
-            
-            <div className={c.projectCardContainer}>
-                <ProjectCard />
-                <ProjectCard />
-                <ProjectCard />
-                <ProjectCard />
-                <ProjectCard />
-             
+  return (
+    <div className={c.projectsContainer}>
+      <h3 className={c.title}>Projects</h3>
 
-            </div>
-        </div>
-    )
-
-}
+      <div className={c.projectCardContainer}>
+      {
+        datafiltred.map(m=><ProjectCard key={m.name} title={m.name} data={m.data} />)
+      }
+        
+        
+      </div>
+    </div>
+  );
+};
 export default Projects;

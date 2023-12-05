@@ -12,7 +12,7 @@ const Home = (p) => {
     <div className={c.container}>
       <div className={c.content}>
         <Efficiency />
-        <Projects />
+        <Projects data={data} />
       </div>
     </div>
   );

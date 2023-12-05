@@ -3,6 +3,7 @@
   background-color: rgba(128, 128, 128, 0.267);
   backdrop-filter: blur(70px);
   border-radius: 17px;
+  padding-top: 5px;
 }
 .title, .total{
     color: #F4DFC8;
