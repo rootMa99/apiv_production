@@ -17,7 +17,7 @@ const classes=p.gap>=0 ? `${c.green}`:`${c.red}`;
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <h4 className={c.title}>{p.totalP} %</h4>
+              <h3 className={c.title}>{p.totalP} %</h3>
               <progress value={p.totalP} max="100"></progress>
             </React.Fragment>
           )}
@@ -25,7 +25,7 @@ const classes=p.gap>=0 ? `${c.green}`:`${c.red}`;
         <div className={c.addData}>
           <div className={c.gap}>
             <h5 className={c.title}>gap:</h5>
-            <span className={classes}>{p.gap} </span>
+            <span className={classes}>{p.gap}</span>
           </div>
           <div className={c.target}>
             <h5 className={c.title}>target:</h5>

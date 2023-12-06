@@ -22,10 +22,11 @@ const Efficiency = (p) => {
   } = getEfficiencyDatas(filtredData);
   const totalP = ((prodHD / paidHD) * 100).toFixed(2);
   const totalT = ((prodTD / paidTD) * 100).toFixed(2);
-  const gap = (totalT - totalP).toFixed(2);
+  const gap = (totalP-totalT).toFixed(2);
   //hc Day using filtred Day
   const { hc, hcTarget } = getHC(filtredData);
-  const gapHc = (hcTarget - hc).toFixed(2);
+  const gapHc = (hc-hcTarget);
+  
   //Efficiency Month
   const filtredDataMonth = getEfficiencyMonth(data, "Nov");
   const {
@@ -36,12 +37,12 @@ const Efficiency = (p) => {
   } = getEfficiencyDatas(filtredDataMonth);
   const totalPM = ((prodHM / paidHM) * 100).toFixed(2);
   const totalTM = ((prodTM / paidTM) * 100).toFixed(2);
-  const gapM = (totalTM - totalPM).toFixed(2);
+  const gapM = (totalPM-totalTM).toFixed(2);
   //Efficiency Year
   const { prodHY, paidHY, prodTY, paidTY } = getEfficiencyYear(data);
   const totalPY = ((prodHY / paidHY) * 100).toFixed(2);
   const totalTY = ((prodTY / paidTY) * 100).toFixed(2);
-  const gapY = (totalTY - totalPY).toFixed(2);
+  const gapY = (totalPY-totalTY).toFixed(2);
 
   console.log(hc, hcTarget);
   console.log(filtredData);

@@ -64,7 +64,7 @@ export const getHC = (dataArray) => {
     hc += e.actualDataExcel.hc;
     hcTarget += e.dataTargetExcel.hcTarget;
   });
-  hcTarget = hcTarget.toFixed(2);
+  hcTarget = hcTarget.toFixed(0);
   return { hc, hcTarget };
 };
 

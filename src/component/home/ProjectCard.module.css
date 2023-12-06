@@ -17,6 +17,9 @@
   left: 0;
   border-radius: 17px;
 }
+.cardContainer{
+  height: 95%;
+}
 .cardContainer,
 .cardContainermini {
   width: 90%;
@@ -118,7 +121,7 @@
     display: none;
   }
   70% {
-    opacity: 0.6;
+    opacity: 0.5;
     transform: translateY(0.5rem);
   }
   100% {
