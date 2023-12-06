@@ -12,12 +12,16 @@ const EfficiencyData = (p) => {
         <div className={c.total}>
           {p.title === "hc/day" ? (
             <React.Fragment>
-              <h5 className={c.title}>total:</h5>
-              <span>{p.hc} </span>
+              {(p.gap>50)&& <span style={{color:"#008500"}}>{p.hc} </span>}
+              {(p.gap<50 && p.gap>0)&& <span style={{color:"#d1962a"}}>{p.hc} </span>}
+              {(p.gap<0)&& <span style={{color:"#a30202"}}>{p.hc} </span>}
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <h2 className={c.title}>{p.totalP}%</h2>
+              {(p.gap<=0 && p.gap>=-2) && <h2 className={c.title} style={{color:"#d1962a"}}>{p.totalP}%</h2>}
+              {p.gap<=-2 && <h2 className={c.title} style={{color:"#a30202"}}>{p.totalP}%</h2>}
+              {p.gap>0 && <h2 className={c.title} style={{color:"#008500"}}>{p.totalP}%</h2>}
+
               <progress value={p.totalP} max="100"></progress>
             </React.Fragment>
           )}

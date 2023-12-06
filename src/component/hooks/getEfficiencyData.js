@@ -88,54 +88,68 @@ export const getFiltredProject = (dataArray) => {
   return datafiltred;
 };
 
-export const getEfficiencyDataByDay=(dataArray, day)=>{
+export const getEfficiencyDataByDay = (dataArray, day) => {
+  const filtredData = dataArray.filter((f) => {
+    return f.date === day;
+  });
+  const data = {
+    prodH: 0,
+    paidH: 0,
+    hc: 0,
+    ab: 0,
+    tlo: 0,
+    dt: 0,
+  };
+  filtredData.forEach((e) => {
+    data.prodH += e.actualDataExcel.prodH;
+    data.paidH += e.actualDataExcel.paidH;
+    data.hc += e.actualDataExcel.hc;
+    data.ab += e.actualDataExcel.ab;
+    data.tlo += e.actualDataExcel.tlo;
+    data.dt += e.actualDataExcel.dt;
+  });
 
-    const filtredData = dataArray.filter(f=>{
-        return f.date === day;
-    });
-    const data={
-        prodH:0,
-        paidH:0,
-        hc:0,
-        ab:0,
-        tlo:0,
-        dt:0
-    };
-    filtredData.forEach(e=>{
-        data.prodH+=e.actualDataExcel.prodH;
-        data.paidH+=e.actualDataExcel.paidH;
-        data.hc+=e.actualDataExcel.hc;
-        data.ab+=e.actualDataExcel.ab;
-        data.tlo+=e.actualDataExcel.tlo;
-        data.dt+=e.actualDataExcel.dt;
-    })
+  return data;
+};
+export const getEfficiencyDataByMonth = (dataArray, month) => {
+  const filtredData = dataArray.filter((f) => {
+    return f.month === month;
+  });
+  const dataM = {
+    prodH: 0,
+    paidH: 0,
+  };
+  filtredData.forEach((e) => {
+    dataM.prodH += e.actualDataExcel.prodH;
+    dataM.paidH += e.actualDataExcel.paidH;
+  });
+  return dataM;
+};
 
-    return data;
-}
-export const getEfficiencyDataByMonth=(dataArray, month)=>{
-    const filtredData = dataArray.filter(f=>{
-        return f.month === month;
-    });
-    const dataM={
-        prodH:0,
-        paidH:0,
+export const getEfficiencyDataByYear = (dataArray) => {
+  console.log("this mrthod runing...");
+  const dataY = {
+    prodH: 0,
+    paidH: 0,
+  };
+  dataArray.forEach((e) => {
+    dataY.prodH += e.actualDataExcel.prodH;
+    dataY.paidH += e.actualDataExcel.paidH;
+  });
+  return dataY;
+};
+
+export const getSortedData = (data) => {
+  return data.sort((a, b) => {
+    const nameA = a.name.toUpperCase();
+    const nameB = b.name.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
     }
-    filtredData.forEach(e=>{
-        dataM.prodH+=e.actualDataExcel.prodH;
-        dataM.paidH+=e.actualDataExcel.paidH;
-    })
-    return dataM;
-}
-
-export const getEfficiencyDataByYear=dataArray=>{
-    console.log("this mrthod runing...");
-    const dataY={
-        prodH:0,
-        paidH:0,
+    if (nameA > nameB) {
+      return 1;
     }
-    dataArray.forEach(e=>{
-        dataY.prodH+=e.actualDataExcel.prodH;
-        dataY.paidH+=e.actualDataExcel.paidH;
-    })
-    return dataY;
-}
+
+    return 0;
+  });
+};

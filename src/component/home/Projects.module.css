@@ -1,5 +1,6 @@
 .projectsContainer {
   padding: 1rem;
+  padding-top: 0;
   width: 100%;
   animation: rsin 3s ease-out forwards;
   margin-bottom: 15rem;
@@ -51,16 +52,19 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
  
 }
 .titleContainer{
   width: 100vw;
   background-color: #000000;
   position: sticky;
-  top: 0;
-  z-index: 111;
-  padding: 1rem;
-
+  top: 5.9rem;
+  z-index: 11;
+  padding: 0;
+  margin: 0;
 }
