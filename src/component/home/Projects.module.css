@@ -51,5 +51,16 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+ 
+}
+.titleContainer{
+  width: 100vw;
+  background-color: #000000;
+  position: sticky;
+  top: 0;
+  z-index: 111;
+  padding: 1rem;
+
 }

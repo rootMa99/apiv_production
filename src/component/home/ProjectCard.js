@@ -30,6 +30,7 @@ const ProjectCard = (p) => {
   const totalEfficencyYear = (dataY.prodH / dataY.paidH) * 100;
   const totalEfficencyDay = (data.prodH / data.paidH) * 100;
   const totalEfficencyMonth = (dataM.prodH / dataM.paidH) * 100;
+  const totalDt=(data.dt/data.paidH)*100; 
   const classes = mouseIn
     ? `${c.cardContainer} ${c.dt}`
     : `${c.cardContainermini}`;
@@ -40,8 +41,8 @@ const ProjectCard = (p) => {
       onMouseLeave={mouseLeave}
     >
       <img src={aptivbg} alt="some backGround" />
-      <div className={classes}>
         <h2>{p.title} </h2>
+      <div className={classes}>
         <div className={c.efficiency}>
           <div className={c.efficiencyData}>
             <h5>last day</h5>
@@ -72,7 +73,7 @@ const ProjectCard = (p) => {
             </div>
             <div className={`${c.contentData} ${c.dt}`}>
               <h5>dt/day</h5>
-              <span>{data.dt.toFixed(2)} %</span>
+              <span>{totalDt.toFixed(2)} %</span>
             </div>
           </div>
         ) : (
