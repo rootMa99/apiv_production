@@ -1,6 +1,6 @@
 .cardContainers {
   width: 23%;
-  height: 26rem;
+  height: 24rem;
   background-color: transparent;
   backdrop-filter: blur(70px);
   border-radius: 17px;
@@ -27,7 +27,7 @@
   padding: 5%;
   padding-top: 7%;
   padding-bottom: 0;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.466);
   backdrop-filter: blur(80px);
   border-radius: 17px;
   cursor: pointer;
@@ -35,12 +35,13 @@
   transition: transform 3s;
 }
 
+
 .cardContainers:hover,
 .cardContainer:hover {
   transform: scale(1.02, 1.01);
   z-index: 3;
 }
-.cardContainers h2 {
+.toptitle{
   color: #f4dfc8;
   font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -48,19 +49,35 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.466);
   backdrop-filter: blur(80px);
   border-radius: 17px;
   margin: 0;
   padding: 1rem;
 }
+.cardContainer h2{
+  color: #f4dfc8;
+  font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: x-large;
+  margin-top: 0;
+  padding-top: 0;
+}
 .efficiency {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 .efficiencyData {
   text-align: center;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
 }
 .efficiencyData span,
 .contentData span {
@@ -90,7 +107,13 @@
 }
 .cardContainermini {
   width: 100%;
-  padding: 0 1rem 0.5rem 1rem;
+  padding-inline: 0;
+  padding-bottom:0.5rem;
+  padding-top:0.5rem;
+
+}
+.cardContainermini{
+  font-size: larger;
 }
 .cardContainermini h2,
 .cardContainermini h5 {
@@ -114,24 +137,41 @@
     text-transform: uppercase;
     text-align: center;
 }
+.efficiencyData h5{
+  margin-top: 0;
+}
 .contentData {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.contentData h5:last-of-type{
+  margin-bottom: 0;
+}
 @keyframes rsin {
   0% {
     opacity: 0;
-    transform: translateY(5rem);
+    transform: translateY(3rem);
     display: none;
   }
   70% {
-    opacity: 0.5;
-    transform: translateY(0.5rem);
+    opacity: 0.3;
+    transform: translateY(0.3rem);
   }
   100% {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+.red{color:#a30202 !important;
+  font-size: larger;
+}
+.green{color:#008500 !important;
+  font-size: larger;
+}
+.orange{color:#d1962a !important;
+  font-size: larger;
 }

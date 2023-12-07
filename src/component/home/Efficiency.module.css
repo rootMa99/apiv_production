@@ -18,6 +18,7 @@
   justify-content: space-evenly;
 }
 .title {
+  animation: rsin 3s ease-out forwards;
   margin-right: auto;
   margin-left: 2rem;
   width: 10%;

@@ -95,6 +95,8 @@ export const getEfficiencyDataByDay = (dataArray, day) => {
   const data = {
     prodH: 0,
     paidH: 0,
+    prodHT: 0,
+    paidHT: 0,
     hc: 0,
     ab: 0,
     tlo: 0,
@@ -103,6 +105,8 @@ export const getEfficiencyDataByDay = (dataArray, day) => {
   filtredData.forEach((e) => {
     data.prodH += e.actualDataExcel.prodH;
     data.paidH += e.actualDataExcel.paidH;
+    data.prodHT+=e.dataTargetExcel.prodTarget;
+    data.paidHT+=e.dataTargetExcel.payedTarget;
     data.hc += e.actualDataExcel.hc;
     data.ab += e.actualDataExcel.ab;
     data.tlo += e.actualDataExcel.tlo;
@@ -118,10 +122,14 @@ export const getEfficiencyDataByMonth = (dataArray, month) => {
   const dataM = {
     prodH: 0,
     paidH: 0,
+    prodHT: 0,
+    paidHT: 0,
   };
   filtredData.forEach((e) => {
     dataM.prodH += e.actualDataExcel.prodH;
     dataM.paidH += e.actualDataExcel.paidH;
+    dataM.prodHT+=e.dataTargetExcel.prodTarget;
+    dataM.paidHT+=e.dataTargetExcel.payedTarget;
   });
   return dataM;
 };
@@ -131,10 +139,15 @@ export const getEfficiencyDataByYear = (dataArray) => {
   const dataY = {
     prodH: 0,
     paidH: 0,
+    prodHT: 0,
+    paidHT: 0,
+    
   };
   dataArray.forEach((e) => {
     dataY.prodH += e.actualDataExcel.prodH;
     dataY.paidH += e.actualDataExcel.paidH;
+    dataY.prodHT+=e.dataTargetExcel.prodTarget;
+    dataY.paidHT+=e.dataTargetExcel.payedTarget;
   });
   return dataY;
 };

@@ -63,8 +63,10 @@
   width: 100vw;
   background-color: #000000;
   position: sticky;
-  top: 5.9rem;
+  top: 5rem;
   z-index: 11;
-  padding: 0;
+  padding-top: 1rem;
   margin: 0;
+  animation: rsin 3s ease-out forwards;
+
 }
