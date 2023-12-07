@@ -1,13 +1,24 @@
 import React from "react";
 import c from "./EfficiencyData.module.css";
 
+const MONTH=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const EfficiencyData = (p) => {
+
+  const changeMonthHandler=e=>{
+    p.changeMonth(e.target.value);
+  }
+  const changeDayhandler=e=>{
+    p.changeDay(e.target.value);
+  }
+
   const classes = p.gap >= 0 ? `${c.green}` : `${c.red}`;
   const tclasses=p.gap >= 0 ? `${c.triangleUP}` : `${c.triangleDown}`;
 
   return (
     <div className={c.efficiencyData}>
-      <h4 className={c.title}>{p.title} </h4>
+      { (p.title!=="last day" && p.title!=="month" ) &&<h4 className={c.title}>{p.title} </h4>}
+      {p.title==="last day" && <input className={c.title} type="date" value={p.day} onChange={changeDayhandler}/>}
+      {p.title==="month" && <select className={c.title} value={p.month} onChange={changeMonthHandler}>{MONTH.map(m=><option className={c.option}>{m}</option> ) }</select>}
       <div className={c.data}>
         <div className={c.total}>
           {p.title === "hc/day" ? (
