@@ -6,16 +6,70 @@ const ProjectEfficiency = (p) => {
     <div className={c.projectEfficiencyContainer}>
       <h4>project efficiency</h4>
       <div className={c.chartContainer}>
-      <div className={c.chart}>
-        <MonthChart />
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
       </div>
-      <div className={c.chart}>
-        <MonthChart />
+      <div className={c.chartContainer}>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
       </div>
-      <div className={c.chart}>
-        <MonthChart />
+      <div className={c.chartContainer}>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
       </div>
-    
+      <div className={c.chartContainer}>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+      </div>
+      <div className={c.chartContainer}>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+      </div>
+      <div className={c.chartContainer}>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
+        <div className={c.chart}>
+          <MonthChart />
+        </div>
       </div>
     </div>
   );
