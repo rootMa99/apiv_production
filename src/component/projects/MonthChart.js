@@ -1,30 +1,38 @@
 
 import React from 'react';
-import { Line, Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    LineElement,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    Tooltip,
+    Legend,
+  BarElement,
+  } from "chart.js";
 
 const MonthChart=p=>{
     const data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-          {
-            label: 'Line Dataset',
-            type: 'line',
-            borderColor: 'rgba(75,192,192,1)',
-            borderWidth: 2,
-            fill: false,
-            data: [65, 59, 80, 81, 56, 55, 40],
-          },
-          {
-            label: 'Bar Dataset',
-            type: 'bar',
-            backgroundColor: 'rgba(255,99,132,0.2)',
-            borderColor: 'rgba(255,99,132,1)',
-            borderWidth: 1,
-            hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-            hoverBorderColor: 'rgba(255,99,132,1)',
-            data: [45, 88, 72, 65, 38, 70, 90],
-          },
+        labels: [
+          'January',
+          'February',
+          'March',
+          'April'
         ],
+        datasets: [{
+          type: 'bar',
+          label: 'Bar Dataset',
+          data: [10, 20, 30, 40],
+          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)'
+        }, {
+          type: 'line',
+          label: 'Line Dataset',
+          data: [5, 70, 80, 30],
+          fill: false,
+          borderColor: 'rgb(54, 162, 235)'
+        }]
       };
     
       // Options for the chart
@@ -37,7 +45,15 @@ const MonthChart=p=>{
           },
         },
       };
-    
+      ChartJS.register(
+        LineElement,
+        CategoryScale,
+        LinearScale,
+        PointElement,
+        Tooltip,
+        Legend,
+        BarElement
+      );
       return (
         <div>
           <h2>Mixed Chart</h2>

@@ -31,10 +31,10 @@ const ProjectCard = (p) => {
   };
  
   useEffect(() => {
-    setData(getEfficiencyDataByDay(p.data, "2023-11-27"));
-    setDataM(getEfficiencyDataByMonth(p.data, "Nov"));
+    setData(getEfficiencyDataByDay(p.data, p.day));
+    setDataM(getEfficiencyDataByMonth(p.data, p.month));
     setDataY(getEfficiencyDataByYear(p.data));
-  }, [p.data]);
+  }, [p.data, p]);
 
   const totalEfficencyYear = (dataY.prodH / dataY.paidH) * 100;
   const totalEfficencyYearTarget = (dataY.prodHT / dataY.paidHT) * 100;
@@ -76,6 +76,11 @@ const ProjectCard = (p) => {
   } else {
     css.cssCM = `${c.red}`;
   }
+  const tclasses = gapY >= 0 ? `${c.triangleUP}` : `${c.triangleDown}`;
+  const tclassesM = gapM >= 0 ? `${c.triangleUP}` : `${c.triangleDown}`;
+  const tclassesD = gap >= 0 ? `${c.triangleUP}` : `${c.triangleDown}`;
+const selecyedDay= p.day.split("-");
+
   return (
     <div
       className={c.cardContainers}
@@ -90,24 +95,24 @@ const ProjectCard = (p) => {
         {mouseIn&&<h2>{p.title} </h2>}
         <div className={c.efficiency}>
           <div className={c.efficiencyData}>
-            <h5>last day</h5>
+            <h5>date: {selecyedDay[2]}-{selecyedDay[1]}</h5>
             <span className={css.cssC}>{totalEfficencyDay.toFixed(2)}%</span>
             {mouseIn && <span>{totalEfficencyDayTarget.toFixed(2)}%</span>}
-            <span className={css.cssC}>{gap.toFixed(2)}%</span>
+            <span className={`${css.cssC} ${c.gaps}`}><div className={tclassesD}></div>{gap.toFixed(2)}%</span>
           </div>
           <div className={c.efficiencyData}>
-            <h5>month</h5>
+            <h5>{p.month}</h5>
             <span className={css.cssCM}>
-              {totalEfficencyMonth.toFixed(2)}%{" "}
+              {totalEfficencyMonth.toFixed(2)}%
             </span>
             {mouseIn && <span>{totalEfficencyMonthTarget.toFixed(2)}% </span>}
-            <span className={css.cssCM}>{gapM.toFixed(2)}% </span>
+            <span className={`${css.cssCM} ${c.gaps}`}><div className={tclassesM}></div> {gapM.toFixed(2)}% </span>
           </div>
           <div className={c.efficiencyData}>
             <h5>year</h5>
             <span className={css.cssCY}>{totalEfficencyYear.toFixed(2)}%</span>
             {mouseIn && <span>{totalEfficencyYearTarget.toFixed(2)}%</span>}
-            <span className={css.cssCY}>{gapY.toFixed(2)}%</span>
+            <span className={`${css.cssCY} ${c.gaps}`}><div className={tclasses}></div>{gapY.toFixed(2)}%</span>
           </div>
         </div>
         {mouseIn ? (

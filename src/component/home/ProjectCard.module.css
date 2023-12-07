@@ -175,3 +175,27 @@
 .orange{color:#d1962a !important;
   font-size: larger;
 }
+.gaps{
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+span.gaps{
+  font-size: medium;
+}
+
+.triangleUP {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #008500;
+  margin-right: 5px;
+}
+.triangleDown {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid #a30202;
+}

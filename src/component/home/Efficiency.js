@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import c from "./Efficiency.module.css";
 import EfficiencyData from "./EfficiencyData";
 import { useSelector } from "react-redux";
@@ -12,24 +12,15 @@ import {
 } from "../hooks/getEfficiencyData";
 
 const Efficiency = (p) => {
-  const [day, setDay] = useState("2023-11-27");
-  const [month, setMonth] = useState("Nov");
   let data = useSelector((s) => s.datas);
-  
-  const changeMonth=m=>{
-    setMonth(m);
-  }
-  const changeDay=d=>{
-    setDay(d);
-  }
 
   data =
     p.singleProject.trim() !== ""
       ? filterProjectsByName(data, p.singleProject)
       : data;
-  console.log(data);
+  console.log(data, p.singleProject);
   //Efficiency Day
-  const filtredData = getEfficiencyDay(data, day);
+  const filtredData = getEfficiencyDay(data, p.day);
   console.log(filtredData);
   const {
     prodH: prodHD,
@@ -48,15 +39,15 @@ const Efficiency = (p) => {
   const gapHc = hc - hcTarget;
 
   //Efficiency Month
-  const filtredDataMonth = getEfficiencyMonth(data, month);
+  const filtredDataMonth = getEfficiencyMonth(data, p.month);
   const {
     prodH: prodHM,
     paidH: paidHM,
     prodT: prodTM,
     paidT: paidTM,
   } = getEfficiencyDatas(filtredDataMonth);
-  const totalPM =paidHM===0 ? 0 : ((prodHM / paidHM) * 100).toFixed(2);
-  const totalTM = paidTM===0 ? 0 : ((prodTM / paidTM) * 100).toFixed(2);
+  const totalPM = paidHM === 0 ? 0 : ((prodHM / paidHM) * 100).toFixed(2);
+  const totalTM = paidTM === 0 ? 0 : ((prodTM / paidTM) * 100).toFixed(2);
   const gapM = (totalPM - totalTM).toFixed(2);
   //Efficiency Year
   const { prodHY, paidHY, prodTY, paidTY } = getEfficiencyYear(data);
@@ -78,17 +69,17 @@ const Efficiency = (p) => {
       <div className={c.efficiency}>
         <div className={c.efficiencyContent}>
           <EfficiencyData
-            changeDay={changeDay}
-            day={day}
+            changeDay={p.changeDay}
+            day={p.day}
             title="last day"
             totalP={totalP}
             totalT={totalT}
             gap={gap}
           />
           <EfficiencyData
-            changeMonth={changeMonth}
-            month={month}
+            day={p.day}
             title="month"
+            month={p.month}
             totalP={totalPM}
             totalT={totalTM}
             gap={gapM}

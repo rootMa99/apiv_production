@@ -1,7 +1,6 @@
 .projectEfficiencyContainer{
     width: 90%;
     margin: auto;
-    background-color: red;
 }
 .projectEfficiencyContainer h4{
     margin-right: auto;
@@ -13,4 +12,10 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: center;
+}
+.chartContainer{
+    display: flex;
+}
+.chart{
+    width: 33%;
 }

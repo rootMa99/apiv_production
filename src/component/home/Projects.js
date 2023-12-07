@@ -18,7 +18,7 @@ const Projects = (p) => {
       <div className={c.projectsContainer}>
         <div className={c.projectCardContainer}>
           {sortedData.map((m) => (
-            <ProjectCard key={m.name} title={m.name} data={m.data} />
+            <ProjectCard key={m.name} title={m.name} data={m.data}  day={p.day} month={p.month}/>
           ))}
         </div>
       </div>
