@@ -1,5 +1,7 @@
 import c from "./ProjectCard.module.css";
 import aptivbg from "../../assets/k9.jpg";
+import { useNavigate } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 import {
   getEfficiencyDataByDay,
@@ -12,15 +14,22 @@ const ProjectCard = (p) => {
   const [data, setData] = useState({});
   const [dataM, setDataM] = useState({});
   const [dataY, setDataY] = useState({});
-  const clickHandler = (e) => {
+  const navigate= useNavigate();
+
+
+  const clickHandler=e=>{
+    console.log('card clicked', p.title);
+    navigate(`/project/${p.title}`);
+  }
+
+  const mouseEnter = (e) => {
     setMouseIn(true);
   };
 
   const mouseLeave = (e) => {
     setMouseIn(false);
   };
-  console.log(p.data);
-
+ 
   useEffect(() => {
     setData(getEfficiencyDataByDay(p.data, "2023-11-27"));
     setDataM(getEfficiencyDataByMonth(p.data, "Nov"));
@@ -70,8 +79,9 @@ const ProjectCard = (p) => {
   return (
     <div
       className={c.cardContainers}
-      onMouseEnter={clickHandler}
+      onMouseEnter={mouseEnter}
       onMouseLeave={mouseLeave}
+      onClick={clickHandler}
     >
       <img src={aptivbg} alt="some backGround" />
       {!mouseIn&&<h2 className={c.toptitle}>{p.title} </h2>}

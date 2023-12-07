@@ -1,0 +1,11 @@
+.heading {
+  margin-left: 2rem;
+  width: 40%;
+  color: #f4dfc8;
+  font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+}

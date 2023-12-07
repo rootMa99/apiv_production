@@ -11,7 +11,7 @@ const Home = (p) => {
   return (
     <div className={c.container}>
       <div className={c.content}>
-        <Efficiency />
+        <Efficiency singleProject="" />
         <Projects data={data} />
       </div>
     </div>

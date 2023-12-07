@@ -4,7 +4,7 @@
   width: 100%;
   background-color: black;
   backdrop-filter: blur(80px);
-  animation: rsin 3s ease-out forwards;
+  animation: rsins 3s ease-out forwards;
   position: sticky;
   top: 0;
   z-index: 111;
@@ -18,7 +18,7 @@
   justify-content: space-evenly;
 }
 .title {
-  animation: rsin 3s ease-out forwards;
+  animation: rsin 1s ease-out forwards;
   margin-right: auto;
   margin-left: 2rem;
   width: 10%;
@@ -36,13 +36,11 @@
 @keyframes rsin {
   0% {
     opacity: 0;
-    transform: translateY(-10rem);
-    display: none;
+    transform: translateY(-2rem);
   }
   33% {
     opacity: 0.3;
-    transform: translateY(-5rem);
-    display: none;
+    transform: translateY(-1rem);
   }
   66% {
     opacity: 0.6;
@@ -51,5 +49,40 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@keyframes rsins {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
   }
 }

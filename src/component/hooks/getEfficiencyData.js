@@ -87,6 +87,9 @@ export const getFiltredProject = (dataArray) => {
   );
   return datafiltred;
 };
+export const filterProjectsByName=(dataArray,project)=>{
+  return dataArray.filter(f=>(f.name===project));
+}
 
 export const getEfficiencyDataByDay = (dataArray, day) => {
   const filtredData = dataArray.filter((f) => {

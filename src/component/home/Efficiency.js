@@ -3,6 +3,7 @@ import c from "./Efficiency.module.css";
 import EfficiencyData from "./EfficiencyData";
 import { useSelector } from "react-redux";
 import {
+  filterProjectsByName,
   getEfficiencyDatas,
   getEfficiencyDay,
   getEfficiencyMonth,
@@ -11,18 +12,23 @@ import {
 } from "../hooks/getEfficiencyData";
 
 const Efficiency = (p) => {
-  const data = useSelector((s) => s.datas);
+  let data = useSelector((s) => s.datas);
+  data= p.singleProject.trim()!=="" ? (filterProjectsByName(data, p.singleProject)) : (data) ;
+  console.log(data);
   //Efficiency Day
-  const filtredData = getEfficiencyDay(data, "2023-11-27");
+  const filtredData = getEfficiencyDay(data, "2023-11-23");
+  console.log(filtredData)
   const {
     prodH: prodHD,
     paidH: paidHD,
     prodT: prodTD,
     paidT: paidTD,
   } = getEfficiencyDatas(filtredData);
-  const totalP = ((prodHD / paidHD) * 100).toFixed(2);
-  const totalT = ((prodTD / paidTD) * 100).toFixed(2);
+  console.log(prodHD,paidHD,prodTD,paidTD)
+  const totalP = paidHD===0 ? 0 : (((prodHD / paidHD) * 100).toFixed(2));
+  const totalT = paidTD===0 ? 0 : (((prodTD / paidTD) * 100).toFixed(2));
   const gap = (totalP-totalT).toFixed(2);
+  console.log(totalP, totalT, gap);
   //hc Day using filtred Day
   const { hc, hcTarget } = getHC(filtredData);
   const gapHc = (hc-hcTarget);
