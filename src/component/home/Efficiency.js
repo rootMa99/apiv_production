@@ -36,7 +36,7 @@ const Efficiency = (p) => {
   //hc Day using filtred Day
   console.log(filtredData);
   const { hc, hcTarget } = getHC(filtredData);
-  const gapHc = hc - hcTarget;
+  const gapHc = (hc - hcTarget).toFixed(0);
 
   //Efficiency Month
   const filtredDataMonth = getEfficiencyMonth(data, p.month);
@@ -91,7 +91,7 @@ const Efficiency = (p) => {
           />
           <EfficiencyData
             title="hc/day"
-            hc={hc}
+            hc={hc.toFixed(0)}
             totalT={hcTarget}
             gap={gapHc}
           />

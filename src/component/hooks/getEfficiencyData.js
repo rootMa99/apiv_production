@@ -81,7 +81,8 @@ export const getFiltredProject = (dataArray) => {
         f.name !== "AFM" &&
         f.name !== "CUTTING AREA" &&
         f.name !== "LEAD PREP AREA" &&
-        f.name !== "B78/T9"
+        f.name !== "B78/T9"&&
+        f.name !== "Prototype"
       );
     })
   );

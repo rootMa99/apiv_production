@@ -11,19 +11,18 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
-import { useSelector } from "react-redux";
+///import { useSelector } from "react-redux";
 
 const MonthChart = (p) => {
-  const day = useSelector((s) => s.additionalData);
+  //const day = useSelector((s) => s.additionalData);
 
   const data = {
-    labels: day.month,
+    labels: p.monthData.map((m) => m.name),
     datasets: [
-      
       {
         type: "line",
         label: "Line Dataset",
-        data: [5, 70, 80, 30, 5, 70, 80, 30, 5, 70, 80, 30],
+        data: p.monthData.map((m) => m.totalTarget),
         backgroundColor: "#950101",
         pointHoverBorderColor: "#FAF0E6",
         borderColor: "#FAF0E6",
@@ -31,7 +30,6 @@ const MonthChart = (p) => {
         tension: 0.3,
         borderWidth: 3,
         borderCapStyle: "round",
-        //borderDash: [5, 5],
         pointHoverBackgroundColor: "rgb(88, 3, 3)",
         pointHoverRadius: 8,
         pointBorderColor: "rgb(110, 3, 3)",
@@ -41,12 +39,12 @@ const MonthChart = (p) => {
       {
         type: "bar",
         label: "Bar Dataset",
-        data: [10, 20, 30, 40, 5, 70, 80, 30, 5, 70, 80, 30],
+        data: p.monthData.map((m) => m.total),
         backgroundColor: "rgb(99, 3, 3)",
         hoverBackgroundColor: "#950101",
         borderColor: "#FAF0E6",
         borderWidth: 1,
-      }
+      },
     ],
   };
 
@@ -80,11 +78,43 @@ const MonthChart = (p) => {
     plugins: {
       legend: {
         labels: {
-          color: "white",
+          color: "#FAF0E6",
         },
       },
       datalabels: {
         display: true,
+      },
+    },
+    animation: {
+      onComplete: (animation) => {
+        const { chart } = animation;
+        const ctx = chart.ctx;
+
+        chart.data.datasets.forEach((dataset, index) => {
+          const meta = chart.getDatasetMeta(index);
+
+          meta.data.forEach((element, index) => {
+            const data = dataset.data[index];
+            let xPos, yPos;
+
+            if (dataset.type === 'bar') {
+              xPos = element.x;
+              yPos = element.y + 100;
+            } else if (dataset.type === 'line') {
+              xPos = element.x;
+              yPos = element.y - 10; 
+            }
+
+            ctx.save();
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#FAF0E6';
+            ctx.font = '12px Arial';
+
+            ctx.fillText(data, xPos, yPos);
+
+            ctx.restore();
+          });
+        });
       },
     },
   };
@@ -99,7 +129,7 @@ const MonthChart = (p) => {
   );
   return (
     <div className={c.chart}>
-      <h2>monthly</h2>
+      <h4>monthly</h4>
       <Line data={data} options={options} />
     </div>
   );

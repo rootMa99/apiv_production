@@ -2,7 +2,7 @@
     width: 100%;
     margin: auto;
 }
-.projectEfficiencyContainer h4{
+.projectEfficiencyContainer h3{
     margin-right: auto;
     width:15%;
     color: #f4dfc8;
@@ -11,7 +11,7 @@
       "Segoe UI Symbol";
     letter-spacing: 2px;
     text-transform: uppercase;
-    text-align: center;
+    text-align: left;
 }
 .chartContainer{
     display: flex;
