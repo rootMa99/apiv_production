@@ -16,61 +16,6 @@ const ProjectEfficiency = (p) => {
           <MonthChart />
         </div>
       </div>
-      <div className={c.chartContainer}>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-      </div>
-      <div className={c.chartContainer}>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-      </div>
-      <div className={c.chartContainer}>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-      </div>
-      <div className={c.chartContainer}>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-      </div>
-      <div className={c.chartContainer}>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-        <div className={c.chart}>
-          <MonthChart />
-        </div>
-      </div>
     </div>
   );
 };

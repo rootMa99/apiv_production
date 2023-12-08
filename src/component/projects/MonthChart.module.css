@@ -1,8 +1,8 @@
-.projectEfficiencyContainer{
+.chart{
+    height: 100%;
     width: 100%;
-    margin: auto;
 }
-.projectEfficiencyContainer h4{
+.chart h2{
     margin-right: auto;
     width:15%;
     color: #f4dfc8;
@@ -12,11 +12,4 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: center;
-}
-.chartContainer{
-    display: flex;
-}
-.chart{
-    width: 33%;
-    height: 20rem;
 }

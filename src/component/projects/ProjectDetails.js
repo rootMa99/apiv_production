@@ -8,9 +8,13 @@ const ProjectDetails = (p) => {
 
   return (
     <React.Fragment>
-      <h1 className={c.heading}>{project}</h1>
       <div className={c.projectContent}>
-        <ProjectEfficiency />
+        <div className={c.aside}>
+          <h1 className={c.heading}>{project}</h1>
+        </div>
+        <div className={c.chartContainer}>
+          <ProjectEfficiency />
+        </div>
       </div>
     </React.Fragment>
   );
