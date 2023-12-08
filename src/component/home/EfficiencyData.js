@@ -1,10 +1,14 @@
 import React from "react";
 import c from "./EfficiencyData.module.css";
+import { useDispatch } from "react-redux";
+import { additionalDataAction } from "../../store/AdditionalData";
 
 const EfficiencyData = (p) => {
 
+  const dispatch= useDispatch();
+
   const changeDayhandler = (e) => {
-    p.changeDay(e.target.value);
+    dispatch(additionalDataAction.addDate(e.target.value));
   };
 
   const classes = p.gap >= 0 ? `${c.green}` : `${c.red}`;

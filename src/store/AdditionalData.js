@@ -4,7 +4,21 @@ import { createSlice } from "@reduxjs/toolkit";
 const AdditionalData=createSlice({
     name: "addtionalData",
     initialState:{
-        date:"2023-11-27"
+        date:"2023-11-27",
+        month:[
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ]
     },
     reducers:{
         addDate(s,p){

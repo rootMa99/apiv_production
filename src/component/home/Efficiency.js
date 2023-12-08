@@ -69,7 +69,6 @@ const Efficiency = (p) => {
       <div className={c.efficiency}>
         <div className={c.efficiencyContent}>
           <EfficiencyData
-            changeDay={p.changeDay}
             day={p.day}
             title="last day"
             totalP={totalP}
