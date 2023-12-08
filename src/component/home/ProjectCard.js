@@ -19,7 +19,7 @@ const ProjectCard = (p) => {
 
   const clickHandler=e=>{
     console.log('card clicked', p.title);
-    navigate(`/project/${p.title}`);
+    navigate(`/home/project/${p.title}`);
   }
 
   const mouseEnter = (e) => {

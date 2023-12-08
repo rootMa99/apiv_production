@@ -9,7 +9,6 @@ import NavBar from "./component/ui/NavBar";
 import DEMO_DATA from "./component/DEMO_DATA";
 import ProjectDetails from "./component/projects/ProjectDetails";
 
-
 function App() {
   const dispatch = useDispatch();
 
@@ -23,9 +22,10 @@ function App() {
       <Suspense>
         <Routes>
           <Route exact path="/" element={<Navigate replace to="/home" />} />
-          <Route exact path="/home" element={<Home />}></Route>
-          <Route exact path="/project" >
-            <Route exact path=":project" element={<ProjectDetails />} />
+          <Route exact path="/home" element={<Home />}>
+            <Route exact path="/home/project">
+              <Route path=":project" element={<ProjectDetails />} />
+            </Route>
           </Route>
         </Routes>
       </Suspense>

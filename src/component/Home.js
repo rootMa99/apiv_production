@@ -2,7 +2,9 @@ import { useSelector } from "react-redux";
 import c from "./Home.module.css";
 import Efficiency from "./home/Efficiency";
 import Projects from "./home/Projects";
-import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+
+import ProjectDetails from "./projects/ProjectDetails";
 
 
 const MONTH = [
@@ -22,18 +24,20 @@ const MONTH = [
 
 const Home = (p) => {
   const data= useSelector(s=>s.datas);
-  const [day, setDay] = useState("2023-11-27");
-  const changeDay=d=>{
-    setDay(d);
-  }
+  const day="2023-11-23";
   const month = MONTH[day.split("-")[1]-1];
   console.log(data);
 
   return (
     <div className={c.container}>
       <div className={c.content}>
-        <Efficiency singleProject="" day={day} month={month} changeDay={changeDay}/>
+        <Efficiency singleProject="" day={day} month={month}/>
         <Projects data={data} day={day} month={month} />
+        <Routes>
+          <Route exact path="/home/project" >
+            <Route exact path=":project" element={<ProjectDetails />} />
+          </Route>
+        </Routes>
       </div>
     </div>
   );

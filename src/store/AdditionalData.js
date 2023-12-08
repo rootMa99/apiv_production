@@ -13,3 +13,5 @@ const AdditionalData=createSlice({
     }
 })
 
+export const additionalDataAction= AdditionalData.actions;
+export default AdditionalData;
