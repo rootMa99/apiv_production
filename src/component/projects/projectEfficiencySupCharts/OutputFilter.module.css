@@ -4,6 +4,7 @@
     flex-direction: column;
 }
 .title{
+    margin-top: 3rem;
     margin-right: auto;
     width:15%;
     color: #f4dfc8;
@@ -20,4 +21,5 @@
 }
 .chart{
     width: 33%;
+    height: 20rem;
 }

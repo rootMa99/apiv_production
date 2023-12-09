@@ -147,41 +147,41 @@ export const getDataDays = (data) => {
   return returnedArray;
 };
 
-export const getOutputDataYear =(data)=>{
+export const getOutputDataYear =(data, searcheType, actual, target)=>{
   const months=[];
   const returnedArray = [];
   for(let d of data){
     if(months.length===0){
       months.push({
-        month:d.month,
-        output:d.actualDataExcel.output,
-        workingDay:d.actualDataExcel.output===0 ? 0 : 1,
-        outputTarget:d.dataTargetExcel.outputTarget,
-        workingDayTarget: d.dataTargetExcel.outputTarget===0 ? 0 : 1, 
+        month:d[searcheType],
+        output:d.actualDataExcel[actual],
+        workingDay:d.actualDataExcel[actual]===0 ? 0 : 1,
+        outputTarget:d.dataTargetExcel[target],
+        workingDayTarget: d.dataTargetExcel[target]===0 ? 0 : 1, 
       });
       continue;
     }
-    const index = months.findIndex((f) => f.month === d.month);
+    const index = months.findIndex((f) => f.month === d[searcheType]);
     if(index===-1){
       months.push({
-        month:d.month,
-        output:d.actualDataExcel.output,
-        workingDay:d.actualDataExcel.output===0 ? 0 : 1,
-        outputTarget:d.dataTargetExcel.outputTarget,
-        workingDayTarget: d.dataTargetExcel.outputTarget===0 ? 0 : 1, 
+        month:d[searcheType],
+        output:d.actualDataExcel[actual],
+        workingDay:d.actualDataExcel[actual]===0 ? 0 : 1,
+        outputTarget:d.dataTargetExcel[target],
+        workingDayTarget: d.dataTargetExcel[target]===0 ? 0 : 1, 
       })
     }else{
-      months[index].output+=d.actualDataExcel.output;
-      d.actualDataExcel.output!==0 && months[index].workingDay++;
-      months[index].outputTarget+=d.dataTargetExcel.outputTarget;
-      d.dataTargetExcel.outputTarget!==0 && months[index].workingDayTarget++;
+      months[index].output+=d.actualDataExcel[actual];
+      d.actualDataExcel[actual]!==0 && months[index].workingDay++;
+      months[index].outputTarget+=d.dataTargetExcel[target];
+      d.dataTargetExcel[target]!==0 && months[index].workingDayTarget++;
     }
   }
   months.forEach(e=>{
     returnedArray.push({
       name:e.month,
-      total:e.workingDay===0 ? 0 : e.output/e.workingDay,
-      totalTarget: e.workingDayTarget===0 ? 0 : e.outputTarget/e.workingDayTarget
+      total:e.workingDay===0 ? 0 : (e.output/e.workingDay).toFixed(2),
+      totalTarget: e.workingDayTarget===0 ? 0 : (e.outputTarget/e.workingDayTarget).toFixed(2)
     })
   });
 
