@@ -2,6 +2,7 @@ import c from "./ProjectDetails.module.css";
 import { useParams } from "react-router-dom";
 import ProjectEfficiency from "./ProjectEfficiency";
 import React from "react";
+import ProjectEfficiencySup from "./ProjectEfficiencySup";
 
 const ProjectDetails = (p) => {
   const { project } = useParams();
@@ -14,6 +15,7 @@ const ProjectDetails = (p) => {
         </div>
         <div className={c.chartContainer}>
           <ProjectEfficiency />
+          <ProjectEfficiencySup />
         </div>
       </div>
     </React.Fragment>

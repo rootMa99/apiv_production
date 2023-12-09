@@ -106,7 +106,7 @@ const MonthChart = (p) => {
             
             if (dataset.type === 'bar') {
               xPos = element.x;
-              yPos = Math.abs(data - minBarValue)<=5 ? element.y + 50 :element.y + 100;
+              yPos = Math.abs(data - minBarValue)<=5 ? element.y + 50 :element.y + 90;
             } else if (dataset.type === 'line') {
               xPos = element.x;
               yPos = element.y - 15; 

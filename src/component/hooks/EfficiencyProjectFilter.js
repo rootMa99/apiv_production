@@ -146,3 +146,44 @@ export const getDataDays = (data) => {
 
   return returnedArray;
 };
+
+export const getOutputDataYear =(data)=>{
+  const months=[];
+  const returnedArray = [];
+  for(let d of data){
+    if(months.length===0){
+      months.push({
+        month:d.month,
+        output:d.actualDataExcel.output,
+        workingDay:d.actualDataExcel.output===0 ? 0 : 1,
+        outputTarget:d.dataTargetExcel.outputTarget,
+        workingDayTarget: d.dataTargetExcel.outputTarget===0 ? 0 : 1, 
+      });
+      continue;
+    }
+    const index = months.findIndex((f) => f.month === d.month);
+    if(index===-1){
+      months.push({
+        month:d.month,
+        output:d.actualDataExcel.output,
+        workingDay:d.actualDataExcel.output===0 ? 0 : 1,
+        outputTarget:d.dataTargetExcel.outputTarget,
+        workingDayTarget: d.dataTargetExcel.outputTarget===0 ? 0 : 1, 
+      })
+    }else{
+      months[index].output+=d.actualDataExcel.output;
+      d.actualDataExcel.output!==0 && months[index].workingDay++;
+      months[index].outputTarget+=d.dataTargetExcel.outputTarget;
+      d.dataTargetExcel.outputTarget!==0 && months[index].workingDayTarget++;
+    }
+  }
+  months.forEach(e=>{
+    returnedArray.push({
+      name:e.month,
+      total:e.workingDay===0 ? 0 : e.output/e.workingDay,
+      totalTarget: e.workingDayTarget===0 ? 0 : e.outputTarget/e.workingDayTarget
+    })
+  });
+
+  return returnedArray;
+}

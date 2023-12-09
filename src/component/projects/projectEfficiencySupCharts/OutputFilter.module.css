@@ -1,0 +1,23 @@
+.chartsContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    margin-right: auto;
+    width:15%;
+    color: #f4dfc8;
+    font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+}
+.chartContainer{
+    width: 100%;
+    display: flex;
+}
+.chart{
+    width: 33%;
+}
