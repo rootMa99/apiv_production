@@ -48,8 +48,8 @@ const MonthChart = (p) => {
     ],
   };
 
-
-  const minBarValue = Math.min(...data.datasets[0].data);
+  console.log(data.datasets)
+  const minBarValue = Math.min(...data.datasets[1].data);
 
   // Options for the chart
   const options = {
@@ -78,7 +78,8 @@ const MonthChart = (p) => {
           stacked: true,
         },
         beginAtZero: false,
-        suggestedMin: minBarValue!==0 ? minBarValue-10 : minBarValue+30,
+        suggestedMin: minBarValue!==0 ? minBarValue-10 : minBarValue,
+        suggestedMax: 100,
       },
     },
     plugins: {
@@ -91,8 +92,8 @@ const MonthChart = (p) => {
         display: true,
       },
     },
-    animation: {
-      onComplete: (animation) => {
+     animation: {
+       onComplete: (animation) => {
         const { chart } = animation;
         const ctx = chart.ctx;
 
@@ -102,10 +103,10 @@ const MonthChart = (p) => {
           meta.data.forEach((element, index) => {
             const data = dataset.data[index];
             let xPos, yPos;
-
+            
             if (dataset.type === 'bar') {
               xPos = element.x;
-              yPos = element.y + 50;
+              yPos = Math.abs(data - minBarValue)<=5 ? element.y + 50 :element.y + 100;
             } else if (dataset.type === 'line') {
               xPos = element.x;
               yPos = element.y - 15; 
@@ -123,6 +124,7 @@ const MonthChart = (p) => {
         });
       },
     },
+    
   };
   ChartJS.register(
     LineElement,
@@ -135,7 +137,7 @@ const MonthChart = (p) => {
   );
   return (
     <div className={c.chart}>
-      <h4>monthly</h4>
+      <h4>{p.title}</h4>
       <Line data={data} options={options} />
     </div>
   );

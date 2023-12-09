@@ -30,13 +30,13 @@ const ProjectEfficiency = (p) => {
       <h3>project efficiency</h3>
       <div className={c.chartContainer}>
         <div className={c.chart}>
-          <MonthChart monthData={monthData} />
+          <MonthChart monthData={monthData} title="monthly" />
         </div>
         <div className={c.chart}>
-          <MonthChart monthData={filtredWeek}/>
+          <MonthChart monthData={filtredWeek} title="weekly"/>
         </div>
         <div className={c.chart}>
-          <MonthChart monthData={dataDays}/>
+          <MonthChart monthData={dataDays} title="daily"/>
         </div>
       </div>
     </div>
