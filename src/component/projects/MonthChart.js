@@ -21,7 +21,7 @@ const MonthChart = (p) => {
     datasets: [
       {
         type: "line",
-        label: "Line Dataset",
+        label: "Target Data",
         data: p.monthData.map((m) => m.totalTarget),
         backgroundColor: "#950101",
         pointHoverBorderColor: "#FAF0E6",
@@ -32,13 +32,13 @@ const MonthChart = (p) => {
         borderCapStyle: "round",
         pointHoverBackgroundColor: "rgb(88, 3, 3)",
         pointHoverRadius: 8,
-        pointBorderColor: "rgb(110, 3, 3)",
+        pointBorderColor: "#FAF0E6",
         pointBorderWidth: 3,
         pointRadius: 4,
       },
       {
         type: "bar",
-        label: "Bar Dataset",
+        label: "Actual Data",
         data: p.monthData.map((m) => m.total),
         backgroundColor: "rgb(99, 3, 3)",
         hoverBackgroundColor: "#950101",
@@ -48,11 +48,15 @@ const MonthChart = (p) => {
     ],
   };
 
+
+  const minBarValue = Math.min(...data.datasets[0].data);
+
   // Options for the chart
   const options = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
+     
       x: {
         grid: {
           color: "#f3f3f34f",
@@ -73,6 +77,8 @@ const MonthChart = (p) => {
         y: {
           stacked: true,
         },
+        beginAtZero: false,
+        suggestedMin: minBarValue!==0 ? minBarValue-10 : minBarValue+30,
       },
     },
     plugins: {
@@ -99,10 +105,10 @@ const MonthChart = (p) => {
 
             if (dataset.type === 'bar') {
               xPos = element.x;
-              yPos = element.y + 100;
+              yPos = element.y + 50;
             } else if (dataset.type === 'line') {
               xPos = element.x;
-              yPos = element.y - 10; 
+              yPos = element.y - 15; 
             }
 
             ctx.save();

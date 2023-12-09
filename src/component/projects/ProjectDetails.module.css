@@ -11,7 +11,7 @@
 }
 .aside {
   width: 13%;
-  background-color: rgba(128, 128, 128, 0.185);
+  background-color: rgba(128, 128, 128, 0.171);
   backdrop-filter: blur(80px);
   height: 100vh;
   position: fixed;
