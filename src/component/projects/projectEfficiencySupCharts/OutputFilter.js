@@ -24,8 +24,8 @@ const OuputFilter = (p) => {
   const daily = getDataDaysOutput(filtredM, p.actual, p.target);
   console.log("daily", daily);
   return (
-    <div className={c.chartsContainer}>
-      <h4 className={c.title}>{p.title}</h4>
+    <div className={c.chartsContainer} style={p.title!=="output" ? {'marginTop': '4rem'} : {}  }>
+      <h3 className={c.title}>{p.title}</h3>
       <div className={c.chartContainer}>
         <div className={c.chart}>
           <MonthChart monthData={monthly} title={`monthly ${p.title}`} type={p.title} />

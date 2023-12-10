@@ -2,19 +2,15 @@
     height: 100%;
     width: 100%;
 }
-.chart{
-  position: relative;
-}
-.chart h4{
-    position: sticky;
-    top: 0;
+
+.chart h5{
     margin-right: auto;
-    width:15%;
+    width:30%;
     color: #f4dfc8;
     font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol";
     letter-spacing: 2px;
     text-transform: uppercase;
-    text-align: center;
+    text-align: left;
 }

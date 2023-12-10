@@ -220,8 +220,9 @@ daily.forEach((e) => {
   
   returnedArray.push({
     name: e.date.split("-")[2],
-    total: actual==="ot" ? (e.total).toFixed(2) : e.total,
-    totalTarget: (actual==="ot" || actual==="ab") ?  (e.totalTarget).toFixed(2) : e.totalTarget,
+    total: actual==="ot" ? (e.total).toFixed(2) : (e.total).toFixed(0),
+    //totalTarget: (actual==="ot" || actual==="ab") ?  (e.totalTarget).toFixed(2) : e.totalTarget,
+    totalTarget: e.totalTarget!==undefined ? (e.totalTarget).toFixed(2) : 0,
   });
 });
 

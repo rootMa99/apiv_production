@@ -22,7 +22,7 @@
   top: 10rem;
   padding-top:3rem;
 }
-.heading {
+.heading,.maxvalues {
   margin-left: 5px;
   width: 100%;
   color: #f4dfc8;
@@ -32,4 +32,9 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
+}
+.maxvalues span{
+  color: #ffffff;
+  font-weight: bold;
+  font-size: larger;
 }

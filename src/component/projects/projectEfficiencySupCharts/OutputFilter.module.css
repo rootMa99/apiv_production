@@ -1,10 +1,15 @@
 .chartsContainer{
-    width: 100%;
+    width: 99%;
     display: flex;
     flex-direction: column;
+    border: 1px solid wheat;
+    border-radius: 17px;
+    padding: 1rem;
+    padding-bottom: 8rem;
+    background-color: rgba(128, 128, 128, 0.363);
+  backdrop-filter: blur(80px);
 }
 .title{
-    margin-top: 3rem;
     margin-right: auto;
     width:15%;
     color: #f4dfc8;

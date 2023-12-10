@@ -151,7 +151,7 @@ const MonthChart = (p) => {
           stacked: true,
         },
         beginAtZero: false,
-        suggestedMin:p.type==="ab" ? 0 : (minBarValue !== 0 ? minBarValue - 10 : minBarValue),
+        suggestedMin:(p.type==="ab" || p.type==="hc") ? 0 : (minBarValue !== 0 ? minBarValue - 10 : minBarValue),
         //suggestedMax: 100,
       },
     },
@@ -180,7 +180,7 @@ const MonthChart = (p) => {
             if (dataset.type === "bar") {
               xPos = element.x;
               yPos =
-                Math.abs(data - minBarValue) <= 5 ? element.y+10 : element.y + 90;
+                Math.abs(data - minBarValue) <= 15 ? element.y+10 : element.y + 90;
             } else if (dataset.type === "line" && p.title!=="daily") {
               xPos = element.x;
               yPos = index% 2 === 0? element.y - 15 : element.y + 15 ;
@@ -210,7 +210,7 @@ const MonthChart = (p) => {
   );
   return (
     <div className={c.chart}>
-      <h4>{p.title}</h4>
+      <h5>{p.title}</h5>
       <div className={c.chatHolder}>
         { (p.type==="ot"||p.type==="tlo")?<Bar data={dataBar} options={optionsBar} /> : <Line data={data} options={options} />}
       </div>
