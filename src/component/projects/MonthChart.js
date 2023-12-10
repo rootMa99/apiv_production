@@ -1,6 +1,6 @@
 import c from "./MonthChart.module.css";
 import React from "react";
-import { Line } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   LineElement,
@@ -16,6 +16,17 @@ import {
 const MonthChart = (p) => {
   //const day = useSelector((s) => s.additionalData);
 
+  const dataBar={
+    labels: p.monthData.map((m) => m.name),
+    datasets:[{
+      label: "Actual Data",
+      data: p.monthData.map((m) => m.total),
+      backgroundColor: "rgb(99, 3, 3)",
+      hoverBackgroundColor: "#950101",
+      borderColor: "#FAF0E6",
+      borderWidth: 1,
+    }],
+  }
   const data = {
     labels: p.monthData.map((m) => m.name),
     datasets: [
@@ -48,15 +59,77 @@ const MonthChart = (p) => {
     ],
   };
 
-  console.log(data.datasets)
+  console.log(data.datasets);
   const minBarValue = Math.min(...data.datasets[1].data);
 
-  // Options for the chart
+  const optionsBar = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        grid: {
+          color: "#f3f3f34f",
+        },
+        ticks: {
+          color: "white",
+          fontWeight: "bold",
+        },
+      },
+      y: {
+        grid: {
+          color: "#f3f3f34f",
+        },
+        ticks: {
+          color: "white",
+          fontWeight: "bold",
+        },
+        y: {
+          stacked: true,
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: "#FAF0E6",
+        },
+      },
+      datalabels: {
+        display: true,
+      },
+    },
+    animation: {
+      onComplete: (animation) => {
+        const { chart } = animation;
+        const ctx = chart.ctx;
+
+        chart.data.datasets.forEach((dataset, index) => {
+          const meta = chart.getDatasetMeta(index);
+
+          meta.data.forEach((element, index) => {
+            const data = dataset.data[index];
+            let xPos, yPos;
+              xPos = element.x;
+              yPos = element.y -10;
+           
+
+            ctx.save();
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#FAF0E6";
+            ctx.font = "12px Arial";
+
+            ctx.fillText(data, xPos, yPos);
+
+            ctx.restore();
+          });
+        });
+      },
+    },
+  };
   const options = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
-     
       x: {
         grid: {
           color: "#f3f3f34f",
@@ -78,7 +151,7 @@ const MonthChart = (p) => {
           stacked: true,
         },
         beginAtZero: false,
-        suggestedMin: minBarValue!==0 ? minBarValue-10 : minBarValue,
+        suggestedMin:p.type==="ab" ? 0 : (minBarValue !== 0 ? minBarValue - 10 : minBarValue),
         //suggestedMax: 100,
       },
     },
@@ -92,8 +165,8 @@ const MonthChart = (p) => {
         display: true,
       },
     },
-     animation: {
-       onComplete: (animation) => {
+    animation: {
+      onComplete: (animation) => {
         const { chart } = animation;
         const ctx = chart.ctx;
 
@@ -103,19 +176,20 @@ const MonthChart = (p) => {
           meta.data.forEach((element, index) => {
             const data = dataset.data[index];
             let xPos, yPos;
-            
-            if (dataset.type === 'bar') {
+
+            if (dataset.type === "bar") {
               xPos = element.x;
-              yPos = Math.abs(data - minBarValue)<=5 ? element.y + 50 :element.y + 90;
-            } else if (dataset.type === 'line') {
+              yPos =
+                Math.abs(data - minBarValue) <= 5 ? element.y+10 : element.y + 90;
+            } else if (dataset.type === "line" && p.title!=="daily") {
               xPos = element.x;
-              yPos = element.y - 15; 
+              yPos = index% 2 === 0? element.y - 15 : element.y + 15 ;
             }
 
             ctx.save();
-            ctx.textAlign = 'center';
-            ctx.fillStyle = '#FAF0E6';
-            ctx.font = '12px Arial';
+            ctx.textAlign = "center";
+            ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
+            ctx.font = "12px Arial";
 
             ctx.fillText(data, xPos, yPos);
 
@@ -124,7 +198,6 @@ const MonthChart = (p) => {
         });
       },
     },
-    
   };
   ChartJS.register(
     LineElement,
@@ -138,7 +211,9 @@ const MonthChart = (p) => {
   return (
     <div className={c.chart}>
       <h4>{p.title}</h4>
-      <Line data={data} options={options} />
+      <div className={c.chatHolder}>
+        { (p.type==="ot"||p.type==="tlo")?<Bar data={dataBar} options={optionsBar} /> : <Line data={data} options={options} />}
+      </div>
     </div>
   );
 };

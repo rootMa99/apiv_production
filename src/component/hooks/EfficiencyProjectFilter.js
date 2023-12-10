@@ -178,9 +178,10 @@ export const getOutputDataYear =(data, searcheType, actual, target)=>{
     }
   }
   months.forEach(e=>{
+    //console.log(actual, e.workingDay, e.output,e.month);
     returnedArray.push({
       name:e.month,
-      total:e.workingDay===0 ? 0 : (e.output/e.workingDay).toFixed(2),
+      total:e.workingDay===0 ? 0 : actual==="ab" ? ((e.output/e.workingDay).toFixed(0)) :((e.output/e.workingDay).toFixed(2)),
       totalTarget: e.workingDayTarget===0 ? 0 : (e.outputTarget/e.workingDayTarget).toFixed(2)
     })
   });

@@ -20,10 +20,10 @@ const OuputFilter=p=>{
             <h4 className={c.title}>{p.title}</h4>
             <div className={c.chartContainer}>
                 <div className={c.chart}>
-                <MonthChart monthData={monthly} title="monthly"/>
+                <MonthChart monthData={monthly} title="monthly" type={p.title} />
                 </div>
                 <div className={c.chart}>
-                <MonthChart monthData={weekly} title="weekly"/>
+                <MonthChart monthData={weekly} title="weekly" type={p.title}/>
                 </div>
             </div>
         </div>
