@@ -188,3 +188,42 @@ export const getOutputDataYear =(data, searcheType, actual, target)=>{
 
   return returnedArray;
 }
+
+
+export const getDataDaysOutput = (data, actual, target) => {
+  const daily = [];
+  for (let element of data) {
+    if (daily.length === 0) {
+      daily.push({
+        date: element.date,
+        total: element.actualDataExcel[actual],
+        totalTarget:element.dataTargetExcel[target]
+      });
+      continue;
+    }
+    const index = daily.findIndex((f) => f.date === element.date);
+    if (index === -1) {
+      daily.push({
+        date: element.date,
+        total: element.actualDataExcel[actual],
+        totalTarget:element.dataTargetExcel[target]
+
+      });
+    } else {
+      daily[index].total += element.actualDataExcel[actual];
+      daily[index].totalTarget += element.dataTargetExcel[target];
+    }
+  }
+ 
+const returnedArray=[];
+daily.forEach((e) => {
+  
+  returnedArray.push({
+    name: e.date.split("-")[2],
+    total: actual==="ot" ? (e.total).toFixed(2) : e.total,
+    totalTarget: (actual==="ot" || actual==="ab") ?  (e.totalTarget).toFixed(2) : e.totalTarget,
+  });
+});
+
+  return returnedArray;
+};

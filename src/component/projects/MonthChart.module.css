@@ -2,7 +2,12 @@
     height: 100%;
     width: 100%;
 }
+.chart{
+  position: relative;
+}
 .chart h4{
+    position: sticky;
+    top: 0;
     margin-right: auto;
     width:15%;
     color: #f4dfc8;

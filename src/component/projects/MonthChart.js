@@ -19,7 +19,7 @@ const MonthChart = (p) => {
   const dataBar={
     labels: p.monthData.map((m) => m.name),
     datasets:[{
-      label: "Actual Data",
+      label: `Actual Data ${p.title} `,
       data: p.monthData.map((m) => m.total),
       backgroundColor: "rgb(99, 3, 3)",
       hoverBackgroundColor: "#950101",
