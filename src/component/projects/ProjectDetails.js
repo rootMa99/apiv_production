@@ -1,14 +1,17 @@
 import c from "./ProjectDetails.module.css";
 import { useParams } from "react-router-dom";
 import ProjectEfficiency from "./ProjectEfficiency";
-import React from "react";
+import React, { useState } from "react";
 import ProjectEfficiencySup from "./ProjectEfficiencySup";
 import { useSelector } from "react-redux";
 
 const ProjectDetails = (p) => {
   const { project } = useParams();
   const date = useSelector((s) => s.additionalData);
-
+  const [toggle, isToggle]=useState(false);
+const clickHandler=e=>{
+  isToggle(!toggle);
+}
   return (
     <React.Fragment>
       <div className={c.projectContent}>
@@ -35,7 +38,8 @@ const ProjectDetails = (p) => {
         </div>
         <div className={c.chartContainer}>
           <ProjectEfficiency />
-          <ProjectEfficiencySup />
+          <button className={c.buttonToggle} onClick={clickHandler}>{!toggle ? 'show Project details' : "hide project details"}</button>
+          {toggle && <ProjectEfficiencySup />}
         </div>
       </div>
     </React.Fragment>

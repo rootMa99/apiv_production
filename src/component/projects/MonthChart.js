@@ -21,12 +21,12 @@ const MonthChart = (p) => {
  ( p.type === "ab" || p.type === "hc")
     ? (p.monthData.map((m) =>
         m.total < m.totalTarget
-          ? bgcolor.push("#008500")
+          ? bgcolor.push("#005B41")
           : bgcolor.push("rgb(88, 3, 3)")
       ))
     : (p.monthData.map((m) =>
         m.total > m.totalTarget
-          ? bgcolor.push("#008500")
+          ? bgcolor.push("#005B41")
           : bgcolor.push("rgb(88, 3, 3)")
       ));
 
@@ -50,9 +50,9 @@ const MonthChart = (p) => {
         type: "line",
         label: "Target Data",
         data: p.monthData.map((m) => m.totalTarget),
-        backgroundColor: "#950101",
+        backgroundColor: "white",
         pointHoverBorderColor: "#FAF0E6",
-        borderColor: "#FAF0E6",
+        borderColor: "#00A9FF",
         fill: false,
         tension: 0.3,
         borderWidth: 3,
@@ -60,8 +60,9 @@ const MonthChart = (p) => {
         pointHoverBackgroundColor: "rgb(88, 3, 3)",
         pointHoverRadius: 8,
         pointBorderColor: "#FAF0E6",
-        pointBorderWidth: 3,
-        pointRadius: 4,
+        pointBorderWidth: 1,
+        pointRadius: 3,
+        borderDash:[5,7]
       },
       {
         type: "bar",
@@ -69,7 +70,7 @@ const MonthChart = (p) => {
         data: p.monthData.map((m) => m.total),
         backgroundColor: bgcolor,
         //hoverBackgroundColor: "#950101",
-        borderColor: "#FAF0E6",
+        borderColor: "black",
         borderWidth: 1,
       },
     ],
@@ -205,10 +206,10 @@ const MonthChart = (p) => {
                   : element.y + 90;
             } else if (dataset.type === "line" && p.title !== "daily") {
               xPos = element.x;
-              yPos = index % 2 === 0 ? element.y - 15 : element.y + 15;
+              yPos = element.y - 15 ;
             }
 
-            ctx.save();
+             ctx.save();
             ctx.textAlign = "center";
             ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
             ctx.font = "12px Arial";
