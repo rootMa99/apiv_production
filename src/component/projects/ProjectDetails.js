@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 const ProjectDetails = (p) => {
   const { project } = useParams();
-  const date=useSelector(s=>s.additionalData);
+  const date = useSelector((s) => s.additionalData);
 
   return (
     <React.Fragment>
@@ -16,8 +16,21 @@ const ProjectDetails = (p) => {
           <h1 className={c.heading}>{project}</h1>
           <div className={c.maxvalues}>
             <h5>best month :</h5>
-            <h6>month:<span> {date.maxMonthValue.name} </span></h6>
-            <h6>value:<span> {date.maxMonthValue.value}</span> </h6>
+            <h6>
+              month:<span> {date.maxMonthValue.name} </span>
+            </h6>
+            <h6>
+              value:<span> {date.maxMonthValue.value}</span>
+            </h6>
+          </div>
+          <div className={c.maxvalues}>
+            <h5>best day :</h5>
+            <h6>
+              date:<span> {date.maxDayValue.name} </span>
+            </h6>
+            <h6>
+              value:<span> {date.maxDayValue.value}</span>
+            </h6>
           </div>
         </div>
         <div className={c.chartContainer}>

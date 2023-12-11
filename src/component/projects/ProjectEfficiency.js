@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterProjectsByName } from "../hooks/getEfficiencyData";
 import { getDataDays, getDataYear, getMonthData, getWeekData } from "../hooks/EfficiencyProjectFilter";
 import { additionalDataAction } from "../../store/AdditionalData";
+import { useEffect } from "react";
 
 const ProjectEfficiency = (p) => {
   const data=useSelector(s=>s.datas);
@@ -18,15 +19,29 @@ const ProjectEfficiency = (p) => {
   const filtredData= filterProjectsByName(data, params.project);
   console.log(filtredData);
   const monthData=getDataYear(filtredData[0].data);
-  const maxObject = monthData.reduce((max, current) => {
-    if (current.value > max.value || (current.value === max.value && current.total > max.total)) {
-      return current;
-    }
-    return max;
-  });
-  dispatch(additionalDataAction.addMaxMonthValue(maxObject));
+
+  useEffect(()=>{
+    const dataDaysYear=getDataDays(filtredData[0].data, "allDate");
+    console.log(dataDaysYear);
+    const maxObject = monthData.reduce((max, current) => {
+      if (current.value > max.value || (current.value === max.value && current.total > max.total)) {
+        return current;
+      }
+      return max;
+    });
+    const maxObjectDay = dataDaysYear.reduce((max, current) => {
+      if (current.value > max.value || (current.value === max.value && current.total > max.total)) {
+        return current;
+      }
+      return max;
+    });
+    dispatch(additionalDataAction.addMaxMonthValue(maxObject));
+    dispatch(additionalDataAction.addMaxDayValue(maxObjectDay));
+    console.log(maxObject, "max data");
+
+  },[monthData, filtredData, dispatch])
+
   
-  console.log(maxObject, "max data");
   console.log(monthData);
   const filtredMonth= getMonthData(filtredData[0].data, date.month[month-1],date.month[month-2] );
   console.log(filtredMonth);

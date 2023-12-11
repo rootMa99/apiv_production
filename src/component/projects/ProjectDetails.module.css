@@ -33,6 +33,13 @@
   text-transform: uppercase;
   text-align: center;
 }
+.maxvalues{
+  width: 100%;
+  text-align: left;
+}
+.maxvalues h5{
+  text-align: center;
+}
 .maxvalues span{
   color: #ffffff;
   font-weight: bold;

@@ -18,6 +18,10 @@ const AdditionalData = createSlice({
         name:"",
         value:0
     },
+    maxDayValue:{
+        name:"",
+        value:0
+    },
     date: gettoday(),
     month: [
       "Jan",
@@ -41,7 +45,11 @@ const AdditionalData = createSlice({
     addMaxMonthValue(s,p){
         s.maxMonthValue.name=p.payload.name;
         s.maxMonthValue.value=p.payload.total;
-    }
+    },
+    addMaxDayValue(s,p){
+        s.maxDayValue.name=p.payload.name;
+        s.maxDayValue.value=p.payload.total;
+    },
   },
 });
 

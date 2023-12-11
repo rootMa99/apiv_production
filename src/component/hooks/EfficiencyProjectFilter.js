@@ -102,7 +102,7 @@ export const getWeekData = (data) => {
 
   return returnedArray;
 };
-export const getDataDays = (data) => {
+export const getDataDays = (data, allDate) => {
   const daily = [];
   const returnedArray = [];
   for (let element of data) {
@@ -138,7 +138,7 @@ export const getDataDays = (data) => {
     const totalResult =e.paidh===0 ? 0 : (e.prodh / e.paidh) * 100;
     const totalResultTarget =e.paidt===0 ? 0 : (e.prodt / e.paidt) * 100;
     returnedArray.push({
-      name: e.date.split("-")[2],
+      name: allDate==="allDate"? e.date : e.date.split("-")[2],
       total: totalResult.toFixed(2),
       totalTarget: totalResultTarget.toFixed(2),
     });
