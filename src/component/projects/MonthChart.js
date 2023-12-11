@@ -20,12 +20,12 @@ const MonthChart = (p) => {
 
  ( p.type === "ab" || p.type === "hc")
     ? (p.monthData.map((m) =>
-        m.total < m.totalTarget
+        +m.total < +m.totalTarget
           ? bgcolor.push("#005B41")
           : bgcolor.push("rgb(88, 3, 3)")
       ))
     : (p.monthData.map((m) =>
-        m.total > m.totalTarget
+        +m.total > +m.totalTarget
           ? bgcolor.push("#005B41")
           : bgcolor.push("rgb(88, 3, 3)")
       ));
@@ -38,7 +38,7 @@ const MonthChart = (p) => {
         data: p.monthData.map((m) => m.total),
         backgroundColor: "rgb(99, 3, 3)",
         hoverBackgroundColor: "#950101",
-        borderColor: "#FAF0E6",
+        borderColor: "black",
         borderWidth: 1,
       },
     ],
@@ -168,7 +168,7 @@ const MonthChart = (p) => {
         },
         beginAtZero: false,
         suggestedMin:
-          p.type === "ab" || p.type === "hc"
+          p.type === "ab" || p.type === "hc" || p.type === "dt"
             ? 0
             : minBarValue !== 0
             ? minBarValue - 10
@@ -195,7 +195,7 @@ const MonthChart = (p) => {
           const meta = chart.getDatasetMeta(index);
 
           meta.data.forEach((element, index) => {
-            const data = dataset.data[index];
+            const data = p.type === "dt" ? `${dataset.data[index]} %` :dataset.data[index];
             let xPos, yPos;
 
             if (dataset.type === "bar") {
