@@ -16,17 +16,33 @@ import {
 const MonthChart = (p) => {
   //const day = useSelector((s) => s.additionalData);
 
-  const dataBar={
+  const bgcolor = [];
+
+ ( p.type === "ab" || p.type === "hc")
+    ? (p.monthData.map((m) =>
+        m.total < m.totalTarget
+          ? bgcolor.push("#008500")
+          : bgcolor.push("rgb(88, 3, 3)")
+      ))
+    : (p.monthData.map((m) =>
+        m.total > m.totalTarget
+          ? bgcolor.push("#008500")
+          : bgcolor.push("rgb(88, 3, 3)")
+      ));
+
+  const dataBar = {
     labels: p.monthData.map((m) => m.name),
-    datasets:[{
-      label: `Actual Data ${p.title} `,
-      data: p.monthData.map((m) => m.total),
-      backgroundColor: "rgb(99, 3, 3)",
-      hoverBackgroundColor: "#950101",
-      borderColor: "#FAF0E6",
-      borderWidth: 1,
-    }],
-  }
+    datasets: [
+      {
+        label: `Actual Data ${p.title} `,
+        data: p.monthData.map((m) => m.total),
+        backgroundColor: "rgb(99, 3, 3)",
+        hoverBackgroundColor: "#950101",
+        borderColor: "#FAF0E6",
+        borderWidth: 1,
+      },
+    ],
+  };
   const data = {
     labels: p.monthData.map((m) => m.name),
     datasets: [
@@ -51,8 +67,8 @@ const MonthChart = (p) => {
         type: "bar",
         label: "Actual Data",
         data: p.monthData.map((m) => m.total),
-        backgroundColor: "rgb(99, 3, 3)",
-        hoverBackgroundColor: "#950101",
+        backgroundColor: bgcolor,
+        //hoverBackgroundColor: "#950101",
         borderColor: "#FAF0E6",
         borderWidth: 1,
       },
@@ -109,9 +125,8 @@ const MonthChart = (p) => {
           meta.data.forEach((element, index) => {
             const data = dataset.data[index];
             let xPos, yPos;
-              xPos = element.x;
-              yPos = element.y -10;
-           
+            xPos = element.x;
+            yPos = element.y - 10;
 
             ctx.save();
             ctx.textAlign = "center";
@@ -151,7 +166,12 @@ const MonthChart = (p) => {
           stacked: true,
         },
         beginAtZero: false,
-        suggestedMin:(p.type==="ab" || p.type==="hc") ? 0 : (minBarValue !== 0 ? minBarValue - 10 : minBarValue),
+        suggestedMin:
+          p.type === "ab" || p.type === "hc"
+            ? 0
+            : minBarValue !== 0
+            ? minBarValue - 10
+            : minBarValue,
         //suggestedMax: 100,
       },
     },
@@ -180,10 +200,12 @@ const MonthChart = (p) => {
             if (dataset.type === "bar") {
               xPos = element.x;
               yPos =
-                Math.abs(data - minBarValue) <= 15 ? element.y+10 : element.y + 90;
-            } else if (dataset.type === "line" && p.title!=="daily") {
+                Math.abs(data - minBarValue) <= 15
+                  ? element.y + 10
+                  : element.y + 90;
+            } else if (dataset.type === "line" && p.title !== "daily") {
               xPos = element.x;
-              yPos = index% 2 === 0? element.y - 15 : element.y + 15 ;
+              yPos = index % 2 === 0 ? element.y - 15 : element.y + 15;
             }
 
             ctx.save();
@@ -212,7 +234,11 @@ const MonthChart = (p) => {
     <div className={c.chart}>
       <h5>{p.title}</h5>
       <div className={c.chatHolder}>
-        { (p.type==="ot"||p.type==="tlo")?<Bar data={dataBar} options={optionsBar} /> : <Line data={data} options={options} />}
+        {p.type === "ot" || p.type === "tlo" ? (
+          <Bar data={dataBar} options={optionsBar} />
+        ) : (
+          <Line data={data} options={options} />
+        )}
       </div>
     </div>
   );

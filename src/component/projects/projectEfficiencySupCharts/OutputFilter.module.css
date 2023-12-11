@@ -1,24 +1,24 @@
 .chartsContainer{
-    width: 99%;
+    width: 97%;
     display: flex;
     flex-direction: column;
     border: 1px solid wheat;
     border-radius: 17px;
     padding: 1rem;
-    padding-bottom: 8rem;
-    background-color: rgba(128, 128, 128, 0.363);
+    padding-bottom: 4rem;
+    background-color: rgba(128, 128, 128, 0.144);
   backdrop-filter: blur(80px);
 }
 .title{
-    margin-right: auto;
-    width:15%;
+    margin: auto;
+    width:auto;
     color: #f4dfc8;
     font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol";
     letter-spacing: 2px;
     text-transform: uppercase;
-    text-align: left;
+    text-align: center;
 }
 .chartContainer{
     width: 100%;
