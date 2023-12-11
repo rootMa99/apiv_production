@@ -20,9 +20,10 @@
   position: fixed;
   left: 0;
   top: 10rem;
-  padding-top:3rem;
+  padding-top: 3rem;
 }
-.heading,.maxvalues {
+.heading,
+.maxvalues {
   margin-left: 5px;
   width: 100%;
   color: #f4dfc8;
@@ -33,15 +34,40 @@
   text-transform: uppercase;
   text-align: center;
 }
-.maxvalues{
+.maxvalues {
   width: 100%;
   text-align: left;
 }
-.maxvalues h5{
+.maxvalues h5 {
   text-align: center;
 }
-.maxvalues span{
+.maxvalues span {
   color: #ffffff;
   font-weight: bold;
   font-size: larger;
+}
+
+.buttonToggle {
+  margin-top: 5rem;
+  margin-left: auto;
+  margin-right: 2rem;
+  width: 15%;
+  padding: 0.5rem;
+  background-color: rgba(24, 13, 13, 0.37);
+  color: #f4dfc8;
+  border-radius: 5px;
+  font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol";
+  letter-spacing: 2px;
+  font-size: medium;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid rgb(109, 95, 95);
+}
+.buttonToggle:hover {
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgba(44, 42, 42, 0.37);
+  transform: scale(1.05);
 }

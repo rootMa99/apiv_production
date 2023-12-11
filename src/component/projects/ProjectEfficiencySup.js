@@ -3,6 +3,7 @@ import c from "./ProjectEfficiencySup.module.css";
 import { useParams } from "react-router-dom";
 import { filterProjectsByName } from "../hooks/getEfficiencyData";
 import OuputFilter from "./projectEfficiencySupCharts/OutputFilter";
+import Dt from "./projectEfficiencySupCharts/Dt";
 
 const ProjectEfficiencySup = (p) => {
 
@@ -22,6 +23,7 @@ const ProjectEfficiencySup = (p) => {
         <OuputFilter data={filtredData} date={date} titleH="ab" title="ab" actual="ab" target="absTarget"/>
         <OuputFilter data={filtredData} date={date} titleH="over time" title="ot" actual="ot" target=""/>
         <OuputFilter data={filtredData} date={date} titleH="tlo" title="tlo" actual="tlo" target=""/>
+        <Dt data={filtredData} date={date} titleH="down time" />
     </div>
   );
 };

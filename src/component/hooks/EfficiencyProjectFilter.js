@@ -233,3 +233,44 @@ export const getDataDaysOutput = (data, actual, target) => {
 
   return returnedArray;
 };
+
+
+export const getDtEfficiency=(data, searcheType)=>{
+  const monthly=[];
+  for(let m of data){
+    if (monthly.length===0){
+      monthly.push({
+        name:m[searcheType],
+        dt:m.actualDataExcel.dt,
+        paidH:m.actualDataExcel.paidH,
+        dtTarget:m.dataTargetExcel.dtTarget,
+        paidt:m.dataTargetExcel.payedTarget
+      });
+      continue;
+    }
+    const index = monthly.findIndex((f) => f.date === m[searcheType]);
+    if(index===-1){
+      monthly.push({
+        name:m[searcheType],
+        dt:m.actualDataExcel.dt,
+        paidH:m.actualDataExcel.paidH,
+        dtTarget:m.dataTargetExcel.dtTarget,
+        paidt:m.dataTargetExcel.payedTarget
+      });
+    }else{
+      monthly[index].dt+=m.actualDataExcel.dt;
+      monthly[index].paidH+=m.actualDataExcel.paidH;
+      monthly[index].dtTarget+=m.dataTargetExcel.dtTarget;
+      monthly[index].paidt+=m.dataTargetExcel.payedTarget;
+    }
+  };
+  const returnedArray=[];
+  monthly.forEach(e=>{
+    returnedArray.push({
+      name:e.name,
+      total:e.paidH===0 ? 0 : (e.dt/e.paidH).toFixed(1),
+      totalTarget:e.paidt===0 ? 0 : (e.dtTarget/e.paidt).toFixed(1)
+    })
+  });
+  return returnedArray;
+}

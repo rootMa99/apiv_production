@@ -38,8 +38,10 @@ const clickHandler=e=>{
         </div>
         <div className={c.chartContainer}>
           <ProjectEfficiency />
+
           <button className={c.buttonToggle} onClick={clickHandler}>{!toggle ? 'show Project details' : "hide project details"}</button>
           {toggle && <ProjectEfficiencySup />}
+
         </div>
       </div>
     </React.Fragment>
