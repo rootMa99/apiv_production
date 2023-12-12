@@ -293,3 +293,52 @@ export const getDtEfficiency = (data, searcheType) => {
   });
   return returnedArray;
 };
+
+
+export const getShiftLeaders = data =>{
+
+  const shiftLeader=[];
+
+  for(let d of data){
+    if(shiftLeader.length===0){
+      shiftLeader.push({
+        name:d.shiftLeader,
+        data:[
+          {
+            actualDataExcel:d.actualDataExcel,
+            dataTargetExcel:d.dataTargetExcel,
+            week: d.week,
+            date:d.date,
+            month:d.month,
+          }
+        ]
+      });
+      continue;
+    }
+    const index = shiftLeader.findIndex((f) => f.name === d.shiftLeader);
+    if(index===-1){
+      shiftLeader.push({
+        name:d.shiftLeader,
+        data:[
+          {
+            actualDataExcel:d.actualDataExcel,
+            dataTargetExcel:d.dataTargetExcel,
+            week: d.week,
+            date:d.date,
+            month:d.month,
+          }
+        ]
+      });
+    }else{
+      shiftLeader[index].data.push({
+        actualDataExcel:d.actualDataExcel,
+        dataTargetExcel:d.dataTargetExcel,
+        week: d.week,
+        date:d.date,
+        month:d.month,
+      })
+    }
+    
+  }
+  return shiftLeader;
+} 
