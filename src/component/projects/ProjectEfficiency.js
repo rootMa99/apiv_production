@@ -9,10 +9,10 @@ import { useEffect } from "react";
 
 const ProjectEfficiency = (p) => {
   const data=useSelector(s=>s.datas);
-  const date=useSelector(s=>s.additionalData);
+  const {date, month}=useSelector(s=>s.additionalData);
   const dispatch= useDispatch();
 
-  const month=date.date.split("-")[1];
+  const months=date.split("-")[1];
   console.log(data);
   const params=useParams();
   console.log(params);
@@ -47,11 +47,11 @@ const ProjectEfficiency = (p) => {
 
   
   console.log(monthData);
-  const filtredMonth= getMonthData(filtredData[0].data, date.month[month-1],date.month[month-2] );
+  const filtredMonth= getMonthData(filtredData[0].data, month[months-1],month[months-2] );
   console.log(filtredMonth);
   const filtredWeek=getWeekData(filtredMonth);
   console.log(filtredWeek);
-  const filtredMonthDays=getMonthData(filtredData[0].data, date.month[month-1]);
+  const filtredMonthDays=getMonthData(filtredData[0].data, month[months-1]);
   console.log(filtredMonthDays);
   const dataDays= getDataDays(filtredMonthDays);
   console.log(dataDays);

@@ -23,6 +23,18 @@ export const getEfficiencyMonth = (dataArray, month) => {
   });
   return filteredData;
 };
+export const getEfficiencyMonthSL = (dataArray, month, type) => {
+  const filteredData = [];
+
+ 
+    filteredData.push(
+      ...dataArray.filter((f) => {
+        return f[type] === month;
+      })
+    );
+ 
+  return filteredData;
+};
 
 export const getEfficiencyDatas = (dataArray) => {
   let prodH = 0;
