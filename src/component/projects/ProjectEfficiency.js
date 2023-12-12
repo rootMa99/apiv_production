@@ -23,13 +23,17 @@ const ProjectEfficiency = (p) => {
   useEffect(()=>{
     const dataDaysYear=getDataDays(filtredData[0].data, "allDate");
     console.log(dataDaysYear);
+    const datan=dataDaysYear.map(m=>({
+      name:m.name,
+      total:+m.total
+    }));
     const maxObject = monthData.reduce((max, current) => {
       if (current.value > max.value || (current.value === max.value && current.total > max.total)) {
         return current;
       }
       return max;
     });
-    const maxObjectDay = dataDaysYear.reduce((max, current) => {
+    const maxObjectDay = datan.reduce((max, current) => {
       if (current.value > max.value || (current.value === max.value && current.total > max.total)) {
         return current;
       }

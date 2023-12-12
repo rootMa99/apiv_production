@@ -14,13 +14,15 @@ const ShiftLeadersEfficiency = (p) => {
   const filtredData = filterProjectsByName(data, params.project);
   console.log(filtredData);
 const shiftLeaders=getShiftLeaders(filtredData[0].data);
+console.log(shiftLeaders);
+shiftLeaders[0].name===null && shiftLeaders.reverse();
 console.log(shiftLeaders)
-shiftLeaders[0].name===null && console.log("reverse");
+
   return (
     <div className={c.projectEfficiencySup}>
       <h3>shift leaders data</h3>
 
-      {shiftLeaders.map((m, i)=><ShiftLeaderEfficiency title={m.name} data={m.data} date={date} index={i} />)}
+      {shiftLeaders.map((m, i)=>m.name!==null && <ShiftLeaderEfficiency title={m.name} data={m.data} date={date} index={i} />)}
     </div>
   );
 };
