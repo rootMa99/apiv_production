@@ -37,6 +37,10 @@ const AdditionalData = createSlice({
       "Nov",
       "Dec",
     ],
+    shiftLeader:{
+      name:"",
+      shiftLeader:[]
+    }
   },
   reducers: {
     addDate(s, p) {
@@ -50,6 +54,16 @@ const AdditionalData = createSlice({
         s.maxDayValue.name=p.payload.name;
         s.maxDayValue.value=p.payload.total;
     },
+    addShitLeaderEfficiency(s,p){
+      if(s.shiftLeader.name===""){
+        s.shiftLeader.name=p.payload.name;
+        s.shiftLeader.shiftLeader.push(...p.payload.shiftLeader);
+      }
+      if(s.shiftLeader.name!==p.payload.name){  
+        s.shiftLeader.name=p.payload.name;
+        s.shiftLeader.shiftLeader=[...p.payload.shiftLeader]
+      }
+    }
   },
 });
 

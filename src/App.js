@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { dataAction } from "./store/DataSlice";
 import Home from "./component/Home";
 import NavBar from "./component/ui/NavBar";
-import DEMO_DATA from "./component/DEMO_DATA";
 import ProjectDetails from "./component/projects/ProjectDetails";
 import Projects from "./component/home/Projects";
 

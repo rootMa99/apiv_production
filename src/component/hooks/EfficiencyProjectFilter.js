@@ -190,14 +190,12 @@ export const getOutputDataYear = (data, searcheType, actual, target) => {
     //console.log(actual, e.workingDay, e.output,e.month);
     returnedArray.push({
       name: e.month,
-      total:
-        e.workingDay === 0
-          ? 0
-          : (e.output / e.workingDay).toFixed(0), 
-         
+      total: e.workingDay === 0 ? 0 : (e.output / e.workingDay).toFixed(0),
+
       totalTarget:
         e.workingDayTarget === 0
-          ? 0 : (e.outputTarget / e.workingDayTarget).toFixed(0),
+          ? 0
+          : (e.outputTarget / e.workingDayTarget).toFixed(0),
     });
   });
 
@@ -241,12 +239,9 @@ export const getDataDaysOutput = (data, actual, target) => {
   daily.forEach((e) => {
     returnedArray.push({
       name: e.date.split("-")[2],
-      total:  e.total.toFixed(0),
+      total: e.total.toFixed(0),
       //totalTarget: (actual==="ot" || actual==="ab") ?  (e.totalTarget).toFixed(2) : e.totalTarget,
-      totalTarget:
-        e.totalTarget !== undefined
-          ? e.totalTarget.toFixed(0)
-          : 0,
+      totalTarget: e.totalTarget !== undefined ? e.totalTarget.toFixed(0) : 0,
     });
   });
 
@@ -294,51 +289,60 @@ export const getDtEfficiency = (data, searcheType) => {
   return returnedArray;
 };
 
+export const getShiftLeaders = (data) => {
+  const shiftLeader = [];
 
-export const getShiftLeaders = data =>{
-
-  const shiftLeader=[];
-
-  for(let d of data){
-    if(shiftLeader.length===0){
+  for (let d of data) {
+    if (shiftLeader.length === 0) {
       shiftLeader.push({
-        name:d.shiftLeader,
-        data:[
+        name: d.shiftLeader,
+        data: [
           {
-            actualDataExcel:d.actualDataExcel,
-            dataTargetExcel:d.dataTargetExcel,
+            actualDataExcel: d.actualDataExcel,
+            dataTargetExcel: d.dataTargetExcel,
             week: d.week,
-            date:d.date,
-            month:d.month,
-          }
-        ]
+            date: d.date,
+            month: d.month,
+            teamLeader: d.teamLeader,
+            family: d.family,
+            crew: d.crew,
+            coordinator: d.coordinator,
+          },
+        ],
       });
       continue;
     }
     const index = shiftLeader.findIndex((f) => f.name === d.shiftLeader);
-    if(index===-1){
+    if (index === -1) {
       shiftLeader.push({
-        name:d.shiftLeader,
-        data:[
+        name: d.shiftLeader,
+        data: [
           {
-            actualDataExcel:d.actualDataExcel,
-            dataTargetExcel:d.dataTargetExcel,
+            actualDataExcel: d.actualDataExcel,
+            dataTargetExcel: d.dataTargetExcel,
             week: d.week,
-            date:d.date,
-            month:d.month,
-          }
-        ]
+            date: d.date,
+            month: d.month,
+            teamLeader: d.teamLeader,
+            family: d.family,
+            crew: d.crew,
+            coordinator: d.coordinator,
+          },
+        ],
       });
-    }else{
+    } else {
       shiftLeader[index].data.push({
-        actualDataExcel:d.actualDataExcel,
-        dataTargetExcel:d.dataTargetExcel,
+        actualDataExcel: d.actualDataExcel,
+        dataTargetExcel: d.dataTargetExcel,
         week: d.week,
-        date:d.date,
-        month:d.month,
-      })
+        date: d.date,
+        month: d.month,
+        teamLeader: d.teamLeader,
+        family: d.family,
+        crew: d.crew,
+        coordinator: d.coordinator,
+      });
     }
-    
   }
   return shiftLeader;
-} 
+};
