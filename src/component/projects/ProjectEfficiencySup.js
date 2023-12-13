@@ -12,7 +12,7 @@ const ProjectEfficiencySup = (p) => {
   console.log(data);
   const params=useParams();
   console.log(params);
-  const filtredData= filterProjectsByName(data, params.project);
+  const filtredData=p.data===undefined? filterProjectsByName(data, params.project) : p.data;
   console.log(filtredData);
 
   return (

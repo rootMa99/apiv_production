@@ -48,7 +48,7 @@ function App() {
   return (
     <React.Fragment>
       {loading ? (
-        <h1>Loading....</h1>
+        <h1 style={{"color":"white"}}>Loading....</h1>
       ) : (
         <div className="App">
           <NavBar />

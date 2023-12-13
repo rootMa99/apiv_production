@@ -76,7 +76,7 @@ const MonthChart = (p) => {
     ],
   };
 
-  console.log(data.datasets);
+  
   const minBarValue = Math.min(...data.datasets[1].data);
   const maxBarValue = Math.max(...data.datasets[1].data);
 
