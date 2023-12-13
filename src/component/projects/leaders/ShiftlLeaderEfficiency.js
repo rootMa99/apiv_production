@@ -6,7 +6,7 @@ import {
   getWeekData,
 } from "../../hooks/EfficiencyProjectFilter";
 import MonthChart from "../MonthChart";
-import c from "../ProjectEfficiency.module.css";
+import c from "./ShiftLeaderEfficiency.module.css";
 //import { additionalDataAction } from "../../../store/AdditionalData";
 
 const ShiftLeaderEfficiency = (p) => {
