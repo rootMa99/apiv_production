@@ -175,6 +175,20 @@ input[type="date"].title::-webkit-calendar-picker-indicator {
   border-right: 7px solid transparent;
   border-top: 14px solid #a30202;
 }
+.triangleUPHC {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 14px solid #a30202;
+}
+.triangleDownHC {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 14px solid #008500;
+}
 
 .red {
   color: #b80000;

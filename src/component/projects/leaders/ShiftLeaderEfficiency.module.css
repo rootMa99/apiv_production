@@ -1,12 +1,13 @@
 .chartsContainer{
     width: 97%;
+    height: 15rem;
   display: flex;
   flex-direction: column;
   border: 1px solid #ecf0f162;
   border-radius: 17px;
   padding: 1rem;
+  padding-bottom: 0.5rem;
   padding-top: 0;
-  padding-bottom: 4.5rem;
   background-color: rgba(128, 128, 128, 0.144);
   backdrop-filter: blur(80px);
   position: relative;
@@ -34,11 +35,14 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: center !important;
+    cursor: 
+    ;
 }
 .chartContainer{
     display: flex;
+    align-items: flex-end;
 }
 .chart{
     width: 33%;
-    height: 10rem;
+    height: 14rem;
 }

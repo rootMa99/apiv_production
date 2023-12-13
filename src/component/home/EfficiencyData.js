@@ -4,19 +4,37 @@ import { useDispatch } from "react-redux";
 import { additionalDataAction } from "../../store/AdditionalData";
 
 const EfficiencyData = (p) => {
-
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
 
   const changeDayhandler = (e) => {
     dispatch(additionalDataAction.addDate(e.target.value));
   };
 
-  const classes = p.gap >= 0 ? `${c.green}` : `${c.red}`;
-  const tclasses = p.gap >= 0 ? `${c.triangleUP}` : `${c.triangleDown}`;
+  const classes =
+    p.title !== "hc/day"
+      ? p.gap >= 0
+        ? `${c.green}`
+        : `${c.red}`
+      : p.gap >= 0
+      ? `${c.red}`
+      : `${c.green}`;
+  const tclasses =
+    p.title !== "hc/day"
+      ? p.gap >= 0
+        ? `${c.triangleUP}`
+        : `${c.triangleDown}`
+      : p.gap >= 0
+      ? `${c.triangleUPHC}`
+      : `${c.triangleDownHC}`;
 
+  // if(p.title !== "hc/day"){
+  //   classes= p.gap >= 0 ? `${c.green}` : `${c.red}`
+  // }else{
+  //   classes= p.gap >= 0 ? `${c.red}` :  `${c.green}`
+  // }
   return (
     <div className={c.efficiencyData}>
-      {p.title !== "last day"  && (
+      {p.title !== "last day" && (
         <h4 className={c.title}>{p.title === "month" ? p.month : p.title} </h4>
       )}
       {p.title === "last day" && (
@@ -31,11 +49,11 @@ const EfficiencyData = (p) => {
         <div className={c.total}>
           {p.title === "hc/day" ? (
             <React.Fragment>
-              {p.gap > 50 && <span style={{ color: "#008500" }}>{p.hc} </span>}
+              {p.gap > 50 && <span style={{ color: "#a30202" }}>{p.hc} </span>}
               {p.gap < 50 && p.gap >= 0 && (
                 <span style={{ color: "#d1962a" }}>{p.hc} </span>
               )}
-              {p.gap < 0 && <span style={{ color: "#a30202" }}>{p.hc} </span>}
+              {p.gap < 0 && <span style={{ color: "#008500" }}>{p.hc} </span>}
             </React.Fragment>
           ) : (
             <React.Fragment>
@@ -63,7 +81,7 @@ const EfficiencyData = (p) => {
           <div className={c.gap}>
             <h5 className={c.title}>gap:</h5>
             <span className={classes}>
-              <div className={tclasses}></div> {p.gap}
+              <div className={tclasses}></div> { p.title === "hc/day" ? Math.abs(p.gap) : p.gap }
             </span>
           </div>
           <div className={c.target}>

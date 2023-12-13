@@ -19,6 +19,8 @@ const ShiftLeaderEfficiency = (p) => {
   const filtredM = getMonthData(p.data, p.date.month[month - 1]);
 
   const daily = getDataDays(filtredM);
+  console.log((daily.length/2).toFixed(0));
+  
 
   //   dispatch(
   //     additionalDataAction.addShitLeaderEfficiency({
@@ -30,18 +32,18 @@ const ShiftLeaderEfficiency = (p) => {
   return (
     <div
       className={c.chartsContainer}
-      style={p.index > 0 ? { marginTop: "3rem" } : {}}
+      style={p.index > 0 ? { marginTop: "1.5rem" } : {}}
     >
       <h3 className={c.title}>{p.title} efficiency</h3>
       <div className={c.chartContainer}>
         <div className={c.chart}>
-          <MonthChart monthData={monthly} title={`monthly ${p.title}`} />
+          <MonthChart monthData={monthly} title={""} />
         </div>
         <div className={c.chart}>
-          <MonthChart monthData={weekly} title={`weekly ${p.title}`} />
+          <MonthChart monthData={weekly} title={``} />
         </div>
         <div className={c.chart}>
-          <MonthChart monthData={daily} title={`daily ${p.title}`} />
+          <MonthChart monthData={daily} title={``} />
         </div>
       </div>
     </div>

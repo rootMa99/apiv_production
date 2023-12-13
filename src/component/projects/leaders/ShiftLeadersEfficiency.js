@@ -27,7 +27,7 @@ const ShiftLeadersEfficiency = (p) => {
   );
   return (
     <div className={c.projectEfficiencySup}>
-      <h3>shift leaders data</h3>
+      <h3 className={c.shiftLeaderTite}>shift leaders data</h3>
 
       {shiftLeaders.map(
         (m, i) =>

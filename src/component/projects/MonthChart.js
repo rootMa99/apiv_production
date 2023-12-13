@@ -149,19 +149,20 @@ const MonthChart = (p) => {
     
     scales: {
       x: {
-        grid: {
-          color: "#f3f3f34f",
-        },
+        
+        
         ticks: {
           color: "white",
           fontWeight: "bold",
         },
       },
       y: {
+        
         grid: {
           color: "#f3f3f34f",
         },
         ticks: {
+          display:false,
           color: "white",
           fontWeight: "bold",
         },
@@ -175,7 +176,7 @@ const MonthChart = (p) => {
             : minBarValue !== 0
             ? minBarValue - 10
             : minBarValue,
-        suggestedMax: maxBarValue+20,
+        suggestedMax: maxBarValue+5,
       },
     },
     plugins: {
@@ -197,7 +198,7 @@ const MonthChart = (p) => {
           const meta = chart.getDatasetMeta(index);
 
           meta.data.forEach((element, index) => {
-            const data = p.type === "dt" ? `${dataset.data[index]} %` :dataset.data[index];
+            const data = p.type !== "output" && p.type !== "hc" && p.type !== "ab" ? `${dataset.data[index]} %` :dataset.data[index];
             let xPos, yPos;
 
             if (dataset.type === "bar") {

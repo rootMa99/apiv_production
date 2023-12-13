@@ -1,22 +1,46 @@
 .projectEfficiencyContainer{
-    width: 100%;
-    margin: auto;
+    margin-top: 1rem;
+    width: 97%;
+    height: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ecf0f162;
+  border-radius: 17px;
+  padding: 1rem;
+  padding-bottom: 2.5rem;
+  padding-top: 0;
+  background-color: rgba(128, 128, 128, 0.144);
+  backdrop-filter: blur(80px);
+  position: relative;
 }
 .projectEfficiencyContainer h3{
-    margin-right: auto;
-    width:15%;
+    position: absolute;
+    top:-1.1rem;
+    left: 1rem;
+    /* transform: translate(-50%, -50%); */
+    margin: auto;
+    width: auto !important;
+    padding-inline: 0.5rem;
+    font-size: xx-large;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      180deg,
+      rgb(0, 0, 0) 49%,
+      transparent 50%,
+      transparent 100%
+    );
     color: #f4dfc8;
     font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol";
     letter-spacing: 2px;
     text-transform: uppercase;
-    text-align: left;
+    text-align: center !important;
 }
 .chartContainer{
     display: flex;
 }
 .chart{
     width: 33%;
-    height: 10rem;
+    height: 20rem;
 }

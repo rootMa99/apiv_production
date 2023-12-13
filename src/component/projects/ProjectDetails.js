@@ -45,7 +45,7 @@ const ProjectDetails = (p) => {
           )}
         </div>
         <div className={c.chartContainer}>
-          <ProjectEfficiency />
+          <ProjectEfficiency title={project} />
 
           <button className={c.buttonToggle} onClick={clickHandler}>
             {!toggle ? "show Project details" : "hide project details"}
