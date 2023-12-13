@@ -35,8 +35,19 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: center !important;
-    cursor: 
-    ;
+    cursor: pointer !important;
+}
+h3.title:hover{
+    cursor: pointer !important;
+    color: #f7aa59;
+    font-size: 30px;
+    background: rgba(128, 128, 128, 0.589);
+    background: linear-gradient(
+      180deg,
+      transparent 29%,
+       rgb(0, 0, 0) 30%,
+       rgb(0, 0, 0) 100%
+    );
 }
 .chartContainer{
     display: flex;

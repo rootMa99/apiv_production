@@ -8,6 +8,7 @@ import Home from "./component/Home";
 import NavBar from "./component/ui/NavBar";
 import ProjectDetails from "./component/projects/ProjectDetails";
 import Projects from "./component/home/Projects";
+import ShiftLeader from "./component/projects/shitLearderPage/ShiftLeader";
 
 const getData = async (url) => {
   try {
@@ -58,6 +59,9 @@ function App() {
                 <Route path="" element={<Projects />} />
                 <Route path="project" element={<ProjectDetails />}>
                   <Route path=":project" element={<ProjectDetails />} />
+                </Route>
+                <Route path="project/:project/shiftLeader" element={(<ShiftLeader />)}>
+                  <Route path=":shitLeader" element={<ShiftLeader />} />
                 </Route>
               </Route>
             </Routes>
