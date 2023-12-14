@@ -3,10 +3,11 @@ import c from "../ProjectDetails.module.css";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { filterProjectsByName } from "../../hooks/getEfficiencyData";
-import { getShiftLeaders } from "../../hooks/EfficiencyProjectFilter";
+import { getDataDays, getDataYear, getShiftLeaders } from "../../hooks/EfficiencyProjectFilter";
 import ShiftLeaderEfficiency from "../leaders/ShiftlLeaderEfficiency";
 import { getTeamLeaders } from "../../hooks/teamLeaderEfficiency";
 import ProjectEfficiencySup from "../ProjectEfficiencySup";
+import ShiftLeadersEfficiencyASide from "../leaders/ShiftLeadersEfficiencyASide";
 
 const ShiftLeader = (p) => {
   const data = useSelector((s) => s.datas);
@@ -33,41 +34,63 @@ const ShiftLeader = (p) => {
   };
 
   const teamLeader = getTeamLeaders(shiftLeader[0].data);
-  console.log(shiftLeaders, shiftLeader, teamLeader);
+  const monthData=getDataYear(shiftLeader[0].data);
+  const dataM=monthData.map(m=>({
+    name:m.name,
+    total:+m.total
+  }));
+  const maxObject = dataM.reduce((max, current) => {
+    if (current.value > max.value || (current.value === max.value && current.total > max.total)) {
+      return current;
+    }
+    return max;
+  });
+  const dataDaysYear=getDataDays(shiftLeader[0].data, "allDate");
+  const datan=dataDaysYear.map(m=>({
+    name:m.name,
+    total:+m.total
+  }));
+  const maxObjectDay = datan.reduce((max, current) => {
+    if (current.value > max.value || (current.value === max.value && current.total > max.total)) {
+      return current;
+    }
+    return max;
+  });
+  console.log(shiftLeaders, shiftLeader, teamLeader, dataDaysYear, maxObjectDay, maxObject);
 
   return (
     <React.Fragment>
       <div className={c.projectContent}>
         <div className={c.aside}>
           <h1 className={c.heading} onClick={projectClickHandler}>
-            {params.project}{" "}
+            {params.project}
           </h1>
           <h1 className={c.heading} onClick={shiftLeaderClickHandler}>
-            {params.shitLeader}{" "}
+            {params.shitLeader}
           </h1>
           {!toggle ? (
             <React.Fragment>
               <div className={c.maxvalues}>
                 <h5>best month :</h5>
                 <h6>
-                  month:<span> Nov </span>
+                  month:<span> {maxObject.name} </span>
                 </h6>
                 <h6>
-                  value:<span> 78%</span>
+                  value:<span> {maxObject.total}%</span>
                 </h6>
               </div>
               <div className={c.maxvalues}>
                 <h5>best day :</h5>
                 <h6>
-                  date:<span> 12/05/2023 </span>
+                  date:<span> {maxObjectDay.name} </span>
                 </h6>
                 <h6>
-                  value:<span> 100 %</span>
+                  value:<span> {maxObjectDay.total} %</span>
                 </h6>
               </div>
             </React.Fragment>
           ) : (
-            <h1>shiftLeader tada</h1>
+            <ShiftLeadersEfficiencyASide  data={teamLeader} project={params.project} sl={params.shitLeader} />
           )}
         </div>
         <div className={c.chartContainer}>

@@ -1,5 +1,6 @@
 .dataContainer {
   width: 100%;
+  padding-bottom: 6rem;
 }
 .title,
 .content h4 {
@@ -15,21 +16,17 @@
   font-size: medium;
 }
 .content {
+  padding-top: 0.5rem;
+padding-bottom: 0.5rem;
   width: 100%;
   cursor: pointer;
 }
 .content:hover {
-  transform: scaleX(1.3);
-  transition-duration: 1s;
-  background-color: rgba(0, 0, 0, 0.603);
+  background-color: rgba(0, 0, 0, 0.897);
   backdrop-filter: blur(90px);
-  padding-bottom: 1rem;
-  margin-left: 2rem;
 }
 .content h4 {
   color: #df9f41;
-
-  padding-top: 1rem;
   padding-bottom: 0.5rem;
 }
 .contentData {
