@@ -6,7 +6,6 @@ import { filterProjectsByName } from "../../hooks/getEfficiencyData";
 import { getShiftLeaders } from "../../hooks/EfficiencyProjectFilter";
 import ShiftLeaderEfficiency from "../leaders/ShiftlLeaderEfficiency";
 import { getTeamLeaders } from "../../hooks/teamLeaderEfficiency";
-import TeamLeaders from "./TeamLeaders";
 import ProjectEfficiencySup from "../ProjectEfficiencySup";
 
 const ShiftLeader = (p) => {

@@ -1,8 +1,9 @@
-.dataContainer{
-    width: 100%;
+.dataContainer {
+  width: 100%;
 }
-.title, .content h4{
-    color: #e9e7e4;
+.title,
+.content h4 {
+  color: #e9e7e4;
   font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
@@ -13,29 +14,38 @@
   margin: 0;
   font-size: medium;
 }
-.content{
-    width:100%;
+.content {
+  width: 100%;
+  cursor: pointer;
 }
-.content h4{
-    color: #df9f41;
+.content:hover {
+  transform: scaleX(1.3);
+  transition-duration: 1s;
+  background-color: rgba(0, 0, 0, 0.603);
+  backdrop-filter: blur(90px);
+  padding-bottom: 1rem;
+  margin-left: 2rem;
+}
+.content h4 {
+  color: #df9f41;
 
-padding-top: 1rem;
-padding-bottom: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
 }
-.contentData{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+.contentData {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
-.contentDataTitle{
-    width: 70%;
-    text-align: left;
+.contentDataTitle {
+  width: 70%;
+  text-align: left;
   text-transform: uppercase;
   color: #e9e7e4;
   font-size: medium;
-    margin-left: 10px;
+  margin-left: 10px;
 }
-.contentDataEff{
-    margin-right: 10px;
-    color: #e9e7e4;
+.contentDataEff {
+  margin-right: 10px;
+  color: #e9e7e4;
 }

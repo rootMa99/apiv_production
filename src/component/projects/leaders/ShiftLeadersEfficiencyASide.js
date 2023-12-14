@@ -1,11 +1,13 @@
 import { useSelector } from "react-redux";
 import c from "./ShiftLeadersEfficiencyASide.module.css";
 import { getEfficiencyDatas, getEfficiencyMonthSL } from "../../hooks/getEfficiencyData";
+import { useNavigate } from "react-router-dom";
 
 
 
 const ShiftLeadersEfficiencyASide=p=>{
   const date = useSelector((s) => s.additionalData);
+  const navigate= useNavigate();
   const mnt=date.date.split("-")[1];
     console.log(date.shiftLeader);
     const efficiency=[];
@@ -41,7 +43,7 @@ const ShiftLeadersEfficiencyASide=p=>{
             <h3 className={c.title}>shiftLeaders efficiency</h3>
             {
                 totalEfficiency.map(m=>(
-                    <div className={c.content}>
+                    <div className={c.content} onClick={()=>{navigate(`/home/project/${p.project}/shiftLeader/${m.name}`)}}>
                         <h4>{m.name}</h4>
                         <div className={c.contentData} >
                             <span className={c.contentDataTitle}>efficiency/day :</span>

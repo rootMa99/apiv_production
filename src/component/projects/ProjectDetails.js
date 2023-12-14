@@ -41,7 +41,7 @@ const ProjectDetails = (p) => {
               </div>
             </React.Fragment>
           ) : (
-            <ShiftLeadersEfficiencyASide />
+            <ShiftLeadersEfficiencyASide project={project} />
           )}
         </div>
         <div className={c.chartContainer}>

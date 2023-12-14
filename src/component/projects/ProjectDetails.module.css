@@ -18,6 +18,7 @@
   backdrop-filter: blur(80px);
   height: 100vh;
   position: fixed;
+  z-index: 100;
   left: 0;
   top: 10rem;
   padding-top: 3rem;
@@ -33,6 +34,14 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
+}
+.heading{
+  cursor: pointer !important;
+}
+.heading:hover{
+  cursor: pointer !important;
+  color: #f7aa59;
+  transform: scale(1.1);
 }
 .shiftLeaderTite{
   margin-right: auto;
