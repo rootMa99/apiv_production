@@ -76,19 +76,19 @@ const ShiftLeadersEfficiencyASide = (p) => {
           <h4>{m.name}</h4>
           <div className={c.contentData}>
             <span className={c.contentDataTitle}>efficiency/day :</span>
-            <span className={c.contentDataEff}>{m.efficiencyDay}</span>
+            <span className={c.contentDataEff}>{m.efficiencyDay} %</span>
           </div>
           <div className={c.contentData}>
             <span className={c.contentDataTitle}>gap/day :</span>
-            <span className={c.contentDataEff}>{m.gapDay}</span>
+            <span className={c.contentDataEff}>{m.gapDay} %</span>
           </div>
           <div className={c.contentData}>
             <span className={c.contentDataTitle}>efficiency/month :</span>
-            <span className={c.contentDataEff}>{m.efficiencyMonth}</span>
+            <span className={c.contentDataEff}>{m.efficiencyMonth} %</span>
           </div>
           <div className={c.contentData}>
             <span className={c.contentDataTitle}>gap/month :</span>
-            <span className={c.contentDataEff}>{m.gapMonth}</span>
+            <span className={c.contentDataEff}>{m.gapMonth} %</span>
           </div>
         </div>
       ))}

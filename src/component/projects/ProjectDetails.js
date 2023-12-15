@@ -9,7 +9,7 @@ import ShiftLeadersEfficiencyASide from "./leaders/ShiftLeadersEfficiencyASide";
 
 const ProjectDetails = (p) => {
   const { project } = useParams();
-  const {maxMonthValue, maxDayValue} = useSelector((s) => s.additionalData);
+  const { maxMonthValue, maxDayValue } = useSelector((s) => s.additionalData);
   const [toggle, isToggle] = useState(false);
   const clickHandler = (e) => {
     isToggle(!toggle);
@@ -18,26 +18,30 @@ const ProjectDetails = (p) => {
     <React.Fragment>
       <div className={c.projectContent}>
         <div className={c.aside}>
-              <h1 className={c.heading}>{project}</h1>
+          <h1 className={c.heading}>{project}</h1>
           {!toggle ? (
             <React.Fragment>
               <div className={c.maxvalues}>
                 <h5>best month :</h5>
-                <h6>
-                  month:<span> {maxMonthValue.name} </span>
-                </h6>
-                <h6>
-                  value:<span> {maxMonthValue.value} %</span>
-                </h6>
+                <div className={c.bestData}>
+                  <h6>month:</h6>
+                  <span> {maxMonthValue.name} </span>
+                </div>
+                <div className={c.bestData}>
+                  <h6>value:</h6>
+                  <span> {maxMonthValue.value}%</span>
+                </div>
               </div>
               <div className={c.maxvalues}>
                 <h5>best day :</h5>
-                <h6>
-                  date:<span> {maxDayValue.name} </span>
-                </h6>
-                <h6>
-                  value:<span> {maxDayValue.value} %</span>
-                </h6>
+                <div className={c.bestData}>
+                  <h6>date:</h6>
+                  <span> {maxDayValue.name} </span>
+                </div>
+                <div className={c.bestData}>
+                  <h6>value:</h6>
+                  <span> {maxDayValue.value} %</span>
+                </div>
               </div>
             </React.Fragment>
           ) : (

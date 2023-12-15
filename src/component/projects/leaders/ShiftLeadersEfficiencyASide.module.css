@@ -18,12 +18,14 @@
 .content {
   padding-top: 0.5rem;
 padding-bottom: 0.5rem;
-  width: 100%;
+  width: 95%;
   cursor: pointer;
+  padding-inline: 2.5%;
 }
 .content:hover {
   background-color: rgba(0, 0, 0, 0.897);
   backdrop-filter: blur(90px);
+  /* transform: scaleX(1.08); */
 }
 .content h4 {
   color: #df9f41;
@@ -40,9 +42,9 @@ padding-bottom: 0.5rem;
   text-transform: uppercase;
   color: #e9e7e4;
   font-size: medium;
-  margin-left: 10px;
 }
 .contentDataEff {
-  margin-right: 10px;
   color: #e9e7e4;
+  width: 25%;
+  text-align: right;
 }

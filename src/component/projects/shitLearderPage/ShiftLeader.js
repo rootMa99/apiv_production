@@ -97,7 +97,7 @@ const ShiftLeader = (p) => {
                     );
                   }}
                 >
-                  {m.name}{" "}
+                  {m.name}
                 </h4>
               )
           )}
@@ -105,21 +105,33 @@ const ShiftLeader = (p) => {
             <React.Fragment>
               <div className={c.maxvalues}>
                 <h5>best month :</h5>
-                <h6>
-                  month:<span> {maxObject.name} </span>
-                </h6>
-                <h6>
-                  value:<span> {maxObject.total}%</span>
-                </h6>
+                <div className={c.bestData}>
+                  <h6>
+                    month:
+                  </h6>
+                  <span> {maxObject.name} </span>
+                </div>
+                <div className={c.bestData}>
+                  <h6>
+                    value:
+                  </h6>
+                  <span> {maxObject.total}%</span>
+                </div>
               </div>
               <div className={c.maxvalues}>
                 <h5>best day :</h5>
-                <h6>
-                  date:<span> {maxObjectDay.name} </span>
-                </h6>
-                <h6>
-                  value:<span> {maxObjectDay.total} %</span>
-                </h6>
+                <div className={c.bestData}>
+                  <h6>
+                    date:
+                  </h6>
+                  <span> {maxObjectDay.name} </span>
+                </div>
+                <div className={c.bestData}>
+                  <h6>
+                    value:
+                  </h6>
+                  <span> {maxObjectDay.total} %</span>
+                </div>
               </div>
             </React.Fragment>
           ) : (

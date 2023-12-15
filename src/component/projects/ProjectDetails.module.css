@@ -58,6 +58,12 @@
   color: #f7aa59;
   transform: scale(1.1);
 }
+h4.heading{
+  color: #ffffff4d ;
+}
+h4.heading:hover{
+  color: #ffffff;
+}
 .shiftLeaderTite{
   margin-right: auto;
   margin-left: 5px;
@@ -76,12 +82,24 @@
   text-align: left;
 }
 .maxvalues h5 {
-  text-align: center;
+  text-align: left;
 }
 .maxvalues span {
   color: #ffffff;
   font-weight: bold;
   font-size: larger;
+}
+.bestData h6{
+  width: 40%;
+  text-align: left;
+  font-weight: bold;
+}
+.bestData{
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 5%;
 }
 
 .buttonToggle {
