@@ -273,8 +273,8 @@ export const getDtEfficiency = (data, searcheType) => {
     } else {
       monthly[index].dt += m.actualDataExcel.dt;
       monthly[index].paidH += m.actualDataExcel.paidH;
-      monthly[index].dtTarget += m.dataTargetExcel.dtTarget;
-      monthly[index].paidt += m.dataTargetExcel.payedTarget;
+      // monthly[index].dtTarget += m.dataTargetExcel.dtTarget;
+      // monthly[index].paidt += m.dataTargetExcel.payedTarget;
     }
   }
   const returnedArray = [];
@@ -283,7 +283,7 @@ export const getDtEfficiency = (data, searcheType) => {
       name: searcheType !== "date" ? e.name : e.name.split("-")[2],
       total: e.paidH === 0 ? 0 : ((e.dt / e.paidH) * 100).toFixed(1),
       totalTarget:
-        e.paidt === 0 ? 0 : ((e.dtTarget / e.paidt) * 100).toFixed(1),
+        e.paidt === 0 ? 0 : ((e.dtTarget) * 100).toFixed(1),
     });
   });
   return returnedArray;

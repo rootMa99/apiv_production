@@ -25,6 +25,9 @@ const ShiftLeaderEfficiency = (p) => {
   console.log((daily.length / 2 - 0.3).toFixed(0));
 
   const onClickHandler = (e) => {
+    if(p.crew!==undefined){
+      return;
+    }
     p.shiftLeader !== undefined
       ? navigate(`/home/project/${p.project}/shiftLeader/${p.shiftLeader}/teamleader/${p.title}`)
       : navigate(`/home/project/${p.project}/shiftLeader/${p.title}`);

@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { filterProjectsByName } from "../../hooks/getEfficiencyData";
 import { getCrew, getShiftLeaders } from "../../hooks/EfficiencyProjectFilter";
 import { getTeamLeaders } from "../../hooks/teamLeaderEfficiency";
+import ProjectEfficiencySup from "../ProjectEfficiencySup";
+import ShiftLeadersEfficiencyASide from "../leaders/ShiftLeadersEfficiencyASide";
 
 const TeamLeaders = (p) => {
   const data = useSelector((s) => s.datas);
@@ -26,18 +28,20 @@ const TeamLeaders = (p) => {
   const projectClickHandler = (e) => {
     navigate(`/home/project/${params.project}`);
   };
-  if (params.teamLeader===undefined) {
-  console.log("params.teamLeader")
-
-    navigate("/home");
-  }
+  useEffect(()=>{
+    if (params.teamLeader===undefined) {
+      console.log("params.teamLeader")
+    
+        navigate("/home");
+      }
+  },[params.teamLeader, navigate])
   const filtredData = filterProjectsByName(data, params.project);
-  const shiftLeaders = getShiftLeaders(filtredData[0].data);
-  const shiftLeader = shiftLeaders.filter((f) => f.name === params.shitLeader);
-  const teamleaders = getTeamLeaders(shiftLeader[0].data);
-
-  const teamLeader = teamleaders.filter((f) => f.name === params.teamLeader);
-  const crews = getCrew(teamLeader[0].data);
+  const shiftLeaders = filtredData.length!==0 && getShiftLeaders(filtredData[0].data);
+  const shiftLeader = shiftLeaders.length!==0 && shiftLeaders.filter((f) => f.name === params.shitLeader);
+  const teamleaders = shiftLeader.length!==0 && getTeamLeaders(shiftLeader[0].data);
+  
+  const teamLeader = teamleaders.length!==0 && teamleaders.filter((f) => f.name === params.teamLeader);
+  const crews = teamLeader.length!==0 && getCrew(teamLeader[0].data);
   console.log(
     params,
     filtredData,
@@ -109,7 +113,7 @@ const TeamLeaders = (p) => {
                 </h6>
               )
           )}
-          {!toggle ? (
+          {(oneCrew) && (
             <React.Fragment>
               <div className={c.maxvalues}>
                 <h5>best month :</h5>
@@ -134,18 +138,22 @@ const TeamLeaders = (p) => {
                 </div>
               </div>
             </React.Fragment>
-          ) : (
-            <h1>data title </h1>
+          )} 
+          {(!toggle) && (
+            <ShiftLeadersEfficiencyASide
+              data={crews}
+            />
           )}
         </div>
         <div className={c.chartContainer}>
-          {/* <ShiftLeaderEfficiency
-              title={params.shitLeader}
-              data={shiftLeader[0].data}
+          <ShiftLeaderEfficiency
+              title={params.teamLeader}
+              data={teamLeader[0].data}
               date={{ date, month }}
               index={1}
               project={params.project}
-            /> */}
+              shiftLeader={params.shitLeader}
+            />
 
           {!oneCrew && (
             <button className={c.buttonToggle} onClick={clickHandler}>
@@ -155,9 +163,22 @@ const TeamLeaders = (p) => {
           {!toggle ? (
             <React.Fragment>
               <h3 className={c.shiftLeaderTite}>crew data</h3>
+              {
+                crews.map(m=>(
+                  <ShiftLeaderEfficiency
+              title={m.name}
+              data={m.data}
+              date={{ date, month }}
+              index={1}
+              project={params.project}
+              shiftLeader={params.shitLeader}
+              crew="crew"
+            />
+                ))
+              }
             </React.Fragment>
           ) : (
-            ""
+            <ProjectEfficiencySup data={teamLeader} />
           )}
         </div>
       </div>

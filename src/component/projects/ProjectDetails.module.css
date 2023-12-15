@@ -83,6 +83,10 @@ h6.heading:hover {
   width: 100%;
   text-align: left;
 }
+.maxvalues:last-of-type{
+  padding-bottom: 3rem;
+
+}
 .maxvalues h5 {
   text-align: left;
 }
