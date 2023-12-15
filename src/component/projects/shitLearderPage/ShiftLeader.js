@@ -23,6 +23,7 @@ const ShiftLeader = (p) => {
 
   const filtredData = filterProjectsByName(data, params.project);
   const shiftLeaders = getShiftLeaders(filtredData[0].data);
+  console.log(shiftLeaders);
   const shiftLeader = shiftLeaders.filter((f) => f.name === params.shitLeader);
   const clickHandler = (e) => {
     isToggle(!toggle);
@@ -37,7 +38,14 @@ const ShiftLeader = (p) => {
     navigate(`/home/project/${params.project}`);
   };
 
-  const teamLeader = getTeamLeaders(shiftLeader[0].data);
+
+  let teamLeader = [];
+  try{
+    teamLeader=getTeamLeaders(shiftLeader[0].data);
+  }catch(e){
+    alert(e)
+  }
+
   const monthData = getDataYear(shiftLeader[0].data);
   const dataM = monthData.map((m) => ({
     name: m.name,
