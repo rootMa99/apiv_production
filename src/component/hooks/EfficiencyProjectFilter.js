@@ -346,3 +346,62 @@ export const getShiftLeaders = (data) => {
   }
   return shiftLeader;
 };
+
+export const getCrew = (data) => {
+  const crew = [];
+
+  for (let d of data) {
+    if (crew.length === 0) {
+      crew.push({
+        name: d.crew,
+        data: [
+          {
+            actualDataExcel: d.actualDataExcel,
+            dataTargetExcel: d.dataTargetExcel,
+            week: d.week,
+            date: d.date,
+            month: d.month,
+            teamLeader: d.teamLeader,
+            family: d.family,
+            crew: d.crew,
+            coordinator: d.coordinator,
+          },
+        ],
+      });
+      continue;
+    }
+    const index= crew.findIndex((f) => f.name === d.crew);
+    if(index === -1){
+      crew.push({
+        name: d.crew,
+        data: [
+          {
+            actualDataExcel: d.actualDataExcel,
+            dataTargetExcel: d.dataTargetExcel,
+            week: d.week,
+            date: d.date,
+            month: d.month,
+            teamLeader: d.teamLeader,
+            family: d.family,
+            crew: d.crew,
+            coordinator: d.coordinator,
+          },
+        ],
+      });
+    }else{
+      crew[index].data.push({
+        actualDataExcel: d.actualDataExcel,
+        dataTargetExcel: d.dataTargetExcel,
+        week: d.week,
+        date: d.date,
+        month: d.month,
+        teamLeader: d.teamLeader,
+        family: d.family,
+        crew: d.crew,
+        coordinator: d.coordinator,
+      });
+    }
+
+  }
+  return crew;
+};

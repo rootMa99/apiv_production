@@ -29,11 +29,11 @@
   width: 1px;
   background-color: #535151;
   border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;    
+  border-bottom-right-radius: 4px;
 }
 .aside::-webkit-scrollbar-thumb {
   border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px; 
+  border-bottom-right-radius: 4px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #8a0101;
 }
@@ -50,21 +50,23 @@
   text-transform: uppercase;
   text-align: center;
 }
-.heading{
+.heading {
   cursor: pointer !important;
 }
-.heading:hover{
+.heading:hover {
   cursor: pointer !important;
   color: #f7aa59;
   transform: scale(1.1);
 }
-h4.heading{
-  color: #ffffff4d ;
+h4.heading,
+h6.heading {
+  color: #ffffff4d;
 }
-h4.heading:hover{
+h4.heading:hover,
+h6.heading:hover {
   color: #ffffff;
 }
-.shiftLeaderTite{
+.shiftLeaderTite {
   margin-right: auto;
   margin-left: 5px;
   margin-top: 0;
@@ -89,12 +91,12 @@ h4.heading:hover{
   font-weight: bold;
   font-size: larger;
 }
-.bestData h6{
+.bestData h6 {
   width: 40%;
   text-align: left;
   font-weight: bold;
 }
-.bestData{
+.bestData {
   display: flex;
   width: 90%;
   justify-content: space-between;
@@ -112,8 +114,8 @@ h4.heading:hover{
   color: #f4dfc8;
   border-radius: 5px;
   font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-  "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-  "Segoe UI Symbol";
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   letter-spacing: 2px;
   font-size: medium;
   text-transform: uppercase;

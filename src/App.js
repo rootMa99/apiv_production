@@ -9,6 +9,7 @@ import NavBar from "./component/ui/NavBar";
 import ProjectDetails from "./component/projects/ProjectDetails";
 import Projects from "./component/home/Projects";
 import ShiftLeader from "./component/projects/shitLearderPage/ShiftLeader";
+import TeamLeaders from "./component/projects/shitLearderPage/TeamLeaders";
 
 const getData = async (url) => {
   try {
@@ -62,6 +63,9 @@ function App() {
                 </Route>
                 <Route path="project/:project/shiftLeader" element={(<ShiftLeader />)}>
                   <Route path=":shitLeader" element={<ShiftLeader />} />
+                </Route>
+                <Route path="project/:project/shiftLeader/:shitLeader/teamLeader" element={(<TeamLeaders />)}>
+                  <Route path=":teamLeader" element={<TeamLeaders />} />
                 </Route>
               </Route>
             </Routes>
