@@ -38,6 +38,7 @@ const ShiftLeadersEfficiency = (p) => {
               date={{date, month}}
               index={i}
               project={params.project}
+              key={i}
             />
           )
       )}

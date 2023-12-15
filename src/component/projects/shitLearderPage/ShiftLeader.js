@@ -3,7 +3,11 @@ import c from "../ProjectDetails.module.css";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { filterProjectsByName } from "../../hooks/getEfficiencyData";
-import { getDataDays, getDataYear, getShiftLeaders } from "../../hooks/EfficiencyProjectFilter";
+import {
+  getDataDays,
+  getDataYear,
+  getShiftLeaders,
+} from "../../hooks/EfficiencyProjectFilter";
 import ShiftLeaderEfficiency from "../leaders/ShiftlLeaderEfficiency";
 import { getTeamLeaders } from "../../hooks/teamLeaderEfficiency";
 import ProjectEfficiencySup from "../ProjectEfficiencySup";
@@ -34,29 +38,42 @@ const ShiftLeader = (p) => {
   };
 
   const teamLeader = getTeamLeaders(shiftLeader[0].data);
-  const monthData=getDataYear(shiftLeader[0].data);
-  const dataM=monthData.map(m=>({
-    name:m.name,
-    total:+m.total
+  const monthData = getDataYear(shiftLeader[0].data);
+  const dataM = monthData.map((m) => ({
+    name: m.name,
+    total: +m.total,
   }));
   const maxObject = dataM.reduce((max, current) => {
-    if (current.value > max.value || (current.value === max.value && current.total > max.total)) {
+    if (
+      current.value > max.value ||
+      (current.value === max.value && current.total > max.total)
+    ) {
       return current;
     }
     return max;
   });
-  const dataDaysYear=getDataDays(shiftLeader[0].data, "allDate");
-  const datan=dataDaysYear.map(m=>({
-    name:m.name,
-    total:+m.total
+  const dataDaysYear = getDataDays(shiftLeader[0].data, "allDate");
+  const datan = dataDaysYear.map((m) => ({
+    name: m.name,
+    total: +m.total,
   }));
   const maxObjectDay = datan.reduce((max, current) => {
-    if (current.value > max.value || (current.value === max.value && current.total > max.total)) {
+    if (
+      current.value > max.value ||
+      (current.value === max.value && current.total > max.total)
+    ) {
       return current;
     }
     return max;
   });
-  console.log(shiftLeaders, shiftLeader, teamLeader, dataDaysYear, maxObjectDay, maxObject);
+  console.log(
+    shiftLeaders,
+    shiftLeader,
+    teamLeader,
+    dataDaysYear,
+    maxObjectDay,
+    maxObject
+  );
 
   return (
     <React.Fragment>
@@ -68,6 +85,22 @@ const ShiftLeader = (p) => {
           <h1 className={c.heading} onClick={shiftLeaderClickHandler}>
             {params.shitLeader}
           </h1>
+          {shiftLeaders.map(
+            (m) =>
+              m.name !== null &&
+              m.name !== params.shitLeader && (
+                <h4
+                  className={c.heading}
+                  onClick={() => {
+                    navigate(
+                      `/home/project/${params.project}/shiftLeader/${m.name}`
+                    );
+                  }}
+                >
+                  {m.name}{" "}
+                </h4>
+              )
+          )}
           {!toggle ? (
             <React.Fragment>
               <div className={c.maxvalues}>
@@ -90,7 +123,11 @@ const ShiftLeader = (p) => {
               </div>
             </React.Fragment>
           ) : (
-            <ShiftLeadersEfficiencyASide  data={teamLeader} project={params.project} sl={params.shitLeader} />
+            <ShiftLeadersEfficiencyASide
+              data={teamLeader}
+              project={params.project}
+              sl={params.shitLeader}
+            />
           )}
         </div>
         <div className={c.chartContainer}>
@@ -108,16 +145,20 @@ const ShiftLeader = (p) => {
           {!toggle ? (
             <React.Fragment>
               <h3 className={c.shiftLeaderTite}>TeamLeaders data</h3>
-              {teamLeader.map( (m, i) => m.name !== null && (
-              <ShiftLeaderEfficiency
-                title={m.name}
-                data={m.data}
-                date={{ date, month }}
-                index={i}
-                project={params.project}
-                shiftLeader={params.shitLeader}
-              />
-              ) )}
+              {teamLeader.map(
+                (m, i) =>
+                  m.name !== null && (
+                    <ShiftLeaderEfficiency
+                      title={m.name}
+                      data={m.data}
+                      date={{ date, month }}
+                      index={i}
+                      project={params.project}
+                      shiftLeader={params.shitLeader}
+                      key={i}
+                    />
+                  )
+              )}
             </React.Fragment>
           ) : (
             <ProjectEfficiencySup data={shiftLeader} />
