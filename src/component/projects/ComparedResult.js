@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { getDataDaysOutput, getMonthData, getOutputDataYear } from "../hooks/EfficiencyProjectFilter";
 import MonthChart from "./MonthChart";
+import c from "./CompareResult.module.css";
 
 const ComparedResult = (p) => {
     const date = useSelector((s) => s.additionalData);
@@ -37,7 +38,7 @@ if(p.typeS==="daily"){
 
   const monthly = dataBytype();
   return (
-    <div>
+    <div className={c.chartContainer}>
       <MonthChart
         monthData={monthly}
         title={`${p.typeS} ${p.actual}`}

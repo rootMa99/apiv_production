@@ -98,6 +98,7 @@ const MonthChart = (p) => {
           color: "#f3f3f34f",
         },
         ticks: {
+          display:false,
           color: "white",
           fontWeight: "bold",
         },
