@@ -6,17 +6,25 @@ import ProjectEfficiencySup from "./ProjectEfficiencySup";
 import { useSelector } from "react-redux";
 import ShiftLeadersEfficiency from "./leaders/ShiftLeadersEfficiency";
 import ShiftLeadersEfficiencyASide from "./leaders/ShiftLeadersEfficiencyASide";
+import BackDrop from "../ui/BackDrop";
+import Compare from "./Compare";
 
 const ProjectDetails = (p) => {
   const { project } = useParams();
   const { maxMonthValue, maxDayValue } = useSelector((s) => s.additionalData);
   const [toggle, isToggle] = useState(false);
+  const [isCompare, setIsCompare]=useState(false);
+  const clickHandlerCompare=e=>{
+    setIsCompare(!isCompare);
+  }
   const clickHandler = (e) => {
     isToggle(!toggle);
   };
   return (
     <React.Fragment>
       <div className={c.projectContent}>
+      {isCompare && <BackDrop click={clickHandlerCompare} /> }
+      {isCompare && <Compare /> }
         <div className={c.aside}>
           <h1 className={c.heading}>{project}</h1>
           {!toggle ? (
@@ -50,10 +58,14 @@ const ProjectDetails = (p) => {
         </div>
         <div className={c.chartContainer}>
           <ProjectEfficiency title={project} />
-
-          <button className={c.buttonToggle} onClick={clickHandler}>
-            {!toggle ? "show Project details" : "hide project details"}
-          </button>
+          <div className={c.btnHolder}>
+            <button className={c.buttonToggle} onClick={clickHandlerCompare}>
+              compare
+            </button>
+            <button className={c.buttonToggle} onClick={clickHandler}>
+              {!toggle ? "show Project details" : "hide project details"}
+            </button>
+          </div>
           {toggle ? <ProjectEfficiencySup /> : <ShiftLeadersEfficiency />}
         </div>
       </div>

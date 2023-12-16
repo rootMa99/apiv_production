@@ -107,7 +107,15 @@ h6.heading:hover {
   align-items: center;
   padding-inline: 5%;
 }
-
+.btnHolder{
+  width: 100%;
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+.btnHolder button{
+  margin-left: 0;
+}
 .buttonToggle {
   margin-top: 0.5rem;
   margin-left: auto;
