@@ -24,7 +24,7 @@ const ProjectDetails = (p) => {
     <React.Fragment>
       <div className={c.projectContent}>
       {isCompare && <BackDrop click={clickHandlerCompare} /> }
-      {isCompare && <Compare /> }
+      {isCompare && <Compare project={project} /> }
         <div className={c.aside}>
           <h1 className={c.heading}>{project}</h1>
           {!toggle ? (
