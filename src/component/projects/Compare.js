@@ -1,7 +1,7 @@
 import { useState } from "react";
 import c from "./Compare.module.css";
 import Select from "react-select";
-import { shallowEqual, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { filterProjectsByName } from "../hooks/getEfficiencyData";
 import { getShiftLeaders } from "../hooks/EfficiencyProjectFilter";
 
@@ -36,6 +36,7 @@ const customStyles = {
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
               "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
               "Segoe UI Symbol"`,
+    textTransform: "uppercase",
     outline: "none",
     "&:hover": {
       cursor: "pointer",
@@ -75,15 +76,21 @@ const Compare = (p) => {
     shiftleader1: "",
     shiftleader2: "",
     compareBy: [],
+    type:""
   });
   const options = [
-    { value: "ab", label: "ab" },
-    { value: "dt", label: "down time" },
-    { value: "hc", label: "head count" },
-    { value: "ot", label: "over time" },
-    { value: "output", label: "output" },
-    { value: "tlo", label: "tlo" },
+    { value: "ab/absTarget", label: "ab" },
+    { value: "dt/dtTarget", label: "down time" },
+    { value: "hc/hcTarget", label: "head count" },
+    { value: "ot/ot", label: "over time" },
+    { value: "output/outputTarget", label: "output" },
+    { value: "tlo/tlo", label: "tlo" },
   ];
+  const optionsType=[
+    { value: "weekly", label: "weekly" },
+    { value: "daily", label: "daily" },
+    { value: "monthly", label: "monthly" },
+  ]
   const optionsSH1 = [];
 
   const filtredData = filterProjectsByName(data, p.project);
@@ -97,6 +104,12 @@ const Compare = (p) => {
     (f) => f.value !== selectedOptions.shiftleader1.value
   );
 
+  const onChangeHandlerType=e=>{
+    setSelectedOptions({
+        ...selectedOptions,
+        type: e,
+      });
+  }
   const onChangeHandler = (e) => {
     setSelectedOptions({
       ...selectedOptions,
@@ -108,6 +121,10 @@ const Compare = (p) => {
       ...selectedOptions,
       shiftleader2: e,
     });
+  };
+  const clickHandler = (e) => {
+    p.compare({ selectedOptions, shiftLeaders });
+    p.click();
   };
 
   const handleSelectChange = (event) => {
@@ -143,18 +160,33 @@ const Compare = (p) => {
         </div>
       </div>
       <div className={c.selectm}>
-        <label htmlFor="multiSelect">compare by:</label>
-        <Select
-          options={options}
-          isMulti
-          id="multiSelect"
-          onChange={handleSelectChange}
-          styles={customStyles}
-          defaultValue={" "}
-        />
+        <div className={c.selectt}>
+          <label htmlFor="multiSelect">compare by:</label>
+          <Select
+            options={options}
+            isMulti
+            id="multiSelect"
+            onChange={handleSelectChange}
+            styles={customStyles}
+            defaultValue={" "}
+          />
+        </div>
+        <div className={c.selectty}>
+          <label htmlFor="multiSelect">Select type:</label>
+          <Select
+            options={optionsType}
+            id="multiSelect"
+            inputId="shiftleader1"
+            onChange={onChangeHandlerType}
+            styles={customStyles}
+            defaultValue={" "}
+          />
+        </div>
       </div>
 
-      <button className={c.buttonToggle}>compare</button>
+      <button className={c.buttonToggle} onClick={clickHandler}>
+        compare
+      </button>
     </div>
   );
 };

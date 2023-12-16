@@ -25,18 +25,31 @@
   justify-content: space-between;
   width: 100%;
 }
-.select,
-.selectm {
-  width: 45%;
+.select{
+  width: 48%;
   display: flex;
   flex-direction: column;
 }
 .selectm {
   width: 100%;
   margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.selectt {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+.selectty {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
 }
 .select label,
-.selectm label {
+.selectt label,
+.selectty label {
   width: 100%;
   color: #f4dfc8;
   font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
