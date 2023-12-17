@@ -48,7 +48,7 @@ const MonthChart = (p) => {
     datasets: [
       {
         type: "line",
-        label: "Target Data",
+        //label: "Target Data",
         data: p.monthData.map((m) => m.totalTarget),
         backgroundColor: "white",
         pointHoverBorderColor: "#FAF0E6",
@@ -66,7 +66,7 @@ const MonthChart = (p) => {
       },
       {
         type: "bar",
-        label: "Actual Data",
+        //label: "Actual Data",
         data: p.monthData.map((m) => m.total),
         backgroundColor: bgcolor,
         //hoverBackgroundColor: "#950101",
@@ -105,6 +105,8 @@ const MonthChart = (p) => {
         y: {
           stacked: true,
         },
+        suggestedMax: maxBarValue+5,
+
       },
     },
     plugins: {
@@ -112,6 +114,7 @@ const MonthChart = (p) => {
         labels: {
           color: "#FAF0E6",
         },
+        display: false,
       },
       datalabels: {
         display: true,
@@ -185,6 +188,7 @@ const MonthChart = (p) => {
         labels: {
           color: "#FAF0E6",
         },
+        display: false,
       },
       datalabels: {
         display: true,

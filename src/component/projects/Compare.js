@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import c from "./Compare.module.css";
 import Select from "react-select";
 import { useSelector } from "react-redux";
@@ -20,7 +20,7 @@ const customStyles = {
     textAlign: "center",
     outline: "none",
     border: "2px solid #ecf0f162",
-    backgroundColor:"rgba(24, 13, 13, 0.37)",
+    backgroundColor: "rgba(24, 13, 13, 0.37)",
     boxShadow: "none",
     "&:hover": {
       border: "2px solid rgb(255, 255, 255)",
@@ -69,29 +69,32 @@ const customStyles = {
   }),
 };
 
+const options = [
+  { value: "output/outputTarget", label: "output" },
+  { value: "hc/hcTarget", label: "head count" },
+  { value: "ab/absTarget", label: "ab" },
+  { value: "ot/ot", label: "over time" },
+  { value: "tlo/tlo", label: "tlo" },
+  { value: "dt/dtTarget", label: "down time" },
+];
+
 const Compare = (p) => {
   const data = useSelector((s) => s.datas);
 
   const [selectedOptions, setSelectedOptions] = useState({
     shiftleader1: "",
     shiftleader2: "",
-    compareBy: [],
-    type:{ value: "day", label: "day" }
+    compareBy: options,
+    type: { value: "day", label: "day" },
   });
-  const options = [
-    { value: "ab/absTarget", label: "ab" },
-    { value: "dt/dtTarget", label: "down time" },
-    { value: "hc/hcTarget", label: "head count" },
-    { value: "ot/ot", label: "over time" },
-    { value: "output/outputTarget", label: "output" },
-    { value: "tlo/tlo", label: "tlo" },
-  ];
-  const optionsType=[
+  const [notify, setNotify]=useState(false)
+
+  const optionsType = [
     { value: "weekly", label: "weekly" },
     { value: "daily", label: "daily" },
     { value: "monthly", label: "monthly" },
     { value: "day", label: "day" },
-  ]
+  ];
   const optionsSH1 = [];
 
   const filtredData = filterProjectsByName(data, p.project);
@@ -105,12 +108,12 @@ const Compare = (p) => {
     (f) => f.value !== selectedOptions.shiftleader1.value
   );
 
-  const onChangeHandlerType=e=>{
+  const onChangeHandlerType = (e) => {
     setSelectedOptions({
-        ...selectedOptions,
-        type: e,
-      });
-  }
+      ...selectedOptions,
+      type: e,
+    });
+  };
   const onChangeHandler = (e) => {
     setSelectedOptions({
       ...selectedOptions,
@@ -124,71 +127,87 @@ const Compare = (p) => {
     });
   };
   const clickHandler = (e) => {
-    p.compare({ selectedOptions, shiftLeaders });
-    p.click();
+    if (
+      selectedOptions.shiftleader1 === "" ||
+      selectedOptions.shiftleader2 === ""
+    ) {
+      setNotify(true)
+    } else {
+      p.compare({ selectedOptions, shiftLeaders, optionsSH1, optionsSH2 });
+      p.click();
+    }
   };
+  if(notify){
+    setTimeout(()=>{
+      setNotify(false)
+    }, 4000)
+  }
 
   const handleSelectChange = (event) => {
-    console.log(event);
     setSelectedOptions({ ...selectedOptions, compareBy: event });
   };
   console.log(selectedOptions);
   return (
-    <div className={c.selectsContatainer}>
-      <h1>compare between :</h1>
-      <div className={c.selectContatainer}>
-        <div className={c.select}>
-          <label htmlFor="multiSelect">Select shiftLeader 1:</label>
-          <Select
-            options={optionsSH1}
-            id="multiSelect"
-            inputId="shiftleader1"
-            onChange={onChangeHandler}
-            styles={customStyles}
-            defaultValue={" "}
-          />
+    <React.Fragment>
+      {notify && <div className={c.notification}>
+        <p>to proceed, Please choose the shift leaders you'd like to compare</p>
+      </div>}
+      <div className={c.selectsContatainer}>
+        <h1>compare between :</h1>
+        <div className={c.selectContatainer}>
+          <div className={c.select}>
+            <label htmlFor="multiSelect">Select shiftLeader 1:</label>
+            <Select
+              options={optionsSH1}
+              id="multiSelect"
+              inputId="shiftleader1"
+              onChange={onChangeHandler}
+              styles={customStyles}
+              defaultValue={" "}
+            />
+          </div>
+          <div className={c.select}>
+            <label htmlFor="multiSelect">Select shiftLeader 2:</label>
+            <Select
+              options={optionsSH2}
+              id="multiSelect"
+              inputId="shiftleader1"
+              onChange={onChangeHandler1}
+              styles={customStyles}
+              defaultValue={" "}
+            />
+          </div>
         </div>
-        <div className={c.select}>
-          <label htmlFor="multiSelect">Select shiftLeader 2:</label>
-          <Select
-            options={optionsSH2}
-            id="multiSelect"
-            inputId="shiftleader1"
-            onChange={onChangeHandler1}
-            styles={customStyles}
-            defaultValue={" "}
-          />
+        <div className={c.selectm}>
+          <div className={c.selectt}>
+            <label htmlFor="multiSelect">compare by:</label>
+            <Select
+              options={options}
+              isMulti
+              id="multiSelect"
+              onChange={handleSelectChange}
+              styles={customStyles}
+              defaultValue={" "}
+            />
+          </div>
+          <div className={c.selectty}>
+            <label htmlFor="multiSelect">Select type:</label>
+            <Select
+              options={optionsType}
+              id="multiSelect"
+              inputId="shiftleader1"
+              onChange={onChangeHandlerType}
+              styles={customStyles}
+              defaultValue={" "}
+            />
+          </div>
         </div>
-      </div>
-      <div className={c.selectm}>
-        <div className={c.selectt}>
-          <label htmlFor="multiSelect">compare by:</label>
-          <Select
-            options={options}
-            isMulti
-            id="multiSelect"
-            onChange={handleSelectChange}
-            styles={customStyles}
-            defaultValue={" "}
-          />
-        </div>
-        <div className={c.selectty}>
-          <label htmlFor="multiSelect">Select type:</label>
-          <Select
-            options={optionsType}
-            id="multiSelect"
-            inputId="shiftleader1"
-            onChange={onChangeHandlerType}
-            styles={customStyles}
-            defaultValue={" "}
-          />
-        </div>
-      </div>
 
-      <button className={c.buttonToggle} onClick={clickHandler}>
-        compare
-      </button>
-    </div>
+        <button className={c.buttonToggle} onClick={clickHandler}>
+          compare
+        </button>
+      </div>
+    </React.Fragment>
   );
 };
 

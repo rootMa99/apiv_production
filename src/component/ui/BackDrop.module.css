@@ -8,6 +8,7 @@
     top: 0;
     left: 0;
     animation: backdrop 1s ease-out forwards;
+    cursor: pointer;
 }
 @keyframes backdrop {
     from{

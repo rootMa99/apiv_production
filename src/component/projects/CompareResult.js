@@ -68,8 +68,15 @@ const customStyles = {
 };
 
 const CompareResult = (p) => {
+  const [chooseSL, setChooseSL] = useState({ sl1: false, sl2: false });
   const [type, setType] = useState(p.compareData.selectedOptions.type.value);
-  const [compareb, setCompareb] = useState(p.compareData.selectedOptions.compareBy);
+  const [compareb, setCompareb] = useState(
+    p.compareData.selectedOptions.compareBy
+  );
+  const [shifleaders, setShiftLeaders] = useState({
+    shiftleader1: p.compareData.selectedOptions.shiftleader1,
+    shiftleader2: p.compareData.selectedOptions.shiftleader2,
+  });
   const optionsType = [
     { value: "weekly", label: "weekly" },
     { value: "daily", label: "daily" },
@@ -91,6 +98,38 @@ const CompareResult = (p) => {
     setCompareb(e);
   };
   console.log(p.compareData, compareb);
+  const chooseSL1Handler = (e) => {
+    setChooseSL({
+      ...chooseSL,
+      sl1: !chooseSL.sl1,
+    });
+  };
+  const chooseSL2Handler = (e) => {
+    setChooseSL({
+      ...chooseSL,
+      sl2: !chooseSL.sl2,
+    });
+  };
+  const onChangeHandlerSL1 = (e) => {
+    setShiftLeaders({
+      ...shifleaders,
+      shiftleader1: e,
+    });
+    setChooseSL({
+      ...chooseSL,
+      sl1: false,
+    });
+  };
+  const onChangeHandlerSL2 = (e) => {
+    setShiftLeaders({
+      ...shifleaders,
+      shiftleader2: e,
+    });
+    setChooseSL({
+      ...chooseSL,
+      sl2: false,
+    });
+  };
   return (
     <React.Fragment>
       <div className={c.selects}>
@@ -117,24 +156,56 @@ const CompareResult = (p) => {
       </div>
       <div className={c.container}>
         <div className={`${c.result} ${c.resultl}`}>
-          <h1>{p.compareData.selectedOptions.shiftleader1.value}</h1>
+          <h1 onClick={chooseSL1Handler}>{shifleaders.shiftleader1.value}</h1>
+          {chooseSL.sl1 && (
+            <div className={c.selectSlds}>
+              <Select
+                options={p.compareData.optionsSH1.filter(
+                  (f) =>
+                    f.value !== shifleaders.shiftleader1.value &&
+                    f.value !== shifleaders.shiftleader2.value
+                )}
+                id="multiSelect"
+                inputId="shiftleader1"
+                onChange={onChangeHandlerSL1}
+                styles={customStyles}
+                defaultValue={" "}
+              />
+            </div>
+          )}
           {compareb.map((m) => (
             <ComparedResult
               data={p.compareData.shiftLeaders}
               typeS={type}
-              name={p.compareData.selectedOptions.shiftleader1.value}
+              name={shifleaders.shiftleader1.value}
               actual={m.value.split("/")[0]}
               target={m.value.split("/")[1]}
             />
           ))}
         </div>
         <div className={`${c.result} ${c.resultr}`}>
-          <h1>{p.compareData.selectedOptions.shiftleader2.value}</h1>
+          <h1 onClick={chooseSL2Handler}>{shifleaders.shiftleader2.value}</h1>
+          {chooseSL.sl2 && (
+            <div className={c.selectSlds}>
+              <Select
+                options={p.compareData.optionsSH2.filter(
+                  (f) =>
+                    f.value !== shifleaders.shiftleader1.value &&
+                    f.value !== shifleaders.shiftleader2.value
+                )}
+                id="multiSelect"
+                inputId="shiftleader1"
+                onChange={onChangeHandlerSL2}
+                styles={customStyles}
+                defaultValue={" "}
+              />
+            </div>
+          )}
           {compareb.map((m) => (
             <ComparedResult
               data={p.compareData.shiftLeaders}
               typeS={type}
-              name={p.compareData.selectedOptions.shiftleader2.value}
+              name={shifleaders.shiftleader2.value}
               actual={m.value.split("/")[0]}
               target={m.value.split("/")[1]}
             />

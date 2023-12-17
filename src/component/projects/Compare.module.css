@@ -82,3 +82,35 @@
   border: 2px solid rgb(255, 255, 255);
   background-color: rgba(100, 98, 98, 0.37);
 }
+.notification{
+  width: 70%;
+  background-color: #D21312;
+  position: fixed;
+  top: 5rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1111;
+  padding-inline: 2rem;
+  animation: slideIn 0.5s ease-out; 
+}
+.notification p{
+  width: 100%;
+  color: #F4EEE0;
+  font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
