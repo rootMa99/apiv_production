@@ -79,7 +79,9 @@ const options = [
 ];
 
 const Compare = (p) => {
+  let counter = 4;
   const data = useSelector((s) => s.datas);
+  const [countDown, setCountDown]=useState(counter);
 
   const [selectedOptions, setSelectedOptions] = useState({
     shiftleader1: "",
@@ -87,7 +89,7 @@ const Compare = (p) => {
     compareBy: options,
     type: { value: "day", label: "day" },
   });
-  const [notify, setNotify]=useState(false)
+  const [notify, setNotify] = useState(false);
 
   const optionsType = [
     { value: "weekly", label: "weekly" },
@@ -131,27 +133,35 @@ const Compare = (p) => {
       selectedOptions.shiftleader1 === "" ||
       selectedOptions.shiftleader2 === ""
     ) {
-      setNotify(true)
+      setNotify(true);
+      setInterval(() => {
+        setCountDown(counter--);
+      }, 1000);
     } else {
       p.compare({ selectedOptions, shiftLeaders, optionsSH1, optionsSH2 });
       p.click();
     }
   };
-  if(notify){
-    setTimeout(()=>{
-      setNotify(false)
-    }, 4000)
+  if (notify) {
+    setTimeout(() => {
+      setNotify(false);
+    }, 4000);
   }
 
   const handleSelectChange = (event) => {
     setSelectedOptions({ ...selectedOptions, compareBy: event });
   };
   console.log(selectedOptions);
+
   return (
     <React.Fragment>
-      {notify && <div className={c.notification}>
-        <p>to proceed, Please choose the shift leaders you'd like to compare</p>
-      </div>}
+      {notify && (
+        <div className={c.notification}>
+          <p>
+            to proceed, Please choose the shift leaders you'd like to compare ({countDown} s)
+          </p>
+        </div>
+      )}
       <div className={c.selectsContatainer}>
         <h1>compare between :</h1>
         <div className={c.selectContatainer}>
