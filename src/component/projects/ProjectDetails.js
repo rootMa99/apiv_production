@@ -75,9 +75,9 @@ const ProjectDetails = (p) => {
             {compareData && <button className={c.buttonToggle} onClick={()=>{setCompareData(false)}}>
               clear comparison
             </button>}
-            <button className={c.buttonToggle} onClick={clickHandlerCompare}>
+            {!compareData && <button className={c.buttonToggle} onClick={clickHandlerCompare}>
               compare
-            </button>
+            </button>}
             <button className={c.buttonToggle} onClick={clickHandler}>
               {!toggle ? "show Project details" : "hide project details"}
             </button>

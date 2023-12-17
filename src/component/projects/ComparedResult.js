@@ -34,6 +34,12 @@ if(p.typeS==="daily"){
     const filtredM = getMonthData(shiftLeader[0].data, date.month[month - 1]);
   return getDataDaysOutput(filtredM, p.actual, p.target);
 }
+if(p.typeS==="day"){
+    const filtredM = (shiftLeader[0].data).filter((f) => f.date === date.date);
+  return getDataDaysOutput(filtredM, p.actual, p.target , 'day');
+}
+const filtredM = (shiftLeader[0].data).filter((f) => f.date === date.date);
+  return getDataDaysOutput(filtredM, p.actual, p.target , 'day');
 }
 
   const monthly = dataBytype();

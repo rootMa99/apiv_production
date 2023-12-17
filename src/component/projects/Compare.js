@@ -19,12 +19,12 @@ const customStyles = {
     letterSpacing: "2px",
     textAlign: "center",
     outline: "none",
-    border: "2px solid #fff",
-    backgroundColor: state.isFocused ? "grey" : "#474b4d",
+    border: "2px solid #ecf0f162",
+    backgroundColor:"rgba(24, 13, 13, 0.37)",
     boxShadow: "none",
     "&:hover": {
-      border: "2px solid #474b4d",
-      backgroundColor: "#676c6e",
+      border: "2px solid rgb(255, 255, 255)",
+      backgroundColor: "rgba(100, 98, 98, 0.37)",
       cursor: "pointer",
     },
   }),
@@ -76,7 +76,7 @@ const Compare = (p) => {
     shiftleader1: "",
     shiftleader2: "",
     compareBy: [],
-    type:""
+    type:{ value: "day", label: "day" }
   });
   const options = [
     { value: "ab/absTarget", label: "ab" },
@@ -90,6 +90,7 @@ const Compare = (p) => {
     { value: "weekly", label: "weekly" },
     { value: "daily", label: "daily" },
     { value: "monthly", label: "monthly" },
+    { value: "day", label: "day" },
   ]
   const optionsSH1 = [];
 

@@ -202,7 +202,7 @@ export const getOutputDataYear = (data, searcheType, actual, target) => {
   return returnedArray;
 };
 
-export const getDataDaysOutput = (data, actual, target) => {
+export const getDataDaysOutput = (data, actual, target, day) => {
   const daily = [];
   for (let element of data) {
     if (daily.length === 0) {
@@ -238,7 +238,7 @@ export const getDataDaysOutput = (data, actual, target) => {
   const returnedArray = [];
   daily.forEach((e) => {
     returnedArray.push({
-      name: e.date.split("-")[2],
+      name: day===undefined ? e.date.split("-")[2] : e.date,
       total: e.total.toFixed(0),
       //totalTarget: (actual==="ot" || actual==="ab") ?  (e.totalTarget).toFixed(2) : e.totalTarget,
       totalTarget: e.totalTarget !== undefined ? e.totalTarget.toFixed(0) : 0,
