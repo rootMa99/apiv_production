@@ -40,11 +40,16 @@
   display: flex;
 }
 .chart,
-.chartd {
+.chartd,
+.chartw {
   width: 50%;
   height: 20rem;
 }
+.chartw{
+   background-color: #ecf0f110;
+   border-radius: 17px;
+  padding-bottom: 4rem;
+}
 .chartd {
   width: 100%;
-  margin-top: 4rem;
 }

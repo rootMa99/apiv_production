@@ -1,6 +1,6 @@
 .chartsContainer{
     width: 97%;
-    height: 15rem;
+    height: 18rem;
   display: flex;
   flex-direction: column;
   border: 1px solid #ecf0f162;
@@ -56,4 +56,30 @@ h3.title:hover{
 .chart{
     width: 33%;
     height: 14rem;
+}
+.chartd{
+  width: 67%;
+  height: 14rem;
+}
+.toggleBtn{
+  padding-inline: 0.5rem;
+  margin-left: auto;
+  background-color: rgba(24, 13, 13, 0.37);
+  color: #f4dfc8;
+  border-radius: 5px;
+  font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  letter-spacing: 2px;
+  margin-top: 0.5rem;
+  font-size: small;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid rgb(109, 95, 95);
+}
+.toggleBtn:hover {
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgba(44, 42, 42, 0.37);
+  transform: scale(1.05);
 }

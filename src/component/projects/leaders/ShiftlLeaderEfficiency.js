@@ -8,11 +8,13 @@ import {
 } from "../../hooks/EfficiencyProjectFilter";
 import MonthChart from "../MonthChart";
 import c from "./ShiftLeaderEfficiency.module.css";
+import { useState } from "react";
 //import { additionalDataAction } from "../../../store/AdditionalData";
 
 const ShiftLeaderEfficiency = (p) => {
   //const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [toggle, isToggle]= useState(false);
   console.log(p.shiftLeader);
   const monthly = getDataYear(p.data);
   const month = p.date.date.split("-")[1];
@@ -52,14 +54,15 @@ const ShiftLeaderEfficiency = (p) => {
       <h3 className={c.title} onClick={onClickHandler}>
         {p.title} efficiency
       </h3>
+      <button className={c.toggleBtn} onClick={()=>(isToggle(!toggle))}>{toggle ? "hide week" : "show week" } </button>
       <div className={c.chartContainer}>
         <div className={c.chart}>
           <MonthChart monthData={monthly} title={""} />
         </div>
-        <div className={c.chart}>
+        {toggle && <div className={c.chart}>
           <MonthChart monthData={weekly} title={``} />
-        </div>
-        <div className={c.chart}>
+        </div>}
+        <div className={toggle? c.chart : c.chartd}>
           <MonthChart monthData={daily} title={``} />
         </div>
       </div>

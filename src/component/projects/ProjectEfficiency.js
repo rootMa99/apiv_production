@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterProjectsByName } from "../hooks/getEfficiencyData";
 import { getDataDays, getDataYear, getMonthData, getWeekData } from "../hooks/EfficiencyProjectFilter";
 import { additionalDataAction } from "../../store/AdditionalData";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ProjectEfficiency = (p) => {
   const data=useSelector(s=>s.datas);
   const {date, month}=useSelector(s=>s.additionalData);
   const dispatch= useDispatch();
+  const [toggle, isToggle]= useState(false);
 
   const months=date.split("-")[1];
   console.log(data);
@@ -59,14 +60,15 @@ const ProjectEfficiency = (p) => {
   return (
     <div className={c.projectEfficiencyContainer}>
       <h3>{p.title} efficiency</h3>
+      <button className={c.toggleBtn} onClick={()=>(isToggle(!toggle))}>{toggle ? "hide week" : "show week" } </button>
       <div className={c.chartContainer}>
         <div className={c.chart}>
           <MonthChart monthData={monthData} title="" />
         </div>
-        <div className={c.chart}>
+        {toggle&&<div className={c.chart}>
           <MonthChart monthData={filtredWeek} title=""/>
-        </div>
-        <div className={c.chart}>
+        </div>}
+        <div className={toggle? c.chart : c.chartd}>
           <MonthChart monthData={dataDays} title=""/>
         </div>
       </div>

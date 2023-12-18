@@ -25,7 +25,7 @@ const MonthChart = (p) => {
           : bgcolor.push("rgb(88, 3, 3)")
       ))
     : (p.monthData.map((m) =>
-        +m.total > +m.totalTarget
+        +m.total >= +m.totalTarget
           ? bgcolor.push("#005B41")
           : bgcolor.push("rgb(88, 3, 3)")
       ));

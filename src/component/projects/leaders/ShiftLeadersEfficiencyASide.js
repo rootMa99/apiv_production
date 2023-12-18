@@ -92,7 +92,7 @@ const ShiftLeadersEfficiencyASide = (p) => {
           </div>
           <div className={c.contentData}>
             <span className={c.contentDataTitle}>gap/day :</span>
-            <span className={c.contentDataEff}>{m.gapDay} %</span>
+            <span className={m.gapDay>=0 ? `${c.contentDataEff} ${c.green}`:`${c.contentDataEff} ${c.red}`}><div className={m.gapDay>=0 ? c.triangleUP : c.triangleDown}></div> {m.gapDay} %</span>
           </div>
           <div className={c.contentData}>
             <span className={c.contentDataTitle}>efficiency/month :</span>
@@ -100,7 +100,7 @@ const ShiftLeadersEfficiencyASide = (p) => {
           </div>
           <div className={c.contentData}>
             <span className={c.contentDataTitle}>gap/month :</span>
-            <span className={c.contentDataEff}>{m.gapMonth} %</span>
+            <span className={m.gapMonth>=0 ? `${c.contentDataEff} ${c.green}`:`${c.contentDataEff} ${c.red}`}><div className={m.gapMonth>=0? c.triangleUP : c.triangleDown}></div>{m.gapMonth} %</span>
           </div>
         </div>
       ))}

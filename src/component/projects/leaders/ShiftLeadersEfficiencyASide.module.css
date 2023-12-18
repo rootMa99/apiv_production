@@ -35,16 +35,44 @@ padding-bottom: 0.5rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .contentDataTitle {
-  width: 70%;
+  width: 60%;
   text-align: left;
   text-transform: uppercase;
   color: #e9e7e4;
-  font-size: medium;
+  font-size: small;
 }
 .contentDataEff {
   color: #e9e7e4;
-  width: 25%;
-  text-align: right;
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+.triangleUP {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 14px solid #008500;
+  margin: auto;
+}
+.triangleDown {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 14px solid #a30202;
+  margin: auto;
+}
+
+.red {
+  color: #b80000;
+}
+.green {
+  color: #008500;
 }
