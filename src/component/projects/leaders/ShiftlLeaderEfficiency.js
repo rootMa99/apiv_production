@@ -25,11 +25,17 @@ const ShiftLeaderEfficiency = (p) => {
   console.log((daily.length / 2 - 0.3).toFixed(0));
 
   const onClickHandler = (e) => {
-    if(p.crew!==undefined){
+    if (p.crew === "crew") {
+      navigate(
+        `/home/project/${p.project}/shiftLeader/${p.shiftLeader}/teamleader/${p.teamLeader}/crew/${p.title}`
+      );
       return;
     }
+
     p.shiftLeader !== undefined
-      ? navigate(`/home/project/${p.project}/shiftLeader/${p.shiftLeader}/teamleader/${p.title}`)
+      ? navigate(
+          `/home/project/${p.project}/shiftLeader/${p.shiftLeader}/teamleader/${p.title}`
+        )
       : navigate(`/home/project/${p.project}/shiftLeader/${p.title}`);
   };
   //   dispatch(

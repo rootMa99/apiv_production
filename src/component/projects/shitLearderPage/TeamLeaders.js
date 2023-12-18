@@ -251,6 +251,7 @@ const TeamLeaders = (p) => {
                     index={1}
                     project={params.project}
                     shiftLeader={params.shitLeader}
+                    teamLeader={params.teamLeader}
                     crew="crew"
                   />
                 ))}
