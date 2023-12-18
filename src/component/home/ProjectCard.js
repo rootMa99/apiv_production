@@ -127,7 +127,7 @@ const selecyedDay= p.day.split("-");
             </div>
             <div className={`${c.contentData} ${c.tloday}`}>
               <h5>tlo/day</h5>
-              <span>{data.tlo} </span>
+              <span>{(data.tlo).toFixed(2)} </span>
             </div>
             <div className={`${c.contentData} ${c.dt}`}>
               <h5>dt/day</h5>

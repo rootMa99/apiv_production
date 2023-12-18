@@ -38,14 +38,16 @@
 .chartContainer {
   width: 100%;
   display: flex;
+  justify-content: space-between;
 }
 .chart,
 .chartd,
 .chartw {
-  width: 50%;
+  width: 49.5%;
   height: 20rem;
 }
-.chartw{
+.chart{
+  margin-top: 1.5rem;
    background-color: #ecf0f110;
    border-radius: 17px;
   padding-bottom: 4rem;

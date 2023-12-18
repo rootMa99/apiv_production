@@ -30,7 +30,7 @@ const OuputFilter = (p) => {
         <div className={c.chart}>
           <MonthChart monthData={monthly} title={`monthly ${p.title}`} type={p.title} />
         </div>
-        <div className={c.chartw}>
+        <div className={c.chart}>
           <MonthChart monthData={weekly} title={`weekly ${p.title}`} type={p.title} />
         </div>
       </div>

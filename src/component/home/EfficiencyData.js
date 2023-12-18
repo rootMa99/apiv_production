@@ -38,12 +38,16 @@ const EfficiencyData = (p) => {
         <h4 className={c.title}>{p.title === "month" ? p.month : p.title} </h4>
       )}
       {p.title === "last day" && (
-        <input
-          className={c.title}
-          type="date"
-          value={p.day}
-          onChange={changeDayhandler}
-        />
+        <div className={c.eff}>
+          <h3 className={c.titles}>efficiency</h3>
+
+          <input
+            className={c.titles}
+            type="date"
+            value={p.day}
+            onChange={changeDayhandler}
+          />
+        </div>
       )}
       <div className={c.data}>
         <div className={c.total}>
@@ -81,7 +85,8 @@ const EfficiencyData = (p) => {
           <div className={c.gap}>
             <h5 className={c.title}>gap:</h5>
             <span className={classes}>
-              <div className={tclasses}></div> { p.title === "hc/day" ? Math.abs(p.gap) : p.gap }
+              <div className={tclasses}></div>{" "}
+              {p.title === "hc/day" ? Math.abs(p.gap) : p.gap}
             </span>
           </div>
           <div className={c.target}>

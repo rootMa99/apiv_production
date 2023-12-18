@@ -144,7 +144,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 .contentData h5:last-of-type{
   margin-bottom: 0;

@@ -52,14 +52,21 @@ h3.title:hover{
 .chartContainer{
     display: flex;
     align-items: flex-end;
+    justify-content: space-between;
 }
 .chart{
     width: 33%;
     height: 14rem;
+    background-color: #ecf0f110;
+    border-radius: 17px;
+   padding-bottom: 2rem;
 }
 .chartd{
-  width: 67%;
+  width: 66%;
   height: 14rem;
+  background-color: #ecf0f110;
+  border-radius: 17px;
+ padding-bottom: 2rem;
 }
 .toggleBtn{
   padding-inline: 0.5rem;

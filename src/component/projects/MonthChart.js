@@ -78,8 +78,7 @@ const MonthChart = (p) => {
 
   
   const minBarValue = Math.min(...data.datasets[1].data);
-  const maxBarValue = Math.max(...data.datasets[1].data);
-
+  const maxBarValue = Math.max(...data.datasets[1].data, ...data.datasets[0].data);
   const optionsBar = {
     responsive: true,
     maintainAspectRatio: false,
@@ -180,7 +179,7 @@ const MonthChart = (p) => {
             : minBarValue !== 0
             ? minBarValue - 10
             : minBarValue,
-        suggestedMax: maxBarValue+5,
+        suggestedMax: maxBarValue+20,
       },
     },
     plugins: {
@@ -210,8 +209,8 @@ const MonthChart = (p) => {
               xPos = element.x;
               yPos =
                 Math.abs(data - minBarValue) <= 15
-                  ? element.y
-                  : element.y + 20;
+                  ? element.y + 10
+                  : element.y + 30;
             } else if (dataset.type === "line" && p.title !== "daily") {
               xPos = element.x;
               yPos = element.y - 15 ;

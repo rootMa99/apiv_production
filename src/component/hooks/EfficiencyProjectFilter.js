@@ -238,7 +238,7 @@ export const getDataDaysOutput = (data, actual, target, day) => {
   const returnedArray = [];
   daily.forEach((e) => {
     returnedArray.push({
-      name: day===undefined ? e.date.split("-")[2] : e.date,
+      name: day === undefined ? e.date.split("-")[2] : e.date,
       total: e.total.toFixed(0),
       //totalTarget: (actual==="ot" || actual==="ab") ?  (e.totalTarget).toFixed(2) : e.totalTarget,
       totalTarget: e.totalTarget !== undefined ? e.totalTarget.toFixed(0) : 0,
@@ -282,8 +282,7 @@ export const getDtEfficiency = (data, searcheType) => {
     returnedArray.push({
       name: searcheType !== "date" ? e.name : e.name.split("-")[2],
       total: e.paidH === 0 ? 0 : ((e.dt / e.paidH) * 100).toFixed(1),
-      totalTarget:
-        e.paidt === 0 ? 0 : ((e.dtTarget) * 100).toFixed(1),
+      totalTarget: e.paidt === 0 ? 0 : (e.dtTarget * 100).toFixed(1),
     });
   });
   return returnedArray;
@@ -370,8 +369,8 @@ export const getCrew = (data) => {
       });
       continue;
     }
-    const index= crew.findIndex((f) => f.name === d.crew);
-    if(index === -1){
+    const index = crew.findIndex((f) => f.name === d.crew);
+    if (index === -1) {
       crew.push({
         name: d.crew,
         data: [
@@ -388,7 +387,7 @@ export const getCrew = (data) => {
           },
         ],
       });
-    }else{
+    } else {
       crew[index].data.push({
         actualDataExcel: d.actualDataExcel,
         dataTargetExcel: d.dataTargetExcel,
@@ -401,7 +400,6 @@ export const getCrew = (data) => {
         coordinator: d.coordinator,
       });
     }
-
   }
   return crew;
 };

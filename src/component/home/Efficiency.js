@@ -65,7 +65,6 @@ const Efficiency = (p) => {
   // console.log(prodHY, paidHY, prodTY, paidTY);
   return (
     <React.Fragment>
-      <h3 className={c.title}>efficiency</h3>
       <div className={c.efficiency}>
         <div className={c.efficiencyContent}>
           <EfficiencyData
