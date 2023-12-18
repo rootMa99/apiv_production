@@ -31,7 +31,6 @@ const ShiftLeaderEfficiency = (p) => {
       );
       return;
     }
-
     p.shiftLeader !== undefined
       ? navigate(
           `/home/project/${p.project}/shiftLeader/${p.shiftLeader}/teamleader/${p.title}`

@@ -59,24 +59,32 @@ const ShiftLeadersEfficiencyASide = (p) => {
   );
   totalEfficiency.sort((a, b) => a.gapDay - b.gapDay);
   console.log(efficiency, totalEfficiency);
-  const clickHandlerLink=(name) => {
-    if(p.project===undefined){
+  const clickHandlerLink = (name) => {
+    if (p.crew === "crew") {
+      navigate(
+        `/home/project/${p.project}/shiftLeader/${p.shiftLeader}/teamleader/${p.teamLeader}/crew/${name}`
+      );
       return;
     }
+    if (p.project === undefined) {
+      return;
+    }
+    
     p.data === undefined
       ? navigate(`/home/project/${p.project}/shiftLeader/${name}`)
       : navigate(
           `/home/project/${p.project}/shiftLeader/${p.sl}/teamleader/${name}`
         );
-  }
+  };
   return (
     <div className={c.dataContainer}>
-      <h3 className={c.title}>{p.data === undefined ? 'shiftLeaders efficiency' : "teamleaders efficiency" }</h3>
+      <h3 className={c.title}>
+        {p.data === undefined
+          ? "shiftLeaders efficiency"
+          : (p.crew==="crew" ? "crews efficiency" : "teamleaders efficiency")}
+      </h3>
       {totalEfficiency.map((m) => (
-        <div
-          className={c.content}
-          onClick={()=>( clickHandlerLink(m.name))}
-        >
+        <div className={c.content} onClick={() => clickHandlerLink(m.name)}>
           <h4>{m.name}</h4>
           <div className={c.contentData}>
             <span className={c.contentDataTitle}>efficiency/day :</span>
