@@ -36,6 +36,7 @@ const ProjectDetails = (p) => {
             project={project}
             compare={comparedata}
             click={clickHandlerCompare}
+            title="shift leader"
           />
         )}
         <div className={c.aside}>

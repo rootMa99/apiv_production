@@ -4,10 +4,18 @@ import React, { useEffect, useState } from "react";
 import ShiftLeaderEfficiency from "../leaders/ShiftlLeaderEfficiency";
 import { useSelector } from "react-redux";
 import { filterProjectsByName } from "../../hooks/getEfficiencyData";
-import { getCrew, getDataDays, getDataYear, getShiftLeaders } from "../../hooks/EfficiencyProjectFilter";
+import {
+  getCrew,
+  getDataDays,
+  getDataYear,
+  getShiftLeaders,
+} from "../../hooks/EfficiencyProjectFilter";
 import { getTeamLeaders } from "../../hooks/teamLeaderEfficiency";
 import ProjectEfficiencySup from "../ProjectEfficiencySup";
 import ShiftLeadersEfficiencyASide from "../leaders/ShiftLeadersEfficiencyASide";
+import BackDrop from "../../ui/BackDrop";
+import Compare from "../Compare";
+import CompareResult from "../CompareResult";
 
 const TeamLeaders = (p) => {
   const data = useSelector((s) => s.datas);
@@ -15,6 +23,8 @@ const TeamLeaders = (p) => {
   const params = useParams();
   const [toggle, isToggle] = useState(false);
   const [oneCrew, isOneCrew] = useState(false);
+  const [isCompare, setIsCompare] = useState(false);
+  const [compareData, setCompareData] = useState(false);
   const navigate = useNavigate();
   console.log(params);
   const clickHandler = (e) => {
@@ -93,8 +103,25 @@ const TeamLeaders = (p) => {
     }
   }, [crews]);
   console.log("oneCre<", oneCrew, crews.length);
+  const comparedata = (data) => {
+    setCompareData(data);
+  };
+  const clickHandlerCompare = (e) => {
+    setIsCompare(!isCompare);
+  };
+
   return (
     <React.Fragment>
+      {isCompare && <BackDrop click={clickHandlerCompare} />}
+      {isCompare && (
+        <Compare
+          project={params.project}
+          compare={comparedata}
+          click={clickHandlerCompare}
+          title="shift leader"
+          data={crews}
+        />
+      )}
       <div className={c.projectContent}>
         <div className={c.aside}>
           <h1 className={c.heading} onClick={projectClickHandler}>
@@ -173,7 +200,7 @@ const TeamLeaders = (p) => {
               </div>
             </React.Fragment>
           )}
-          {toggle && !oneCrew && <ShiftLeadersEfficiencyASide data={crews}/>}
+          {toggle && !oneCrew && <ShiftLeadersEfficiencyASide data={crews} />}
         </div>
         <div className={c.chartContainer}>
           <ShiftLeaderEfficiency
@@ -186,25 +213,52 @@ const TeamLeaders = (p) => {
           />
 
           {!oneCrew && (
-            <button className={c.buttonToggle} onClick={clickHandler}>
-              {!toggle ? "show Project details" : "hide project details"}
-            </button>
+            <div className={c.btnHolder}>
+              {compareData && (
+                <button
+                  className={c.buttonToggle}
+                  onClick={() => {
+                    setCompareData(false);
+                  }}
+                >
+                  clear comparison
+                </button>
+              )}
+              {!compareData && (
+                <button
+                  className={c.buttonToggle}
+                  onClick={clickHandlerCompare}
+                >
+                  compare
+                </button>
+              )}
+
+              <button className={c.buttonToggle} onClick={clickHandler}>
+                {!toggle ? "show Project details" : "hide project details"}
+              </button>
+            </div>
           )}
+
           {!toggle ? (
-            <React.Fragment>
-              <h3 className={c.shiftLeaderTite}>crew data</h3>
-              {crews.map((m) => (
-                <ShiftLeaderEfficiency
-                  title={m.name}
-                  data={m.data}
-                  date={{ date, month }}
-                  index={1}
-                  project={params.project}
-                  shiftLeader={params.shitLeader}
-                  crew="crew"
-                />
-              ))}
-            </React.Fragment>
+            !compareData ? (
+              <React.Fragment>
+                (<h3 className={c.shiftLeaderTite}>crew data</h3>
+                {crews.map((m) => (
+                  <ShiftLeaderEfficiency
+                    title={m.name}
+                    data={m.data}
+                    date={{ date, month }}
+                    index={1}
+                    project={params.project}
+                    shiftLeader={params.shitLeader}
+                    crew="crew"
+                  />
+                ))}
+                )
+              </React.Fragment>
+            ) : (
+              <CompareResult compareData={compareData} />
+            )
           ) : (
             <ProjectEfficiencySup data={teamLeader} />
           )}

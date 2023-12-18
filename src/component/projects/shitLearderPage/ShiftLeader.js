@@ -12,6 +12,9 @@ import ShiftLeaderEfficiency from "../leaders/ShiftlLeaderEfficiency";
 import { getTeamLeaders } from "../../hooks/teamLeaderEfficiency";
 import ProjectEfficiencySup from "../ProjectEfficiencySup";
 import ShiftLeadersEfficiencyASide from "../leaders/ShiftLeadersEfficiencyASide";
+import BackDrop from "../../ui/BackDrop";
+import Compare from "../Compare";
+import CompareResult from "../CompareResult";
 
 const ShiftLeader = (p) => {
   const data = useSelector((s) => s.datas);
@@ -20,6 +23,8 @@ const ShiftLeader = (p) => {
   const params = useParams();
   console.log(data, params);
   const [toggle, isToggle] = useState(false);
+  const [isCompare, setIsCompare] = useState(false);
+  const [compareData, setCompareData] = useState(false);
 
   const filtredData = filterProjectsByName(data, params.project);
   const shiftLeaders = getShiftLeaders(filtredData[0].data);
@@ -38,12 +43,11 @@ const ShiftLeader = (p) => {
     navigate(`/home/project/${params.project}`);
   };
 
-
   let teamLeader = [];
-  try{
-    teamLeader=getTeamLeaders(shiftLeader[0].data);
-  }catch(e){
-    alert(e)
+  try {
+    teamLeader = getTeamLeaders(shiftLeader[0].data);
+  } catch (e) {
+    alert(e);
   }
 
   const monthData = getDataYear(shiftLeader[0].data);
@@ -82,9 +86,25 @@ const ShiftLeader = (p) => {
     maxObjectDay,
     maxObject
   );
+  const comparedata = (data) => {
+    setCompareData(data);
+  };
+  const clickHandlerCompare = (e) => {
+    setIsCompare(!isCompare);
+  };
 
   return (
     <React.Fragment>
+      {isCompare && <BackDrop click={clickHandlerCompare} />}
+      {isCompare && (
+        <Compare
+          project={params.project}
+          compare={comparedata}
+          click={clickHandlerCompare}
+          title="shift leader"
+          data={teamLeader}
+        />
+      )}
       <div className={c.projectContent}>
         <div className={c.aside}>
           <h1 className={c.heading} onClick={projectClickHandler}>
@@ -114,30 +134,22 @@ const ShiftLeader = (p) => {
               <div className={c.maxvalues}>
                 <h5>best month :</h5>
                 <div className={c.bestData}>
-                  <h6>
-                    month:
-                  </h6>
+                  <h6>month:</h6>
                   <span> {maxObject.name} </span>
                 </div>
                 <div className={c.bestData}>
-                  <h6>
-                    value:
-                  </h6>
+                  <h6>value:</h6>
                   <span> {maxObject.total}%</span>
                 </div>
               </div>
               <div className={c.maxvalues}>
                 <h5>best day :</h5>
                 <div className={c.bestData}>
-                  <h6>
-                    date:
-                  </h6>
+                  <h6>date:</h6>
                   <span> {maxObjectDay.name} </span>
                 </div>
                 <div className={c.bestData}>
-                  <h6>
-                    value:
-                  </h6>
+                  <h6>value:</h6>
                   <span> {maxObjectDay.total} %</span>
                 </div>
               </div>
@@ -158,28 +170,49 @@ const ShiftLeader = (p) => {
             index={1}
             project={params.project}
           />
+          <div className={c.btnHolder}>
+            {compareData && (
+              <button
+                className={c.buttonToggle}
+                onClick={() => {
+                  setCompareData(false);
+                }}
+              >
+                clear comparison
+              </button>
+            )}
+            {!compareData && (
+              <button className={c.buttonToggle} onClick={clickHandlerCompare}>
+                compare
+              </button>
+            )}
+            <button className={c.buttonToggle} onClick={clickHandler}>
+              {!toggle ? "show Project details" : "hide project details"}
+            </button>
+          </div>
 
-          <button className={c.buttonToggle} onClick={clickHandler}>
-            {!toggle ? "show Project details" : "hide project details"}
-          </button>
           {!toggle ? (
-            <React.Fragment>
-              <h3 className={c.shiftLeaderTite}>TeamLeaders data</h3>
-              {teamLeader.map(
-                (m, i) =>
-                  m.name !== null && (
-                    <ShiftLeaderEfficiency
-                      title={m.name}
-                      data={m.data}
-                      date={{ date, month }}
-                      index={i}
-                      project={params.project}
-                      shiftLeader={params.shitLeader}
-                      key={i}
-                    />
-                  )
-              )}
-            </React.Fragment>
+            !compareData ? (
+              <React.Fragment>
+                <h3 className={c.shiftLeaderTite}>TeamLeaders data</h3>
+                {teamLeader.map(
+                  (m, i) =>
+                    m.name !== null && (
+                      <ShiftLeaderEfficiency
+                        title={m.name}
+                        data={m.data}
+                        date={{ date, month }}
+                        index={i}
+                        project={params.project}
+                        shiftLeader={params.shitLeader}
+                        key={i}
+                      />
+                    )
+                )}
+              </React.Fragment>
+            ) : (
+              <CompareResult compareData={compareData} />
+            )
           ) : (
             <ProjectEfficiencySup data={shiftLeader} />
           )}

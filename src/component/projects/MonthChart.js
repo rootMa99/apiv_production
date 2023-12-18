@@ -173,7 +173,7 @@ const MonthChart = (p) => {
         y: {
           stacked: true,
         },
-        beginAtZero: false,
+        beginAtZero: true,
         suggestedMin:
           p.type === "ab" || p.type === "hc" || p.type === "dt"
             ? 0

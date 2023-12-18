@@ -81,7 +81,7 @@ const options = [
 const Compare = (p) => {
   let counter = 4;
   const data = useSelector((s) => s.datas);
-  const [countDown, setCountDown]=useState(counter);
+  const [countDown, setCountDown] = useState(counter);
 
   const [selectedOptions, setSelectedOptions] = useState({
     shiftleader1: "",
@@ -100,7 +100,7 @@ const Compare = (p) => {
   const optionsSH1 = [];
 
   const filtredData = filterProjectsByName(data, p.project);
-  const shiftLeaders = getShiftLeaders(filtredData[0].data);
+  const shiftLeaders = p.data ? p.data : getShiftLeaders(filtredData[0].data);
 
   console.log(shiftLeaders);
   shiftLeaders.map(
@@ -158,7 +158,9 @@ const Compare = (p) => {
       {notify && (
         <div className={c.notification}>
           <p>
-            to proceed, Please choose the shift leaders you'd like to compare ({countDown} s)
+            to proceed, Please choose the shift leaders you'd like to compare (
+            {countDown}
+            <span style={{ textTransform:"lowercase"}}>s</span>)
           </p>
         </div>
       )}
@@ -166,7 +168,7 @@ const Compare = (p) => {
         <h1>compare between :</h1>
         <div className={c.selectContatainer}>
           <div className={c.select}>
-            <label htmlFor="multiSelect">Select shiftLeader 1:</label>
+            <label htmlFor="multiSelect">Select {p.title} 1:</label>
             <Select
               options={optionsSH1}
               id="multiSelect"
@@ -177,7 +179,7 @@ const Compare = (p) => {
             />
           </div>
           <div className={c.select}>
-            <label htmlFor="multiSelect">Select shiftLeader 2:</label>
+            <label htmlFor="multiSelect">Select {p.title} 2:</label>
             <Select
               options={optionsSH2}
               id="multiSelect"
