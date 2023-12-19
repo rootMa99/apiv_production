@@ -88,6 +88,7 @@ const ShiftLeader = (p) => {
   );
   const comparedata = (data) => {
     setCompareData(data);
+    isToggle(false);
   };
   const clickHandlerCompare = (e) => {
     setIsCompare(!isCompare);
@@ -101,7 +102,7 @@ const ShiftLeader = (p) => {
           project={params.project}
           compare={comparedata}
           click={clickHandlerCompare}
-          title="shift leader"
+          title="team leader"
           data={teamLeader}
         />
       )}

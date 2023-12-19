@@ -105,6 +105,7 @@ const TeamLeaders = (p) => {
   console.log("oneCre<", oneCrew, crews.length);
   const comparedata = (data) => {
     setCompareData(data);
+    isToggle(false);
   };
   const clickHandlerCompare = (e) => {
     setIsCompare(!isCompare);
@@ -118,7 +119,7 @@ const TeamLeaders = (p) => {
           project={params.project}
           compare={comparedata}
           click={clickHandlerCompare}
-          title="shift leader"
+          title="crew"
           data={crews}
         />
       )}

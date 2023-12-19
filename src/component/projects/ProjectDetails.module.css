@@ -18,7 +18,7 @@
   backdrop-filter: blur(80px);
   height: 80vh; 
   position: fixed;
-  z-index: 10000;
+  z-index: 100;
   left: 0;
   top: 11.5rem;
   border: 1px solid #ecf0f162;
@@ -40,7 +40,7 @@
   top: 0;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10001;
+  z-index: 100;
   font-size: x-large;
   margin: 0;
   background: rgb(0, 0, 0);
@@ -93,10 +93,12 @@ h3.heading{
 h4.heading,
 h6.heading {
   color: #ffffff4d;
+  text-align: left;
 }
 h4.heading:hover,
 h6.heading:hover {
   color: #ffffff;
+  margin-left: 1.5rem;
 }
 .shiftLeaderTite {
   margin-right: auto;

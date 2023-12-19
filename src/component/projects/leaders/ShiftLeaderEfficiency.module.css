@@ -1,6 +1,6 @@
 .chartsContainer{
     width: 97%;
-    height: 18rem;
+    height: 17rem;
   display: flex;
   flex-direction: column;
   border: 1px solid #ecf0f162;
@@ -56,14 +56,14 @@ h3.title:hover{
 }
 .chart{
     width: 33%;
-    height: 14rem;
+    height: 13rem;
     background-color: #ecf0f110;
     border-radius: 17px;
    padding-bottom: 2rem;
 }
 .chartd{
   width: 66%;
-  height: 14rem;
+  height: 13rem;
   background-color: #ecf0f110;
   border-radius: 17px;
  padding-bottom: 2rem;

@@ -24,6 +24,7 @@ const ProjectDetails = (p) => {
   };
   const comparedata = (data) => {
     setCompareData(data);
+    isToggle(false);
   };
 
   console.log(compareData);

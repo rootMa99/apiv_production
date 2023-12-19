@@ -81,6 +81,7 @@ const options = [
 const Compare = (p) => {
   let counter = 4;
   const data = useSelector((s) => s.datas);
+
   const [countDown, setCountDown] = useState(counter);
 
   const [selectedOptions, setSelectedOptions] = useState({
@@ -158,14 +159,14 @@ const Compare = (p) => {
       {notify && (
         <div className={c.notification}>
           <p>
-            to proceed, Please choose the shift leaders you'd like to compare (
+            to proceed, Please choose the {p.title}s you'd like to compare (
             {countDown}
             <span style={{ textTransform:"lowercase"}}>s</span>)
           </p>
         </div>
       )}
       <div className={c.selectsContatainer}>
-        <h1>compare between :</h1>
+        <h1>compare between:</h1>
         <div className={c.selectContatainer}>
           <div className={c.select}>
             <label htmlFor="multiSelect">Select {p.title} 1:</label>
