@@ -53,63 +53,66 @@ const Crew = (p) => {
     <React.Fragment>
       <div className={c.projectContent}>
         <div className={c.aside}>
-          <h1 className={c.heading} onClick={projectClickHandler}>
-            {params.project}
-          </h1>
-          <h1 className={c.heading} onClick={shiftLeaderClickHandler}>
-            {params.shitLeader}
-          </h1>
-          {shiftLeaders.map(
-            (m, i) =>
-              m.name !== null &&
-              m.name !== params.shitLeader && (
-                <h4
-                  key={i}
-                  className={c.heading}
-                  onClick={() => {
-                    navigate(
-                      `/home/project/${params.project}/shiftLeader/${m.name}`
-                    );
-                  }}
-                >
-                  {m.name}
-                </h4>
-              )
-          )}
-          <h3
-            className={c.heading}
-            onClick={() => {
-              navigate(
-                `/home/project/${params.project}/shiftLeader/${params.shitLeader}/teamleader/${params.teamLeader}`
-              );
-            }}
-          >
-            {params.teamLeader}
-          </h3>
-          {teamleaders.map(
-            (m, i) =>
-              m.name !== null &&
-              m.name !== params.teamLeader && (
-                <h6
-                  key={i}
-                  className={c.heading}
-                  onClick={() => {
-                    navigate(
-                      `/home/project/${params.project}/shiftLeader/${params.shitLeader}/teamleader/${m.name}`
-                    );
-                  }}
-                >
-                  {m.name}
-                </h6>
-              )
-          )}
-          <ShiftLeadersEfficiencyASide
-            data={crews.filter((f) => f.name !== params.crew)}
-            project={params.project}
-            shiftLeader={params.shitLeader}
-            teamLeader={params.teamLeader}
-            crew="crew"
-          />
+          <h3 className={c.headingS}>project details</h3>
+          <div className={c.asideins}>
+            <h1 className={c.heading} onClick={projectClickHandler}>
+              {params.project}
+            </h1>
+            <h3 className={c.heading} onClick={shiftLeaderClickHandler}>
+              {params.shitLeader}
+            </h3>
+            {shiftLeaders.map(
+              (m, i) =>
+                m.name !== null &&
+                m.name !== params.shitLeader && (
+                  <h4
+                    key={i}
+                    className={c.heading}
+                    onClick={() => {
+                      navigate(
+                        `/home/project/${params.project}/shiftLeader/${m.name}`
+                      );
+                    }}
+                  >
+                    {m.name}
+                  </h4>
+                )
+            )}
+            <h3
+              className={c.heading}
+              onClick={() => {
+                navigate(
+                  `/home/project/${params.project}/shiftLeader/${params.shitLeader}/teamleader/${params.teamLeader}`
+                );
+              }}
+            >
+              {params.teamLeader}
+            </h3>
+            {teamleaders.map(
+              (m, i) =>
+                m.name !== null &&
+                m.name !== params.teamLeader && (
+                  <h6
+                    key={i}
+                    className={c.heading}
+                    onClick={() => {
+                      navigate(
+                        `/home/project/${params.project}/shiftLeader/${params.shitLeader}/teamleader/${m.name}`
+                      );
+                    }}
+                  >
+                    {m.name}
+                  </h6>
+                )
+            )}
+            <ShiftLeadersEfficiencyASide
+              data={crews.filter((f) => f.name !== params.crew)}
+              project={params.project}
+              shiftLeader={params.shitLeader}
+              teamLeader={params.teamLeader}
+              crew="crew"
+            />
+          </div>
         </div>
         <div className={c.chartContainer}>
           <ShiftLeaderEfficiency

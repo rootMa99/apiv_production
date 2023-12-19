@@ -124,83 +124,86 @@ const TeamLeaders = (p) => {
       )}
       <div className={c.projectContent}>
         <div className={c.aside}>
-          <h1 className={c.heading} onClick={projectClickHandler}>
-            {params.project}
-          </h1>
-          <h1 className={c.heading} onClick={shiftLeaderClickHandler}>
-            {params.shitLeader}
-          </h1>
-          {shiftLeaders.map(
-            (m, i) =>
-              m.name !== null &&
-              m.name !== params.shitLeader && (
-                <h4
-                  key={i}
-                  className={c.heading}
-                  onClick={() => {
-                    navigate(
-                      `/home/project/${params.project}/shiftLeader/${m.name}`
-                    );
-                  }}
-                >
-                  {m.name}
-                </h4>
-              )
-          )}
-          <h3
-            className={c.heading}
-            onClick={() => {
-              navigate(
-                `/home/project/${params.project}/shiftLeader/${params.shitLeader}/teamleader/${params.teamLeader}`
-              );
-            }}
-          >
-            {params.teamLeader}
-          </h3>
-          {teamleaders.map(
-            (m, i) =>
-              m.name !== null &&
-              m.name !== params.teamLeader && (
-                <h6
-                  key={i}
-                  className={c.heading}
-                  onClick={() => {
-                    navigate(
-                      `/home/project/${params.project}/shiftLeader/${params.shitLeader}/teamleader/${m.name}`
-                    );
-                  }}
-                >
-                  {m.name}
-                </h6>
-              )
-          )}
-          {(!toggle || oneCrew) && (
-            <React.Fragment>
-              <div className={c.maxvalues}>
-                <h5>best month :</h5>
-                <div className={c.bestData}>
-                  <h6>month:</h6>
-                  <span> {maxObject.name} </span>
+          <h3 className={c.headingS}>project details</h3>
+          <div className={c.asideins}>
+            <h1 className={c.heading} onClick={projectClickHandler}>
+              {params.project}
+            </h1>
+            <h3 className={c.heading} onClick={shiftLeaderClickHandler}>
+              {params.shitLeader} 
+            </h3>
+            {shiftLeaders.map(
+              (m, i) =>
+                m.name !== null &&
+                m.name !== params.shitLeader && (
+                  <h4
+                    key={i}
+                    className={c.heading}
+                    onClick={() => {
+                      navigate(
+                        `/home/project/${params.project}/shiftLeader/${m.name}`
+                      );
+                    }}
+                  >
+                    {m.name}
+                  </h4>
+                )
+            )}
+            <h3
+              className={c.heading}
+              onClick={() => {
+                navigate(
+                  `/home/project/${params.project}/shiftLeader/${params.shitLeader}/teamleader/${params.teamLeader}`
+                );
+              }}
+            >
+              {params.teamLeader}
+            </h3>
+            {teamleaders.map(
+              (m, i) =>
+                m.name !== null &&
+                m.name !== params.teamLeader && (
+                  <h6
+                    key={i}
+                    className={c.heading}
+                    onClick={() => {
+                      navigate(
+                        `/home/project/${params.project}/shiftLeader/${params.shitLeader}/teamleader/${m.name}`
+                      );
+                    }}
+                  >
+                    {m.name}
+                  </h6>
+                )
+            )}
+            {(!toggle || oneCrew) && (
+              <React.Fragment>
+                <div className={c.maxvalues}>
+                  <h5>best month :</h5>
+                  <div className={c.bestData}>
+                    <h6>month:</h6>
+                    <span> {maxObject.name} </span>
+                  </div>
+                  <div className={c.bestData}>
+                    <h6>value:</h6>
+                    <span> {maxObject.total} %</span>
+                  </div>
                 </div>
-                <div className={c.bestData}>
-                  <h6>value:</h6>
-                  <span> {maxObject.total} %</span>
+                <div className={c.maxvalues}>
+                  <h5>best day :</h5>
+                  <div className={c.bestData}>
+                    <h6>date:</h6>
+                    <span> {maxObjectDay.name} </span>
+                  </div>
+                  <div className={c.bestData}>
+                    <h6>value:</h6>
+                    <span> {maxObjectDay.total} %</span>
+                  </div>
                 </div>
-              </div>
-              <div className={c.maxvalues}>
-                <h5>best day :</h5>
-                <div className={c.bestData}>
-                  <h6>date:</h6>
-                  <span> {maxObjectDay.name} </span>
-                </div>
-                <div className={c.bestData}>
-                  <h6>value:</h6>
-                  <span> {maxObjectDay.total} %</span>
-                </div>
-              </div>
-            </React.Fragment>
-          )}
-          {toggle && !oneCrew && <ShiftLeadersEfficiencyASide data={crews} />}
+              </React.Fragment>
+            )}
+            {toggle && !oneCrew && <ShiftLeadersEfficiencyASide data={crews} />}
+          </div>
         </div>
         <div className={c.chartContainer}>
           <ShiftLeaderEfficiency
@@ -243,16 +246,17 @@ const TeamLeaders = (p) => {
             !compareData ? (
               <React.Fragment>
                 (<h3 className={c.shiftLeaderTite}>crew data</h3>
-                {crews.map((m) => (
+                {crews.map((m, i) => (
                   <ShiftLeaderEfficiency
                     title={m.name}
                     data={m.data}
                     date={{ date, month }}
-                    index={1}
+                    index={i}
                     project={params.project}
                     shiftLeader={params.shitLeader}
                     teamLeader={params.teamLeader}
                     crew="crew"
+                    key={i}
                   />
                 ))}
                 )

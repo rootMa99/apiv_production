@@ -39,46 +39,59 @@ const ProjectDetails = (p) => {
             title="shift leader"
           />
         )}
+
         <div className={c.aside}>
-          <h1 className={c.heading}>{project}</h1>
-          {!toggle ? (
-            <React.Fragment>
-              <div className={c.maxvalues}>
-                <h5>best month :</h5>
-                <div className={c.bestData}>
-                  <h6>month:</h6>
-                  <span> {maxMonthValue.name} </span>
+          <h3 className={c.headingS}>project details</h3>
+          <div className={c.asideins}>
+            <h1 className={c.heading}>{project}</h1>
+            {!toggle ? (
+              <React.Fragment>
+                <div className={c.maxvalues}>
+                  <h5>best month :</h5>
+                  <div className={c.bestData}>
+                    <h6>month:</h6>
+                    <span> {maxMonthValue.name} </span>
+                  </div>
+                  <div className={c.bestData}>
+                    <h6>value:</h6>
+                    <span> {maxMonthValue.value}%</span>
+                  </div>
                 </div>
-                <div className={c.bestData}>
-                  <h6>value:</h6>
-                  <span> {maxMonthValue.value}%</span>
+                <div className={c.maxvalues}>
+                  <h5>best day :</h5>
+                  <div className={c.bestData}>
+                    <h6>date:</h6>
+                    <span> {maxDayValue.name} </span>
+                  </div>
+                  <div className={c.bestData}>
+                    <h6>value:</h6>
+                    <span> {maxDayValue.value} %</span>
+                  </div>
                 </div>
-              </div>
-              <div className={c.maxvalues}>
-                <h5>best day :</h5>
-                <div className={c.bestData}>
-                  <h6>date:</h6>
-                  <span> {maxDayValue.name} </span>
-                </div>
-                <div className={c.bestData}>
-                  <h6>value:</h6>
-                  <span> {maxDayValue.value} %</span>
-                </div>
-              </div>
-            </React.Fragment>
-          ) : (
-            <ShiftLeadersEfficiencyASide project={project} />
-          )}
+              </React.Fragment>
+            ) : (
+              <ShiftLeadersEfficiencyASide project={project} />
+            )}
+          </div>
         </div>
         <div className={c.chartContainer}>
           <ProjectEfficiency title={project} />
           <div className={c.btnHolder}>
-            {compareData && <button className={c.buttonToggle} onClick={()=>{setCompareData(false)}}>
-              clear comparison
-            </button>}
-            {!compareData && <button className={c.buttonToggle} onClick={clickHandlerCompare}>
-              compare
-            </button>}
+            {compareData && (
+              <button
+                className={c.buttonToggle}
+                onClick={() => {
+                  setCompareData(false);
+                }}
+              >
+                clear comparison
+              </button>
+            )}
+            {!compareData && (
+              <button className={c.buttonToggle} onClick={clickHandlerCompare}>
+                compare
+              </button>
+            )}
             <button className={c.buttonToggle} onClick={clickHandler}>
               {!toggle ? "show Project details" : "hide project details"}
             </button>

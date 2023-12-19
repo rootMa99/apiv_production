@@ -179,7 +179,7 @@ const MonthChart = (p) => {
             : minBarValue !== 0
             ? minBarValue - 10
             : minBarValue,
-        suggestedMax: maxBarValue+20,
+        suggestedMax: maxBarValue+10,
       },
     },
     plugins: {
