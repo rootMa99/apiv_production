@@ -39,7 +39,7 @@ const EfficiencyData = (p) => {
       )}
       {p.title === "last day" && (
         <div className={c.eff}>
-          <h3 className={c.titles}>efficiency:</h3>
+          <h3 className={c.titles}>{p.title2}:</h3>
 
           <input
             className={c.titles}

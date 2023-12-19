@@ -18,17 +18,17 @@ const MonthChart = (p) => {
 
   const bgcolor = [];
 
- ( p.type === "ab" || p.type === "hc")
-    ? (p.monthData.map((m) =>
+  p.type === "ab" || p.type === "hc"
+    ? p.monthData.map((m) =>
         +m.total < +m.totalTarget
           ? bgcolor.push("#005B41")
           : bgcolor.push("rgb(88, 3, 3)")
-      ))
-    : (p.monthData.map((m) =>
+      )
+    : p.monthData.map((m) =>
         +m.total >= +m.totalTarget
           ? bgcolor.push("#005B41")
           : bgcolor.push("rgb(88, 3, 3)")
-      ));
+      );
 
   const dataBar = {
     labels: p.monthData.map((m) => m.name),
@@ -62,7 +62,7 @@ const MonthChart = (p) => {
         pointBorderColor: "#FAF0E6",
         pointBorderWidth: 1,
         pointRadius: 3,
-        borderDash:[5,7]
+        borderDash: [5, 7],
       },
       {
         type: "bar",
@@ -76,9 +76,11 @@ const MonthChart = (p) => {
     ],
   };
 
-  
   const minBarValue = Math.min(...data.datasets[1].data);
-  const maxBarValue = Math.max(...data.datasets[1].data, ...data.datasets[0].data);
+  const maxBarValue = Math.max(
+    ...data.datasets[1].data,
+    ...data.datasets[0].data
+  );
   const optionsBar = {
     responsive: true,
     maintainAspectRatio: false,
@@ -97,15 +99,14 @@ const MonthChart = (p) => {
           color: "#f3f3f34f",
         },
         ticks: {
-          display:false,
+          display: false,
           color: "white",
           fontWeight: "bold",
         },
         y: {
           stacked: true,
         },
-        suggestedMax: maxBarValue+5,
-
+        suggestedMax: maxBarValue + 5,
       },
     },
     plugins: {
@@ -131,8 +132,7 @@ const MonthChart = (p) => {
             const data = dataset.data[index];
             let xPos, yPos;
             xPos = element.x;
-            yPos = element.y - 10;
-
+            yPos = element.y;
             ctx.save();
             ctx.textAlign = "center";
             ctx.fillStyle = "#FAF0E6";
@@ -146,26 +146,27 @@ const MonthChart = (p) => {
       },
     },
   };
+
+  const pushit = (dataArray, data) => {
+    dataArray.push(data);
+  };
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-    
+
     scales: {
       x: {
-        
-        
         ticks: {
           color: "white",
           fontWeight: "bold",
         },
       },
       y: {
-        
         grid: {
           color: "#f3f3f34f",
         },
         ticks: {
-          display:false,
+          display: false,
           color: "white",
           fontWeight: "bold",
         },
@@ -179,7 +180,7 @@ const MonthChart = (p) => {
             : minBarValue !== 0
             ? minBarValue - 10
             : minBarValue,
-        suggestedMax: maxBarValue+10,
+        suggestedMax: maxBarValue + 10,
       },
     },
     plugins: {
@@ -198,25 +199,33 @@ const MonthChart = (p) => {
         const { chart } = animation;
         const ctx = chart.ctx;
 
+        const yposss = [];
         chart.data.datasets.forEach((dataset, index) => {
           const meta = chart.getDatasetMeta(index);
-
           meta.data.forEach((element, index) => {
-            const data = p.type !== "output" && p.type !== "hc" && p.type !== "ab" ? `${dataset.data[index]} %` :dataset.data[index];
+            const data =
+              p.type !== "output" && p.type !== "hc" && p.type !== "ab"
+                ? `${dataset.data[index]} %`
+                : dataset.data[index];
             let xPos, yPos;
-
             if (dataset.type === "bar") {
               xPos = element.x;
-              yPos =
-                Math.abs(data - minBarValue) <= 15
-                  ? element.y + 10
-                  : element.y + 30;
+              // yPos =
+              //    (Math.abs(element.height-yposss[index])>=5 && Math.abs(+element.$context.raw-yposss[index])<=10)
+              //     ? element.y
+              //     : element.y + element.height / 2;
+              yPos = element.y + element.height / 2;
+              console.log(yposss[index], +element.$context.raw);
+              // Math.abs(data - minBarValue) <= 15
+              //   ? element.y + 10
+              //   : element.y + 30;
             } else if (dataset.type === "line" && p.title !== "daily") {
               xPos = element.x;
-              yPos = element.y - 15 ;
+              yPos = element.y - 5;
+              pushit(yposss, +element.$context.raw);
             }
 
-             ctx.save();
+            ctx.save();
             ctx.textAlign = "center";
             ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
             ctx.font = "12px Arial";

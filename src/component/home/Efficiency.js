@@ -13,11 +13,14 @@ import {
 
 const Efficiency = (p) => {
   let data = useSelector((s) => s.datas);
-
   data =
     p.singleProject.trim() !== ""
       ? filterProjectsByName(data, p.singleProject)
-      : data;
+      : p.title === "plant"
+      ? data
+      : data.filter(
+          (f) => f.name !== "CUTTING AREA" && f.name !== "LEAD PREP AREA"
+        );
   console.log(data, p.singleProject);
   //Efficiency Day
   const filtredData = getEfficiencyDay(data, p.day);
@@ -70,6 +73,7 @@ const Efficiency = (p) => {
           <EfficiencyData
             day={p.day}
             title="last day"
+            title2={p.title}
             totalP={totalP}
             totalT={totalT}
             gap={gap}

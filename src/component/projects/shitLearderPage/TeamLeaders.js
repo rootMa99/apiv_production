@@ -177,7 +177,7 @@ const TeamLeaders = (p) => {
                   </h6>
                 )
             )}
-            {(!toggle || oneCrew) && (
+            <ShiftLeadersEfficiencyASide data={crews} crew="crew"/>
               <React.Fragment>
                 <div className={c.maxvalues}>
                   <h5>best month :</h5>
@@ -202,8 +202,6 @@ const TeamLeaders = (p) => {
                   </div>
                 </div>
               </React.Fragment>
-            )}
-            {toggle && !oneCrew && <ShiftLeadersEfficiencyASide data={crews} />}
           </div>
         </div>
         <div className={c.chartContainer}>

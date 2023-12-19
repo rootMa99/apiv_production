@@ -16,7 +16,8 @@ const Home = (p) => {
   return (
     <div className={c.container}>
       <div className={c.content}>
-        <Efficiency singleProject={project!==undefined ? project : ""} day={day.date} month={month} />
+        <Efficiency singleProject={project!==undefined ? project : ""} day={day.date} month={month} title='plant'/>
+        <Efficiency singleProject={project!==undefined ? project : ""} day={day.date} month={month} title='eff fa' />
         <Outlet />
       </div>
     </div>

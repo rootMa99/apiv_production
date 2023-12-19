@@ -132,7 +132,11 @@ const ShiftLeader = (p) => {
                   </h4>
                 )
             )}
-            {!toggle ? (
+            <ShiftLeadersEfficiencyASide
+                data={teamLeader}
+                project={params.project}
+                sl={params.shitLeader}
+              />
               <React.Fragment>
                 <div className={c.maxvalues}>
                   <h5>best month :</h5>
@@ -157,13 +161,7 @@ const ShiftLeader = (p) => {
                   </div>
                 </div>
               </React.Fragment>
-            ) : (
-              <ShiftLeadersEfficiencyASide
-                data={teamLeader}
-                project={params.project}
-                sl={params.shitLeader}
-              />
-            )}
+          
           </div>
         </div>
         <div className={c.chartContainer}>

@@ -66,7 +66,8 @@
 
 .heading,
 .maxvalues,
-.headingS {
+.headingS,
+.headingba {
   margin-left: 5px;
   width: 100%;
   color: #f4dfc8;
@@ -86,6 +87,14 @@
   cursor: pointer !important;
   color: #f7aa59;
   transform: scale(1.1);
+}
+.headingba{
+  color: #F84018;
+  font-size: x-large;
+}
+.headingba span{
+  color: aliceblue;
+  font-size: medium;
 }
 h3.heading{
   font-size: medium !important;

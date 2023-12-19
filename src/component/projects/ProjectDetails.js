@@ -45,34 +45,29 @@ const ProjectDetails = (p) => {
           <h3 className={c.headingS}>project details</h3>
           <div className={c.asideins}>
             <h1 className={c.heading}>{project}</h1>
-            {!toggle ? (
-              <React.Fragment>
-                <div className={c.maxvalues}>
-                  <h5>best month :</h5>
-                  <div className={c.bestData}>
-                    <h6>month:</h6>
-                    <span> {maxMonthValue.name} </span>
-                  </div>
-                  <div className={c.bestData}>
-                    <h6>value:</h6>
-                    <span> {maxMonthValue.value}%</span>
-                  </div>
+            <ShiftLeadersEfficiencyASide project={project} />
+            <h2 className={c.headingba}>
+              b<span>est</span> a<span>chievement</span>
+            </h2>
+            <React.Fragment>
+              <div className={c.maxvalues}>
+                <h5>best month :</h5>
+                <div className={c.bestData}>
+                  <span> {maxMonthValue.name} </span>
+                  <span> {maxMonthValue.value}%</span>
                 </div>
-                <div className={c.maxvalues}>
-                  <h5>best day :</h5>
-                  <div className={c.bestData}>
-                    <h6>date:</h6>
-                    <span> {maxDayValue.name} </span>
-                  </div>
-                  <div className={c.bestData}>
-                    <h6>value:</h6>
-                    <span> {maxDayValue.value} %</span>
-                  </div>
+                <h5>best day :</h5>
+                <div className={c.bestData}>
+                  <span>
+                    {" "}
+                    {maxDayValue.name.split("-")[2] +
+                      "/" +
+                      maxDayValue.name.split("-")[1]}{" "}
+                  </span>
+                  <span> {maxDayValue.value} %</span>
                 </div>
-              </React.Fragment>
-            ) : (
-              <ShiftLeadersEfficiencyASide project={project} />
-            )}
+              </div>
+            </React.Fragment>
           </div>
         </div>
         <div className={c.chartContainer}>
