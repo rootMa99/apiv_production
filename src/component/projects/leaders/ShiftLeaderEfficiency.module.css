@@ -68,6 +68,9 @@ h3.title:hover{
   border-radius: 17px;
  padding-bottom: 2rem;
 }
+.chartFife{
+  width: 49%;
+}
 .toggleBtnContainer{
   margin-left: auto;
   width: 15%;

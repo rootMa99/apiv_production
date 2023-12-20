@@ -15,6 +15,7 @@ const ShiftLeaderEfficiency = (p) => {
   //const dispatch = useDispatch();
   const navigate = useNavigate();
   const [toggle, isToggle] = useState(false);
+  const [toggleD, isToggleD] = useState(true);
   console.log(p.shiftLeader);
   const monthly = getDataYear(p.data);
   const month = p.date.date.split("-")[1];
@@ -45,6 +46,9 @@ const ShiftLeaderEfficiency = (p) => {
   //       shiftLeader: { name: p.title, data: [monthly, weekly, daily] },
   //     })
   //   );
+  const toggleDay=e=>{
+    isToggleD(!toggleD)
+  }
 
   return (
     <div
@@ -56,24 +60,24 @@ const ShiftLeaderEfficiency = (p) => {
       </h3>
       <div className={c.toggleBtnContainer}>
         <button className={c.toggleBtn} onClick={() => isToggle(!toggle)}>
-          {toggle ? "hide week" : "show week"}{" "}
+          {toggle ? "hide week" : "show week"}
         </button>
-        <button className={c.toggleBtn} onClick={() => isToggle(!toggle)}>
-          {toggle ? "hide day" : "show day"}{" "}
+        <button className={c.toggleBtn} onClick={toggleDay}>
+          {toggleD ? "hide day" : "show day"}
         </button>
       </div>
       <div className={c.chartContainer}>
-        <div className={c.chart}>
+        <div className={!toggleD? `${c.chart} ${c.chartFife}`: c.chart}>
           <MonthChart monthData={monthly} title={""} />
         </div>
         {toggle && (
-          <div className={c.chart}>
+          <div className={!toggleD? `${c.chart} ${c.chartFife}`: c.chart}>
             <MonthChart monthData={weekly} title={``} />
           </div>
         )}
-        <div className={toggle ? c.chart : c.chartd}>
+        {toggleD && <div className={toggle ? c.chart : c.chartd}>
           <MonthChart monthData={daily} title={``} />
-        </div>
+        </div>}
       </div>
     </div>
   );
