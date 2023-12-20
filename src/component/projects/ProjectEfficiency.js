@@ -14,10 +14,11 @@ import { useEffect, useState } from "react";
 
 const ProjectEfficiency = (p) => {
   const data = useSelector((s) => s.datas);
-  const { date, month } = useSelector((s) => s.additionalData);
+  const { date, month, chartDay, chartWeek, chartmonth } = useSelector((s) => s.additionalData);
   const dispatch = useDispatch();
   const [toggle, isToggle] = useState(false);
-
+  const [toggleD, isToggleD] = useState(true);
+  const [toggleM, isToggleM] = useState(true);
   const months = date.split("-")[1];
   console.log(data);
   const params = useParams();
@@ -70,24 +71,59 @@ const ProjectEfficiency = (p) => {
   const dataDays = getDataDays(filtredMonthDays);
   console.log(dataDays);
 
+
+
+  let classes;
+  let classesW;
+  let classesD;
+  if (!chartDay && !chartWeek) {
+    classes = { width: "100%" };
+  } else if (!chartDay && chartWeek) {
+    classes = { width: "49%" };
+  } else if (chartDay && chartWeek) {
+    classes = { width: "33%" };
+  }
+  if (!chartDay) {
+    classesW = !chartmonth ? { width: "100%" } : { width: "49%" };
+  } else if ((chartDay && chartmonth) || (chartDay && !chartmonth)) {
+    classesW = { width: "33%" };
+  }
+
+  if (!chartWeek) {
+    classesD = !chartmonth ? { width: "100%" } : { width: "66%" };
+  } else if (chartDay && chartmonth) {
+    classesD = { width: "33%" };
+  } else if (chartDay && !chartmonth) {
+    classesD = { width: "66%" };
+  }
+
+
   return (
     <div className={c.projectEfficiencyContainer}>
       <h3>{p.title} efficiency</h3>
-      <button className={c.toggleBtn} onClick={() => isToggle(!toggle)}>
-        {toggle ? "hide week" : "show week"}
-      </button>
+      <div className={c.toggleBtnContainer}>
+        <button className={c.toggleBtn} onClick={() => dispatch(additionalDataAction.editChartMonth(!chartmonth))}>
+          {chartmonth ? "hide month" : "show month"}
+        </button>
+        <button className={c.toggleBtn} onClick={() => dispatch(additionalDataAction.editChartWeek(!chartWeek))}>
+          {chartWeek ? "hide week" : "show week"}
+        </button>
+        <button className={c.toggleBtn} onClick={() => dispatch(additionalDataAction.editChartDay(!chartDay))}>
+          {chartDay ? "hide day" : "show day"}
+        </button>
+      </div>
       <div className={c.chartContainer}>
-        <div className={c.chart}>
+        {chartmonth && <div className={c.chart} style={classes}>
           <MonthChart monthData={monthData} title="" />
-        </div>
-        {toggle && (
-          <div className={c.chart}>
+        </div>}
+        {chartWeek && (
+          <div className={c.chart} style={classesW}>
             <MonthChart monthData={filtredWeek} title="" />
           </div>
         )}
-        <div className={toggle ? c.chart : c.chartd}>
+        {chartDay && <div className={c.chart} style={classesD}>
           <MonthChart monthData={dataDays} title="" />
-        </div>
+        </div>}
       </div>
     </div>
   );

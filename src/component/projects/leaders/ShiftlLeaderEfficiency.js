@@ -16,6 +16,7 @@ const ShiftLeaderEfficiency = (p) => {
   const navigate = useNavigate();
   const [toggle, isToggle] = useState(false);
   const [toggleD, isToggleD] = useState(true);
+  const [toggleM, isToggleM] = useState(true);
   console.log(p.shiftLeader);
   const monthly = getDataYear(p.data);
   const month = p.date.date.split("-")[1];
@@ -46,8 +47,29 @@ const ShiftLeaderEfficiency = (p) => {
   //       shiftLeader: { name: p.title, data: [monthly, weekly, daily] },
   //     })
   //   );
-  const toggleDay=e=>{
-    isToggleD(!toggleD)
+
+  let classes;
+  let classesW;
+  let classesD;
+  if (!toggleD && !toggle) {
+    classes = { width: "100%" };
+  } else if (!toggleD && toggle) {
+    classes = { width: "49%" };
+  } else if (toggleD && toggle) {
+    classes = { width: "33%" };
+  }
+  if (!toggleD) {
+    classesW = !toggleM ? { width: "100%" } : { width: "49%" };
+  } else if ((toggleD && toggleM) || (toggleD && !toggleM)) {
+    classesW = { width: "33%" };
+  }
+
+  if (!toggle) {
+    classesD = !toggleM ? { width: "100%" } : { width: "66%" };
+  } else if (toggleD && toggleM) {
+    classesD = { width: "33%" };
+  } else if (toggleD && !toggleM) {
+    classesD = { width: "66%" };
   }
 
   return (
@@ -59,25 +81,32 @@ const ShiftLeaderEfficiency = (p) => {
         {p.title} efficiency
       </h3>
       <div className={c.toggleBtnContainer}>
+        <button className={c.toggleBtn} onClick={() => isToggleM(!toggleM)}>
+          {toggleM ? "hide month" : "show month"}
+        </button>
         <button className={c.toggleBtn} onClick={() => isToggle(!toggle)}>
           {toggle ? "hide week" : "show week"}
         </button>
-        <button className={c.toggleBtn} onClick={toggleDay}>
+        <button className={c.toggleBtn} onClick={() => isToggleD(!toggleD)}>
           {toggleD ? "hide day" : "show day"}
         </button>
       </div>
       <div className={c.chartContainer}>
-        <div className={!toggleD? `${c.chart} ${c.chartFife}`: c.chart}>
-          <MonthChart monthData={monthly} title={""} />
-        </div>
+        {toggleM && (
+          <div className={c.chart} style={classes}>
+            <MonthChart monthData={monthly} title={""} />
+          </div>
+        )}
         {toggle && (
-          <div className={!toggleD? `${c.chart} ${c.chartFife}`: c.chart}>
+          <div className={c.chart} style={classesW}>
             <MonthChart monthData={weekly} title={``} />
           </div>
         )}
-        {toggleD && <div className={toggle ? c.chart : c.chartd}>
-          <MonthChart monthData={daily} title={``} />
-        </div>}
+        {toggleD && (
+          <div className={c.chart} style={classesD}>
+            <MonthChart monthData={daily} title={``} />
+          </div>
+        )}
       </div>
     </div>
   );

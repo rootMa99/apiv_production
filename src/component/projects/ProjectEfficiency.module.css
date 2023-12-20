@@ -41,6 +41,13 @@
     display: flex;
     justify-content: space-between;
 }
+.toggleBtnContainer{
+  margin-left: auto;
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+}
 .chart{
     width: 33%;
     height: 20rem;

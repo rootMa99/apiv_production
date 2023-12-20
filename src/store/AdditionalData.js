@@ -14,13 +14,13 @@ const gettoday = () => {
 const AdditionalData = createSlice({
   name: "addtionalData",
   initialState: {
-    maxMonthValue:{
-        name:"",
-        value:0
+    maxMonthValue: {
+      name: "",
+      value: 0,
     },
-    maxDayValue:{
-        name:"",
-        value:0
+    maxDayValue: {
+      name: "",
+      value: 0,
     },
     date: gettoday(),
     month: [
@@ -37,32 +37,44 @@ const AdditionalData = createSlice({
       "Nov",
       "Dec",
     ],
-    shiftLeader:{
-      name:"",
-      shiftLeader:[]
-    }
+    shiftLeader: {
+      name: "",
+      shiftLeader: [],
+    },
+    chartDay: true,
+    chartWeek: false,
+    chartmonth: true,
   },
   reducers: {
     addDate(s, p) {
       s.date = p.payload;
     },
-    addMaxMonthValue(s,p){
-        s.maxMonthValue.name=p.payload.name;
-        s.maxMonthValue.value=p.payload.total;
+    addMaxMonthValue(s, p) {
+      s.maxMonthValue.name = p.payload.name;
+      s.maxMonthValue.value = p.payload.total;
     },
-    addMaxDayValue(s,p){
-        s.maxDayValue.name=p.payload.name;
-        s.maxDayValue.value=p.payload.total;
+    addMaxDayValue(s, p) {
+      s.maxDayValue.name = p.payload.name;
+      s.maxDayValue.value = p.payload.total;
     },
-    addShitLeaderEfficiency(s,p){
-      if(s.shiftLeader.name===""){
-        s.shiftLeader.name=p.payload.name;
+    addShitLeaderEfficiency(s, p) {
+      if (s.shiftLeader.name === "") {
+        s.shiftLeader.name = p.payload.name;
         s.shiftLeader.shiftLeader.push(...p.payload.shiftLeader);
       }
-      if(s.shiftLeader.name!==p.payload.name){  
-        s.shiftLeader.name=p.payload.name;
-        s.shiftLeader.shiftLeader=[...p.payload.shiftLeader]
+      if (s.shiftLeader.name !== p.payload.name) {
+        s.shiftLeader.name = p.payload.name;
+        s.shiftLeader.shiftLeader = [...p.payload.shiftLeader];
       }
+    },
+    editChartDay(s, p) {
+      s.chartDay=p.payload
+    },
+    editChartWeek(s,p){
+      s.chartWeek=p.payload
+    },
+    editChartMonth(s, p){
+      s.chartmonth=p.payload
     }
   },
 });

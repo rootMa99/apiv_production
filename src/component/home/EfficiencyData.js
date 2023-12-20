@@ -53,11 +53,15 @@ const EfficiencyData = (p) => {
         <div className={c.total}>
           {p.title === "hc/day" ? (
             <React.Fragment>
-              {p.gap > 50 && <span style={{ color: "#a30202" }}>{p.hc} </span>}
-              {p.gap < 50 && p.gap >= 0 && (
-                <span style={{ color: "#d1962a" }}>{p.hc} </span>
+              {p.gap > 50 && (
+                <span style={{ color: "#a30202" }}>{p.hc > 0 ? p.hc : 0} </span>
               )}
-              {p.gap < 0 && <span style={{ color: "#008500" }}>{p.hc} </span>}
+              {p.gap < 50 && p.gap >= 0 && (
+                <span style={{ color: "#d1962a" }}>{p.hc > 0 ? p.hc : 0} </span>
+              )}
+              {p.gap < 0 && (
+                <span style={{ color: "#008500" }}>{p.hc > 0 ? p.hc : 0} </span>
+              )}
             </React.Fragment>
           ) : (
             <React.Fragment>

@@ -73,7 +73,7 @@ h3.title:hover{
 }
 .toggleBtnContainer{
   margin-left: auto;
-  width: 15%;
+  width: 25%;
   display: flex;
   justify-content: space-between;
   padding-bottom: 0.5rem;
