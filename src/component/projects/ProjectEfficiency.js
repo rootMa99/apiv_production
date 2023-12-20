@@ -10,15 +10,15 @@ import {
   getWeekData,
 } from "../hooks/EfficiencyProjectFilter";
 import { additionalDataAction } from "../../store/AdditionalData";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const ProjectEfficiency = (p) => {
   const data = useSelector((s) => s.datas);
   const { date, month, chartDay, chartWeek, chartmonth } = useSelector((s) => s.additionalData);
   const dispatch = useDispatch();
-  const [toggle, isToggle] = useState(false);
-  const [toggleD, isToggleD] = useState(true);
-  const [toggleM, isToggleM] = useState(true);
+  // const [toggle, isToggle] = useState(false);
+  // const [toggleD, isToggleD] = useState(true);
+  // const [toggleM, isToggleM] = useState(true);
   const months = date.split("-")[1];
   console.log(data);
   const params = useParams();

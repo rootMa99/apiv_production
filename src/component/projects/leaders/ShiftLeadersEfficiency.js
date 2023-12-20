@@ -10,15 +10,10 @@ const ShiftLeadersEfficiency = (p) => {
   const data = useSelector((s) => s.datas);
   const dispatch = useDispatch();
   const {date, month} = useSelector((s) => s.additionalData);
-  console.log(data);
   const params = useParams();
-  console.log(params, date);
   const filtredData = filterProjectsByName(data, params.project);
-  console.log(filtredData);
   const shiftLeaders = getShiftLeaders(filtredData[0].data);
-  console.log(shiftLeaders);
   shiftLeaders[0].name === null && shiftLeaders.reverse();
-  console.log(shiftLeaders);
   dispatch(
     additionalDataAction.addShitLeaderEfficiency({
       name: params.project,

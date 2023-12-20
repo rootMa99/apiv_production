@@ -212,6 +212,7 @@ const TeamLeaders = (p) => {
             index={1}
             project={params.project}
             shiftLeader={params.shitLeader}
+            top={true}
           />
 
           {!oneCrew && (

@@ -171,6 +171,7 @@ const ShiftLeader = (p) => {
             date={{ date, month }}
             index={1}
             project={params.project}
+            top={true}
           />
           <div className={c.btnHolder}>
             {compareData && (

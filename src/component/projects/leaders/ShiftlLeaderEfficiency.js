@@ -8,16 +8,19 @@ import {
 } from "../../hooks/EfficiencyProjectFilter";
 import MonthChart from "../MonthChart";
 import c from "./ShiftLeaderEfficiency.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { additionalDataAction } from "../../../store/AdditionalData";
 //import { additionalDataAction } from "../../../store/AdditionalData";
 
 const ShiftLeaderEfficiency = (p) => {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [toggle, isToggle] = useState(false);
-  const [toggleD, isToggleD] = useState(true);
-  const [toggleM, isToggleM] = useState(true);
-  console.log(p.shiftLeader);
+  const { chartDay, chartWeek, chartmonth } = useSelector((s) => s.additionalData);
+  const [toggle, isToggle] = useState(chartWeek);
+  const [toggleD, isToggleD] = useState(chartDay);
+  const [toggleM, isToggleM] = useState(chartmonth);
+  console.log(chartDay, chartWeek, chartmonth, toggle, toggleD, toggleM);
   const monthly = getDataYear(p.data);
   const month = p.date.date.split("-")[1];
   const weekly = getWeekData(
@@ -26,7 +29,13 @@ const ShiftLeaderEfficiency = (p) => {
   const filtredM = getMonthData(p.data, p.date.month[month - 1]);
 
   const daily = getDataDays(filtredM);
-  console.log((daily.length / 2 - 0.3).toFixed(0));
+
+
+  useEffect(()=>{
+    isToggle(chartWeek);
+    isToggleD(chartDay);
+    isToggleM(chartmonth);
+  }, [chartDay, chartWeek, chartmonth])
 
   const onClickHandler = (e) => {
     if (p.crew === "crew") {
@@ -81,13 +90,13 @@ const ShiftLeaderEfficiency = (p) => {
         {p.title} efficiency
       </h3>
       <div className={c.toggleBtnContainer}>
-        <button className={c.toggleBtn} onClick={() => isToggleM(!toggleM)}>
+        <button className={c.toggleBtn} onClick={() =>p.top? dispatch(additionalDataAction.editChartMonth(!chartmonth)) :isToggleM(!toggleM)}>
           {toggleM ? "hide month" : "show month"}
         </button>
-        <button className={c.toggleBtn} onClick={() => isToggle(!toggle)}>
+        <button className={c.toggleBtn} onClick={() =>p.top? dispatch(additionalDataAction.editChartWeek(!chartWeek)) : isToggle(!toggle)}>
           {toggle ? "hide week" : "show week"}
         </button>
-        <button className={c.toggleBtn} onClick={() => isToggleD(!toggleD)}>
+        <button className={c.toggleBtn} onClick={() =>p.top? dispatch(additionalDataAction.editChartDay(!chartDay)) : isToggleD(!toggleD)}>
           {toggleD ? "hide day" : "show day"}
         </button>
       </div>
