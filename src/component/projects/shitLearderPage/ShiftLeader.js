@@ -107,7 +107,7 @@ const ShiftLeader = (p) => {
         />
       )}
       <div className={c.projectContent}>
-        <div className={c.aside}>
+        <div className={isCompare? `${c.aside} ${c.asideTop}` :`${c.aside}`}>
           <h3 className={c.headingS}>project details</h3>
           <div className={c.asideins}>
             <h1 className={c.heading} onClick={projectClickHandler}>

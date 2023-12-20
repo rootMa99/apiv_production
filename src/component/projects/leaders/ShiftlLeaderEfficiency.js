@@ -14,7 +14,7 @@ import { useState } from "react";
 const ShiftLeaderEfficiency = (p) => {
   //const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [toggle, isToggle]= useState(false);
+  const [toggle, isToggle] = useState(false);
   console.log(p.shiftLeader);
   const monthly = getDataYear(p.data);
   const month = p.date.date.split("-")[1];
@@ -54,15 +54,24 @@ const ShiftLeaderEfficiency = (p) => {
       <h3 className={c.title} onClick={onClickHandler}>
         {p.title} efficiency
       </h3>
-      <button className={c.toggleBtn} onClick={()=>(isToggle(!toggle))}>{toggle ? "hide week" : "show week" } </button>
+      <div className={c.toggleBtnContainer}>
+        <button className={c.toggleBtn} onClick={() => isToggle(!toggle)}>
+          {toggle ? "hide week" : "show week"}{" "}
+        </button>
+        <button className={c.toggleBtn} onClick={() => isToggle(!toggle)}>
+          {toggle ? "hide day" : "show day"}{" "}
+        </button>
+      </div>
       <div className={c.chartContainer}>
         <div className={c.chart}>
           <MonthChart monthData={monthly} title={""} />
         </div>
-        {toggle && <div className={c.chart}>
-          <MonthChart monthData={weekly} title={``} />
-        </div>}
-        <div className={toggle? c.chart : c.chartd}>
+        {toggle && (
+          <div className={c.chart}>
+            <MonthChart monthData={weekly} title={``} />
+          </div>
+        )}
+        <div className={toggle ? c.chart : c.chartd}>
           <MonthChart monthData={daily} title={``} />
         </div>
       </div>

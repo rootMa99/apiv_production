@@ -68,6 +68,13 @@ h3.title:hover{
   border-radius: 17px;
  padding-bottom: 2rem;
 }
+.toggleBtnContainer{
+  margin-left: auto;
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+}
 .toggleBtn{
   padding-inline: 0.5rem;
   margin-left: auto;

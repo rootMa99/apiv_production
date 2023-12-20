@@ -11,12 +11,12 @@ const Home = (p) => {
   const { project } = useParams();
 
   const month = day.month[day.date.split("-")[1] - 1];
-  console.log(data);
+  console.log(data, project);
 
   return (
     <div className={c.container}>
       <div className={c.content}>
-        <Efficiency singleProject={project!==undefined ? project : ""} day={day.date} month={month} title='plant'/>
+        {project===undefined && <Efficiency singleProject={project!==undefined ? project : ""} day={day.date} month={month} title='plant'/>}
         <Efficiency singleProject={project!==undefined ? project : ""} day={day.date} month={month} title='eff fa' />
         <Outlet />
       </div>

@@ -18,11 +18,14 @@
   backdrop-filter: blur(80px);
   height: 80vh; 
   position: fixed;
-  z-index: 100;
+  z-index: 10011;
   left: 0;
   top: 11.5rem;
   border: 1px solid #ecf0f162;
   border-radius: 17px;
+}
+.asideTop{
+  top: 6.5rem;
 }
 .asideins{
   margin-top: 12px;
