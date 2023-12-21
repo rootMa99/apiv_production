@@ -8,15 +8,20 @@ import {
   getEfficiencyDataByMonth,
   getEfficiencyDataByYear,
 } from "../hooks/getEfficiencyData";
+import { useSelector } from "react-redux";
 
 const ProjectCard = (p) => {
   const [mouseIn, setMouseIn] = useState(false);
+  const {checkBox}=useSelector((s) => s.additionalData);
   const [data, setData] = useState({});
   const [dataM, setDataM] = useState({});
   const [dataY, setDataY] = useState({});
+
   const navigate= useNavigate();
 
-
+  const esa=totalP=>{
+    return checkBox ?  totalP*1.078 : totalP;
+  }
   const clickHandler=e=>{
     console.log('card clicked', p.title);
     navigate(`/home/project/${p.title}`);
@@ -36,14 +41,14 @@ const ProjectCard = (p) => {
     setDataY(getEfficiencyDataByYear(p.data));
   }, [p.data, p]);
 
-  const totalEfficencyYear = dataY.paidH===0 ? 0 : (dataY.prodH / dataY.paidH) * 100;
-  const totalEfficencyYearTarget = dataY.paidHT===0 ? 0 : (dataY.prodHT / dataY.paidHT) * 100;
+  const totalEfficencyYear = esa(dataY.paidH===0 ? 0 : (dataY.prodH / dataY.paidH) * 100);
+  const totalEfficencyYearTarget = esa(dataY.paidHT===0 ? 0 : (dataY.prodHT / dataY.paidHT) * 100);
   const gapY = totalEfficencyYear - totalEfficencyYearTarget;
-  const totalEfficencyDay = data.paidH===0 ? 0 : (data.prodH / data.paidH) * 100;
-  const totalEfficencyDayTarget = data.paidHT===0 ? 0 : (data.prodHT / data.paidHT) * 100;
+  const totalEfficencyDay = esa(data.paidH===0 ? 0 : (data.prodH / data.paidH) * 100);
+  const totalEfficencyDayTarget = esa(data.paidHT===0 ? 0 : (data.prodHT / data.paidHT) * 100);
   const gap = totalEfficencyDay - totalEfficencyDayTarget;
-  const totalEfficencyMonth = dataM.paidH===0 ? 0 : (dataM.prodH / dataM.paidH) * 100;
-  const totalEfficencyMonthTarget = dataM.paidHT===0 ? 0 : (dataM.prodHT / dataM.paidHT) * 100;
+  const totalEfficencyMonth = esa(dataM.paidH===0 ? 0 : (dataM.prodH / dataM.paidH) * 100);
+  const totalEfficencyMonthTarget = esa(dataM.paidHT===0 ? 0 : (dataM.prodHT / dataM.paidHT) * 100);
   const gapM = totalEfficencyMonth - totalEfficencyMonthTarget;
   const totalDt =data.paidH===0 ? 0 : (data.dt / data.paidH) * 100;
   const classes = mouseIn

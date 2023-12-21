@@ -26,12 +26,11 @@ h4.title {
   padding-left: 0;
 }
 .eff{
-  width: 20rem;
+  width: 18rem;
   position: absolute;
   top: 0;
-  left: 40%;
+  left: 35%;
   transform: translate(-50%, -50%);
-  padding: 0 10px;
   backdrop-filter: blur(90px);
   background-color: black;
   border-radius: 17px;

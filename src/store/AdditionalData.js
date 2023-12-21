@@ -44,6 +44,7 @@ const AdditionalData = createSlice({
     chartDay: true,
     chartWeek: false,
     chartmonth: true,
+    checkBox:false,
   },
   reducers: {
     addDate(s, p) {
@@ -75,6 +76,9 @@ const AdditionalData = createSlice({
     },
     editChartMonth(s, p){
       s.chartmonth=p.payload
+    },
+    editCheckBox(s,p){
+      s.checkBox=p.payload
     }
   },
 });
