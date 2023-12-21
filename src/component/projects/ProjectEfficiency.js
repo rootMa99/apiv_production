@@ -14,7 +14,7 @@ import { useEffect } from "react";
 
 const ProjectEfficiency = (p) => {
   const data = useSelector((s) => s.datas);
-  const { date, month, chartDay, chartWeek, chartmonth } = useSelector((s) => s.additionalData);
+  const { date, month, chartDay, chartWeek, chartmonth, checkBox } = useSelector((s) => s.additionalData);
   const dispatch = useDispatch();
   // const [toggle, isToggle] = useState(false);
   // const [toggleD, isToggleD] = useState(true);
@@ -25,7 +25,7 @@ const ProjectEfficiency = (p) => {
   console.log(params);
   const filtredData = filterProjectsByName(data, params.project);
   console.log(filtredData);
-  const monthData = getDataYear(filtredData[0].data);
+  const monthData = getDataYear(filtredData[0].data, checkBox);
 
   useEffect(() => {
     const dataDaysYear = getDataDays(filtredData[0].data, "allDate");
@@ -64,11 +64,11 @@ const ProjectEfficiency = (p) => {
     month[months - 2]
   );
   console.log(filtredMonth);
-  const filtredWeek = getWeekData(filtredMonth);
+  const filtredWeek = getWeekData(filtredMonth, checkBox);
   console.log(filtredWeek);
   const filtredMonthDays = getMonthData(filtredData[0].data, month[months - 1]);
   console.log(filtredMonthDays);
-  const dataDays = getDataDays(filtredMonthDays);
+  const dataDays = getDataDays(filtredMonthDays, "", checkBox);
   console.log(dataDays);
 
 

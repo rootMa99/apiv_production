@@ -1,10 +1,11 @@
 import React from "react";
 import c from "./EfficiencyData.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { additionalDataAction } from "../../store/AdditionalData";
 
 const EfficiencyData = (p) => {
   const dispatch = useDispatch();
+  const { checkBox } = useSelector((s) => s.additionalData);
 
   const changeDayhandler = (e) => {
     dispatch(additionalDataAction.addDate(e.target.value));
@@ -33,7 +34,10 @@ const EfficiencyData = (p) => {
   //   classes= p.gap >= 0 ? `${c.red}` :  `${c.green}`
   // }
   return (
-    <div className={c.efficiencyData}>
+    <div
+      className={c.efficiencyData}
+      style={checkBox ? { border: "1px solid rgb(184 0 0)" } : {}}
+    >
       {p.title !== "last day" && (
         <h4 className={c.title}>{p.title === "month" ? p.month : p.title} </h4>
       )}

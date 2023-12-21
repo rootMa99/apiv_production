@@ -16,19 +16,19 @@ import { additionalDataAction } from "../../../store/AdditionalData";
 const ShiftLeaderEfficiency = (p) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { chartDay, chartWeek, chartmonth } = useSelector((s) => s.additionalData);
+  const { chartDay, chartWeek, chartmonth, checkBox } = useSelector((s) => s.additionalData);
   const [toggle, isToggle] = useState(chartWeek);
   const [toggleD, isToggleD] = useState(chartDay);
   const [toggleM, isToggleM] = useState(chartmonth);
   console.log(chartDay, chartWeek, chartmonth, toggle, toggleD, toggleM);
-  const monthly = getDataYear(p.data);
+  const monthly = getDataYear(p.data, checkBox);
   const month = p.date.date.split("-")[1];
   const weekly = getWeekData(
-    getMonthData(p.data, p.date.month[month - 1], p.date.month[month - 2])
+    getMonthData(p.data, p.date.month[month - 1], p.date.month[month - 2]), checkBox
   );
   const filtredM = getMonthData(p.data, p.date.month[month - 1]);
 
-  const daily = getDataDays(filtredM);
+  const daily = getDataDays(filtredM,"", checkBox);
 
 
   useEffect(()=>{

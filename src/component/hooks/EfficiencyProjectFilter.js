@@ -6,7 +6,7 @@
 //     prodt:0
 // }
 
-export const getDataYear = (data) => {
+export const getDataYear = (data, esa) => {
   const monthly = [];
   const returnedArray = [];
   for (let element of data) {
@@ -43,8 +43,8 @@ export const getDataYear = (data) => {
     const totalResultTarget = e.paidt === 0 ? 0 : (e.prodt / e.paidt) * 100;
     returnedArray.push({
       name: e.month,
-      total: totalResult.toFixed(1),
-      totalTarget: totalResultTarget.toFixed(1),
+      total: !esa ? totalResult.toFixed(1) : (totalResult*1.078).toFixed(1),
+      totalTarget:!esa ? totalResultTarget.toFixed(1):(totalResultTarget*1.078).toFixed(1),
     });
   });
 
@@ -58,7 +58,7 @@ export function getMonthData(data, month, lastMonth) {
   return data.filter((f) => f.month === month);
 }
 
-export const getWeekData = (data) => {
+export const getWeekData = (data, esa) => {
   const weekly = [];
   const returnedArray = [];
   for (let element of data) {
@@ -95,14 +95,14 @@ export const getWeekData = (data) => {
     const totalResultTarget = e.paidt === 0 ? 0 : (e.prodt / e.paidt) * 100;
     returnedArray.push({
       name: e.week,
-      total: totalResult.toFixed(1),
-      totalTarget: totalResultTarget.toFixed(1),
+      total: !esa ? totalResult.toFixed(1) : (totalResult*1.078).toFixed(1),
+      totalTarget:!esa ? totalResultTarget.toFixed(1):(totalResultTarget*1.078).toFixed(1),
     });
   });
 
   return returnedArray;
 };
-export const getDataDays = (data, allDate) => {
+export const getDataDays = (data, allDate, esa) => {
   const daily = [];
   const returnedArray = [];
   for (let element of data) {
@@ -139,8 +139,8 @@ export const getDataDays = (data, allDate) => {
     const totalResultTarget = e.paidt === 0 ? 0 : (e.prodt / e.paidt) * 100;
     returnedArray.push({
       name: allDate === "allDate" ? e.date : e.date.split("-")[2],
-      total: totalResult.toFixed(1),
-      totalTarget: totalResultTarget.toFixed(1),
+      total: !esa ? totalResult.toFixed(1):(totalResult*1.078).toFixed(1),
+      totalTarget:!esa ? totalResultTarget.toFixed(1):(totalResultTarget*1.078).toFixed(1),
     });
   });
 

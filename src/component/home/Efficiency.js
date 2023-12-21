@@ -22,23 +22,21 @@ const Efficiency = (p) => {
   const lp = data.filter((f) => f.name === "LEAD PREP AREA");
   console.log(cutting, lp);
 
-  const getEffic = (data, type) => {
-    const filtredData = getEfficiencyDay(data, type);
-    console.log(filtredData);
+  const getEffic = (data, type, month) => {
+    const filtredData =month==="month"?getEfficiencyMonth(data, type): getEfficiencyDay(data, type);
+    console.log(filtredData, type);
     return getEfficiencyDatas(filtredData);
   };
   const plant = (tem, type) => {
     let filtredDatacutting;
     let filtredDatalp;
     if (tem !== "year") {
-      console.log("run0 start");
       const {
         prodH: prodHDfa,
         paidH: paidHDfa,
         prodT: prodTDfa,
         paidT: paidTDfa,
-      } = tem==="day" ? getEffic(fa, p.day) : getEffic(fa, p.month);
-      console.log("run0");
+      } = tem === "day" ? getEffic(fa, p.day) : getEffic(fa, p.month, "month");
       if (tem === "day") {
         filtredDatacutting = getEfficiencyDay(cutting, p.day);
         filtredDatalp = getEfficiencyDay(lp, p.day);
@@ -50,17 +48,11 @@ const Efficiency = (p) => {
         console.log("MONTH", filtredDatacutting, filtredDatalp);
       }
       if (type === "act") {
-        console.log("run1 start" , type, tem)
-
         const { prodH: prodHD, paidH: paidHD } =
-        getEfficiencyDatas(filtredDatacutting);
-        console.log("run1")
-        console.log("run2 start")
-        
-          const { prodH: prodHDlp, paidH: paidHDlp } =
+          getEfficiencyDatas(filtredDatacutting);
+        const { prodH: prodHDlp, paidH: paidHDlp } =
           getEfficiencyDatas(filtredDatalp);
-          console.log("run2")
-
+          console.log(prodHDfa, paidHDfa, "MONTH ACT")
         return (
           ((prodHD * 1.443 + prodHDlp * 1.138 + prodHDfa * 1.078) /
             (paidHD + paidHDlp + paidHDfa)) *
@@ -68,17 +60,11 @@ const Efficiency = (p) => {
         );
       }
       if (type === "tar") {
-      console.log("run3 start")
-
         const { prodT: prodTD, paidT: paidTD } =
           getEfficiencyDatas(filtredDatacutting);
-      console.log("run3")
-      console.log("run4 start")
 
         const { prodT: prodTDlp, paidT: paidTDlp } =
           getEfficiencyDatas(filtredDatalp);
-      console.log("run4")
-
         return (
           ((prodTD * 1.443 + prodTDlp * 1.138 + prodTDfa * 1.078) /
             (paidTD + paidTDlp + paidTDfa)) *
@@ -105,7 +91,7 @@ const Efficiency = (p) => {
         prodTY: prodTYfa,
         paidTY: paidTYfa,
       } = getEfficiencyYear(fa);
-      console.log("year", prodHYfa, paidHYfa, prodTYfa, paidTYfa)
+      console.log("year", prodHYfa, paidHYfa, prodTYfa, paidTYfa);
       if (type === "act") {
         return (
           ((prodHYC * 1.443 + prodHYlp * 1.138 + prodHYfa * 1.078) /
@@ -148,16 +134,8 @@ const Efficiency = (p) => {
     paidT: paidTD,
   } = getEffic(data, p.day);
   console.log(prodHD, paidHD, prodTD, paidTD, p.title);
-  const totalP = esa(
-    paidHD === 0 ? 0 : (prodHD / paidHD) * 100,
-    "day",
-    "act"
-  );
-  const totalT = esa(
-    paidTD === 0 ? 0 : (prodTD / paidTD) * 100,
-    "day",
-    "tar"
-  );
+  const totalP = esa(paidHD === 0 ? 0 : (prodHD / paidHD) * 100, "day", "act").toFixed(2);
+  const totalT = esa(paidTD === 0 ? 0 : (prodTD / paidTD) * 100, "day", "tar").toFixed(2);
   const gap = (totalP - totalT).toFixed(2);
   console.log(totalP, totalT, gap);
   //hc Day using filtred Day
@@ -178,40 +156,26 @@ const Efficiency = (p) => {
     paidHM === 0 ? 0 : (prodHM / paidHM) * 100,
     "month",
     "act"
-  );
+  ).toFixed(2);
   const totalTM = esa(
     paidTM === 0 ? 0 : (prodTM / paidTM) * 100,
     "month",
     "tar"
-  );
+  ).toFixed(2);
   const gapM = (totalPM - totalTM).toFixed(2);
   //Efficiency Year
   const { prodHY, paidHY, prodTY, paidTY } = getEfficiencyYear(data);
-  let totalPY = esa(
-    paidHY === 0 ? 0 : (prodHY / paidHY) * 100,
-    "year",
-    "act"
-  );
+  let totalPY = esa(paidHY === 0 ? 0 : (prodHY / paidHY) * 100, "year", "act").toFixed(2);
   const totalTY = esa(
     paidTY === 0 ? 0 : (prodTY / paidTY) * 100,
     "year",
     "tar"
-  );
+  ).toFixed(2);
   const gapY = (totalPY - totalTY).toFixed(2);
-
-  // console.log(hc, hcTarget);
-  // console.log(filtredData);
-  // console.log(filtredDataMonth);
-  // console.log(prodHD, paidHD, prodTD, paidTD);
-  // console.log(prodHM, paidHM, prodTM, paidTM);
-  // console.log(totalP, totalT, gap);
-  // console.log(totalPM, totalTM, gapM);
-  // console.log(prodHY, paidHY, prodTY, paidTY);
   return (
     <React.Fragment>
       <div
         className={c.efficiency}
-        style={checkBox ? { backgroundColor: "rgb(184 0 0)" } : {}}
       >
         <div className={c.efficiencyContent}>
           <EfficiencyData
