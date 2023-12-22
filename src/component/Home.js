@@ -7,25 +7,31 @@ import { additionalDataAction } from "../store/AdditionalData";
 const Home = (p) => {
   const data = useSelector((s) => s.datas);
   const day = useSelector((s) => s.additionalData);
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
   const { project } = useParams();
-  
 
   const month = day.month[day.date.split("-")[1] - 1];
   console.log(data, project);
 
   return (
-    <div className={c.container} >
+    <div className={c.container}>
       <div className={c.content}>
-        <label className={c["cyberpunk-checkbox-label"]}>
-          <input
-            type="checkbox"
-            className={c["cyberpunk-checkbox"]}
-            checked={day.checkBox}
-            onChange={() => dispatch(additionalDataAction.editCheckBox(!day.checkBox))}
-          />
-          esa
-        </label>
+        <div className={c.labelCheck}>
+          <label className={c["cyberpunk-checkbox-label"]}>
+            <input
+              type="checkbox"
+              className={c["cyberpunk-checkbox"]}
+              checked={day.checkBox}
+              onChange={() =>
+                dispatch(additionalDataAction.editCheckBox(!day.checkBox))
+              }
+            />
+            esa
+          </label>
+            <p className={c.plabelCheck} >
+              (by cheking this checkbox all efficiencies will be shown as esa efficiency.)*
+            </p>
+        </div>
         {project === undefined && (
           <Efficiency
             singleProject={project !== undefined ? project : ""}

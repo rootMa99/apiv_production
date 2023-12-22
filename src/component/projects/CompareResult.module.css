@@ -16,6 +16,9 @@
 .resultl{
   border-radius: 17px 0 0 17px;
 }
+.resultc{
+  border-radius: 0;
+}
 .resultr{
   border-radius: 0 17px 17px 0;
   margin-right: 0.5rem;
