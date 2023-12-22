@@ -204,7 +204,7 @@ const MonthChart = (p) => {
           const meta = chart.getDatasetMeta(index);
           meta.data.forEach((element, index) => {
             const data =
-              p.type !== "output" && p.type !== "hc" && p.type !== "ab"
+              p.type !== "output" && p.type !== "hc" && p.type !== "ab" && p.type !== "scrap" 
                 ? `${dataset.data[index]} %`
                 : dataset.data[index];
             let xPos, yPos;

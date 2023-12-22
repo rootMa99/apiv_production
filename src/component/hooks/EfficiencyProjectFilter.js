@@ -208,6 +208,7 @@ export const getOutputDataYear = (data, searcheType, actual, target) => {
   return returnedArray;
 };
 export const getscrapDataYear = (data, searcheType, actual, target) => {
+  console.log(data, searcheType, actual, target);
   const months = [];
   const returnedArray = [];
   for (let d of data) {
@@ -215,9 +216,7 @@ export const getscrapDataYear = (data, searcheType, actual, target) => {
       months.push({
         month: d[searcheType],
         output: d.dataTargetExcel[actual],
-        workingDay: d.dataTargetExcel[actual] === 0 ? 0 : 1,
         outputTarget: d.dataTargetExcel[target],
-        workingDayTarget: d.dataTargetExcel[target] === 0 ? 0 : 1,
       });
       continue;
     }
@@ -226,27 +225,19 @@ export const getscrapDataYear = (data, searcheType, actual, target) => {
       months.push({
         month: d[searcheType],
         output: d.dataTargetExcel[actual],
-        workingDay: d.dataTargetExcel[actual] === 0 ? 0 : 1,
         outputTarget: d.dataTargetExcel[target],
-        workingDayTarget: d.dataTargetExcel[target] === 0 ? 0 : 1,
       });
     } else {
       months[index].output += d.dataTargetExcel[actual];
-      d.dataTargetExcel[actual] !== 0 && months[index].workingDay++;
       months[index].outputTarget += d.dataTargetExcel[target];
-      d.dataTargetExcel[target] !== 0 && months[index].workingDayTarget++;
     }
   }
   months.forEach((e) => {
     //console.log(actual, e.workingDay, e.output,e.month);
     returnedArray.push({
       name: e.month,
-      total: e.workingDay === 0 ? 0 : (e.output / e.workingDay).toFixed(0),
-
-      totalTarget:
-        e.workingDayTarget === 0
-          ? 0
-          : (e.outputTarget / e.workingDayTarget).toFixed(0),
+      total: e.output.toFixed(0),
+      totalTarget: e.outputTarget.toFixed(0),
     });
   });
 
@@ -254,6 +245,7 @@ export const getscrapDataYear = (data, searcheType, actual, target) => {
 };
 
 export const getDataDaysOutput = (data, actual, target, day) => {
+  console.log(data, actual, target, day);
   const daily = [];
   for (let element of data) {
     if (daily.length === 0) {
@@ -298,14 +290,16 @@ export const getDataDaysOutput = (data, actual, target, day) => {
 
   return returnedArray;
 };
+
 export const getDatacrapOutput = (data, actual, target, day) => {
+  console.log(data, actual, target, day);
   const daily = [];
   for (let element of data) {
     if (daily.length === 0) {
       daily.push({
         date: element.date,
         total: element.dataTargetExcel[actual],
-        totalTarget:element.dataTargetExcel[target],
+        totalTarget: element.dataTargetExcel[target],
       });
       continue;
     }
@@ -318,7 +312,7 @@ export const getDatacrapOutput = (data, actual, target, day) => {
       });
     } else {
       daily[index].total += element.dataTargetExcel[actual];
-      (daily[index].totalTarget += element.dataTargetExcel[target]);
+      daily[index].totalTarget += element.dataTargetExcel[target];
     }
   }
 
