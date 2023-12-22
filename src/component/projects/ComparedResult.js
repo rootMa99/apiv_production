@@ -1,46 +1,73 @@
 import { useSelector } from "react-redux";
-import { getDataDaysOutput, getMonthData, getOutputDataYear } from "../hooks/EfficiencyProjectFilter";
+import {
+  getDataDays,
+  getDataDaysOutput,
+  getDataYear,
+  getMonthData,
+  getOutputDataYear,
+  getWeekData,
+} from "../hooks/EfficiencyProjectFilter";
 import MonthChart from "./MonthChart";
 import c from "./CompareResult.module.css";
 
 const ComparedResult = (p) => {
-    const date = useSelector((s) => s.additionalData);
-    console.log(date, p.data, p.actual, p.target);
+  const { date, checkBox, month } = useSelector((s) => s.additionalData);
+  console.log(p);
 
-  const month = date.date.split("-")[1];
+  const months = date.split("-")[1];
 
   const shiftLeader = p.data.filter((f) => f.name === p.name);
-  console.log(month,shiftLeader);
+  console.log(month, shiftLeader);
 
-const dataBytype=()=>{
-if(p.typeS==="monthly"){
- return getOutputDataYear(
-    shiftLeader[0].data,
-    "month",
-    p.actual,
-    p.target
-  );
-}
-if(p.typeS==="weekly"){
-    const filtredMonth = getMonthData(
+  const dataBytype = () => {
+    if (p.typeS === "monthly") {
+      if (p.actual === "efficiency") {
+        return getDataYear(shiftLeader[0].data, checkBox);
+      }
+
+      return getOutputDataYear(
         shiftLeader[0].data,
-        date.month[month - 1],
-        date.month[month - 2]
+        "month",
+        p.actual,
+        p.target
+      );
+    }
+    if (p.typeS === "weekly") {
+      if (p.actual === "efficiency") {
+        return getWeekData(
+          getMonthData(
+            shiftLeader[0].data,
+            month[months - 1],
+            month[months - 2]
+          ),
+          checkBox
+        );
+      }
+      const filtredMonth = getMonthData(
+        shiftLeader[0].data,
+        month[months - 1],
+        month[months - 2]
       );
       console.log(filtredMonth);
       return getOutputDataYear(filtredMonth, "week", p.actual, p.target);
-}
-if(p.typeS==="daily"){
-    const filtredM = getMonthData(shiftLeader[0].data, date.month[month - 1]);
-  return getDataDaysOutput(filtredM, p.actual, p.target);
-}
-if(p.typeS==="day"){
-    const filtredM = (shiftLeader[0].data).filter((f) => f.date === date.date);
-  return getDataDaysOutput(filtredM, p.actual, p.target , 'day');
-}
-const filtredM = (shiftLeader[0].data).filter((f) => f.date === date.date);
-  return getDataDaysOutput(filtredM, p.actual, p.target , 'day');
-}
+    }
+    if (p.typeS === "daily") {
+      const filtredM = getMonthData(shiftLeader[0].data, month[months - 1]);
+      if (p.actual === "efficiency") {
+        return getDataDays(filtredM, "", checkBox);
+      }
+      return getDataDaysOutput(filtredM, p.actual, p.target);
+    }
+    if (p.typeS === "day") {
+      const filtredM = shiftLeader[0].data.filter((f) => f.date === date);
+      if (p.actual === "efficiency") {
+        return getDataDays(filtredM, "", checkBox);
+      }
+      return getDataDaysOutput(filtredM, p.actual, p.target, "day");
+    }
+    const filtredM = shiftLeader[0].data.filter((f) => f.date === date);
+    return getDataDaysOutput(filtredM, p.actual, p.target, "day");
+  };
 
   const monthly = dataBytype();
   return (

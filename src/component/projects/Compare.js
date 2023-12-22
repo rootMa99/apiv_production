@@ -70,6 +70,7 @@ const customStyles = {
 };
 
 const options = [
+  { value: "efficiency", label: "efficiency" },
   { value: "output/outputTarget", label: "output" },
   { value: "hc/hcTarget", label: "head count" },
   { value: "ab/absTarget", label: "ab" },

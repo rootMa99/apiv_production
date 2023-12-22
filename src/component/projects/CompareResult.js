@@ -68,7 +68,7 @@ const customStyles = {
 };
 
 const CompareResult = (p) => {
-  console.log(p.compareData.selectedOptions.shiftleader3 !== "");
+  console.log(p);
   const [third, setThird] = useState(
     p.compareData.selectedOptions.shiftleader3 !== ""
   );
@@ -93,6 +93,7 @@ const CompareResult = (p) => {
     { value: "day", label: "day" },
   ];
   const options = [
+    { value: "efficiency", label: "efficiency" },
     { value: "ab/absTarget", label: "ab" },
     { value: "dt/dtTarget", label: "down time" },
     { value: "hc/hcTarget", label: "head count" },
@@ -228,8 +229,12 @@ const CompareResult = (p) => {
               data={p.compareData.shiftLeaders}
               typeS={type}
               name={shifleaders.shiftleader1.value}
-              actual={m.value.split("/")[0]}
-              target={m.value.split("/")[1]}
+              actual={
+                m.value === "efficiency" ? m.value : m.value.split("/")[0]
+              }
+              target={
+                m.value === "efficiency" ? m.value : m.value.split("/")[1]
+              }
             />
           ))}
         </div>
@@ -258,8 +263,12 @@ const CompareResult = (p) => {
                 data={p.compareData.shiftLeaders}
                 typeS={type}
                 name={shifleaders.shiftleader3.value}
-                actual={m.value.split("/")[0]}
-                target={m.value.split("/")[1]}
+                actual={
+                  m.value === "efficiency" ? m.value : m.value.split("/")[0]
+                }
+                target={
+                  m.value === "efficiency" ? m.value : m.value.split("/")[1]
+                }
               />
             ))}
           </div>
@@ -291,8 +300,12 @@ const CompareResult = (p) => {
               data={p.compareData.shiftLeaders}
               typeS={type}
               name={shifleaders.shiftleader2.value}
-              actual={m.value.split("/")[0]}
-              target={m.value.split("/")[1]}
+              actual={
+                m.value === "efficiency" ? m.value : m.value.split("/")[0]
+              }
+              target={
+                m.value === "efficiency" ? m.value : m.value.split("/")[1]
+              }
             />
           ))}
         </div>

@@ -29,7 +29,7 @@ const Home = (p) => {
             esa
           </label>
             <p className={c.plabelCheck} >
-              (by cheking this checkbox all efficiencies will be shown as esa efficiency.)*
+              (by cheking this checkbox all efficiencies will be displayed as esa efficiency.)*
             </p>
         </div>
         {project === undefined && (

@@ -71,7 +71,7 @@
 }
 .labelCheck{
   position: fixed;
-  top: 0rem;
+  top: 0.5rem;
   left: 10rem;
   z-index: 101;
   display: flex;
