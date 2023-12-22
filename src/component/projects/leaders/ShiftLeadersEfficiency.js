@@ -9,7 +9,7 @@ import { additionalDataAction } from "../../../store/AdditionalData";
 const ShiftLeadersEfficiency = (p) => {
   const data = useSelector((s) => s.datas);
   const dispatch = useDispatch();
-  const {date, month} = useSelector((s) => s.additionalData);
+  const { date, month } = useSelector((s) => s.additionalData);
   const params = useParams();
   const filtredData = filterProjectsByName(data, params.project);
   const shiftLeaders = getShiftLeaders(filtredData[0].data);
@@ -17,7 +17,7 @@ const ShiftLeadersEfficiency = (p) => {
   dispatch(
     additionalDataAction.addShitLeaderEfficiency({
       name: params.project,
-      shiftLeader:  shiftLeaders ,
+      shiftLeader: shiftLeaders,
     })
   );
   return (
@@ -26,11 +26,13 @@ const ShiftLeadersEfficiency = (p) => {
 
       {shiftLeaders.map(
         (m, i) =>
-          m.name !== null && (
+          (m.name === null ||
+            m.data.filter((f) => f.month === month[date.split("-")[1] - 1])
+              .length > 0) && (
             <ShiftLeaderEfficiency
               title={m.name}
               data={m.data}
-              date={{date, month}}
+              date={{ date, month }}
               index={i}
               project={params.project}
               key={i}

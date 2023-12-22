@@ -252,19 +252,25 @@ const TeamLeaders = (p) => {
             !compareData ? (
               <React.Fragment>
                 (<h3 className={c.shiftLeaderTite}>crew data</h3>
-                {crews.map((m, i) => (
-                  <ShiftLeaderEfficiency
-                    title={m.name}
-                    data={m.data}
-                    date={{ date, month }}
-                    index={i}
-                    project={params.project}
-                    shiftLeader={params.shitLeader}
-                    teamLeader={params.teamLeader}
-                    crew="crew"
-                    key={i}
-                  />
-                ))}
+                {crews.map(
+                  (m, i) =>
+                    (m.name === null ||
+                      m.data.filter(
+                        (f) => f.month === month[date.split("-")[1] - 1]
+                      ).length > 0) && (
+                      <ShiftLeaderEfficiency
+                        title={m.name}
+                        data={m.data}
+                        date={{ date, month }}
+                        index={i}
+                        project={params.project}
+                        shiftLeader={params.shitLeader}
+                        teamLeader={params.teamLeader}
+                        crew="crew"
+                        key={i}
+                      />
+                    )
+                )}
                 )
               </React.Fragment>
             ) : (

@@ -107,7 +107,7 @@ const ShiftLeader = (p) => {
         />
       )}
       <div className={c.projectContent}>
-        <div className={isCompare? `${c.aside} ${c.asideTop}` :`${c.aside}`}>
+        <div className={isCompare ? `${c.aside} ${c.asideTop}` : `${c.aside}`}>
           <h3 className={c.headingS}>project details</h3>
           <div className={c.asideins}>
             <h1 className={c.heading} onClick={projectClickHandler}>
@@ -133,35 +133,34 @@ const ShiftLeader = (p) => {
                 )
             )}
             <ShiftLeadersEfficiencyASide
-                data={teamLeader}
-                project={params.project}
-                sl={params.shitLeader}
-              />
-              <React.Fragment>
-                <div className={c.maxvalues}>
-                  <h5>best month :</h5>
-                  <div className={c.bestData}>
-                    <h6>month:</h6>
-                    <span> {maxObject.name} </span>
-                  </div>
-                  <div className={c.bestData}>
-                    <h6>value:</h6>
-                    <span> {maxObject.total}%</span>
-                  </div>
+              data={teamLeader}
+              project={params.project}
+              sl={params.shitLeader}
+            />
+            <React.Fragment>
+              <div className={c.maxvalues}>
+                <h5>best month :</h5>
+                <div className={c.bestData}>
+                  <h6>month:</h6>
+                  <span> {maxObject.name} </span>
                 </div>
-                <div className={c.maxvalues}>
-                  <h5>best day :</h5>
-                  <div className={c.bestData}>
-                    <h6>date:</h6>
-                    <span> {maxObjectDay.name} </span>
-                  </div>
-                  <div className={c.bestData}>
-                    <h6>value:</h6>
-                    <span> {maxObjectDay.total} %</span>
-                  </div>
+                <div className={c.bestData}>
+                  <h6>value:</h6>
+                  <span> {maxObject.total}%</span>
                 </div>
-              </React.Fragment>
-          
+              </div>
+              <div className={c.maxvalues}>
+                <h5>best day :</h5>
+                <div className={c.bestData}>
+                  <h6>date:</h6>
+                  <span> {maxObjectDay.name} </span>
+                </div>
+                <div className={c.bestData}>
+                  <h6>value:</h6>
+                  <span> {maxObjectDay.total} %</span>
+                </div>
+              </div>
+            </React.Fragment>
           </div>
         </div>
         <div className={c.chartContainer}>
@@ -200,7 +199,10 @@ const ShiftLeader = (p) => {
                 <h3 className={c.shiftLeaderTite}>TeamLeaders data</h3>
                 {teamLeader.map(
                   (m, i) =>
-                    m.name !== null && (
+                    (m.name === null ||
+                      m.data.filter(
+                        (f) => f.month === month[date.split("-")[1] - 1]
+                      ).length > 0) && (
                       <ShiftLeaderEfficiency
                         title={m.name}
                         data={m.data}

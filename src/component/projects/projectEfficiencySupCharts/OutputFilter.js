@@ -1,7 +1,9 @@
 import {
   getDataDaysOutput,
+  getDatacrapOutput,
   getMonthData,
   getOutputDataYear,
+  getscrapDataYear,
 } from "../../hooks/EfficiencyProjectFilter";
 import MonthChart from "../MonthChart";
 import c from "./OutputFilter.module.css";
@@ -11,17 +13,17 @@ const OuputFilter = (p) => {
   const data = p.data;
   console.log(month, data);
 
-  const monthly = getOutputDataYear(data[0].data, "month", p.actual, p.target);
+  const monthly =p.actual==="scarp"?getscrapDataYear(data[0].data, "month", p.actual, p.target) : getOutputDataYear(data[0].data, "month", p.actual, p.target);
   const filtredMonth = getMonthData(
     data[0].data,
     p.date.month[month - 1],
     p.date.month[month - 2]
   );
   console.log(filtredMonth);
-  const weekly = getOutputDataYear(filtredMonth, "week", p.actual, p.target);
+  const weekly =p.actual==="scarp"?getscrapDataYear(data[0].data, "week", p.actual, p.target): getOutputDataYear(filtredMonth, "week", p.actual, p.target);
   console.log("week", weekly);
   const filtredM = getMonthData(data[0].data, p.date.month[month - 1]);
-  const daily = getDataDaysOutput(filtredM, p.actual, p.target);
+  const daily = p.actual==="scarp"?getDatacrapOutput(filtredM, p.actual, p.target) : getDataDaysOutput(filtredM, p.actual, p.target);
   console.log("daily", daily);
   return (
     <div className={c.chartsContainer} style={p.title!=="output" ? {'marginTop': '3rem'} : {}  }>

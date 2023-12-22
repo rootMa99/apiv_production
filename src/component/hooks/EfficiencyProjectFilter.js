@@ -43,8 +43,10 @@ export const getDataYear = (data, esa) => {
     const totalResultTarget = e.paidt === 0 ? 0 : (e.prodt / e.paidt) * 100;
     returnedArray.push({
       name: e.month,
-      total: !esa ? totalResult.toFixed(1) : (totalResult*1.078).toFixed(1),
-      totalTarget:!esa ? totalResultTarget.toFixed(1):(totalResultTarget*1.078).toFixed(1),
+      total: !esa ? totalResult.toFixed(1) : (totalResult * 1.078).toFixed(1),
+      totalTarget: !esa
+        ? totalResultTarget.toFixed(1)
+        : (totalResultTarget * 1.078).toFixed(1),
     });
   });
 
@@ -95,8 +97,10 @@ export const getWeekData = (data, esa) => {
     const totalResultTarget = e.paidt === 0 ? 0 : (e.prodt / e.paidt) * 100;
     returnedArray.push({
       name: e.week,
-      total: !esa ? totalResult.toFixed(1) : (totalResult*1.078).toFixed(1),
-      totalTarget:!esa ? totalResultTarget.toFixed(1):(totalResultTarget*1.078).toFixed(1),
+      total: !esa ? totalResult.toFixed(1) : (totalResult * 1.078).toFixed(1),
+      totalTarget: !esa
+        ? totalResultTarget.toFixed(1)
+        : (totalResultTarget * 1.078).toFixed(1),
     });
   });
 
@@ -139,8 +143,10 @@ export const getDataDays = (data, allDate, esa) => {
     const totalResultTarget = e.paidt === 0 ? 0 : (e.prodt / e.paidt) * 100;
     returnedArray.push({
       name: allDate === "allDate" ? e.date : e.date.split("-")[2],
-      total: !esa ? totalResult.toFixed(1):(totalResult*1.078).toFixed(1),
-      totalTarget:!esa ? totalResultTarget.toFixed(1):(totalResultTarget*1.078).toFixed(1),
+      total: !esa ? totalResult.toFixed(1) : (totalResult * 1.078).toFixed(1),
+      totalTarget: !esa
+        ? totalResultTarget.toFixed(1)
+        : (totalResultTarget * 1.078).toFixed(1),
     });
   });
 
@@ -201,6 +207,51 @@ export const getOutputDataYear = (data, searcheType, actual, target) => {
 
   return returnedArray;
 };
+export const getscrapDataYear = (data, searcheType, actual, target) => {
+  const months = [];
+  const returnedArray = [];
+  for (let d of data) {
+    if (months.length === 0) {
+      months.push({
+        month: d[searcheType],
+        output: d.dataTargetExcel[actual],
+        workingDay: d.dataTargetExcel[actual] === 0 ? 0 : 1,
+        outputTarget: d.dataTargetExcel[target],
+        workingDayTarget: d.dataTargetExcel[target] === 0 ? 0 : 1,
+      });
+      continue;
+    }
+    const index = months.findIndex((f) => f.month === d[searcheType]);
+    if (index === -1) {
+      months.push({
+        month: d[searcheType],
+        output: d.dataTargetExcel[actual],
+        workingDay: d.dataTargetExcel[actual] === 0 ? 0 : 1,
+        outputTarget: d.dataTargetExcel[target],
+        workingDayTarget: d.dataTargetExcel[target] === 0 ? 0 : 1,
+      });
+    } else {
+      months[index].output += d.dataTargetExcel[actual];
+      d.dataTargetExcel[actual] !== 0 && months[index].workingDay++;
+      months[index].outputTarget += d.dataTargetExcel[target];
+      d.dataTargetExcel[target] !== 0 && months[index].workingDayTarget++;
+    }
+  }
+  months.forEach((e) => {
+    //console.log(actual, e.workingDay, e.output,e.month);
+    returnedArray.push({
+      name: e.month,
+      total: e.workingDay === 0 ? 0 : (e.output / e.workingDay).toFixed(0),
+
+      totalTarget:
+        e.workingDayTarget === 0
+          ? 0
+          : (e.outputTarget / e.workingDayTarget).toFixed(0),
+    });
+  });
+
+  return returnedArray;
+};
 
 export const getDataDaysOutput = (data, actual, target, day) => {
   const daily = [];
@@ -232,6 +283,42 @@ export const getDataDaysOutput = (data, actual, target, day) => {
         ? (daily[index].totalTarget += element.dataTargetExcel[target])
         : (daily[index].totalTarget +=
             element.dataTargetExcel[target] * element.actualDataExcel.totalhc);
+    }
+  }
+
+  const returnedArray = [];
+  daily.forEach((e) => {
+    returnedArray.push({
+      name: day === undefined ? e.date.split("-")[2] : e.date,
+      total: e.total.toFixed(0),
+      //totalTarget: (actual==="ot" || actual==="ab") ?  (e.totalTarget).toFixed(2) : e.totalTarget,
+      totalTarget: e.totalTarget !== undefined ? e.totalTarget.toFixed(0) : 0,
+    });
+  });
+
+  return returnedArray;
+};
+export const getDatacrapOutput = (data, actual, target, day) => {
+  const daily = [];
+  for (let element of data) {
+    if (daily.length === 0) {
+      daily.push({
+        date: element.date,
+        total: element.dataTargetExcel[actual],
+        totalTarget:element.dataTargetExcel[target],
+      });
+      continue;
+    }
+    const index = daily.findIndex((f) => f.date === element.date);
+    if (index === -1) {
+      daily.push({
+        date: element.date,
+        total: element.dataTargetExcel[actual],
+        totalTarget: element.dataTargetExcel[target],
+      });
+    } else {
+      daily[index].total += element.dataTargetExcel[actual];
+      (daily[index].totalTarget += element.dataTargetExcel[target]);
     }
   }
 
