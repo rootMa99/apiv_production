@@ -1,9 +1,9 @@
 import styles from "./Coordinator.module.css";
 import hamzaKhartaoui from "../../assets/hamzaKhartaoui.png";
 import apticlogo from "../../assets/aptiv-logo.svg";
-const Coordinator = ({ player }) => {
+const Coordinator = () => {
   return (
-    <div className={styles.wrapper}>
+    
       <div className={styles['full-card']}>
         <div className={styles['full-card-top']}>
           <div className={styles['coordinator-info']}>
@@ -70,7 +70,6 @@ const Coordinator = ({ player }) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

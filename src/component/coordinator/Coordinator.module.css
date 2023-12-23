@@ -1,14 +1,6 @@
 
-  .wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    min-height: 500px;
-  }
-  
+
+
   .full-card {
     position: relative;
     width: 300px;
@@ -20,6 +12,10 @@
     padding: 3.8rem 0;
     z-index: 2;
     transition: 200ms ease-in;
+    cursor: pointer;
+  }
+  .full-card:hover{
+    transform: scale(1.1);
   }
   .full-card .full-card-top {
     position: relative;
@@ -146,4 +142,8 @@
   }
   .full-card .full-card-bottom .coordinator-infos .coordinator-features .coordinator-features-col:last-child {
     border: 0;
+  }
+
+  .coordinator-eff, .eff-title{
+    text-align: left;
   }
