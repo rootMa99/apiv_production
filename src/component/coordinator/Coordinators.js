@@ -1,4 +1,3 @@
-import ShiftLeader from "../projects/shitLearderPage/ShiftLeader";
 import Coordinator from "./Coordinator";
 import c from "./Coordinators.module.css";
 

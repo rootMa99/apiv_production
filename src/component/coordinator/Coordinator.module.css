@@ -2,10 +2,11 @@
 
 
   .full-card {
+    margin: 1rem 0;
     position: relative;
     width: 300px;
     height: 350px;
-    background-image: url(https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png);
+    background-image: url('../../assets/card.png');
     background-position: center center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
