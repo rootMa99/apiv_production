@@ -54,7 +54,7 @@ function App() {
     rating: 93,
     club: "Paris Saint-Germain",
     nationality: "Argentina",
-    image: "path/to/messi.jpg",
+    image: "https://cdn.pixabay.com/photo/2020/05/17/06/42/football-5180297_1280.jpg",
   };
   return (
     <React.Fragment>
