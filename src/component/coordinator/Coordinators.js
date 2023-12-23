@@ -8,6 +8,7 @@ const Coordinators = (p) => {
       <div className={c.Coordinator}>
         <Coordinator />
       </div>
+      <h1>shiftLeaders</h1>
       <div className={c.shiftLeader}>
         <Coordinator />
         <Coordinator />
@@ -16,6 +17,7 @@ const Coordinators = (p) => {
         <Coordinator />
         <Coordinator />
       </div>
+      <h1>TeamLeaders</h1>
       <div className={c.teamleader}>
         <Coordinator />
         <Coordinator />

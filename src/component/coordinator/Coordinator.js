@@ -41,29 +41,29 @@ const Coordinator = () => {
               <div className={styles['coordinator-features-col']}>
                 <span>
                   <div className={styles['coordinator-feature-value']}>97%</div>
-                  <div className={styles['coord-feature-title']}>eff</div>
+                  <div className={styles['coord-feature-title']}>effici</div>
                 </span>
                 <span>
                   <div className={styles['coordinator-feature-value']}>95%</div>
-                  <div className={styles['coord-feature-title']}>SHO</div>
+                  <div className={styles['coord-feature-title']}>gap</div>
                 </span>
                 <span>
                   <div className={styles['coordinator-feature-value']}>94</div>
-                  <div className={styles['coord-feature-title']}>PAS</div>
+                  <div className={styles['coord-feature-title']}>hc</div>
                 </span>
               </div>
               <div className={styles['coordinator-features-col']}>
                 <span>
                   <div className={styles['coordinator-feature-value']}>99</div>
-                  <div className={styles['coord-feature-title']}>DRI</div>
+                  <div className={styles['coord-feature-title']}>output</div>
                 </span>
                 <span>
                   <div className={styles['coordinator-feature-value']}>35</div>
-                  <div className={styles['coord-feature-title']}>DEF</div>
+                  <div className={styles['coord-feature-title']}>wsd</div>
                 </span>
                 <span>
                   <div className={styles['coordinator-feature-value']}>68</div>
-                  <div className={styles['coord-feature-title']}>PHY</div>
+                  <div className={styles['coord-feature-title']}>scrap</div>
                 </span>
               </div>
             </div>
