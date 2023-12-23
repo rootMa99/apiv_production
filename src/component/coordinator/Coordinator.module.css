@@ -1,0 +1,16 @@
+.fifacard {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin: 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .playerdetails {
+    margin-left: 16px;
+  }
+  
+  img {
+    max-width: 100px;
+    max-height: 100px;
+  }
