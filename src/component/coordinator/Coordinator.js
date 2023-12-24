@@ -1,7 +1,6 @@
 import styles from "./Coordinator.module.css";
-import hamzaKhartaoui from "../../assets/hamzaKhartaoui.png";
 import apticlogo from "../../assets/aptiv-logo.svg";
-const Coordinator = () => {
+const Coordinator = (p) => {
   return (
     
       <div className={styles['full-card']}>
@@ -23,7 +22,7 @@ const Coordinator = () => {
           </div>
           <div className={styles['coordinator-pic']}>
             <img
-              src={hamzaKhartaoui}
+              src={p.pic}
               alt="coordinator"
               draggable="false"
             />
