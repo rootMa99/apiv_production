@@ -113,8 +113,16 @@ input[type="date"].titles::-webkit-calendar-picker-indicator {
   border-radius: 10px;
 }
 
-.total progress::-webkit-progress-value {
+.total progress.orange::-webkit-progress-value {
+  background-color: #d1962a;
+  border-radius: 10px;
+}
+.total progress.red::-webkit-progress-value {
   background-color: #b80000;
+  border-radius: 10px;
+}
+.total progress.green::-webkit-progress-value {
+  background-color: #008500;
   border-radius: 10px;
 }
 

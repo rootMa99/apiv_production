@@ -70,22 +70,29 @@ const EfficiencyData = (p) => {
           ) : (
             <React.Fragment>
               {p.gap <= 0 && p.gap >= -2 && (
+                <React.Fragment>
                 <h2 className={c.title} style={{ color: "#d1962a" }}>
                   {p.totalP}%
                 </h2>
+                <progress value={p.totalP} className={c.orange} max="100"></progress>
+                </React.Fragment>
               )}
-              {p.gap <= -2 && (
+              {p.gap < -2 && (
+                <React.Fragment>
                 <h2 className={c.title} style={{ color: "#a30202" }}>
                   {p.totalP}%
                 </h2>
+                <progress value={p.totalP} className={c.red} max="100"></progress>
+                </React.Fragment>
               )}
               {p.gap > 0 && (
-                <h2 className={c.title} style={{ color: "#008500" }}>
-                  {p.totalP}%
-                </h2>
+                <React.Fragment>
+                  <h2 className={c.title} style={{ color: "#008500" }}>
+                    {p.totalP}%
+                  </h2>
+                  <progress value={p.totalP} className={c.green} max="100"></progress>
+                </React.Fragment>
               )}
-
-              <progress value={p.totalP} max="100"></progress>
             </React.Fragment>
           )}
         </div>

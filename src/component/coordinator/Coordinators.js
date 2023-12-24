@@ -14,7 +14,6 @@ const Coordinators = (p) => {
         <Coordinator />
         <Coordinator />
         <Coordinator />
-        <Coordinator />
       </div>
       <h1>TeamLeaders</h1>
       <div className={c.teamleader}>
