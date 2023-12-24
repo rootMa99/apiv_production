@@ -15,7 +15,6 @@ console.log(coordinators);
       {
         coordinators.map((m, i)=><Coordinator pic={hamzaKhartaoui} name={m.name} key={i} />)
       }
-        
       </div>
     </div>
   );

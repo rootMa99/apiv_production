@@ -8,30 +8,43 @@ export const getCoordinatorsData = (data) => {
       }
       if (coordinator.length === 0) {
         coordinator.push({
-          name: d.coordinator,
-          urlPic: "",
-          shiftleader: [
-            {
-              name: d.shiftLeader,
-              urlPic: "",
-            },
-          ],
-          teamleader: [d.teamLeader],
-          dataByProject: [
-            {
-              name: d.project,
-              data: [
-                {
-                  month: d.month,
-                  week: d.week,
-                  date: d.date,
-                  actualDataExcel: d.actualDataExcel,
-                  dataTargetExcel: d.dataTargetExcel,
-                },
-              ],
-            },
-          ],
-        });
+            name: d.coordinator,
+            urlPic: "",
+            shiftleader: [
+              {
+                name: d.shiftLeader,
+                urlPic: "",
+                teamleader: [
+                  {
+                    name: d.teamLeader,
+                    data: [
+                      {
+                        month: d.month,
+                        week: d.week,
+                        date: d.date,
+                        actualDataExcel: d.actualDataExcel,
+                        dataTargetExcel: d.dataTargetExcel,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+            dataByProject: [
+              {
+                name: d.project,
+                data: [
+                  {
+                    month: d.month,
+                    week: d.week,
+                    date: d.date,
+                    actualDataExcel: d.actualDataExcel,
+                    dataTargetExcel: d.dataTargetExcel,
+                  },
+                ],
+              },
+            ],
+          });
         continue;
       }
       const index = coordinator.findIndex((f) => f.name === d.coordinator);
@@ -43,9 +56,22 @@ export const getCoordinatorsData = (data) => {
             {
               name: d.shiftLeader,
               urlPic: "",
+              teamleader: [
+                {
+                  name: d.teamLeader,
+                  data: [
+                    {
+                      month: d.month,
+                      week: d.week,
+                      date: d.date,
+                      actualDataExcel: d.actualDataExcel,
+                      dataTargetExcel: d.dataTargetExcel,
+                    },
+                  ],
+                },
+              ],
             },
           ],
-          teamleader: [d.teamLeader],
           dataByProject: [
             {
               name: d.project,
@@ -62,21 +88,61 @@ export const getCoordinatorsData = (data) => {
           ],
         });
       } else {
-        if (
-          coordinator[index].shiftleader.findIndex(
-            (f) => f.name === d.shiftLeader
-          ) === -1
-        ) {
-          coordinator[index].shiftleader.push({
+        const indexsl = coordinator[index].shiftleader.findIndex(
+          (f) => f.name === d.shiftLeader
+        );
+        if (indexsl === -1) {
+          coordinator[index].shiftleader.push( {
             name: d.shiftLeader,
             urlPic: "",
+            teamleader: [
+              {
+                name: d.teamLeader,
+                data: [
+                  {
+                    month: d.month,
+                    week: d.week,
+                    date: d.date,
+                    actualDataExcel: d.actualDataExcel,
+                    dataTargetExcel: d.dataTargetExcel,
+                  },
+                ],
+              },
+            ],
           });
-        }
-        if (
-          coordinator[index].teamleader.findIndex((f) => f === d.teamLeader) ===
-          -1
-        ) {
-          coordinator[index].teamleader.push(d.teamLeader);
+        } else {
+            const indextl = coordinator[index].shiftleader[indexsl].teamleader.findIndex(
+              (f) => f.name === d.teamLeader
+            );
+            if (indextl === -1) {
+                coordinator[index].shiftleader[indexsl].teamleader.push({
+                name: d.teamLeader,
+                data: [
+                  {
+                    month: d.month,
+                    week: d.week,
+                    date: d.date,
+                    actualDataExcel: d.actualDataExcel,
+                    dataTargetExcel: d.dataTargetExcel,
+                  },
+                ],
+              });
+            } else {
+                coordinator[index].shiftleader[indexsl].teamleader[indextl].data.push({
+                month: d.month,
+                week: d.week,
+                date: d.date,
+                actualDataExcel: d.actualDataExcel,
+                dataTargetExcel: d.dataTargetExcel,
+              });
+            }
+        //   coordinator[index].shiftleader[indexsl].data.push({
+        //     month: d.month,
+        //     week: d.week,
+        //     date: d.date,
+        //     actualDataExcel: d.actualDataExcel,
+        //     dataTargetExcel: d.dataTargetExcel,
+        //   });
         }
 
         const indexP = coordinator[index].dataByProject.findIndex(
