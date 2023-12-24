@@ -11,7 +11,7 @@ import Projects from "./component/home/Projects";
 import ShiftLeader from "./component/projects/shitLearderPage/ShiftLeader";
 import TeamLeaders from "./component/projects/shitLearderPage/TeamLeaders";
 import Crew from "./component/projects/crews/Crew";
-import Coordinators from "./component/coordinator/Coordinators";
+import CoordinatorList from "./component/coordinator/CoordinatorList";
 
 const getData = async (url) => {
   try {
@@ -59,7 +59,7 @@ function App() {
           <Suspense>
             <Routes>
               <Route index path="/" element={<Navigate replace to="/home" />} />
-              <Route index path="/coordinator" element={<Coordinators />} />
+              <Route index path="/coordinator" element={<CoordinatorList />} />
               <Route exact path="/home" element={<Home />}>
                 <Route path="" element={<Projects />} />
                 <Route path="project" element={<ProjectDetails />}>

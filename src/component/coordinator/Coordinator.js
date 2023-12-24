@@ -34,7 +34,7 @@ const Coordinator = (p) => {
         <div className={styles['full-card-bottom']}>
           <div className={styles['coordinator-infos']}>
             <div className={styles['coordinator-name']}>
-              <span>hamza Khartaoui</span>
+              <span>{p.name!==undefined?p.name : 'hamza Khartaoui'}</span>
             </div>
             <div className={styles['coordinator-features']}>
               <div className={styles['coordinator-features-col']}>
