@@ -3,10 +3,10 @@ import apticlogo from "../../assets/aptiv-logo.svg";
 import { useNavigate } from "react-router-dom";
 const Coordinator = (p) => {
 
-  const Navigate=useNavigate();
+  const navigate=useNavigate();
 
   const clickHandler=e=>{
-
+    navigate(`/coordinator/${p.name}`)
   }
 
   return (

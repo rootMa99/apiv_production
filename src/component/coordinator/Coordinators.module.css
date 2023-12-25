@@ -35,9 +35,9 @@
   border-radius: 17px;
   display: flex;
   flex-wrap: wrap;
-  gap:1rem 3rem;
+  gap:1rem 0.5rem;
   align-items: center;
-  justify-content:space-between;
+  justify-content:space-evenly;
   padding: 1rem ;
   background: #8a0101;
   background: radial-gradient(

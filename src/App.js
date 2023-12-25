@@ -12,6 +12,7 @@ import ShiftLeader from "./component/projects/shitLearderPage/ShiftLeader";
 import TeamLeaders from "./component/projects/shitLearderPage/TeamLeaders";
 import Crew from "./component/projects/crews/Crew";
 import CoordinatorList from "./component/coordinator/CoordinatorList";
+import Coordinators from "./component/coordinator/Coordinators";
 
 const getData = async (url) => {
   try {
@@ -48,30 +49,41 @@ function App() {
     callback();
   }, [callback]);
 
-  
   return (
     <React.Fragment>
       {loading ? (
-        <h1 style={{"color":"white"}}>Loading....</h1>
+        <h1 style={{ color: "white" }}>Loading....</h1>
       ) : (
         <div className="App">
           <NavBar />
           <Suspense>
             <Routes>
               <Route index path="/" element={<Navigate replace to="/home" />} />
-              <Route index path="/coordinator" element={<CoordinatorList />} />
+              <Route exact path="/coordinator">
+                <Route path="" element={<CoordinatorList />} />
+                <Route path=":name" element={<Coordinators />} />
+              </Route>
               <Route exact path="/home" element={<Home />}>
                 <Route path="" element={<Projects />} />
                 <Route path="project" element={<ProjectDetails />}>
                   <Route path=":project" element={<ProjectDetails />} />
                 </Route>
-                <Route path="project/:project/shiftLeader" element={(<ShiftLeader />)}>
+                <Route
+                  path="project/:project/shiftLeader"
+                  element={<ShiftLeader />}
+                >
                   <Route path=":shitLeader" element={<ShiftLeader />} />
                 </Route>
-                <Route path="project/:project/shiftLeader/:shitLeader/teamLeader" element={(<TeamLeaders />)}>
+                <Route
+                  path="project/:project/shiftLeader/:shitLeader/teamLeader"
+                  element={<TeamLeaders />}
+                >
                   <Route path=":teamLeader" element={<TeamLeaders />} />
                 </Route>
-                <Route path="project/:project/shiftLeader/:shitLeader/teamLeader/:teamLeader/crew" element={(<Crew />)}>
+                <Route
+                  path="project/:project/shiftLeader/:shitLeader/teamLeader/:teamLeader/crew"
+                  element={<Crew />}
+                >
                   <Route path=":crew" element={<Crew />} />
                 </Route>
               </Route>

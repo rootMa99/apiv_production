@@ -45,6 +45,7 @@ const AdditionalData = createSlice({
     chartWeek: false,
     chartmonth: true,
     checkBox:false,
+    coordinatoor:[],
   },
   reducers: {
     addDate(s, p) {
@@ -79,6 +80,11 @@ const AdditionalData = createSlice({
     },
     editCheckBox(s,p){
       s.checkBox=p.payload
+    },
+    addCoordinator(s,p){
+      if(s.coordinatoor.length===0){
+        s.coordinatoor.push(...p.payload);
+      }
     }
   },
 });
