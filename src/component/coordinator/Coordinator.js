@@ -1,9 +1,17 @@
 import styles from "./Coordinator.module.css";
 import apticlogo from "../../assets/aptiv-logo.svg";
+import { useNavigate } from "react-router-dom";
 const Coordinator = (p) => {
+
+  const Navigate=useNavigate();
+
+  const clickHandler=e=>{
+
+  }
+
   return (
     
-      <div className={styles['full-card']}>
+      <div className={styles['full-card']} onClick={clickHandler}>
         <div className={styles['full-card-top']}>
           <div className={styles['coordinator-info']}>
             <div className={styles['coordinator-eff']}>

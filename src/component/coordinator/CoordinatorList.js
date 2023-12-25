@@ -9,6 +9,9 @@ const CoordinatorList = (p) => {
 const coordinators=getCoordinatorsData(data);
 console.log(coordinators);
 
+
+
+
   return (
     <div className={c.wrapper}>
       <div className={c.Coordinator}>
