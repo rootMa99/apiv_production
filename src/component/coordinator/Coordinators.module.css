@@ -8,7 +8,9 @@
   min-height: 500px;
   overflow-x: hidden;
 }
-
+.centerd{
+  justify-content: center;
+}
 .wrapper::-webkit-scrollbar {
   width: 4px;
   background-color: #535151;

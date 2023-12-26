@@ -59,7 +59,7 @@ function App() {
           <Suspense>
             <Routes>
               <Route index path="/" element={<Navigate replace to="/home" />} />
-              <Route exact path="/coordinator">
+              <Route exact path="/coordinator" >
                 <Route path="" element={<CoordinatorList />} />
                 <Route path=":name" element={<Coordinators />} />
               </Route>

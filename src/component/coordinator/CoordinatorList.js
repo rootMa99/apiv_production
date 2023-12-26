@@ -21,10 +21,11 @@ console.log(coordinators);
 
 
   return (
-    <div className={c.wrapper}>
+    <div className={`${c.wrapper} ${c.centerd}`}>
+    <h1>cordinators</h1>
       <div className={c.Coordinator}>
       {
-        coordinators.map((m, i)=><Coordinator pic={hamzaKhartaoui} name={m.name} key={i} />)
+        coordinators.map((m, i)=><Coordinator pic={hamzaKhartaoui} name={m.name} key={i} level="coordinator" />)
       }
       </div>
     </div>

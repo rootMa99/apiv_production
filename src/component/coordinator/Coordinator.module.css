@@ -14,6 +14,7 @@
     z-index: 2;
     transition: 200ms ease-in;
     cursor: pointer;
+    overflow: hidden;
   }
   .full-card:hover{
     transform: scale(1.1);
