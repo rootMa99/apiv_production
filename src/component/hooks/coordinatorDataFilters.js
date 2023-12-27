@@ -9,11 +9,11 @@ export const getCoordinatorsData = (data) => {
       if (coordinator.length === 0) {
         coordinator.push({
             name: d.coordinator,
-            urlPic: "",
+            urlPic: d.coordinatorUriPic,
             shiftleader: [
               {
                 name: d.shiftLeader,
-                urlPic: "",
+                urlPic: d.shiftLeaderUriPic,
                 teamleader: [
                   {
                     name: d.teamLeader,
@@ -51,11 +51,11 @@ export const getCoordinatorsData = (data) => {
       if (index === -1) {
         coordinator.push({
           name: d.coordinator,
-          urlPic: "",
+          urlPic: d.coordinatorUriPic,
           shiftleader: [
             {
               name: d.shiftLeader,
-              urlPic: "",
+              urlPic: d.shiftLeaderUriPic,
               teamleader: [
                 {
                   name: d.teamLeader,
@@ -94,7 +94,7 @@ export const getCoordinatorsData = (data) => {
         if (indexsl === -1) {
           coordinator[index].shiftleader.push( {
             name: d.shiftLeader,
-            urlPic: "",
+            urlPic: d.shiftLeaderUriPic,
             teamleader: [
               {
                 name: d.teamLeader,
@@ -176,3 +176,20 @@ export const getCoordinatorsData = (data) => {
 
   return coordinator;
 };
+
+
+export const coordinatorEfficiency=data=>{
+
+  const returnedData={
+    totalProdH:0,
+    totalpaidH:0,
+    totalProdHT:0,
+    totalPaidHT:0
+  };
+
+  data.forEach(element => {
+    element.data.forEach(e=>{})
+  });
+
+
+}
