@@ -71,15 +71,15 @@ const customStyles = {
   }),
 };
 const options = [
-    { value: "daily", label: "daily" },
-    { value: "weekly", label: "weekly" },
-    { value: "monthly", label: "monthly" },
+    { value: "date", label: "yesterday" },
+    { value: "week", label: "last week" },
+    { value: "month", label: "last month" },
   ];
 const CoordinatorList = (p) => {
   const data = useSelector((s) => s.datas);
   //const dispatch = useDispatch();
   const coordinators = getCoordinatorsData(data);
-  const [type, setType]=useState({ value: "daily", label: "daily" })
+  const [type, setType]=useState({ value: "date", label: "yesterday" })
   console.log(coordinators);
 
   // useEffect(() => {

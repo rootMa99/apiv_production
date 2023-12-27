@@ -1,7 +1,7 @@
 import styles from "./Coordinator.module.css";
 import apticlogo from "../../assets/aptiv-logo.svg";
 import { useNavigate } from "react-router-dom";
-import { coordinatorEfficiency } from "../hooks/coordinatorDataFilters";
+import { coordinatorEfficiency, getWeek, getdatacal, gettoday, lastMonth } from "../hooks/coordinatorDataFilters";
 const Coordinator = (p) => {
   const navigate = useNavigate();
 
@@ -9,12 +9,23 @@ const Coordinator = (p) => {
     p.level === "coordinator" && navigate(`/coordinator/${p.name}`);
     p.level === "shiftLeader" && p.setShiftleader(p.name);
   };
-  console.log(p.data, p.name);
+  console.log(p.data, p.name, p.type);
   let efficiency;
+  let effi={act:0, target:0, gap:0};
+  let output=0;
+  let hc=0;
+  let wsd=0;
   if (p.level === "coordinator") {
-    efficiency = coordinatorEfficiency(p.data);
+    efficiency = coordinatorEfficiency(p.data, p.type.value);
+   effi.act=efficiency.totalPaidH!==0?((efficiency.totalProdH)/(efficiency.totalPaidH)*100).toFixed(2):0;
+   effi.target= efficiency.totalPaidHT!==0?((efficiency.totalProdHT/efficiency.totalPaidHT)*100).toFixed(2):0;
+   effi.gap=(effi.act-effi.target).toFixed(2);
+   output=getdatacal(p.data, p.type.value, "output");
+   hc=getdatacal(p.data, p.type.value, "hc");
+   wsd=getdatacal(p.data, p.type.value, "wsd");
   }
-  console.log(efficiency);
+  console.log(efficiency, gettoday(), getWeek(), lastMonth());
+
 
   return (
     <div
@@ -35,7 +46,7 @@ const Coordinator = (p) => {
             className={styles["coordinator-eff"]}
             style={p.level === "coordinator" ? { fontSize: "2rem" } : {}}
           >
-            <span>97%</span>
+            <span>{effi.act}%</span>
           </div>
           <div
             className={styles["eff-title"]}
@@ -77,13 +88,13 @@ const Coordinator = (p) => {
                   className={styles["coordinator-feature-value"]}
                   style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
-                  97%
+                  {effi.act}%
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
                   style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
-                  effici
+                  eff
                 </div>
               </span>
               <span>
@@ -91,7 +102,7 @@ const Coordinator = (p) => {
                   className={styles["coordinator-feature-value"]}
                   style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
-                  +3.6
+                  {effi.gap}%
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
@@ -105,7 +116,7 @@ const Coordinator = (p) => {
                   className={styles["coordinator-feature-value"]}
                   style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
-                  36
+                  {hc.toFixed(0)}
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
@@ -124,7 +135,7 @@ const Coordinator = (p) => {
                   className={styles["coordinator-feature-value"]}
                   style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
-                  99pc
+                  {output.toFixed(2)}pc
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
@@ -138,7 +149,7 @@ const Coordinator = (p) => {
                   className={styles["coordinator-feature-value"]}
                   style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
-                  35min
+                  {wsd.toFixed(2)}min
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
