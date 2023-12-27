@@ -1,6 +1,7 @@
 import styles from "./Coordinator.module.css";
 import apticlogo from "../../assets/aptiv-logo.svg";
 import { useNavigate } from "react-router-dom";
+import { coordinatorEfficiency } from "../hooks/coordinatorDataFilters";
 const Coordinator = (p) => {
   const navigate = useNavigate();
 
@@ -8,27 +9,37 @@ const Coordinator = (p) => {
     p.level === "coordinator" && navigate(`/coordinator/${p.name}`);
     p.level === "shiftLeader" && p.setShiftleader(p.name);
   };
+  console.log(p.data, p.name);
+  let efficiency;
+  if (p.level === "coordinator") {
+    efficiency = coordinatorEfficiency(p.data);
+  }
+  console.log(efficiency);
 
   return (
-    <div className={styles["full-card"]} onClick={clickHandler}>
+    <div
+      className={styles["full-card"]}
+      onClick={clickHandler}
+      style={p.level === "coordinator" ? { width: "20rem" } : {}}
+    >
       <div className={styles["full-card-top"]}>
         <div
           className={styles["coordinator-info"]}
           style={
             p.level === "coordinator"
-              ? { "line-height": "2rem", "font-weight": 500 }
+              ? { lineHeight: "2rem", fontWeight: 500 }
               : {}
           }
         >
           <div
             className={styles["coordinator-eff"]}
-            style={p.level === "coordinator" ? { "font-size": "2rem" } : {}}
+            style={p.level === "coordinator" ? { fontSize: "2rem" } : {}}
           >
             <span>97%</span>
           </div>
           <div
             className={styles["eff-title"]}
-            style={p.level === "coordinator" ? { "font-size": "2rem" } : {}}
+            style={p.level === "coordinator" ? { fontSize: "2rem" } : {}}
           >
             <span>eff</span>
           </div>
@@ -52,29 +63,25 @@ const Coordinator = (p) => {
         <div className={styles["coordinator-infos"]}>
           <div
             className={styles["coordinator-name"]}
-            style={p.level === "coordinator" ? { "font-size": "2rem" } : {}}
+            style={p.level === "coordinator" ? { fontSize: "2rem" } : {}}
           >
             <span>{p.name !== undefined ? p.name : "hamza Khartaoui"}</span>
           </div>
           <div className={styles["coordinator-features"]}>
             <div
               className={styles["coordinator-features-col"]}
-              style={p.level === "coordinator" ? {"padding-bottom":"1rem"} : {}}
+              style={p.level === "coordinator" ? { paddingBottom: "1rem" } : {}}
             >
               <span>
                 <div
                   className={styles["coordinator-feature-value"]}
-                  style={
-                    p.level === "coordinator" ? { "font-size": "1rem" } : {}
-                  }
+                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
                   97%
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
-                  style={
-                    p.level === "coordinator" ? { "font-size": "1rem" } : {}
-                  }
+                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
                   effici
                 </div>
@@ -82,17 +89,13 @@ const Coordinator = (p) => {
               <span>
                 <div
                   className={styles["coordinator-feature-value"]}
-                  style={
-                    p.level === "coordinator" ? { "font-size": "1rem" } : {}
-                  }
+                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
                   +3.6
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
-                  style={
-                    p.level === "coordinator" ? { "font-size": "1rem" } : {}
-                  }
+                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
                   gap
                 </div>
@@ -100,17 +103,13 @@ const Coordinator = (p) => {
               <span>
                 <div
                   className={styles["coordinator-feature-value"]}
-                  style={
-                    p.level === "coordinator" ? { "font-size": "1rem" } : {}
-                  }
+                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
                   36
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
-                  style={
-                    p.level === "coordinator" ? { "font-size": "1rem" } : {}
-                  }
+                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
                   hc
                 </div>
@@ -118,22 +117,18 @@ const Coordinator = (p) => {
             </div>
             <div
               className={styles["coordinator-features-col"]}
-              style={p.level === "coordinator" ? {"padding-bottom":"1rem"} : {}}
+              style={p.level === "coordinator" ? { paddingBottom: "1rem" } : {}}
             >
               <span>
                 <div
                   className={styles["coordinator-feature-value"]}
-                  style={
-                    p.level === "coordinator" ? { "font-size": "1rem" } : {}
-                  }
+                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
                   99pc
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
-                  style={
-                    p.level === "coordinator" ? { "font-size": "1rem" } : {}
-                  }
+                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
                   output
                 </div>
@@ -141,17 +136,13 @@ const Coordinator = (p) => {
               <span>
                 <div
                   className={styles["coordinator-feature-value"]}
-                  style={
-                    p.level === "coordinator" ? { "font-size": "1rem" } : {}
-                  }
+                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
                   35min
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
-                  style={
-                    p.level === "coordinator" ? { "font-size": "1rem" } : {}
-                  }
+                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
                   wsd
                 </div>
@@ -159,17 +150,13 @@ const Coordinator = (p) => {
               <span>
                 <div
                   className={styles["coordinator-feature-value"]}
-                  style={
-                    p.level === "coordinator" ? { "font-size": "1rem" } : {}
-                  }
+                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
-                  68sh/gr
+                  68s/gr
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
-                  style={
-                    p.level === "coordinator" ? { "font-size": "1rem" } : {}
-                  }
+                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
                   scrap
                 </div>

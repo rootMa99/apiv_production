@@ -177,19 +177,38 @@ export const getCoordinatorsData = (data) => {
   return coordinator;
 };
 
+const gettoday = () => {
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(today.getDate() - 1);
+  const year = yesterday.getFullYear();
+  const month = String(yesterday.getMonth() + 1).padStart(2, "0");
+  const day = String(yesterday.getDate()).padStart(2, "0");
 
-export const coordinatorEfficiency=data=>{
+  return `${year}-${month}-${day}`;
+};
+
+
+export const coordinatorEfficiency=(data)=>{
 
   const returnedData={
     totalProdH:0,
-    totalpaidH:0,
+    totalPaidH:0,
     totalProdHT:0,
     totalPaidHT:0
   };
-
+  const filtredData=[];
   data.forEach(element => {
-    element.data.forEach(e=>{})
+    filtredData.push(...element.data.filter(f=>f.month==="Jan"));
   });
+  console.log(filtredData)
+filtredData.forEach(e=>{
+  returnedData.totalPaidH+=e.actualDataExcel.paidH;
+  returnedData.totalPaidHT+=e.dataTargetExcel.payedTarget;
+  returnedData.totalProdH+=e.actualDataExcel.prodH;
+  returnedData.totalProdHT+=e.dataTargetExcel.prodTarget
+})
 
 
+return returnedData
 }
