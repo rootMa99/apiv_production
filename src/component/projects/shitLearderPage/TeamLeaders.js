@@ -188,22 +188,14 @@ const TeamLeaders = (p) => {
               <div className={c.maxvalues}>
                 <h5>best month :</h5>
                 <div className={c.bestData}>
-                  <h6>month:</h6>
                   <span> {maxObject.name} </span>
+                  <span> {maxObject.total}%</span>
                 </div>
-                <div className={c.bestData}>
-                  <h6>value:</h6>
-                  <span> {maxObject.total} %</span>
-                </div>
-              </div>
-              <div className={c.maxvalues}>
                 <h5>best day :</h5>
                 <div className={c.bestData}>
-                  <h6>date:</h6>
-                  <span> {maxObjectDay.name} </span>
-                </div>
-                <div className={c.bestData}>
-                  <h6>value:</h6>
+                  <span>
+                    {maxObjectDay.name}
+                  </span>
                   <span> {maxObjectDay.total} %</span>
                 </div>
               </div>

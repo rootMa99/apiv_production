@@ -37,6 +37,14 @@ const ProjectEfficiencySup = (p) => {
       <OuputFilter
         data={filtredData}
         date={date}
+        titleH="WSd"
+        title="wsd"
+        actual="wsd"
+        target=""
+      />
+      <OuputFilter
+        data={filtredData}
+        date={date}
         titleH="scrap"
         title="scrap"
         actual="scrap"
@@ -58,6 +66,7 @@ const ProjectEfficiencySup = (p) => {
         actual="ot"
         target=""
       />
+      
       <OuputFilter
         data={filtredData}
         date={date}

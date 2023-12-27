@@ -73,6 +73,7 @@ const options = [
   { value: "efficiency", label: "efficiency" },
   { value: "output/outputTarget", label: "output" },
   { value: "hc/hcTarget", label: "head count" },
+  { value: "wsd/wsd", label: "wsd" },
   { value: "ab/absTarget", label: "ab" },
   { value: "ot/ot", label: "over time" },
   { value: "tlo/tlo", label: "tlo" },

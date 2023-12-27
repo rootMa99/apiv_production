@@ -93,7 +93,7 @@ const selecyedDay= p.day.split("-");
       onMouseLeave={mouseLeave}
       onClick={clickHandler}
     >
-      <img src={aptivbg} alt="some backGround" />
+      <img src={p.pic===null? aptivbg:p.pic} alt="some backGround" />
       {!mouseIn&&<h2 className={c.toptitle}>{p.title} </h2>}
 
       <div className={classes}>
