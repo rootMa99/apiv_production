@@ -242,7 +242,7 @@ export const lastMonth = () => {
   return MONTH[lastMonthNumber];
 };
 
-export const coordinatorEfficiency = (data, type) => {
+export const coordinatorEfficiency = (data, type, level) => {
   const returnedData = {
     totalProdH: 0,
     totalPaidH: 0,
@@ -252,9 +252,13 @@ export const coordinatorEfficiency = (data, type) => {
   const sher =
     type === "week" ? getWeek() : type === "month" ? lastMonth() : gettoday();
   const filtredData = [];
-  data.forEach((element) => {
-    filtredData.push(...element.data.filter((f) => f[type] === sher));
-  });
+  if (level === "teamleader") {
+    filtredData.push(...data);
+  } else {
+    data.forEach((element) => {
+      filtredData.push(...element.data.filter((f) => f[type] === sher));
+    });
+  }
   console.log(filtredData);
   filtredData.forEach((e) => {
     returnedData.totalPaidH += e.actualDataExcel.paidH;
@@ -265,14 +269,18 @@ export const coordinatorEfficiency = (data, type) => {
 
   return returnedData;
 };
- 
-export const getdatacal = (data, type, act) => {
+
+export const getdatacal = (data, type, act, level) => {
   const sher =
     type === "week" ? getWeek() : type === "month" ? lastMonth() : gettoday();
   const filtredData = [];
-  data.forEach((element) => {
-    filtredData.push(...element.data.filter((f) => f[type] === sher));
-  });
+  if (level === "teamleader") {
+    filtredData.push(...data);
+  } else {
+    data.forEach((element) => {
+      filtredData.push(...element.data.filter((f) => f[type] === sher));
+    });
+  }
   const datare = {
     data: 0,
     workingDay: 0,
@@ -282,5 +290,29 @@ export const getdatacal = (data, type, act) => {
     e.actualDataExcel[act] !== 0 && datare.workingDay++;
   });
 
-  return datare.workingDay === 0 ? 0 : (act==="hc"? datare.data:(datare.data / datare.workingDay));
+  return datare.workingDay === 0
+    ? 0
+    : act === "hc"
+    ? datare.data
+    : datare.data / datare.workingDay;
+};
+
+export const getScrap = (data, type, level) => {
+  const sher =
+    type === "week" ? getWeek() : type === "month" ? lastMonth() : gettoday();
+  const filtredData = [];
+  if (level === "teamleader") {
+    filtredData.push(...data);
+  } else {
+    data.forEach((element) => {
+      filtredData.push(...element.data.filter((f) => f[type] === sher));
+    });
+  }
+  let rdata = 0;
+
+  filtredData.forEach((e) => {
+    rdata += e.dataTargetExcel.scrap;
+  });
+
+  return rdata;
 };

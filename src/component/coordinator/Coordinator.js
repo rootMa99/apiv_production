@@ -1,7 +1,14 @@
 import styles from "./Coordinator.module.css";
 import apticlogo from "../../assets/aptiv-logo.svg";
 import { useNavigate } from "react-router-dom";
-import { coordinatorEfficiency, getWeek, getdatacal, gettoday, lastMonth } from "../hooks/coordinatorDataFilters";
+import {
+  coordinatorEfficiency,
+  getScrap,
+  getWeek,
+  getdatacal,
+  gettoday,
+  lastMonth,
+} from "../hooks/coordinatorDataFilters";
 const Coordinator = (p) => {
   const navigate = useNavigate();
 
@@ -11,21 +18,28 @@ const Coordinator = (p) => {
   };
   console.log(p.data, p.name, p.type);
   let efficiency;
-  let effi={act:0, target:0, gap:0};
-  let output=0;
-  let hc=0;
-  let wsd=0;
-  if (p.level === "coordinator") {
-    efficiency = coordinatorEfficiency(p.data, p.type.value);
-   effi.act=efficiency.totalPaidH!==0?((efficiency.totalProdH)/(efficiency.totalPaidH)*100).toFixed(2):0;
-   effi.target= efficiency.totalPaidHT!==0?((efficiency.totalProdHT/efficiency.totalPaidHT)*100).toFixed(2):0;
-   effi.gap=(effi.act-effi.target).toFixed(2);
-   output=getdatacal(p.data, p.type.value, "output");
-   hc=getdatacal(p.data, p.type.value, "hc");
-   wsd=getdatacal(p.data, p.type.value, "wsd");
-  }
-  console.log(efficiency, gettoday(), getWeek(), lastMonth());
+  let effi = { act: 0, target: 0, gap: 0 };
+  let output = 0;
+  let hc = 0;
+  let wsd = 0;
+  let scrap = 0;
 
+  efficiency = coordinatorEfficiency(p.data, p.type.value, p.level);
+  effi.act =
+    efficiency.totalPaidH !== 0
+      ? ((efficiency.totalProdH / efficiency.totalPaidH) * 100).toFixed(2)
+      : 0;
+  effi.target =
+    efficiency.totalPaidHT !== 0
+      ? ((efficiency.totalProdHT / efficiency.totalPaidHT) * 100).toFixed(2)
+      : 0;
+  effi.gap = (effi.act - effi.target).toFixed(2);
+  output = getdatacal(p.data, p.type.value, "output", p.level);
+  hc = getdatacal(p.data, p.type.value, "hc", p.level);
+  wsd = getdatacal(p.data, p.type.value, "wsd", p.level);
+  scrap = getScrap(p.data, p.type.value, p.level).toFixed(2);
+
+  console.log(efficiency, gettoday(), getWeek(), lastMonth());
 
   return (
     <div
@@ -66,7 +80,7 @@ const Coordinator = (p) => {
         >
           <img src={p.pic} alt="coordinator" draggable="false" />
           <div className={styles["poste-title"]}>
-            <span>Coordinator</span>
+            <span>{p.level}</span>
           </div>
         </div>
       </div>
@@ -163,7 +177,7 @@ const Coordinator = (p) => {
                   className={styles["coordinator-feature-value"]}
                   style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
                 >
-                  68s/gr
+                  {scrap}s/gr
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
