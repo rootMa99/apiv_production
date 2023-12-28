@@ -1,6 +1,5 @@
 import Coordinator from "./Coordinator";
 import c from "./Coordinators.module.css";
-import hamzaKhartaoui from "../../assets/hamzaKhartaoui.png";
 //import profileP from "../../assets/unknownProfile.jpg";
 import avatar from "../../assets/avatarunkown.png";
 import { useParams } from "react-router-dom";

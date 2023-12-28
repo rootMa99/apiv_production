@@ -78,7 +78,7 @@ const Coordinator = (p) => {
             p.level === "coordinator" ? { width: "250px", height: "250px" } : {}
           }
         >
-          <img src={p.pic} alt="coordinator" draggable="false" />
+          {p.pic!==null&&<img src={p.pic} alt={p.level} draggable="false" />}
           <div className={styles["poste-title"]}>
             <span>{p.level}</span>
           </div>

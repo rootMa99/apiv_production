@@ -253,7 +253,7 @@ export const coordinatorEfficiency = (data, type, level) => {
     type === "week" ? getWeek() : type === "month" ? lastMonth() : gettoday();
   const filtredData = [];
   if (level === "teamleader") {
-    filtredData.push(...data);
+    filtredData.push(...data.filter((f) => f[type] === sher));
   } else {
     data.forEach((element) => {
       filtredData.push(...element.data.filter((f) => f[type] === sher));
@@ -275,7 +275,7 @@ export const getdatacal = (data, type, act, level) => {
     type === "week" ? getWeek() : type === "month" ? lastMonth() : gettoday();
   const filtredData = [];
   if (level === "teamleader") {
-    filtredData.push(...data);
+    filtredData.push(...data.filter((f) => f[type] === sher));
   } else {
     data.forEach((element) => {
       filtredData.push(...element.data.filter((f) => f[type] === sher));
@@ -302,7 +302,7 @@ export const getScrap = (data, type, level) => {
     type === "week" ? getWeek() : type === "month" ? lastMonth() : gettoday();
   const filtredData = [];
   if (level === "teamleader") {
-    filtredData.push(...data);
+    filtredData.push(...data.filter((f) => f[type] === sher));
   } else {
     data.forEach((element) => {
       filtredData.push(...element.data.filter((f) => f[type] === sher));
