@@ -100,7 +100,7 @@ const EfficiencyData = (p) => {
           <div className={c.gap}>
             <h5 className={c.title}>gap:</h5>
             <span className={classes}>
-              <div className={tclasses}></div>{" "}
+              <div className={tclasses}></div>
               {p.title === "hc/day" ? Math.abs(p.gap) : p.gap}
             </span>
           </div>

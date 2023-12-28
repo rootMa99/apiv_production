@@ -152,7 +152,7 @@
 @keyframes rsin {
   0% {
     opacity: 0;
-    transform: translateY(3rem);
+    transform: translateY(2rem);
     display: none;
   }
   70% {

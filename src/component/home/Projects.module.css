@@ -2,19 +2,19 @@
   padding: 1rem;
   padding-top: 0;
   width: 100%;
-  animation: rsin 3s ease-out forwards;
+  animation: rsin 1s ease-out forwards;
   margin-bottom: 15rem;
 }
  
 @keyframes rsin {
   0% {
     opacity: 0;
-    transform: translateY(10rem);
+    transform: translateY(3rem);
     display: none;
   }
   33% {
     opacity: 0.3;
-    transform: translateY(5rem);
+    transform: translateY(1rem);
     display: none;
   }
   66% {
@@ -67,6 +67,6 @@
   z-index: 11;
   padding-top: 1rem;
   margin: 0;
-  animation: rsin 3s ease-out forwards;
+  animation: rsin 1s ease-out forwards;
 
 }
