@@ -13,6 +13,7 @@ import TeamLeaders from "./component/projects/shitLearderPage/TeamLeaders";
 import Crew from "./component/projects/crews/Crew";
 import CoordinatorList from "./component/coordinator/CoordinatorList";
 import Coordinators from "./component/coordinator/Coordinators";
+import Loading from "./component/ui/Loading";
 
 const getData = async (url) => {
   try {
@@ -52,14 +53,17 @@ function App() {
   return (
     <React.Fragment>
       {loading ? (
-        <h1 style={{ color: "white" }}>Loading....</h1>
+        <div className="wrapper">
+          <Loading />
+        </div>
       ) : (
         <div className="App">
           <NavBar />
           <Suspense>
             <Routes>
               <Route index path="/" element={<Navigate replace to="/home" />} />
-              <Route exact path="/coordinator" >
+              <Route exact path="/shiftLeader" element={<Loading />} />
+              <Route exact path="/coordinator">
                 <Route path="" element={<CoordinatorList />} />
                 <Route path=":name" element={<Coordinators />} />
               </Route>

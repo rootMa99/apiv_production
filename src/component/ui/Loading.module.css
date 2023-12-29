@@ -1,0 +1,29 @@
+
+
+.imageHolder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.imageHolder img{
+    width: 50%;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+  animation-name: scale-up-down; 
+  animation-duration: 2s;        
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes scale-up-down {
+    0%, 100% {
+      transform: scale(1); 
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
