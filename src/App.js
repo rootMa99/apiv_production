@@ -16,6 +16,7 @@ import Coordinators from "./component/coordinator/Coordinators";
 import Loading from "./component/ui/Loading";
 
 const getData = async (url) => {
+  console.log("runing.....")
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -35,6 +36,7 @@ const getData = async (url) => {
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [dataCome, setDataCome]= useState(false)
   const dispatch = useDispatch();
 
   const callback = useCallback(async () => {
@@ -43,7 +45,10 @@ function App() {
 
     //dispatch(dataAction.addData(DEMO_DATA));
     dispatch(dataAction.addData(data));
-    setLoading(false);
+    setDataCome(true);
+    setTimeout(()=>{
+      setLoading(false);
+    }, 500)
   }, [dispatch]);
 
   useEffect(() => {
@@ -54,7 +59,7 @@ function App() {
     <React.Fragment>
       {loading ? (
         <div className="wrapper">
-          <Loading />
+          <Loading dataCome={dataCome} />
         </div>
       ) : (
         <div className="App">

@@ -8,22 +8,45 @@
   align-items: center;
   overflow: hidden;
 }
-.imageHolder img{
+.img{
     width: 50%;
   height: 100%;
   -o-object-fit: contain;
   object-fit: contain;
-  animation-name: scale-up-down; 
-  animation-duration: 2s;        
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
 }
 
+.in{
+    animation-name: scale-up-down; 
+    animation-duration: 4s;        
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
 @keyframes scale-up-down {
     0%, 100% {
       transform: scale(1); 
     }
     50% {
       transform: scale(1.2);
+    }
+  }
+
+  .out{
+    animation-name: scale-out; 
+  animation-duration: 1s;        
+  animation-iteration-count: forwards;
+  animation-timing-function: ease-out;
+  }
+
+  @keyframes scale-out {
+    0% {
+      transform: scale(1); 
+    }
+    50% {
+        transform: scale(2);
+        opacity: 0.5;
+      }
+    100% {
+      transform: scale(5);
+      opacity: 0;
     }
   }
