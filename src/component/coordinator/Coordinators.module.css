@@ -8,7 +8,7 @@
   min-height: 500px;
   overflow-x: hidden;
 }
-.centerd{
+.centerd {
   justify-content: center;
 }
 .wrapper::-webkit-scrollbar {
@@ -37,16 +37,12 @@
   border-radius: 17px;
   display: flex;
   flex-wrap: wrap;
-  gap:1rem 1rem;
+  gap: 1rem 1rem;
   align-items: center;
-  justify-content:space-evenly;
-  padding: 1rem ;
+  justify-content: space-evenly;
+  padding: 1rem;
   background: #8a0101;
-  background: radial-gradient(
-    circle,
-    #8a01016e 0%,
-    rgba(0, 0, 0, 1) 100%
-  );
+  background: radial-gradient(circle, #8a01016e 0%, rgba(0, 0, 0, 1) 100%);
 }
 .teamleader {
   margin-bottom: 3rem;
@@ -78,14 +74,14 @@ h1 {
   text-align: left;
 }
 
-.selectq{
+.selectq {
   width: 20%;
   display: flex;
   flex-direction: column;
   position: fixed;
-  top:4rem;
+  top: 4rem;
   right: 1rem;
-  z-index:11;
+  z-index: 11;
 }
 .selectq label {
   width: 100%;
@@ -97,4 +93,33 @@ h1 {
   text-transform: uppercase;
   margin-bottom: 1rem;
   text-align: left;
+}
+
+
+input[type="date"].titles::-webkit-calendar-picker-indicator {
+  background-color: #f4dfc8;
+  cursor: pointer;
+  padding: 2px;
+  margin-right: 1rem;
+  border-radius: 4px;
+}
+
+input[type="date"].titles {
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: x-large;
+  box-sizing: border-box;
+  background-color: rgb(36, 35, 35);
+  height: 3rem;
+  color: #f3f3f3;
+  border: 2px solid #f4dfc8;
+  border-radius: 7px;
+  text-align: center;
+}
+input[type="date"].titles:hover,
+input[type="date"].titles:focus {
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgba(100, 98, 98, 0.37);
+  cursor: pointer;
+  outline: none;
 }

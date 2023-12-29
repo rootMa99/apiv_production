@@ -15,6 +15,7 @@ const CoordinatorChart = (p) => {
           <ShiftLeadersEfficiencyASide
             data={p.dataCoordinator}
             project={name}
+            coordinator="cordinator"
           />
         </div>
       </div>

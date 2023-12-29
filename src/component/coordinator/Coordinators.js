@@ -85,7 +85,7 @@ const Coordinators = (p) => {
 
   const [teamLeader, setTeamLeader] = useState({ name: "", show: false });
   const [type, setType] = useState({ value: "date", label: "yesterday" });
-  const [showMore, setShowMore] = useState(true);
+  const [showMore, setShowMore] = useState(false);
   const { name } = useParams();
   const data = useSelector((s) => s.datas);
   const scrollToRef = useRef();
