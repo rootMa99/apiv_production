@@ -13,6 +13,10 @@ const Coordinator = (p) => {
   const navigate = useNavigate();
 
   const clickHandler = (e) => {
+    if (p.flag) {
+      p.clickhHandler();
+      return;
+    }
     p.level === "coordinator" && navigate(`/coordinator/${p.name}`);
     p.level === "shiftLeader" && p.setShiftleader(p.name);
   };
@@ -78,7 +82,9 @@ const Coordinator = (p) => {
             p.level === "coordinator" ? { width: "250px", height: "250px" } : {}
           }
         >
-          {p.pic!==null&&<img src={p.pic} alt={p.level} draggable="false" />}
+          {p.pic !== null && (
+            <img src={p.pic} alt={p.level} draggable="false" />
+          )}
           <div className={styles["poste-title"]}>
             <span>{p.level}</span>
           </div>

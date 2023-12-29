@@ -38,6 +38,12 @@ const ShiftLeaderEfficiency = (p) => {
   }, [chartDay, chartWeek, chartmonth])
 
   const onClickHandler = (e) => {
+    if (p.coordinator){
+      navigate(
+        `/home/project/${p.project}`
+      );
+      return;
+    }
     if (p.crew === "crew") {
       navigate(
         `/home/project/${p.project}/shiftLeader/${p.shiftLeader}/teamleader/${p.teamLeader}/crew/${p.title}`

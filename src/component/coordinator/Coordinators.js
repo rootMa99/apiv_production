@@ -3,10 +3,12 @@ import c from "./Coordinators.module.css";
 //import profileP from "../../assets/unknownProfile.jpg";
 import avatar from "../../assets/avatarunkown.png";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useRef, useState } from "react";
 import { getCoordinatorsData } from "../hooks/coordinatorDataFilters";
 import Select from "react-select";
+import CoordinatorChart from "./CoordinatorCharts";
+import { additionalDataAction } from "../../store/AdditionalData";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -78,8 +80,12 @@ const options = [
 ];
 
 const Coordinators = (p) => {
+  const { date } = useSelector((s) => s.additionalData);
+  const dispatch = useDispatch();
+
   const [teamLeader, setTeamLeader] = useState({ name: "", show: false });
   const [type, setType] = useState({ value: "date", label: "yesterday" });
+  const [showMore, setShowMore] = useState(true);
   const { name } = useParams();
   const data = useSelector((s) => s.datas);
   const scrollToRef = useRef();
@@ -98,16 +104,37 @@ const Coordinators = (p) => {
   )[0];
   console.log(teamleaders);
 
+  const clickHadler=e=>{
+    setShowMore(!showMore);
+  }
+
   return (
     <div className={c.wrapper}>
       <div className={c.selectq}>
-        <label htmlFor="multiSelect">Select</label>
-        <Select
-          options={options}
-          onChange={(e) => setType(e)}
-          styles={customStyles}
-          defaultValue={type}
-        />
+        {showMore ? (
+          <React.Fragment>
+          <input
+            className={c.titles}
+            type="date"
+            value={date}
+            onChange={(e) =>
+              dispatch(additionalDataAction.addDate(e.target.value))
+            }
+          />
+        </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <label htmlFor="multiSelect">Select</label>
+            <Select
+              options={options}
+              onChange={(e) => setType(e)}
+              styles={customStyles}
+              defaultValue={type}
+            />
+          </React.Fragment>
+        )}
+
+        
       </div>
       <div className={c.Coordinator}>
         <Coordinator
@@ -116,44 +143,53 @@ const Coordinators = (p) => {
           level="coordinator"
           data={dataCoordinator.dataByProject}
           type={type}
+          flag={true}
+          clickhHandler={clickHadler}
         />
       </div>
-      <h1>shiftLeaders</h1>
-      <div
-        className={c.shiftLeader}
-        style={!teamLeader.show ? { marginBottom: "1rem" } : {}}
-      >
-        {dataCoordinator.shiftleader.map(
-          (m, i) =>
-            m.name !== null && (
-              <Coordinator
-                pic={m.urlPic}
-                name={m.name}
-                level="shiftLeader"
-                setShiftleader={setShiftleader}
-                data={m.teamleader}
-                key={i}
-                type={type}
-              />
-            )
-        )}
-      </div>
-      {teamLeader.show && (
-        <React.Fragment>
-          <h1 ref={scrollToRef}>{teamLeader.name} Team's Leaders </h1>
 
-          <div className={c.teamleader}>
-            {teamleaders.teamleader.map((m, i) => (
-              <Coordinator
-                pic={avatar}
-                name={m.name}
-                data={m.data}
-                key={i}
-                type={type}
-                level="teamleader"
-              />
-            ))}
+      {showMore ? (
+        <CoordinatorChart dataCoordinator={dataCoordinator.dataByProject} />
+      ) : (
+        <React.Fragment>
+          <h1>shiftLeaders</h1>
+          <div
+            className={c.shiftLeader}
+            style={!teamLeader.show ? { marginBottom: "1rem" } : {}}
+          >
+            {dataCoordinator.shiftleader.map(
+              (m, i) =>
+                m.name !== null && (
+                  <Coordinator
+                    pic={m.urlPic}
+                    name={m.name}
+                    level="shiftLeader"
+                    setShiftleader={setShiftleader}
+                    data={m.teamleader}
+                    key={i}
+                    type={type}
+                  />
+                )
+            )}
           </div>
+          {teamLeader.show && (
+            <React.Fragment>
+              <h1 ref={scrollToRef}>{teamLeader.name} Team's Leaders </h1>
+
+              <div className={c.teamleader}>
+                {teamleaders.teamleader.map((m, i) => (
+                  <Coordinator
+                    pic={avatar}
+                    name={m.name}
+                    data={m.data}
+                    key={i}
+                    type={type}
+                    level="teamleader"
+                  />
+                ))}
+              </div>
+            </React.Fragment>
+          )}
         </React.Fragment>
       )}
     </div>

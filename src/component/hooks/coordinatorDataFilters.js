@@ -292,7 +292,7 @@ export const getdatacal = (data, type, act, level) => {
 
   return datare.workingDay === 0
     ? 0
-    : act === "hc"
+    : type === "date"
     ? datare.data
     : datare.data / datare.workingDay;
 };

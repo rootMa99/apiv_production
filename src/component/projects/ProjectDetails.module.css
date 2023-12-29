@@ -186,3 +186,7 @@ h6.heading:hover {
   background-color: rgba(44, 42, 42, 0.37);
   transform: scale(1.05);
 }
+.asideall{
+  height: 90%;
+  top: 4.5rem;
+}
