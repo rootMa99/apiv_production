@@ -20,7 +20,7 @@ const CoordinatorChart = (p) => {
         </div>
       </div>
 
-      <div className={c.chartContainer}>
+      <div className={c.chartContainer} style={{"marginTop":"2rem"}}>
         {p.dataCoordinator.map((m, i) => (
           <ShiftLeaderEfficiency
             title={m.name}

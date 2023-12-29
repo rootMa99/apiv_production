@@ -1,11 +1,12 @@
 import c from "./Coordinators.module.css";
 //import hamzaKhartaoui from "../../assets/hamzaKhartaoui.png";
 import Coordinator from "./Coordinator";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCoordinatorsData } from "../hooks/coordinatorDataFilters";
 import {  useState } from "react";
 //import { additionalDataAction } from "../../store/AdditionalData";
 import Select from "react-select";
+import { additionalDataAction } from "../../store/AdditionalData";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -79,7 +80,9 @@ const CoordinatorList = (p) => {
   const data = useSelector((s) => s.datas);
   //const dispatch = useDispatch();
   const coordinators = getCoordinatorsData(data);
-  const [type, setType]=useState({ value: "date", label: "yesterday" })
+  const [type, setType]=useState({ value: "date", label: "yesterday" });
+  const dispatch=useDispatch();
+  dispatch(additionalDataAction.editCheckBox(false))
   console.log(coordinators);
 
   // useEffect(() => {

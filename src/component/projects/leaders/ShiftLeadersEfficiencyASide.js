@@ -84,7 +84,7 @@ const ShiftLeadersEfficiencyASide = (p) => {
       <h3 className={c.title}>
         {p.data === undefined
           ? "shiftLeaders efficiency"
-          : (p.crew==="crew" ? "crews efficiency" : "teamleaders efficiency")}
+          : (p.crew==="crew" ? "crews efficiency" : (p.coordinator==="cordinator"? "projects efficiency":"teamleaders efficiency"))}
       </h3>
       {totalEfficiency.map((m, i) => (
         <div className={c.content} key={i} onClick={() => clickHandlerLink(m.name)}>
