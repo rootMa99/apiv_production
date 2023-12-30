@@ -90,8 +90,8 @@ const Coordinators = (p) => {
   const data = useSelector((s) => s.datas);
   const scrollToRef = useRef();
   const coordinatoor = getCoordinatorsData(data);
-  console.log(coordinatoor);
-  const dataCoordinator = coordinatoor.filter((f) => f.name === name)[0];
+  console.log(coordinatoor, name);
+  const dataCoordinator = coordinatoor.filter((f) => f.name.toLowerCase() === name.toLowerCase())[0];
   console.log(dataCoordinator);
   const setShiftleader = (name) => {
     setTeamLeader({ name: name, show: true });

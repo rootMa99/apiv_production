@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 .img{
-    width: 50%;
+    width: 30%;
   height: 100%;
   -o-object-fit: contain;
   object-fit: contain;
@@ -41,10 +41,6 @@
     0% {
       transform: scale(1); 
     }
-    50% {
-        transform: scale(2);
-        opacity: 0.5;
-      }
     100% {
       transform: scale(5);
       opacity: 0;
