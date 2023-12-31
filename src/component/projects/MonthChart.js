@@ -147,9 +147,6 @@ const MonthChart = (p) => {
     },
   };
 
-  const pushit = (dataArray, data) => {
-    dataArray.push(data);
-  };
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -180,7 +177,7 @@ const MonthChart = (p) => {
             : minBarValue !== 0
             ? minBarValue - 10
             : minBarValue,
-        suggestedMax: maxBarValue + 10,
+        suggestedMax: maxBarValue + 20,
       },
     },
     plugins: {
@@ -198,39 +195,43 @@ const MonthChart = (p) => {
       onComplete: (animation) => {
         const { chart } = animation;
         const ctx = chart.ctx;
-
-        const yposss = [];
         chart.data.datasets.forEach((dataset, index) => {
           const meta = chart.getDatasetMeta(index);
           meta.data.forEach((element, index) => {
             const data =
-              p.type !== "output" && p.type !== "hc" && p.type !== "ab" && p.type !== "scrap"&&p.type !== "wsd" 
+              p.type !== "output" &&
+              p.type !== "hc" &&
+              p.type !== "ab" &&
+              p.type !== "scrap" &&
+              p.type !== "wsd"
                 ? `${dataset.data[index]} %`
                 : dataset.data[index];
             let xPos, yPos;
             if (dataset.type === "bar") {
               xPos = element.x;
-              // yPos =
-              //    (Math.abs(element.height-yposss[index])>=5 && Math.abs(+element.$context.raw-yposss[index])<=10)
-              //     ? element.y
-              //     : element.y + element.height / 2;
               yPos = element.y + element.height / 2;
-              console.log(yposss[index], +element.$context.raw);
-              // Math.abs(data - minBarValue) <= 15
-              //   ? element.y + 10
-              //   : element.y + 30;
-            } else if (dataset.type === "line" && p.title !== "daily") {
+            } else if (dataset.type === "line") {
               xPos = element.x;
-              yPos = element.y - 5;
-              pushit(yposss, +element.$context.raw);
+              yPos = element.y;
             }
 
             ctx.save();
             ctx.textAlign = "center";
             ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
             ctx.font = "12px Arial";
+            ctx.translate(xPos, yPos);
+              ctx.rotate(-Math.PI / 2);
+            if (dataset.type === "line") {
+            ctx.font = "15px Arial";
 
-            ctx.fillText(data, xPos, yPos);
+              ctx.translate(xPos, yPos);
+              ctx.rotate(-Math.PI / 2);
+            ctx.fillText(data, 40, 5);
+
+            } else{
+
+              ctx.fillText(data, xPos, yPos);
+            }          
 
             ctx.restore();
           });
