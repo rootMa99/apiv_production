@@ -79,7 +79,7 @@ h1 {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 4rem;
+  top: 5rem;
   right: 1rem;
   z-index: 11;
 }
@@ -95,7 +95,6 @@ h1 {
   text-align: left;
 }
 
-
 input[type="date"].titles::-webkit-calendar-picker-indicator {
   background-color: #f4dfc8;
   cursor: pointer;
@@ -105,11 +104,10 @@ input[type="date"].titles::-webkit-calendar-picker-indicator {
 }
 
 input[type="date"].titles {
-  margin-top: 1rem;
   font-weight: bold;
   font-size: x-large;
   box-sizing: border-box;
-  background-color: rgb(36, 35, 35);
+  background-color: rgba(24, 13, 13, 1);
   height: 3rem;
   color: #f3f3f3;
   border: 2px solid #f4dfc8;
@@ -122,4 +120,88 @@ input[type="date"].titles:focus {
   background-color: rgba(100, 98, 98, 0.37);
   cursor: pointer;
   outline: none;
+}
+
+.notification {
+  background-color: #f84018;
+  padding-inline: 1rem;
+  position: absolute;
+  top: 4rem;
+  z-index: 11;
+  border-radius: 30px;
+  overflow: hidden;
+  animation: rotate 2s linear forwards, scale 10s ease-in-out forwards,
+    translate 2s ease-in-out forwards;
+}
+.notification {
+  animation-delay: 0s, 2s, 12s;
+}
+
+.notification p {
+  color: #141312;
+  font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bolder;
+  white-space: nowrap;
+  animation: fade 12s ease-in forwards;
+}
+/* .notification p{
+  animation-delay: 0s, 16s;
+} */
+
+@keyframes rotate {
+  0% {
+    transform: translateY(-10rem);
+    width: 1rem;
+    border-radius: 50%;
+  }
+  100% {
+    transform: translateY(0);
+    width: 1rem;
+    border-radius: 50%;
+  }
+}
+@keyframes fade {
+  0% {
+    display: none;
+  }
+  10%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+}
+
+@keyframes scale {
+  0%,
+  100% {
+    width: 1rem;
+    border-radius: 30px;
+  }
+  30% {
+    width: 55rem;
+    border-radius: 30px;
+  }
+  80% {
+    border-radius: 30px;
+    width: 55rem;
+  }
+}
+
+@keyframes translate {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10rem);
+  }
 }

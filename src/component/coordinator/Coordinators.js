@@ -91,7 +91,9 @@ const Coordinators = (p) => {
   const scrollToRef = useRef();
   const coordinatoor = getCoordinatorsData(data);
   console.log(coordinatoor, name);
-  const dataCoordinator = coordinatoor.filter((f) => f.name.toLowerCase() === name.toLowerCase())[0];
+  const dataCoordinator = coordinatoor.filter(
+    (f) => f.name.toLowerCase() === name.toLowerCase()
+  )[0];
   console.log(dataCoordinator);
   const setShiftleader = (name) => {
     setTeamLeader({ name: name, show: true });
@@ -104,27 +106,30 @@ const Coordinators = (p) => {
   )[0];
   console.log(teamleaders);
 
-  const clickHadler=e=>{
+  const clickHadler = (e) => {
     setShowMore(!showMore);
-  }
+  };
 
   return (
     <div className={c.wrapper}>
+    <div className={c.notification}>
+      <p>Tap the coordinator card to view statistics or return to the coordinator tree.</p>
+    </div>
+
       <div className={c.selectq}>
         {showMore ? (
           <React.Fragment>
-          <input
-            className={c.titles}
-            type="date"
-            value={date}
-            onChange={(e) =>
-              dispatch(additionalDataAction.addDate(e.target.value))
-            }
-          />
-        </React.Fragment>
+            <input
+              className={c.titles}
+              type="date"
+              value={date}
+              onChange={(e) =>
+                dispatch(additionalDataAction.addDate(e.target.value))
+              }
+            />
+          </React.Fragment>
         ) : (
           <React.Fragment>
-            <label htmlFor="multiSelect">Select</label>
             <Select
               options={options}
               onChange={(e) => setType(e)}
@@ -133,8 +138,6 @@ const Coordinators = (p) => {
             />
           </React.Fragment>
         )}
-
-        
       </div>
       <div className={c.Coordinator}>
         <Coordinator
