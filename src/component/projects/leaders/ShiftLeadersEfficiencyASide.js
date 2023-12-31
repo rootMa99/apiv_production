@@ -60,7 +60,7 @@ const ShiftLeadersEfficiencyASide = (p) => {
   totalEfficiency.sort((a, b) => a.gapDay - b.gapDay);
   console.log(efficiency, totalEfficiency);
   const clickHandlerLink = (name) => {
-    if(p.coordinator==="cordinator"){
+    if (p.coordinator === "cordinator") {
       return;
     }
     if (p.crew === "crew") {
@@ -72,7 +72,7 @@ const ShiftLeadersEfficiencyASide = (p) => {
     if (p.project === undefined) {
       return;
     }
-    
+
     p.data === undefined
       ? navigate(`/home/project/${p.project}/shiftLeader/${name}`)
       : navigate(
@@ -80,14 +80,24 @@ const ShiftLeadersEfficiencyASide = (p) => {
         );
   };
   return (
-    <div className={c.dataContainer}>
+    <div
+      className={c.dataContainer}
+    >
       <h3 className={c.title}>
         {p.data === undefined
           ? "shiftLeaders efficiency"
-          : (p.crew==="crew" ? "crews efficiency" : (p.coordinator==="cordinator"? "projects efficiency":"teamleaders efficiency"))}
+          : p.crew === "crew"
+          ? "crews efficiency"
+          : p.coordinator === "cordinator"
+          ? "projects efficiency"
+          : "teamleaders efficiency"}
       </h3>
       {totalEfficiency.map((m, i) => (
-        <div className={c.content} key={i} onClick={() => clickHandlerLink(m.name)}>
+        <div
+          className={c.content}
+          key={i}
+          onClick={() => clickHandlerLink(m.name)}
+        >
           <h4>{m.name}</h4>
           <div className={c.contentData}>
             <span className={c.contentDataTitle}>efficiency/day :</span>
@@ -95,7 +105,18 @@ const ShiftLeadersEfficiencyASide = (p) => {
           </div>
           <div className={c.contentData}>
             <span className={c.contentDataTitle}>gap/day :</span>
-            <span className={m.gapDay>=0 ? `${c.contentDataEff} ${c.green}`:`${c.contentDataEff} ${c.red}`}><div className={m.gapDay>=0 ? c.triangleUP : c.triangleDown}></div> {m.gapDay} %</span>
+            <span
+              className={
+                m.gapDay >= 0
+                  ? `${c.contentDataEff} ${c.green}`
+                  : `${c.contentDataEff} ${c.red}`
+              }
+            >
+              <div
+                className={m.gapDay >= 0 ? c.triangleUP : c.triangleDown}
+              ></div>{" "}
+              {m.gapDay} %
+            </span>
           </div>
           <div className={c.contentData}>
             <span className={c.contentDataTitle}>efficiency/month :</span>
@@ -103,7 +124,18 @@ const ShiftLeadersEfficiencyASide = (p) => {
           </div>
           <div className={c.contentData}>
             <span className={c.contentDataTitle}>gap/month :</span>
-            <span className={m.gapMonth>=0 ? `${c.contentDataEff} ${c.green}`:`${c.contentDataEff} ${c.red}`}><div className={m.gapMonth>=0? c.triangleUP : c.triangleDown}></div>{m.gapMonth} %</span>
+            <span
+              className={
+                m.gapMonth >= 0
+                  ? `${c.contentDataEff} ${c.green}`
+                  : `${c.contentDataEff} ${c.red}`
+              }
+            >
+              <div
+                className={m.gapMonth >= 0 ? c.triangleUP : c.triangleDown}
+              ></div>
+              {m.gapMonth} %
+            </span>
           </div>
         </div>
       ))}

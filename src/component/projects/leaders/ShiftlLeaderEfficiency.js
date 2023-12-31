@@ -16,7 +16,9 @@ import { additionalDataAction } from "../../../store/AdditionalData";
 const ShiftLeaderEfficiency = (p) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { chartDay, chartWeek, chartmonth, checkBox } = useSelector((s) => s.additionalData);
+  const { chartDay, chartWeek, chartmonth, checkBox } = useSelector(
+    (s) => s.additionalData
+  );
   const [toggle, isToggle] = useState(chartWeek);
   const [toggleD, isToggleD] = useState(chartDay);
   const [toggleM, isToggleM] = useState(chartmonth);
@@ -24,24 +26,22 @@ const ShiftLeaderEfficiency = (p) => {
   const monthly = getDataYear(p.data, checkBox);
   const month = p.date.date.split("-")[1];
   const weekly = getWeekData(
-    getMonthData(p.data, p.date.month[month - 1], p.date.month[month - 2]), checkBox
+    getMonthData(p.data, p.date.month[month - 1], p.date.month[month - 2]),
+    checkBox
   );
   const filtredM = getMonthData(p.data, p.date.month[month - 1]);
 
-  const daily = getDataDays(filtredM,"", checkBox);
+  const daily = getDataDays(filtredM, "", checkBox);
 
-
-  useEffect(()=>{
+  useEffect(() => {
     isToggle(chartWeek);
     isToggleD(chartDay);
     isToggleM(chartmonth);
-  }, [chartDay, chartWeek, chartmonth])
+  }, [chartDay, chartWeek, chartmonth]);
 
   const onClickHandler = (e) => {
-    if (p.coordinator){
-      navigate(
-        `/home/project/${p.project}`
-      );
+    if (p.coordinator) {
+      navigate(`/home/project/${p.project}`);
       return;
     }
     if (p.crew === "crew") {
@@ -90,19 +90,46 @@ const ShiftLeaderEfficiency = (p) => {
   return (
     <div
       className={c.chartsContainer}
-      style={p.index > 0 ? { marginTop: "1.5rem" } : {}}
+      style={
+        p.index > 0
+          ? { marginTop: "1.5rem" }
+          : p.coordinator
+          ? { border: "1px solid #f84018", marginTop: "1.5rem" , paddingBottom:"1rem"}
+          : {}
+      }
     >
       <h3 className={c.title} onClick={onClickHandler}>
         {p.title} efficiency
       </h3>
       <div className={c.toggleBtnContainer}>
-        <button className={c.toggleBtn} onClick={() =>p.top? dispatch(additionalDataAction.editChartMonth(!chartmonth)) :isToggleM(!toggleM)}>
+        <button
+          className={c.toggleBtn}
+          onClick={() =>
+            p.top
+              ? dispatch(additionalDataAction.editChartMonth(!chartmonth))
+              : isToggleM(!toggleM)
+          }
+        >
           {toggleM ? "hide month" : "show month"}
         </button>
-        <button className={c.toggleBtn} onClick={() =>p.top? dispatch(additionalDataAction.editChartWeek(!chartWeek)) : isToggle(!toggle)}>
+        <button
+          className={c.toggleBtn}
+          onClick={() =>
+            p.top
+              ? dispatch(additionalDataAction.editChartWeek(!chartWeek))
+              : isToggle(!toggle)
+          }
+        >
           {toggle ? "hide week" : "show week"}
         </button>
-        <button className={c.toggleBtn} onClick={() =>p.top? dispatch(additionalDataAction.editChartDay(!chartDay)) : isToggleD(!toggleD)}>
+        <button
+          className={c.toggleBtn}
+          onClick={() =>
+            p.top
+              ? dispatch(additionalDataAction.editChartDay(!chartDay))
+              : isToggleD(!toggleD)
+          }
+        >
           {toggleD ? "hide day" : "show day"}
         </button>
       </div>

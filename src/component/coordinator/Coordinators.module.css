@@ -124,28 +124,31 @@ input[type="date"].titles:focus {
 
 .notification {
   background-color: #f84018;
-  padding-inline: 1rem;
-  position: absolute;
+  position: fixed;
   top: 4rem;
   z-index: 11;
   border-radius: 30px;
   overflow: hidden;
   animation: rotate 2s linear forwards, scale 10s ease-in-out forwards,
     translate 2s ease-in-out forwards;
+  height: 3.5rem;
+  width: 3.5rem;
 }
 .notification {
   animation-delay: 0s, 2s, 12s;
 }
 
 .notification p {
-  color: #141312;
+  color: #ffffff;
   font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
   letter-spacing: 2px;
   text-transform: uppercase;
+  padding-inline: 1rem;
   text-align: center;
-  font-weight: bolder;
+  font-size: medium;
+  font-weight: bold;
   white-space: nowrap;
   animation: fade 12s ease-in forwards;
 }
@@ -156,12 +159,12 @@ input[type="date"].titles:focus {
 @keyframes rotate {
   0% {
     transform: translateY(-10rem);
-    width: 1rem;
+    width: 3.5rem;
     border-radius: 50%;
   }
   100% {
     transform: translateY(0);
-    width: 1rem;
+    width: 3.5rem;
     border-radius: 50%;
   }
 }
@@ -173,7 +176,7 @@ input[type="date"].titles:focus {
   100% {
     opacity: 0;
   }
-  50% {
+  30% {
     opacity: 1;
   }
   80% {
@@ -184,16 +187,15 @@ input[type="date"].titles:focus {
 @keyframes scale {
   0%,
   100% {
-    width: 1rem;
     border-radius: 30px;
   }
   30% {
-    width: 55rem;
+    width: 60rem;
     border-radius: 30px;
   }
   80% {
     border-radius: 30px;
-    width: 55rem;
+    width: 60rem;
   }
 }
 

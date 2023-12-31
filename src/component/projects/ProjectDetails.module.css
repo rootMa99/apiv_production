@@ -189,4 +189,6 @@ h6.heading:hover {
 .asideall{
   height: 90%;
   top: 4.5rem;
+  background: #8a0101;
+  background: radial-gradient(circle, #8a01016e 0%, rgba(0, 0, 0, 1) 100%);
 }

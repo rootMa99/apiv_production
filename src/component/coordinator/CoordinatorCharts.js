@@ -26,7 +26,6 @@ const CoordinatorChart = (p) => {
             title={m.name}
             data={m.data}
             date={{ date, month }}
-            index={1}
             project={m.name}
             //shiftLeader={params.shitLeader}
             top={true}
