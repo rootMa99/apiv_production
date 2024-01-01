@@ -191,4 +191,5 @@ h6.heading:hover {
   top: 4.5rem;
   background: #8a0101;
   background: radial-gradient(circle, #8a01016e 0%, rgba(0, 0, 0, 1) 100%);
+  border: 1px solid #F84018;
 }
