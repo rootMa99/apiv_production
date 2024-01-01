@@ -150,7 +150,6 @@ const MonthChart = (p) => {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-
     scales: {
       x: {
         ticks: {
@@ -212,13 +211,13 @@ const MonthChart = (p) => {
               yPos = element.y + element.height / 2;
             } else if (dataset.type === "line") {
               xPos = element.x;
-              yPos = element.y-20;
+              yPos = element.y - 20;
             }
-
+            console.log(element, p.monthData);
             ctx.save();
             ctx.textAlign = "center";
             ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
-            ctx.font = "12px Arial";
+            ctx.font = "14px Arial";
 
             if (
               dataset.type === "line" &&
@@ -226,11 +225,11 @@ const MonthChart = (p) => {
               p.type !== "hc" &&
               p.type !== "ab" &&
               p.type !== "scrap" &&
-              p.type !== "wsd"
+              p.type !== "wsd" &&
+              +element.$context.raw !== 0
             ) {
               ctx.translate(xPos, yPos);
               ctx.rotate(-Math.PI / 2);
-              ctx.font = "15px Arial";
 
               ctx.fillText(data, 20, 5);
             } else if (
@@ -238,15 +237,16 @@ const MonthChart = (p) => {
               p.type !== "hc" &&
               p.type !== "ab" &&
               p.type !== "scrap" &&
-              p.type !== "wsd"
+              p.type !== "wsd" &&
+              element.width < 40 &&
+              +element.$context.raw !== 0
             ) {
               ctx.translate(xPos, yPos);
               ctx.rotate(-Math.PI / 2);
-              ctx.font = "15px Arial";
               ctx.fillText(data, 0, 5);
             } else {
 
-              ctx.fillText(data, xPos, yPos);
+              +element.$context.raw !== 0 && ctx.fillText(data, xPos, yPos);
             }
 
             ctx.restore();
