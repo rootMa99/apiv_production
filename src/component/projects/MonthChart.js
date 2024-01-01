@@ -212,26 +212,42 @@ const MonthChart = (p) => {
               yPos = element.y + element.height / 2;
             } else if (dataset.type === "line") {
               xPos = element.x;
-              yPos = element.y;
+              yPos = element.y-20;
             }
 
             ctx.save();
             ctx.textAlign = "center";
             ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
             ctx.font = "12px Arial";
-            ctx.translate(xPos, yPos);
-              ctx.rotate(-Math.PI / 2);
-            if (dataset.type === "line") {
-            ctx.font = "15px Arial";
 
+            if (
+              dataset.type === "line" &&
+              p.type !== "output" &&
+              p.type !== "hc" &&
+              p.type !== "ab" &&
+              p.type !== "scrap" &&
+              p.type !== "wsd"
+            ) {
               ctx.translate(xPos, yPos);
               ctx.rotate(-Math.PI / 2);
-            ctx.fillText(data, 40, 5);
+              ctx.font = "15px Arial";
 
-            } else{
+              ctx.fillText(data, 20, 5);
+            } else if (
+              p.type !== "output" &&
+              p.type !== "hc" &&
+              p.type !== "ab" &&
+              p.type !== "scrap" &&
+              p.type !== "wsd"
+            ) {
+              ctx.translate(xPos, yPos);
+              ctx.rotate(-Math.PI / 2);
+              ctx.font = "15px Arial";
+              ctx.fillText(data, 0, 5);
+            } else {
 
               ctx.fillText(data, xPos, yPos);
-            }          
+            }
 
             ctx.restore();
           });
