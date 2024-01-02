@@ -14,9 +14,10 @@ import Crew from "./component/projects/crews/Crew";
 import CoordinatorList from "./component/coordinator/CoordinatorList";
 import Coordinators from "./component/coordinator/Coordinators";
 import Loading from "./component/ui/Loading";
+import ServerError from "./component/ui/ServerError";
 
 const getData = async (url) => {
-  console.log("runing.....")
+  console.log("runing.....");
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -30,13 +31,14 @@ const getData = async (url) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    return error;
+    return "error";
   }
 };
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [dataCome, setDataCome]= useState(false)
+  const [error, setError] = useState(false);
+  const [dataCome, setDataCome] = useState(false);
   const dispatch = useDispatch();
 
   const callback = useCallback(async () => {
@@ -44,11 +46,15 @@ function App() {
     const data = await getData("http://localhost:8081/data/projects");
 
     //dispatch(dataAction.addData(DEMO_DATA));
-    dispatch(dataAction.addData(data));
+    if (data !== "error") {
+      dispatch(dataAction.addData(data));
+    } else {
+      setError(true);
+    }
     setDataCome(true);
-    setTimeout(()=>{
+    setTimeout(() => {
       setLoading(false);
-    }, 500)
+    }, 500);
   }, [dispatch]);
 
   useEffect(() => {
@@ -62,43 +68,53 @@ function App() {
           <Loading dataCome={dataCome} />
         </div>
       ) : (
-        <div className="App">
-          <NavBar />
-          <Suspense>
-            <Routes>
-              <Route index path="/" element={<Navigate replace to="/home" />} />
-              <Route exact path="/shiftLeader" element={<Loading />} />
-              <Route exact path="/coordinator">
-                <Route path="" element={<CoordinatorList />} />
-                <Route path=":name" element={<Coordinators />} />
-              </Route>
-              <Route exact path="/home" element={<Home />}>
-                <Route path="" element={<Projects />} />
-                <Route path="project" element={<ProjectDetails />}>
-                  <Route path=":project" element={<ProjectDetails />} />
-                </Route>
-                <Route
-                  path="project/:project/shiftLeader"
-                  element={<ShiftLeader />}
-                >
-                  <Route path=":shitLeader" element={<ShiftLeader />} />
-                </Route>
-                <Route
-                  path="project/:project/shiftLeader/:shitLeader/teamLeader"
-                  element={<TeamLeaders />}
-                >
-                  <Route path=":teamLeader" element={<TeamLeaders />} />
-                </Route>
-                <Route
-                  path="project/:project/shiftLeader/:shitLeader/teamLeader/:teamLeader/crew"
-                  element={<Crew />}
-                >
-                  <Route path=":crew" element={<Crew />} />
-                </Route>
-              </Route>
-            </Routes>
-          </Suspense>
-        </div>
+        <React.Fragment>
+          {error ? (
+            <ServerError />
+          ) : (
+            <div className="App">
+              <NavBar />
+              <Suspense>
+                <Routes>
+                  <Route
+                    index
+                    path="/"
+                    element={<Navigate replace to="/home" />}
+                  />
+                  <Route exact path="/shiftLeader" element={<Loading />} />
+                  <Route exact path="/coordinator">
+                    <Route path="" element={<CoordinatorList />} />
+                    <Route path=":name" element={<Coordinators />} />
+                  </Route>
+                  <Route exact path="/home" element={<Home />}>
+                    <Route path="" element={<Projects />} />
+                    <Route path="project" element={<ProjectDetails />}>
+                      <Route path=":project" element={<ProjectDetails />} />
+                    </Route>
+                    <Route
+                      path="project/:project/shiftLeader"
+                      element={<ShiftLeader />}
+                    >
+                      <Route path=":shitLeader" element={<ShiftLeader />} />
+                    </Route>
+                    <Route
+                      path="project/:project/shiftLeader/:shitLeader/teamLeader"
+                      element={<TeamLeaders />}
+                    >
+                      <Route path=":teamLeader" element={<TeamLeaders />} />
+                    </Route>
+                    <Route
+                      path="project/:project/shiftLeader/:shitLeader/teamLeader/:teamLeader/crew"
+                      element={<Crew />}
+                    >
+                      <Route path=":crew" element={<Crew />} />
+                    </Route>
+                  </Route>
+                </Routes>
+              </Suspense>
+            </div>
+          )}
+        </React.Fragment>
       )}
     </React.Fragment>
   );
