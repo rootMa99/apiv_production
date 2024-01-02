@@ -11,6 +11,8 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
+//import * as XLSX from "xlsx";
+//import { saveAs } from "file-saver";
 ///import { useSelector } from "react-redux";
 
 const MonthChart = (p) => {
@@ -245,7 +247,6 @@ const MonthChart = (p) => {
               ctx.rotate(-Math.PI / 2);
               ctx.fillText(data, 0, 5);
             } else {
-
               +element.$context.raw !== 0 && ctx.fillText(data, xPos, yPos);
             }
 
@@ -264,6 +265,9 @@ const MonthChart = (p) => {
     Legend,
     BarElement
   );
+
+
+
   return (
     <div className={c.chart}>
       <h5>{p.title}</h5>
