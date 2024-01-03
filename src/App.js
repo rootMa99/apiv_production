@@ -110,6 +110,7 @@ function App() {
                       <Route path=":crew" element={<Crew />} />
                     </Route>
                   </Route>
+                  <Route path="*" element={<Navigate replace to="/home" />} />
                 </Routes>
               </Suspense>
             </div>
