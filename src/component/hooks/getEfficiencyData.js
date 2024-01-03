@@ -85,15 +85,15 @@ export const getFiltredProject = (dataArray) => {
   datafiltred.push(
     ...dataArray.filter((f) => {
       return (
-       f.name !== "Sequencing" &&
+       //f.name !== "Sequencing" &&
         f.name !== "Qualité" &&
         f.name !== "App & Ch.Ing" &&
         f.name !== "OPS" &&
         f.name !== "SOS" &&
         f.name !== "AFM" &&
-        f.name !== "CUTTING AREA" &&
-        f.name !== "LEAD PREP AREA" &&
-        f.name !== "B78/T9"&&
+        //f.name !== "CUTTING AREA" &&
+        //f.name !== "LEAD PREP AREA" &&
+        f.name !== "B78-T9"&&
         f.name !== "Prototype"
       );
     })

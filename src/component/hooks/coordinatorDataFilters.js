@@ -180,7 +180,7 @@ export const getCoordinatorsData = (data) => {
 };
 
 export const gettoday = () => {
-  const today = new Date("2023-01-19");
+  const today = new Date();
   const yesterday = new Date(today);
   yesterday.setDate(today.getDate() - 1);
   const year = yesterday.getFullYear();

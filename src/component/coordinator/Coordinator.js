@@ -72,7 +72,12 @@ const Coordinator = (p) => {
           >
             <span>eff</span>
           </div>
-          <div className={styles["aptiv-log"]}>
+          <div
+            className={styles["aptiv-log"]}
+            style={
+              p.level === "coordinator" ? { width: "6rem", height: "3rem" } : {}
+            }
+          >
             <img src={apticlogo} alt="aptiv" draggable="false" />
           </div>
         </div>
