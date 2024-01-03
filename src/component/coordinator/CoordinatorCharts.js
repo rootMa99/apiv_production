@@ -16,6 +16,7 @@ const CoordinatorChart = (p) => {
             data={p.dataCoordinator}
             project={name}
             coordinator="cordinator"
+            type={p.type}
           />
         </div>
       </div>
@@ -31,6 +32,7 @@ const CoordinatorChart = (p) => {
             top={true}
             key={i}
             coordinator={true}
+            type={p.type}
           />
         ))}
       </div>

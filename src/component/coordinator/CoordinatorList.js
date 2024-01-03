@@ -84,6 +84,7 @@ const options = [
 ];
 const CoordinatorList = (p) => {
   const data = useSelector((s) => s.datas);
+  const { date } = useSelector((s) => s.additionalData);
   //const dispatch = useDispatch();
   const coordinators = getCoordinatorsData(data);
   const [type, setType] = useState({ value: "date", label: "yesterday" });
@@ -108,13 +109,28 @@ const CoordinatorList = (p) => {
   return (
     <div className={`${c.wrapper}`}>
       <div className={c.select}>
-        <label htmlFor="multiSelect">Select</label>
-        <Select
-          options={options}
-          onChange={(e) => setType(e)}
-          styles={customStyles}
-          defaultValue={type}
-        />
+        {show ? (
+          <React.Fragment>
+            <input
+              className={c.titles}
+              type="date"
+              value={date}
+              onChange={(e) =>
+                dispatch(additionalDataAction.addDate(e.target.value))
+              }
+            />
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <label htmlFor="multiSelect">Select</label>
+            <Select
+              options={options}
+              onChange={(e) => setType(e)}
+              styles={customStyles}
+              defaultValue={type}
+            />
+          </React.Fragment>
+        )}
       </div>
       <div className={c.fa}>
         <Coordinator
@@ -128,7 +144,7 @@ const CoordinatorList = (p) => {
         />
       </div>
       {show ? (
-        <CoordinatorChart dataCoordinator={dataFa} />
+        <CoordinatorChart dataCoordinator={dataFa} type="fa" />
       ) : (
         <React.Fragment>
           <h1>cordinators</h1>
