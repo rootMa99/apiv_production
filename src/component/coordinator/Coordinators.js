@@ -107,14 +107,22 @@ const Coordinators = (p) => {
   console.log(teamleaders);
 
   const clickHadler = (e) => {
-    setShowMore(!showMore);
+    if(teamLeader.show){
+    setTeamLeader({ ...teamLeader, show: false });
+
+    }else{
+      setShowMore(!showMore);
+    }
   };
 
   return (
     <div className={c.wrapper}>
-    <div className={c.notification}>
-      <p>Tap the coordinator card to view statistics or return to the coordinator tree.</p>
-    </div>
+      <div className={c.notification}>
+        <p>
+          Tap the coordinator card to view statistics or return to the
+          coordinator tree.
+        </p>
+      </div>
 
       <div className={c.selectq}>
         {showMore ? (
@@ -160,20 +168,38 @@ const Coordinators = (p) => {
             className={c.shiftLeader}
             style={!teamLeader.show ? { marginBottom: "1rem" } : {}}
           >
-            {dataCoordinator.shiftleader.map(
-              (m, i) =>
-                m.name !== null && (
-                  <Coordinator
-                    pic={m.urlPic}
-                    name={m.name}
-                    level="shiftLeader"
-                    setShiftleader={setShiftleader}
-                    data={m.teamleader}
-                    key={i}
-                    type={type}
-                  />
-                )
-            )}
+            {!teamLeader.show &&
+              dataCoordinator.shiftleader.map(
+                (m, i) =>
+                  m.name !== null && (
+                    <Coordinator
+                      pic={m.urlPic}
+                      name={m.name}
+                      level="shiftLeader"
+                      setShiftleader={setShiftleader}
+                      data={m.teamleader}
+                      key={i}
+                      type={type}
+                    />
+                  )
+              )}
+            {teamLeader.show &&
+              dataCoordinator.shiftleader
+                .filter((f) => f.name === teamLeader.name)
+                .map(
+                  (m, i) =>
+                    m.name !== null && (
+                      <Coordinator
+                        pic={m.urlPic}
+                        name={m.name}
+                        level="shiftLeader"
+                        setShiftleader={setShiftleader}
+                        data={m.teamleader}
+                        key={i}
+                        type={type}
+                      />
+                    )
+                )}
           </div>
           {teamLeader.show && (
             <React.Fragment>

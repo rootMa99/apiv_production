@@ -49,8 +49,8 @@
 }
 .full-card .full-card-top .coordinator-info .aptiv-log {
   display: block;
-  /* width: 4rem; */
-  height: 30px;
+  width: 4rem;
+  height: 40px;
 }
 .full-card .full-card-top .coordinator-info .aptiv-log img {
   width: 100%;
