@@ -252,7 +252,7 @@ export const coordinatorEfficiency = (data, type, level) => {
   const sher =
     type === "week" ? getWeek() : type === "month" ? lastMonth() : gettoday();
   const filtredData = [];
-  if (level === "teamleader") {
+  if (level === "teamleader" || level === "fa") {
     filtredData.push(...data.filter((f) => f[type] === sher));
   } else {
     data.forEach((element) => {
@@ -274,7 +274,7 @@ export const getdatacal = (data, type, act, level) => {
   const sher =
     type === "week" ? getWeek() : type === "month" ? lastMonth() : gettoday();
   const filtredData = [];
-  if (level === "teamleader") {
+  if (level === "teamleader" || level === "fa") {
     filtredData.push(...data.filter((f) => f[type] === sher));
   } else {
     data.forEach((element) => {
@@ -301,7 +301,7 @@ export const getScrap = (data, type, level) => {
   const sher =
     type === "week" ? getWeek() : type === "month" ? lastMonth() : gettoday();
   const filtredData = [];
-  if (level === "teamleader") {
+  if (level === "teamleader" || level === "fa") {
     filtredData.push(...data.filter((f) => f[type] === sher));
   } else {
     data.forEach((element) => {
@@ -316,3 +316,29 @@ export const getScrap = (data, type, level) => {
 
   return rdata;
 };
+
+export const faData = (data) => {
+  const datar = [];
+
+  data.forEach((f) => {
+    f.dataByProject.map((m) => datar.push(...m.data));
+  });
+
+  return datar;
+};
+
+
+export const getCoordinatorData=data=>{
+
+  const datar=[];
+data.forEach(f=>{
+  const t=[];
+  f.dataByProject.map(m=>t.push(...m.data))
+  datar.push({
+    name:f.name,
+    data:t
+  })
+})
+
+return datar;
+}

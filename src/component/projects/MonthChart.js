@@ -267,15 +267,15 @@ const MonthChart = (p) => {
     BarElement
   );
 
-  const handleDownload = () => {
-    const workbook = createWorkbookWithChart(p.type === "ot" || p.type === "tlo" ? dataBar : data);
-    downloadExcelFile(workbook, 'chart-data');
-  };
+  // const handleDownload = () => {
+  //   const workbook = createWorkbookWithChart(p.type === "ot" || p.type === "tlo" ? dataBar : data);
+  //   downloadExcelFile(workbook, 'chart-data');
+  // };
 
   return (
     <div className={c.chart}>
       <h5>{p.title}</h5>
-      <button onClick={handleDownload}>download excel</button>
+      {/* <button onClick={handleDownload}>download excel</button> */}
       <div className={c.chatHolder}>
         {p.type === "ot" || p.type === "tlo" ? (
           <Bar data={dataBar} options={optionsBar} />

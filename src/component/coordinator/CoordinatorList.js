@@ -2,11 +2,17 @@ import c from "./Coordinators.module.css";
 //import hamzaKhartaoui from "../../assets/hamzaKhartaoui.png";
 import Coordinator from "./Coordinator";
 import { useDispatch, useSelector } from "react-redux";
-import { getCoordinatorsData } from "../hooks/coordinatorDataFilters";
-import {  useState } from "react";
+import {
+  faData,
+  getCoordinatorData,
+  getCoordinatorsData,
+} from "../hooks/coordinatorDataFilters";
+import React, { useState } from "react";
 //import { additionalDataAction } from "../../store/AdditionalData";
 import Select from "react-select";
 import { additionalDataAction } from "../../store/AdditionalData";
+import CoordinatorChart from "./CoordinatorCharts";
+//import logo from "../../assets/aptiv_logo_rev_orange_rgb.png";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -72,49 +78,74 @@ const customStyles = {
   }),
 };
 const options = [
-    { value: "date", label: "yesterday" },
-    { value: "week", label: "last week" },
-    { value: "month", label: "last month" },
-  ];
+  { value: "date", label: "yesterday" },
+  { value: "week", label: "last week" },
+  { value: "month", label: "last month" },
+];
 const CoordinatorList = (p) => {
   const data = useSelector((s) => s.datas);
   //const dispatch = useDispatch();
   const coordinators = getCoordinatorsData(data);
-  const [type, setType]=useState({ value: "date", label: "yesterday" });
-  const dispatch=useDispatch();
-  dispatch(additionalDataAction.editCheckBox(false))
+  const [type, setType] = useState({ value: "date", label: "yesterday" });
+  const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
+  dispatch(additionalDataAction.editCheckBox(false));
   console.log(coordinators);
-
+  const datafa = faData(coordinators);
+  console.log(datafa);
   // useEffect(() => {
   //   console.log("console log coordinator re run");
   //   dispatch(additionalDataAction.addCoordinator(coordinators));
   // }, [dispatch, coordinators]);
 
-  console.log(type)
+  console.log(type);
+
+  const clickHadler = (e) => {
+    setShow(!show);
+  };
+  const dataFa = getCoordinatorData(coordinators);
+  console.log(dataFa);
   return (
-    <div className={`${c.wrapper} ${c.centerd}`}>
+    <div className={`${c.wrapper}`}>
       <div className={c.select}>
         <label htmlFor="multiSelect">Select</label>
         <Select
           options={options}
-          onChange={(e)=>setType(e)}
+          onChange={(e) => setType(e)}
           styles={customStyles}
           defaultValue={type}
         />
       </div>
-      <h1>cordinators</h1>
-      <div className={c.Coordinator}>
-        {coordinators.map((m, i) => (
-          <Coordinator
-            pic={m.urlPic}
-            name={m.name}
-            data={m.dataByProject}
-            key={i}
-            level="coordinator"
-            type={type}
-          />
-        ))}
+      <div className={c.fa}>
+        <Coordinator
+          name="FA"
+          pic={null}
+          flags={true}
+          clickhHandler={clickHadler}
+          data={datafa}
+          type={type}
+          level="fa"
+        />
       </div>
+      {show ? (
+        <CoordinatorChart dataCoordinator={dataFa} />
+      ) : (
+        <React.Fragment>
+          <h1>cordinators</h1>
+          <div className={c.Coordinator}>
+            {coordinators.map((m, i) => (
+              <Coordinator
+                pic={m.urlPic}
+                name={m.name}
+                data={m.dataByProject}
+                key={i}
+                level="coordinator"
+                type={type}
+              />
+            ))}
+          </div>
+        </React.Fragment>
+      )}
     </div>
   );
 };

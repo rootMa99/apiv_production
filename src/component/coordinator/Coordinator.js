@@ -13,6 +13,10 @@ const Coordinator = (p) => {
   const navigate = useNavigate();
 
   const clickHandler = (e) => {
+    if(p.flags){
+      p.clickhHandler();
+      return;
+    }
     if (p.flag) {
       p.clickhHandler();
       return;
@@ -31,17 +35,17 @@ const Coordinator = (p) => {
   efficiency = coordinatorEfficiency(p.data, p.type.value, p.level);
   effi.act =
     efficiency.totalPaidH !== 0
-      ? ((efficiency.totalProdH / efficiency.totalPaidH) * 100).toFixed(2)
+      ? ((efficiency.totalProdH / efficiency.totalPaidH) * 100).toFixed(0)
       : 0;
   effi.target =
     efficiency.totalPaidHT !== 0
-      ? ((efficiency.totalProdHT / efficiency.totalPaidHT) * 100).toFixed(2)
+      ? ((efficiency.totalProdHT / efficiency.totalPaidHT) * 100).toFixed(0)
       : 0;
-  effi.gap = (effi.act - effi.target).toFixed(2);
+  effi.gap = (effi.act - effi.target).toFixed(0);
   output = getdatacal(p.data, p.type.value, "output", p.level);
   hc = getdatacal(p.data, p.type.value, "hc", p.level);
   wsd = getdatacal(p.data, p.type.value, "wsd", p.level);
-  scrap = getScrap(p.data, p.type.value, p.level).toFixed(2);
+  scrap = getScrap(p.data, p.type.value, p.level).toFixed(0);
 
   console.log(efficiency, gettoday(), getWeek(), lastMonth());
 
@@ -49,33 +53,45 @@ const Coordinator = (p) => {
     <div
       className={styles["full-card"]}
       onClick={clickHandler}
-      style={p.level === "coordinator" ? { width: "20rem" } : {}}
+      style={
+        p.level === "coordinator" || p.level === "fa" ? { width: "20rem" } : {}
+      }
     >
       <div className={styles["full-card-top"]}>
         <div
           className={styles["coordinator-info"]}
           style={
-            p.level === "coordinator"
+            p.level === "coordinator" || p.level === "fa"
               ? { lineHeight: "2rem", fontWeight: 500 }
               : {}
           }
         >
           <div
             className={styles["coordinator-eff"]}
-            style={p.level === "coordinator" ? { fontSize: "2rem" } : {}}
+            style={
+              p.level === "coordinator" || p.level === "fa"
+                ? { fontSize: "2rem" }
+                : {}
+            }
           >
             <span>{effi.act}%</span>
           </div>
           <div
             className={styles["eff-title"]}
-            style={p.level === "coordinator" ? { fontSize: "2rem" } : {}}
+            style={
+              p.level === "coordinator" || p.level === "fa"
+                ? { fontSize: "2rem" }
+                : {}
+            }
           >
             <span>eff</span>
           </div>
           <div
             className={styles["aptiv-log"]}
             style={
-              p.level === "coordinator" ? { width: "6rem", height: "3rem" } : {}
+              p.level === "coordinator" || p.level === "fa"
+                ? { width: "6rem", height: "3rem" }
+                : {}
             }
           >
             <img src={apticlogo} alt="aptiv" draggable="false" />
@@ -84,7 +100,9 @@ const Coordinator = (p) => {
         <div
           className={styles["coordinator-pic"]}
           style={
-            p.level === "coordinator" ? { width: "250px", height: "250px" } : {}
+            p.level === "coordinator" || p.level === "fa"
+              ? { width: "250px", height: "250px" }
+              : {}
           }
         >
           {p.pic !== null && (
@@ -99,25 +117,41 @@ const Coordinator = (p) => {
         <div className={styles["coordinator-infos"]}>
           <div
             className={styles["coordinator-name"]}
-            style={p.level === "coordinator" ? { fontSize: "2rem" } : {}}
+            style={
+              p.level === "coordinator" || p.level === "fa"
+                ? { fontSize: "2rem" }
+                : {}
+            }
           >
             <span>{p.name !== undefined ? p.name : "hamza Khartaoui"}</span>
           </div>
           <div className={styles["coordinator-features"]}>
             <div
               className={styles["coordinator-features-col"]}
-              style={p.level === "coordinator" ? { paddingBottom: "1rem" } : {}}
+              style={
+                p.level === "coordinator" || p.level === "fa"
+                  ? { paddingBottom: "1rem" }
+                  : {}
+              }
             >
               <span>
                 <div
                   className={styles["coordinator-feature-value"]}
-                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
+                  style={
+                    p.level === "coordinator" || p.level === "fa"
+                      ? { fontSize: "1rem" }
+                      : {}
+                  }
                 >
                   {effi.act}%
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
-                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
+                  style={
+                    p.level === "coordinator" || p.level === "fa"
+                      ? { fontSize: "1rem" }
+                      : {}
+                  }
                 >
                   eff
                 </div>
@@ -125,13 +159,21 @@ const Coordinator = (p) => {
               <span>
                 <div
                   className={styles["coordinator-feature-value"]}
-                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
+                  style={
+                    p.level === "coordinator" || p.level === "fa"
+                      ? { fontSize: "1rem" }
+                      : {}
+                  }
                 >
                   {effi.gap}%
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
-                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
+                  style={
+                    p.level === "coordinator" || p.level === "fa"
+                      ? { fontSize: "1rem" }
+                      : {}
+                  }
                 >
                   gap
                 </div>
@@ -139,13 +181,21 @@ const Coordinator = (p) => {
               <span>
                 <div
                   className={styles["coordinator-feature-value"]}
-                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
+                  style={
+                    p.level === "coordinator" || p.level === "fa"
+                      ? { fontSize: "1rem" }
+                      : {}
+                  }
                 >
                   {hc.toFixed(0)}
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
-                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
+                  style={
+                    p.level === "coordinator" || p.level === "fa"
+                      ? { fontSize: "1rem" }
+                      : {}
+                  }
                 >
                   hc
                 </div>
@@ -153,18 +203,30 @@ const Coordinator = (p) => {
             </div>
             <div
               className={styles["coordinator-features-col"]}
-              style={p.level === "coordinator" ? { paddingBottom: "1rem" } : {}}
+              style={
+                p.level === "coordinator" || p.level === "fa"
+                  ? { paddingBottom: "1rem" }
+                  : {}
+              }
             >
               <span>
                 <div
                   className={styles["coordinator-feature-value"]}
-                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
+                  style={
+                    p.level === "coordinator" || p.level === "fa"
+                      ? { fontSize: "1rem" }
+                      : {}
+                  }
                 >
-                  {output.toFixed(2)}pc
+                  {output.toFixed(0)}pc
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
-                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
+                  style={
+                    p.level === "coordinator" || p.level === "fa"
+                      ? { fontSize: "1rem" }
+                      : {}
+                  }
                 >
                   output
                 </div>
@@ -172,13 +234,21 @@ const Coordinator = (p) => {
               <span>
                 <div
                   className={styles["coordinator-feature-value"]}
-                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
+                  style={
+                    p.level === "coordinator" || p.level === "fa"
+                      ? { fontSize: "1rem" }
+                      : {}
+                  }
                 >
-                  {wsd.toFixed(2)}min
+                  {wsd.toFixed(0)}min
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
-                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
+                  style={
+                    p.level === "coordinator" || p.level === "fa"
+                      ? { fontSize: "1rem" }
+                      : {}
+                  }
                 >
                   wsd
                 </div>
@@ -186,13 +256,21 @@ const Coordinator = (p) => {
               <span>
                 <div
                   className={styles["coordinator-feature-value"]}
-                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
+                  style={
+                    p.level === "coordinator" || p.level === "fa"
+                      ? { fontSize: "1rem" }
+                      : {}
+                  }
                 >
                   {scrap}s/gr
                 </div>
                 <div
                   className={styles["coord-feature-title"]}
-                  style={p.level === "coordinator" ? { fontSize: "1rem" } : {}}
+                  style={
+                    p.level === "coordinator" || p.level === "fa"
+                      ? { fontSize: "1rem" }
+                      : {}
+                  }
                 >
                   scrap
                 </div>
