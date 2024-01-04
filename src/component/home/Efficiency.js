@@ -3,6 +3,7 @@ import c from "./Efficiency.module.css";
 import EfficiencyData from "./EfficiencyData";
 import { useSelector } from "react-redux";
 import {
+  effMonth,
   filterProjectsByName,
   getEfficiencyDatas,
   getEfficiencyDay,
@@ -23,7 +24,7 @@ const Efficiency = (p) => {
   console.log(cutting, lp);
 
   const getEffic = (data, type, month) => {
-    const filtredData =month==="month"?getEfficiencyMonth(data, type): getEfficiencyDay(data, type);
+    const filtredData =month==="month"?effMonth(data, type): getEfficiencyDay(data, type);
     console.log(filtredData, type);
     return getEfficiencyDatas(filtredData);
   };
@@ -36,15 +37,17 @@ const Efficiency = (p) => {
         paidH: paidHDfa,
         prodT: prodTDfa,
         paidT: paidTDfa,
-      } = tem === "day" ? getEffic(fa, p.day) : getEffic(fa, p.month, "month");
+      } = tem === "day" ? getEffic(fa, p.day) : getEffic(fa, p.day, "month");
       if (tem === "day") {
         filtredDatacutting = getEfficiencyDay(cutting, p.day);
         filtredDatalp = getEfficiencyDay(lp, p.day);
         console.log(filtredDatacutting, filtredDatalp);
       }
       if (tem === "month") {
-        filtredDatacutting = getEfficiencyMonth(cutting, p.month);
-        filtredDatalp = getEfficiencyMonth(lp, p.month);
+        // filtredDatacutting = getEfficiencyMonth(cutting, p.month);
+        filtredDatacutting = effMonth(cutting, p.day);
+        // filtredDatalp = getEfficiencyMonth(lp, p.month);
+        filtredDatalp = effMonth(lp, p.day);
         console.log("MONTH", filtredDatacutting, filtredDatalp);
       }
       if (type === "act") {
@@ -144,7 +147,9 @@ const Efficiency = (p) => {
   const gapHc = (hc - hcTarget).toFixed(0);
 
   //Efficiency Month
-  const filtredDataMonth = getEfficiencyMonth(data, p.month);
+  // const filtredDataMonth = getEfficiencyMonth(data, p.month);
+  const filtredDataMonth = effMonth(data, p.day);
+  console.log(filtredDataMonth, data)
   const {
     prodH: prodHM,
     paidH: paidHM,
@@ -164,6 +169,7 @@ const Efficiency = (p) => {
   ).toFixed(2);
   const gapM = (totalPM - totalTM).toFixed(2);
   //Efficiency Year
+  
   const { prodHY, paidHY, prodTY, paidTY } = getEfficiencyYear(data);
   let totalPY = esa(paidHY === 0 ? 0 : (prodHY / paidHY) * 100, "year", "act").toFixed(2);
   const totalTY = esa(

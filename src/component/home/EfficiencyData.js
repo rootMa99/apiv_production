@@ -60,7 +60,7 @@ const EfficiencyData = (p) => {
               {p.gap > 50 && (
                 <span style={{ color: "#a30202" }}>{p.hc > 0 ? p.hc : 0} </span>
               )}
-              {p.gap < 50 && p.gap >= 0 && (
+              {p.gap <= 50 && p.gap >= 0 && (
                 <span style={{ color: "#d1962a" }}>{p.hc > 0 ? p.hc : 0} </span>
               )}
               {p.gap < 0 && (

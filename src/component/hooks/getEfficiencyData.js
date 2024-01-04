@@ -23,16 +23,41 @@ export const getEfficiencyMonth = (dataArray, month) => {
   });
   return filteredData;
 };
+
+const getStartmonth = (date) => {
+  const startDate = new Date(date);
+  startDate.setDate(1);
+  const dateObject = new Date(startDate);
+
+  const year = dateObject.getFullYear();
+  const month = String(dateObject.getMonth() + 1).padStart(2, "0");
+  const day = String(dateObject.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+};
+
+
+export const effMonth = (dataArray, endDate) => {
+  const filteredData = [];
+  const startDate = getStartmonth(endDate);
+  console.log(startDate);
+  dataArray.forEach((element) => {
+    filteredData.push(
+      ...element.data.filter((f) => f.date >= startDate && f.date <= endDate)
+    );
+  });
+  return filteredData;
+};
+
 export const getEfficiencyMonthSL = (dataArray, month, type) => {
   const filteredData = [];
 
- 
-    filteredData.push(
-      ...dataArray.filter((f) => {
-        return f[type] === month;
-      })
-    );
- 
+  filteredData.push(
+    ...dataArray.filter((f) => {
+      return f[type] === month;
+    })
+  );
+
   return filteredData;
 };
 
@@ -85,7 +110,7 @@ export const getFiltredProject = (dataArray) => {
   datafiltred.push(
     ...dataArray.filter((f) => {
       return (
-       //f.name !== "Sequencing" &&
+        //f.name !== "Sequencing" &&
         //f.name !== "Qualité" &&
         f.name !== "App & Ch.Ing" &&
         f.name !== "OPS" &&
@@ -93,16 +118,16 @@ export const getFiltredProject = (dataArray) => {
         //f.name !== "AFM" &&
         //f.name !== "CUTTING AREA" &&
         //f.name !== "LEAD PREP AREA" &&
-        f.name !== "B78-T9"&&
+        f.name !== "B78-T9" &&
         f.name !== "Prototype"
       );
     })
   );
   return datafiltred;
 };
-export const filterProjectsByName=(dataArray,project)=>{
-  return dataArray.filter(f=>(f.name===project));
-}
+export const filterProjectsByName = (dataArray, project) => {
+  return dataArray.filter((f) => f.name === project);
+};
 
 export const getEfficiencyDataByDay = (dataArray, day) => {
   const filtredData = dataArray.filter((f) => {
@@ -121,8 +146,8 @@ export const getEfficiencyDataByDay = (dataArray, day) => {
   filtredData.forEach((e) => {
     data.prodH += e.actualDataExcel.prodH;
     data.paidH += e.actualDataExcel.paidH;
-    data.prodHT+=e.dataTargetExcel.prodTarget;
-    data.paidHT+=e.dataTargetExcel.payedTarget;
+    data.prodHT += e.dataTargetExcel.prodTarget;
+    data.paidHT += e.dataTargetExcel.payedTarget;
     data.hc += e.actualDataExcel.hc;
     data.ab += e.actualDataExcel.ab;
     data.tlo += e.actualDataExcel.tlo;
@@ -144,8 +169,8 @@ export const getEfficiencyDataByMonth = (dataArray, month) => {
   filtredData.forEach((e) => {
     dataM.prodH += e.actualDataExcel.prodH;
     dataM.paidH += e.actualDataExcel.paidH;
-    dataM.prodHT+=e.dataTargetExcel.prodTarget;
-    dataM.paidHT+=e.dataTargetExcel.payedTarget;
+    dataM.prodHT += e.dataTargetExcel.prodTarget;
+    dataM.paidHT += e.dataTargetExcel.payedTarget;
   });
   return dataM;
 };
@@ -157,13 +182,12 @@ export const getEfficiencyDataByYear = (dataArray) => {
     paidH: 0,
     prodHT: 0,
     paidHT: 0,
-    
   };
   dataArray.forEach((e) => {
     dataY.prodH += e.actualDataExcel.prodH;
     dataY.paidH += e.actualDataExcel.paidH;
-    dataY.prodHT+=e.dataTargetExcel.prodTarget;
-    dataY.paidHT+=e.dataTargetExcel.payedTarget;
+    dataY.prodHT += e.dataTargetExcel.prodTarget;
+    dataY.paidHT += e.dataTargetExcel.payedTarget;
   });
   return dataY;
 };
