@@ -40,6 +40,10 @@ const ShiftLeaderEfficiency = (p) => {
   }, [chartDay, chartWeek, chartmonth]);
 
   const onClickHandler = (e) => {
+    if (p.type === "fa") {
+      navigate(`/coordinator/${p.title}`);
+      return;
+    }
     if (p.coordinator) {
       navigate(`/home/project/${p.project}`);
       return;

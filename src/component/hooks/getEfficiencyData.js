@@ -86,11 +86,11 @@ export const getFiltredProject = (dataArray) => {
     ...dataArray.filter((f) => {
       return (
        //f.name !== "Sequencing" &&
-        f.name !== "Qualité" &&
+        //f.name !== "Qualité" &&
         f.name !== "App & Ch.Ing" &&
         f.name !== "OPS" &&
         f.name !== "SOS" &&
-        f.name !== "AFM" &&
+        //f.name !== "AFM" &&
         //f.name !== "CUTTING AREA" &&
         //f.name !== "LEAD PREP AREA" &&
         f.name !== "B78-T9"&&

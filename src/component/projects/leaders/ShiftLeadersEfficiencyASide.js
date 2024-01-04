@@ -60,7 +60,14 @@ const ShiftLeadersEfficiencyASide = (p) => {
   totalEfficiency.sort((a, b) => a.gapDay - b.gapDay);
   console.log(efficiency, totalEfficiency);
   const clickHandlerLink = (name) => {
+    if (p.type === "fa") {
+      navigate(`/coordinator/${name}`);
+      return;
+    }
     if (p.coordinator === "cordinator") {
+      navigate(
+        `/home/project/${name}`
+      );
       return;
     }
     if (p.crew === "crew") {
@@ -80,9 +87,7 @@ const ShiftLeadersEfficiencyASide = (p) => {
         );
   };
   return (
-    <div
-      className={c.dataContainer}
-    >
+    <div className={c.dataContainer}>
       <h3 className={c.title}>
         {p.data === undefined
           ? "shiftLeaders efficiency"
