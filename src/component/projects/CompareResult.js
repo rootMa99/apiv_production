@@ -96,6 +96,7 @@ const CompareResult = (p) => {
     { value: "efficiency", label: "efficiency" },
     { value: "ab/absTarget", label: "ab" },
     { value: "dt/dtTarget", label: "down time" },
+    { value: "scrap/scrapTarget", label: "scrap" },
     { value: "hc/hcTarget", label: "head count" },
     { value: "ot/ot", label: "over time" },
     { value: "output/outputTarget", label: "output" },

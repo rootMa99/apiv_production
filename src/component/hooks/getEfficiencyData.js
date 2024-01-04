@@ -36,10 +36,15 @@ const getStartmonth = (date) => {
   return `${year}-${month}-${day}`;
 };
 
+const getStartYear=date=>{
+  const year= date.split('-')[0];
 
-export const effMonth = (dataArray, endDate) => {
+  return `${year}-01-01`;
+}
+
+export const effMonth = (dataArray, endDate, year) => {
   const filteredData = [];
-  const startDate = getStartmonth(endDate);
+  const startDate = year==="year"? getStartYear(endDate) : getStartmonth(endDate);
   console.log(startDate);
   dataArray.forEach((element) => {
     filteredData.push(
@@ -88,6 +93,20 @@ export const getEfficiencyYear = (dataArray) => {
       prodTY += e.dataTargetExcel.prodTarget;
       paidTY += e.dataTargetExcel.payedTarget;
     });
+  });
+
+  return { prodHY, paidHY, prodTY, paidTY };
+};
+export const getEfficiencyYearUntil = (dataArray) => {
+  let prodHY = 0;
+  let paidHY = 0;
+  let prodTY = 0;
+  let paidTY = 0;
+  dataArray.forEach((e) => {
+      prodHY += e.actualDataExcel.prodH;
+      paidHY += e.actualDataExcel.paidH;
+      prodTY += e.dataTargetExcel.prodTarget;
+      paidTY += e.dataTargetExcel.payedTarget;
   });
 
   return { prodHY, paidHY, prodTY, paidTY };

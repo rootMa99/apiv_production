@@ -73,6 +73,7 @@ const options = [
   { value: "efficiency", label: "efficiency" },
   { value: "output/outputTarget", label: "output" },
   { value: "hc/hcTarget", label: "head count" },
+  { value: "scrap/scrapTarget", label: "scrap" },
   { value: "wsd/wsd", label: "wsd" },
   { value: "ab/absTarget", label: "ab" },
   { value: "ot/ot", label: "over time" },
@@ -110,6 +111,9 @@ const Compare = (p) => {
   console.log(shiftLeaders);
   shiftLeaders.map(
     (m) => m.name !== null && optionsSH1.push({ value: m.name, label: m.name })
+  );
+  const optionsSH11=optionsSH1.filter(
+    (f) => f.value !== selectedOptions.shiftleader2.value && f.value !== selectedOptions.shiftleader3.value
   );
   const optionsSH2 = optionsSH1.filter(
     (f) => f.value !== selectedOptions.shiftleader1.value && f.value !== selectedOptions.shiftleader3.value
@@ -193,7 +197,7 @@ const Compare = (p) => {
           <div className={c.select} style={third ? {"width":"30%"} : {}}>
             <label htmlFor="multiSelect">Select {p.title} 1:</label>
             <Select
-              options={optionsSH1}
+              options={optionsSH11}
               id="multiSelect"
               inputId="shiftleader1"
               onChange={onChangeHandler}

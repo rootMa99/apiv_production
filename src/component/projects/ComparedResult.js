@@ -3,9 +3,11 @@ import {
   getDataDays,
   getDataDaysOutput,
   getDataYear,
+  getDatacrapOutput,
   getMonthData,
   getOutputDataYear,
   getWeekData,
+  getscrapDataYear,
 } from "../hooks/EfficiencyProjectFilter";
 import MonthChart from "./MonthChart";
 import c from "./CompareResult.module.css";
@@ -23,6 +25,9 @@ const ComparedResult = (p) => {
     if (p.typeS === "monthly") {
       if (p.actual === "efficiency") {
         return getDataYear(shiftLeader[0].data, checkBox);
+      }
+      if (p.actual === "scrap") {
+        return getscrapDataYear(shiftLeader[0].data, "month", p.actual, p.target);
       }
 
       return getOutputDataYear(
@@ -43,11 +48,15 @@ const ComparedResult = (p) => {
           checkBox
         );
       }
+      
       const filtredMonth = getMonthData(
         shiftLeader[0].data,
         month[months - 1],
         month[months - 2]
       );
+      if (p.actual === "scrap") {
+        return getscrapDataYear(filtredMonth, "week", p.actual, p.target);
+      }
       console.log(filtredMonth);
       return getOutputDataYear(filtredMonth, "week", p.actual, p.target);
     }
@@ -56,12 +65,18 @@ const ComparedResult = (p) => {
       if (p.actual === "efficiency") {
         return getDataDays(filtredM, "", checkBox);
       }
+      if (p.actual === "scrap") {
+        return getDatacrapOutput(filtredM, p.actual, p.target);
+      }
       return getDataDaysOutput(filtredM, p.actual, p.target);
     }
     if (p.typeS === "day") {
       const filtredM = shiftLeader[0].data.filter((f) => f.date === date);
       if (p.actual === "efficiency") {
         return getDataDays(filtredM, "", checkBox);
+      }
+      if (p.actual === "scrap") {
+        return getDatacrapOutput(filtredM, p.actual, p.target, "day");
       }
       return getDataDaysOutput(filtredM, p.actual, p.target, "day");
     }

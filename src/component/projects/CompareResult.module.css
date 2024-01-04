@@ -64,7 +64,7 @@
   width: 10%;
 }
 .selectm{
-  width: 60%;
+  min-width: 15rem;
   margin-right: 1rem;
 }
 .selects{

@@ -7,8 +7,9 @@ import {
   filterProjectsByName,
   getEfficiencyDatas,
   getEfficiencyDay,
-  getEfficiencyMonth,
+  //getEfficiencyMonth,
   getEfficiencyYear,
+  getEfficiencyYearUntil,
   getHC,
 } from "../hooks/getEfficiencyData";
 
@@ -169,8 +170,10 @@ const Efficiency = (p) => {
   ).toFixed(2);
   const gapM = (totalPM - totalTM).toFixed(2);
   //Efficiency Year
-  
-  const { prodHY, paidHY, prodTY, paidTY } = getEfficiencyYear(data);
+  const dataYR=effMonth(data, p.day, "year");
+  console.log(dataYR);
+  // const { prodHY, paidHY, prodTY, paidTY } = getEfficiencyYear(data);
+  const { prodHY, paidHY, prodTY, paidTY } =getEfficiencyYearUntil(dataYR);
   let totalPY = esa(paidHY === 0 ? 0 : (prodHY / paidHY) * 100, "year", "act").toFixed(2);
   const totalTY = esa(
     paidTY === 0 ? 0 : (prodTY / paidTY) * 100,
