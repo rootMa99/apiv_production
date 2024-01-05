@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { getFiltredProject, getSortedData } from "../hooks/getEfficiencyData";
 import ProjectCard from "./ProjectCard";
 import c from "./Projects.module.css";
 import { useSelector } from "react-redux";
+import otherPic from "../../assets/other.png";
+import OtherProjects from "./OtherProjects";
+
 
 const Projects = (p) => {
   const day= useSelector(s=>s.additionalData);
   const data= useSelector(s=>s.datas);
+  const [other, setOther]=useState(false)
 
   //const data = p.data;
   const datafiltred = getFiltredProject(data);
-
+  console.log(data)
   const sortedData= getSortedData(datafiltred);
   const month = day.month[day.date.split("-")[1] - 1];
   console.log(datafiltred);
@@ -25,6 +29,13 @@ const Projects = (p) => {
           {sortedData.map((m) => (
             <ProjectCard key={m.name} title={m.name} data={m.data}  day={day.date} month={month} pic={m.projectUriPic} />
           ))}
+          <div className={c.otherP} onClick={()=>setOther(true)}>
+            <img src={otherPic} alt="other" />
+            <h1>others</h1>
+          </div>
+          {
+            other && <OtherProjects data={data} day={day.date} month={month}/>
+          }
         </div>
       </div>
     </React.Fragment>

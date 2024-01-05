@@ -147,7 +147,7 @@ const CoordinatorList = (p) => {
         <CoordinatorChart dataCoordinator={dataFa} type="fa" />
       ) : (
         <React.Fragment>
-          <h1>cordinators</h1>
+          <h1>coordinators</h1>
           <div className={c.Coordinator}>
             {coordinators.map((m, i) => (
               <Coordinator
