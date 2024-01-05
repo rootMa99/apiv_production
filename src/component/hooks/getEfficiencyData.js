@@ -156,6 +156,18 @@ export const getFiltredProjectOther = (dataArray) => {
   );
   return datafiltred;
 };
+export const getFiltredProjectCutting = (dataArray) => {
+  const datafiltred = [];
+  datafiltred.push(
+    ...dataArray.filter((f) => {
+      return (
+        f.name === "CUTTING AREA" ||
+        f.name === "LEAD PREP AREA" 
+      );
+    })
+  );
+  return datafiltred;
+};
 export const filterProjectsByName = (dataArray, project) => {
   return dataArray.filter((f) => f.name === project);
 };

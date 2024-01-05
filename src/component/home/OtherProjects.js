@@ -1,17 +1,16 @@
 import { getFiltredProjectOther } from "../hooks/getEfficiencyData";
 import ProjectCard from "./ProjectCard";
-
+import c from "./OtherProjects.module.css";
 
 
 const OtherProjects=p=>{
 
 
-const sortedData=getFiltredProjectOther(p.data)
-console.log(sortedData)
+console.log(p.sortedData)
 return(
-    <div>
-        {sortedData.map((m) => (
-            <ProjectCard key={m.name} title={m.name} data={m.data}  day={p.day} month={p.month} pic={m.projectUriPic} />
+    <div className={c.container} >
+        {p.sortedData.map((m) => (
+            <ProjectCard key={m.name} title={m.name} data={m.data}  day={p.day} month={p.month} pic={m.projectUriPic} other={true} />
           ))}
     </div>
 )

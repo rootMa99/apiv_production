@@ -92,6 +92,7 @@ const selecyedDay= p.day.split("-");
       onMouseEnter={mouseEnter}
       onMouseLeave={mouseLeave}
       onClick={clickHandler}
+      style={p.other ? {width:"30%"} : {} }
     >
       <img src={p.pic===null? aptivbg:p.pic} alt="some backGround" />
       {!mouseIn&&<h2 className={c.toptitle}>{p.title} </h2>}
