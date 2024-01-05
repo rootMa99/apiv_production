@@ -78,10 +78,13 @@
   cursor: pointer;
   overflow: hidden;
   position: relative;
+  opacity: 0.2;
 }
 .otherP:hover,
 .otherP:hover {
   transform: scale(1.02);
+  opacity: 1;
+
 }
 
 .otherP img{

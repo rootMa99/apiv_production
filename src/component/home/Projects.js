@@ -4,6 +4,7 @@ import ProjectCard from "./ProjectCard";
 import c from "./Projects.module.css";
 import { useSelector } from "react-redux";
 import otherPic from "../../assets/other.png";
+import plus from "../../assets/plus.jpg";
 import OtherProjects from "./OtherProjects";
 import BackDrop from "../ui/BackDrop";
 
@@ -49,7 +50,7 @@ const sortedDatacut=getFiltredProjectCutting(data);
             />
           ))}
           <div className={c.otherP} onClick={() => setOther(true)}>
-            <img src={otherPic} alt="other" />
+            <img src={plus} alt="other" />
             <h1>others</h1>
           </div>
           <div className={c.otherP} onClick={() => setCutting(true)}>

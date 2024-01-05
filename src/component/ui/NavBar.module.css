@@ -25,9 +25,12 @@
 }
 .links ul{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
+    gap: 3rem;
     align-items: center;
     list-style-type: none;
+    margin-right: 3rem;
+
 }
 .links ul li{
     font-weight: bold;

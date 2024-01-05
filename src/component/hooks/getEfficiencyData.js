@@ -150,7 +150,8 @@ export const getFiltredProjectOther = (dataArray) => {
     ...dataArray.filter((f) => {
       return (
         f.name === "Qualité" ||
-        f.name === "AFM" 
+        f.name === "AFM" ||
+        f.name === "Sequencing" 
       );
     })
   );

@@ -138,8 +138,11 @@ input[type="date"].titles:focus {
   overflow: hidden;
   animation: rotate 2s linear forwards, scale 10s ease-in-out forwards,
     translate 2s ease-in-out forwards;
-  height: 3.5rem;
-  width: 3.5rem;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .notification {
   animation-delay: 0s, 2s, 12s;
@@ -151,6 +154,7 @@ input[type="date"].titles:focus {
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
   letter-spacing: 2px;
+  margin: 0;
   text-transform: uppercase;
   padding-inline: 1rem;
   text-align: center;
@@ -166,12 +170,12 @@ input[type="date"].titles:focus {
 @keyframes rotate {
   0% {
     transform: translateY(-10rem);
-    width: 3.5rem;
+    width: 2rem;
     border-radius: 50%;
   }
   100% {
     transform: translateY(0);
-    width: 3.5rem;
+    width: 2rem;
     border-radius: 50%;
   }
 }
