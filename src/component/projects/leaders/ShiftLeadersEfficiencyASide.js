@@ -60,6 +60,9 @@ const ShiftLeadersEfficiencyASide = (p) => {
   totalEfficiency.sort((a, b) => a.gapDay - b.gapDay);
   console.log(efficiency, totalEfficiency);
   const clickHandlerLink = (name) => {
+    if(p.dontNavigate){
+      return;
+    }
     if (p.type === "fa") {
       navigate(`/coordinator/${name}`);
       return;

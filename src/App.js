@@ -15,6 +15,7 @@ import CoordinatorList from "./component/coordinator/CoordinatorList";
 import Coordinators from "./component/coordinator/Coordinators";
 import Loading from "./component/ui/Loading";
 import ServerError from "./component/ui/ServerError";
+import Admin from "./component/admin/Admin";
 
 const getData = async (url) => {
   console.log("runing.....");
@@ -110,6 +111,7 @@ function App() {
                       <Route path=":crew" element={<Crew />} />
                     </Route>
                   </Route>
+                  <Route path="/admin" element={<Admin />} />
                   <Route path="*" element={<Navigate replace to="/home" />} />
                 </Routes>
               </Suspense>

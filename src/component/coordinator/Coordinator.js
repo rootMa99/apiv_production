@@ -17,12 +17,17 @@ const Coordinator = (p) => {
       p.clickhHandler();
       return;
     }
+    if(p.flagss){
+      p.clickhHandler();
+      return;
+    }
     if (p.flag) {
       p.clickhHandler();
       return;
     }
     p.level === "coordinator" && navigate(`/coordinator/${p.name}`);
     p.level === "shiftLeader" && p.setShiftleader(p.name);
+    p.level === "teamleader" && p.setShiftleaderi(p.name);
   };
   console.log(p.data, p.name, p.type);
   let efficiency;

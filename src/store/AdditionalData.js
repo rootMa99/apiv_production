@@ -46,6 +46,10 @@ const AdditionalData = createSlice({
     chartmonth: true,
     checkBox:false,
     coordinatoor:[],
+    login:{
+      isLogged:false,
+      token:""
+    }
   },
   reducers: {
     addDate(s, p) {
@@ -85,6 +89,10 @@ const AdditionalData = createSlice({
       if(s.coordinatoor.length===0){
         s.coordinatoor.push(...p.payload);
       }
+    },
+    isLoggin(s,p){
+      s.login.isLogged=true;
+      s.login.token=p.payload;
     }
   },
 });

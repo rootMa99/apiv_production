@@ -28,14 +28,14 @@ const NavBar = (p) => {
               coordinator
             </NavLink>
           </li>
-          {/* <li>
+          <li>
             <NavLink
-              to="/shiftLeader"
+              to="/admin"
               className={({ isActive }) => (isActive ? c.activeLink : c.link)}
             >
-              shift leader
+              Admin
             </NavLink>
-          </li> */}
+          </li>
         </ul>
       </div>
     </header>

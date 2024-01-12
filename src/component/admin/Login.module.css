@@ -1,0 +1,150 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 82%);
+}
+.main {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+.Form-container {
+  border: 1px solid #ff450029;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #afa6a611;
+  color: white;
+  width: 25rem;
+  border-radius: 10px;
+  padding: 1em 1rem;
+  box-shadow: 0px 0px 20px 0px black;
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.login-title {
+  font-size: 2rem;
+}
+.username,
+.userpassword {
+  text-align: center;
+  border: 2px solid #f84018;
+  margin: 0.6rem;
+  color: white;
+  background: transparent;
+  padding: 0.8rem 2rem;
+  border-radius: 3rem;
+  width: 19rem;
+  font-size: 1.2rem;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+.username:focus,
+.userpassword:focus {
+  width: 20rem;
+  animation-name: colorChange;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+.Login {
+  background: transparent;
+  border: 2px solid #f84018;
+  padding: 0.5rem 3rem;
+  margin: 1rem;
+  border-radius: 6rem;
+  text-decoration: none;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding-inline: 1rem;
+  text-align: center;
+  font-size: medium;
+}
+.Login:hover {
+  background: #f84018;
+}
+.register {
+  margin: 0.5rem 1rem;
+  width: 297px;
+}
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #000;
+  }
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-icon {
+  font-size: 15px;
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.user-container {
+  position: relative;
+}
+.username-icon {
+  font-size: 15px;
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  font-size: 1.75rem;
+  margin: 10px;
+  /* Add more styling as needed */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}

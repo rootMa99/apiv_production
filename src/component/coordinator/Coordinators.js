@@ -27,6 +27,7 @@ const customStyles = {
     border: "2px solid #f4dfc8",
     backgroundColor: "rgba(24, 13, 13, 1)",
     boxShadow: "none",
+    marginBottom:"1rem",
     "&:hover": {
       border: "2px solid rgb(255, 255, 255)",
       backgroundColor: "rgba(100, 98, 98, 0.37)",
@@ -84,11 +85,15 @@ const Coordinators = (p) => {
   const dispatch = useDispatch();
 
   const [teamLeader, setTeamLeader] = useState({ name: "", show: false });
+  const [teamLeaderi, setTeamLeaderi] = useState({ name: "", show: false });
   const [type, setType] = useState({ value: "date", label: "yesterday" });
   const [showMore, setShowMore] = useState(false);
+  const [showMoreSL, setShowMoreSL] = useState(false);
+  const [showMoreTL, setShowMoreTL] = useState(false);
   const { name } = useParams();
   const data = useSelector((s) => s.datas);
   const scrollToRef = useRef();
+  const scrollToRefChart = useRef();
   const coordinatoor = getCoordinatorsData(data);
   console.log(coordinatoor, name);
   const dataCoordinator = coordinatoor.filter(
@@ -101,18 +106,39 @@ const Coordinators = (p) => {
       scrollToRef.current.scrollIntoView({ behavior: "smooth" });
     }, 40);
   };
+  const setShiftleaderi = (name) => {
+    setTeamLeaderi({ name: name, show: true });
+    setShowMoreTL(!showMoreTL);
+    setTimeout(() => {
+      scrollToRefChart.current.scrollIntoView({ behavior: "smooth" });
+    }, 40);
+  };
   const teamleaders = dataCoordinator.shiftleader.filter(
     (f) => f.name === teamLeader.name
   )[0];
   console.log(teamleaders);
 
   const clickHadler = (e) => {
-    if(teamLeader.show){
-    setTeamLeader({ ...teamLeader, show: false });
-
-    }else{
+    setShowMoreSL(false);
+    setShowMoreTL(false);
+    setTeamLeaderi({ name: "", show: false });
+    if (teamLeader.show) {
+      setTeamLeader({ ...teamLeader, show: false });
+    } else {
       setShowMore(!showMore);
     }
+  };
+  const clickHadlerSL = (e) => {
+    if (teamLeaderi.show) {
+    setShowMoreTL(false);
+      setTeamLeaderi({ name: "", show: false });
+    } else {
+      setShowMoreSL(!showMoreSL);
+    }
+  };
+  const clickHadlerTL = (e) => {
+    setShowMoreTL(false);
+    setTeamLeaderi({ name: "", show: false });
   };
 
   return (
@@ -125,7 +151,13 @@ const Coordinators = (p) => {
       </div>
 
       <div className={c.selectq}>
-        {showMore ? (
+        <Select
+          options={options}
+          onChange={(e) => setType(e)}
+          styles={customStyles}
+          defaultValue={type}
+        />
+        {(showMore || showMoreSL || showMoreTL) && (
           <React.Fragment>
             <input
               className={c.titles}
@@ -136,16 +168,7 @@ const Coordinators = (p) => {
               }
             />
           </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Select
-              options={options}
-              onChange={(e) => setType(e)}
-              styles={customStyles}
-              defaultValue={type}
-            />
-          </React.Fragment>
-        )}
+        ) }
       </div>
       <div className={c.Coordinator}>
         <Coordinator
@@ -183,40 +206,91 @@ const Coordinators = (p) => {
                     />
                   )
               )}
-            {teamLeader.show &&
-              dataCoordinator.shiftleader
-                .filter((f) => f.name === teamLeader.name)
-                .map(
-                  (m, i) =>
-                    m.name !== null && (
-                      <Coordinator
-                        pic={m.urlPic}
-                        name={m.name}
-                        level="shiftLeader"
-                        setShiftleader={setShiftleader}
-                        data={m.teamleader}
-                        key={i}
-                        type={type}
-                      />
-                    )
-                )}
+            {teamLeader.show && (
+              <React.Fragment>
+                {dataCoordinator.shiftleader
+                  .filter((f) => f.name === teamLeader.name)
+                  .map(
+                    (m, i) =>
+                      m.name !== null && (
+                        <Coordinator
+                          pic={m.urlPic}
+                          name={m.name}
+                          level="shiftLeader"
+                          setShiftleader={setShiftleader}
+                          data={m.teamleader}
+                          key={i}
+                          type={type}
+                          clickhHandler={clickHadlerSL}
+                          flags={true}
+                        />
+                      )
+                  )}
+              </React.Fragment>
+            )}
           </div>
-          {teamLeader.show && (
+          {teamLeader.show && !showMoreSL && (
             <React.Fragment>
               <h1 ref={scrollToRef}>{teamLeader.name} Team's Leaders </h1>
 
-              <div className={c.teamleader}>
-                {teamleaders.teamleader.map((m, i) => (
-                  <Coordinator
-                    pic={avatar}
-                    name={m.name}
-                    data={m.data}
-                    key={i}
-                    type={type}
-                    level="teamleader"
-                  />
-                ))}
-              </div>
+              {!teamLeaderi.show ? (
+                <div className={c.teamleader}>
+                  {teamleaders.teamleader.map((m, i) => (
+                    <Coordinator
+                      pic={avatar}
+                      name={m.name}
+                      data={m.data}
+                      key={i}
+                      type={type}
+                      level="teamleader"
+                      setShiftleaderi={setShiftleaderi}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className={c.teamleader}>
+                  {teamleaders.teamleader
+                    .filter((f) => f.name === teamLeaderi.name)
+                    .map((m, i) => (
+                      <Coordinator
+                        pic={avatar}
+                        name={m.name}
+                        data={m.data}
+                        key={i}
+                        type={type}
+                        level="teamleader"
+                        setShiftleaderi={setShiftleaderi}
+                        flagss={true}
+                        clickhHandler={clickHadlerTL}
+                      />
+                    ))}
+                </div>
+              )}
+            </React.Fragment>
+          )}
+          {showMoreSL && (
+            <CoordinatorChart
+              dataCoordinator={
+                dataCoordinator.shiftleader.filter(
+                  (f) => f.name === teamLeader.name
+                )[0].teamleader
+              }
+              dontNavigate={true}
+            />
+          )}
+          {showMoreTL && (
+            <React.Fragment>
+              <h1 ref={scrollToRefChart}>Efficiency </h1>
+
+              <CoordinatorChart
+                dataCoordinator={
+                  teamleaders.teamleader.filter(
+                    (f) => f.name === teamLeaderi.name
+                  )[0]
+                }
+                dontNavigate={true}
+                level="teamleader"
+              />
             </React.Fragment>
           )}
         </React.Fragment>
