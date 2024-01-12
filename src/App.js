@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { Suspense, useCallback, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { dataAction } from "./store/DataSlice";
 import Home from "./component/Home";
@@ -16,6 +16,7 @@ import Coordinators from "./component/coordinator/Coordinators";
 import Loading from "./component/ui/Loading";
 import ServerError from "./component/ui/ServerError";
 import Admin from "./component/admin/Admin";
+import { getstartAndendDate } from "./component/hooks/chart2excel";
 
 const getData = async (url) => {
   console.log("runing.....");
@@ -37,15 +38,18 @@ const getData = async (url) => {
 };
 
 function App() {
+  const {date} = useSelector((s) => s.additionalData);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [dataCome, setDataCome] = useState(false);
   const dispatch = useDispatch();
+  const {startYear, endYear}=getstartAndendDate(date);
+  console.log(date, startYear, endYear)
 
   const callback = useCallback(async () => {
     setLoading(true);
-    const data = await getData("http://localhost:8081/data/projects");
-
+    const data = await getData(`http://localhost:8081/data/projects?start=${startYear}&end=${endYear}`);
+    console.log(data)
     //dispatch(dataAction.addData(DEMO_DATA));
     if (data !== "error") {
       dispatch(dataAction.addData(data));
@@ -56,7 +60,7 @@ function App() {
     setTimeout(() => {
       setLoading(false);
     }, 500);
-  }, [dispatch]);
+  }, [dispatch, startYear, endYear]);
 
   useEffect(() => {
     callback();

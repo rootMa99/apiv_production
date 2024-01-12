@@ -27,3 +27,13 @@ export function createWorkbookWithChart(chartData) {
 export function downloadExcelFile(workbook, fileName) {
     XLSX.writeFile(workbook, `${fileName}.xlsx`);
   }
+
+
+
+export const getstartAndendDate=date=>{
+  const year = date.split("-")[0];
+  const startYear= year+"-01-01";
+  const endYear= year+"-12-31";
+
+return {startYear, endYear}
+}

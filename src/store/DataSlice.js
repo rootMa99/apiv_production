@@ -8,6 +8,9 @@ const DataSlice =createSlice({
         addData(s,p){
             if (s.length===0){
                 s.push(...p.payload);
+            }else{
+                s=[];
+                s.push(...p.payload);
             }
         }
     }
