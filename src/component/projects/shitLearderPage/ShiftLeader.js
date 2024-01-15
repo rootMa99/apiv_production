@@ -49,6 +49,8 @@ const ShiftLeader = (p) => {
   } catch (e) {
     alert(e);
   }
+  const teamLeaders=[];
+  shiftLeaders.map(m=>teamLeaders.push(...getTeamLeaders(m.data)) );
 
   const monthData = getDataYear(shiftLeader[0].data);
   const dataM = monthData.map((m) => ({
@@ -84,7 +86,8 @@ const ShiftLeader = (p) => {
     teamLeader,
     dataDaysYear,
     maxObjectDay,
-    maxObject
+    maxObject,
+    teamLeaders
   );
   const comparedata = (data) => {
     setCompareData(data);
@@ -103,7 +106,7 @@ const ShiftLeader = (p) => {
           compare={comparedata}
           click={clickHandlerCompare}
           title="team leader"
-          data={teamLeader}
+          data={teamLeaders}
         />
       )}
       <div className={c.projectContent}>
@@ -117,7 +120,7 @@ const ShiftLeader = (p) => {
               {params.shitLeader}
             </h3>
             {shiftLeaders.map(
-              (m) =>
+              (m, i) =>
                 m.name !== null &&
                 m.name !== params.shitLeader && (
                   <h4
@@ -127,6 +130,7 @@ const ShiftLeader = (p) => {
                         `/home/project/${params.project}/shiftLeader/${m.name}`
                       );
                     }}
+                    key={i}
                   >
                     {m.name}
                   </h4>
