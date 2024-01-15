@@ -1,0 +1,19 @@
+.notification{
+    width: 100%;
+    position: fixed;
+    z-index: 11111;
+    bottom: 0;
+    left: 0;
+    background-color:#03C988 ;
+}
+
+
+.notification p{
+    color: #F8F6F4;
+    letter-spacing: 1px;
+  text-transform: uppercase;
+  padding-inline: 1rem;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+}
