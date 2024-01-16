@@ -6,8 +6,8 @@ const Notification=p=>{
 
 
     return(
-        <div className={c.notification} >
-            <p>The picture has been successfully uploaded.</p>
+        <div className={c.notification} style={p.error&&{backgroundColor:"#B70404"}} >
+            <p>{p.error?"We're having trouble connecting to the server. Please check your internet connection and try again, (If the problem persists, please contact us) ":"The picture has been successfully uploaded."} </p>
         </div>
     )
 }

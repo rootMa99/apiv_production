@@ -4,6 +4,8 @@ import Login from "./Login";
 import React, { useState } from "react";
 import ProjectUpload from "./ProjectUpload";
 import admin from "../../assets/admin.png"
+import ShiftLeaderAdmin from "./ShiftLeaderAdmin";
+import ShiftLeadersAdmin from "./ShitleadersAdmin";
 
 const Admin = (p) => {
   const { login } = useSelector((s) => s.additionalData);
@@ -87,6 +89,12 @@ const Admin = (p) => {
               data.map((m, i) => (
                 <ProjectUpload title={m.name} img={m.projectUriPic} key={i} />
               ))}
+              {
+                rendered.coordinator && <ShiftLeaderAdmin data={data} />
+              }
+              {
+                rendered.sl&&<ShiftLeadersAdmin data={data} />
+              }
           </div>
         </React.Fragment>
       )}

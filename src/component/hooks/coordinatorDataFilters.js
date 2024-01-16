@@ -342,3 +342,50 @@ data.forEach(f=>{
 
 return datar;
 }
+
+
+export const getCoordinatorsAdmin=data=>{
+
+  const returnedData=[];
+
+  data.forEach(e=>{
+    e.data.forEach(
+      el=>{
+        const index=returnedData.findIndex(
+          (f) => f.name === el.coordinator
+        );
+        if(index===-1){
+          returnedData.push({
+            name:el.coordinator,
+            urlPic:el.coordinatorUriPic
+          })
+        }
+      }
+    )
+  })
+
+  return returnedData;
+}
+
+export const getSlsAdmin=data=>{
+
+  const returnedData=[];
+
+  data.forEach(e=>{
+    e.data.forEach(
+      el=>{
+        const index=returnedData.findIndex(
+          (f) => f.name === el.shiftLeader
+        );
+        if(index===-1){
+          returnedData.push({
+            name:el.shiftLeader,
+            urlPic:el.shiftLeaderUriPic
+          })
+        }
+      }
+    )
+  })
+
+  return returnedData;
+}
