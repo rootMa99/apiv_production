@@ -6,6 +6,7 @@ import ProjectUpload from "./ProjectUpload";
 import admin from "../../assets/admin.png"
 import ShiftLeaderAdmin from "./ShiftLeaderAdmin";
 import ShiftLeadersAdmin from "./ShitleadersAdmin";
+import UploadExcelData from "./UploadExcelData";
 
 const Admin = (p) => {
   const { login } = useSelector((s) => s.additionalData);
@@ -14,6 +15,7 @@ const Admin = (p) => {
     projects: false,
     coordinator: false,
     sl: false,
+    admin:false
   });
   const data = useSelector((s) => s.datas);
   console.log(data);
@@ -23,6 +25,7 @@ const Admin = (p) => {
       projects: false,
       coordinator: false,
       sl: false,
+      admin:false
     });
   };
   const projectsHandelr = (e) => {
@@ -31,6 +34,7 @@ const Admin = (p) => {
       projects: true,
       coordinator: false,
       sl: false,
+      admin:false
     });
   };
   const coordinatorHandelr = (e) => {
@@ -39,6 +43,7 @@ const Admin = (p) => {
       projects: false,
       coordinator: true,
       sl: false,
+      admin:false
     });
   };
   const slHandelr = (e) => {
@@ -47,8 +52,20 @@ const Admin = (p) => {
       projects: false,
       coordinator: false,
       sl: true,
+      admin:false
     });
   };
+
+  const adminHandler=e=>{
+    setRendred({
+      excel: false,
+      projects: false,
+      coordinator: false,
+      sl: false,
+      admin:true
+    });
+  }
+  
   return (
     <div className={c.wrapper}>
       <h1 className={c.header}>Admin Page</h1>
@@ -79,11 +96,14 @@ const Admin = (p) => {
               <li className={rendered.sl ? c.active : ""} onClick={slHandelr}>
                 Shift Leaders
               </li>
+              <li className={rendered.admin ? c.active : ""} onClick={adminHandler}>
+                admin
+              </li>
             </ul>
           </div>
           <div className={c.projectsContainer}>
           {
-            (!rendered.excel && !rendered.coordinator && !rendered.projects && !rendered.sl) && <img src={admin} alt="admin" />
+            (!rendered.excel && !rendered.coordinator && !rendered.projects && !rendered.sl && !rendered.admin) && <img src={admin} alt="admin" />
           }
             {rendered.projects &&
               data.map((m, i) => (
@@ -94,6 +114,10 @@ const Admin = (p) => {
               }
               {
                 rendered.sl&&<ShiftLeadersAdmin data={data} />
+              }
+
+              {
+                rendered.excel&&<UploadExcelData />
               }
           </div>
         </React.Fragment>

@@ -67,7 +67,9 @@ const Login = (p) => {
       <div>
         <div id="error" className={c["error-message"]}></div>
       </div>
-
+      <div className={c.imageHolder}>
+        <img src={"http://localhost:8081/data/downloadFile/admin"} alt="admin"/>
+      </div>
       <div className={c["user-container"]}>
         <input
           type="text"
