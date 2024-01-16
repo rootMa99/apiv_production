@@ -7,6 +7,7 @@ import admin from "../../assets/admin.png"
 import ShiftLeaderAdmin from "./ShiftLeaderAdmin";
 import ShiftLeadersAdmin from "./ShitleadersAdmin";
 import UploadExcelData from "./UploadExcelData";
+import AdminPanel from "./AdminPanel";
 
 const Admin = (p) => {
   const { login } = useSelector((s) => s.additionalData);
@@ -118,6 +119,9 @@ const Admin = (p) => {
 
               {
                 rendered.excel&&<UploadExcelData />
+              }
+              {
+                rendered.admin&&<AdminPanel />
               }
           </div>
         </React.Fragment>

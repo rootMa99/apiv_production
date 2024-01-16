@@ -1,0 +1,33 @@
+.wrapper{
+    width: 100%;
+    height: 100%;
+}
+
+.ul{
+    list-style-type: none;
+    padding: 0;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .ul li{
+    width: 100%;
+    padding: 1rem 0;
+    color: #f84018;
+    font-weight: bold;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: Formular,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .ul li:hover,
+  .active{
+    color: #ecebea !important;
+    background-color: #f84018;
+  }
