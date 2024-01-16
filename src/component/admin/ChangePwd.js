@@ -32,7 +32,7 @@ const ChangePwd = (p) => {
     const jwtToken = login.token;
     if (
       cred.adminPasswordi.trim() === "" ||
-      cred.adminPasswordii.trim() ||
+      cred.adminPasswordii.trim()==="" ||
       !match
     ) {
       console.log("not submmit");
@@ -44,7 +44,7 @@ const ChangePwd = (p) => {
     };
     try {
       const data = await getData(
-        "http://localhost:8081/auth/signin",
+        "http://localhost:8081/admin/changePwd",
         body,
         jwtToken
       );

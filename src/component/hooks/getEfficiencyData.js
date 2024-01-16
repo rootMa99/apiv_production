@@ -139,6 +139,7 @@ export const getFiltredProject = (dataArray) => {
         f.name !== "LEAD PREP AREA" &&
         f.name !== "B78-T9" &&
         f.name !== "B78 T9" &&
+        f.name !== "null" &&
         f.name !== "Prototype"
       );
     })
