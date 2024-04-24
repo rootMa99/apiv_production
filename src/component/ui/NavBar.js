@@ -30,6 +30,14 @@ const NavBar = (p) => {
           </li>
           <li>
             <NavLink
+              to="/home/comparison"
+              className={({ isActive }) => (isActive ? c.activeLink : c.link)}
+            >
+              comparison
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/admin"
               className={({ isActive }) => (isActive ? c.activeLink : c.link)}
             >

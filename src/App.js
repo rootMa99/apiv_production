@@ -16,6 +16,7 @@ import Coordinators from "./component/coordinator/Coordinators";
 import Loading from "./component/ui/Loading";
 import ServerError from "./component/ui/ServerError";
 import Admin from "./component/admin/Admin";
+import Comparison from "./component/comparison/Comparison";
 // import { getstartAndendDate } from "./component/hooks/chart2excel";
 
 const getData = async (url) => {
@@ -48,7 +49,7 @@ function App() {
 
   const callback = useCallback(async () => {
     setLoading(true);
-    const data = await getData(`http://localhost:8081/data/projects`);
+    const data = await getData(`http://10.236.148.13:8081/data/projects`);
     console.log(data)
     //dispatch(dataAction.addData(DEMO_DATA));
     if (data !== "error") {
@@ -93,6 +94,7 @@ function App() {
                   </Route>
                   <Route exact path="/home" element={<Home />}>
                     <Route path="" element={<Projects />} />
+                    <Route path="comparison" element={<Comparison />} />
                     <Route path="project" element={<ProjectDetails />}>
                       <Route path=":project" element={<ProjectDetails />} />
                     </Route>
