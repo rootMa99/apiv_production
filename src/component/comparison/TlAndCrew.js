@@ -27,9 +27,14 @@ const TlAndCrew = (p) => {
     return b.outputGap - a.outputGap;
   });
 
+  const abs = [...tlByCrew].sort((a, b) => {
+    return b.absGap - a.absGap;
+  });
+
   const bgcolor = [];
   const bgcoloroutput = [];
   const bgcolorHC = [];
+  const bgcolorAB = [];
 
   eff.forEach((m) => {
     m.effTar > m.eff ? bgcolor.push("#CF3335") : bgcolor.push("#00AC9E");
@@ -41,6 +46,10 @@ const TlAndCrew = (p) => {
   outp.forEach((m) => {
     m.output < m.outputT ? bgcoloroutput.push("#CF3335") : bgcoloroutput.push("#00AC9E");
   });
+  abs.forEach((m) => {
+    m.abs > m.abst ? bgcolorAB.push("#CF3335") : bgcolorAB.push("#00AC9E");
+  });
+
   const datac = {
     labels: eff.map((m) => m.name),
     datasets: [
@@ -134,6 +143,37 @@ const TlAndCrew = (p) => {
       },
     ],
   };
+  const dataAB = {
+    labels: abs.map((m) => m.name),
+    datasets: [
+      {
+        type: "line",
+        label: "Target",
+        data: abs.map((m) => m.abst),
+        backgroundColor: "#F84018",
+        pointHoverBorderColor: "#FAF0E6",
+        borderColor: "#3BC6EB",
+        fill: false,
+        tension: 0.3,
+        borderWidth: 3,
+        borderCapStyle: "round",
+        pointHoverBackgroundColor: "rgb(88, 3, 3)",
+        pointHoverRadius: 8,
+        pointBorderColor: "#3BC6EB",
+        pointBorderWidth: 8,
+        pointRadius: 1,
+        borderDash: [5, 7],
+      },
+      {
+        type: "bar",
+        label: "Actual",
+        data: abs.map((m) => m.abs),
+        backgroundColor: bgcolorAB,
+        borderColor: "#F84018",
+        borderWidth: 1,
+      },
+    ],
+  };
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -215,6 +255,8 @@ const TlAndCrew = (p) => {
       <Bar data={dataOutput} options={options} />
       <h3>head count</h3>
       <Bar data={datahc} options={options} />
+      <h3>ab</h3>
+      <Bar data={dataAB} options={options} />
     </div>
   );
 };

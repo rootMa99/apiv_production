@@ -24,6 +24,7 @@ export const getEffByTlAndCrew = (d) => {
         gap:eff-effTar,
         abs:e.actualDataExcel.ab,
         abst: e.dataTargetExcel.absTarget,
+        absGap:e.actualDataExcel.ab-e.dataTargetExcel.absTarget,
         wsd:e.actualDataExcel.wsd,
         tlo:e.actualDataExcel.tlo,
         output:e.actualDataExcel.output,
