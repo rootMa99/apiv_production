@@ -30,11 +30,15 @@ const TlAndCrew = (p) => {
   const abs = [...tlByCrew].sort((a, b) => {
     return b.absGap - a.absGap;
   });
+  const wsd = [...tlByCrew].sort((a, b) => {
+    return b.wsd - a.wsd;
+  });
 
   const bgcolor = [];
   const bgcoloroutput = [];
   const bgcolorHC = [];
   const bgcolorAB = [];
+
 
   eff.forEach((m) => {
     m.effTar > m.eff ? bgcolor.push("#CF3335") : bgcolor.push("#00AC9E");
@@ -49,6 +53,7 @@ const TlAndCrew = (p) => {
   abs.forEach((m) => {
     m.abs > m.abst ? bgcolorAB.push("#CF3335") : bgcolorAB.push("#00AC9E");
   });
+
 
   const datac = {
     labels: eff.map((m) => m.name),
@@ -174,6 +179,19 @@ const TlAndCrew = (p) => {
       },
     ],
   };
+  const datawsd = {
+    labels: wsd.map((m) => m.name),
+    datasets: [
+      {
+        type: "bar",
+        label: "Actual",
+        data: wsd.map((m) => m.wsd),
+        backgroundColor: "#00AC9E",
+        borderColor: "#F84018",
+        borderWidth: 1,
+      },
+    ],
+  };
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -257,6 +275,8 @@ const TlAndCrew = (p) => {
       <Bar data={datahc} options={options} />
       <h3>ab</h3>
       <Bar data={dataAB} options={options} />
+      <h3>wsd</h3>
+      <Bar data={datawsd} options={options} />
     </div>
   );
 };
