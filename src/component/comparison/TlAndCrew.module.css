@@ -1,0 +1,19 @@
+.wrapper{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  padding-inline: 1rem;
+  padding-bottom: 10rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.chart{
+    height: 40rem;
+    width: 100%;
+}
+.chart h3{
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+}

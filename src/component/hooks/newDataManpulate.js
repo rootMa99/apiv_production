@@ -18,7 +18,7 @@ export const getEffByTlAndCrew = (d) => {
           : 0;
       
       rd.push({
-        name:e.teamLeader+ "/" +e.crew,
+        name:e.teamLeader+ " * " +e.crew,
         eff:eff*100,
         effTar:effTar*100,
         gap:eff-effTar,

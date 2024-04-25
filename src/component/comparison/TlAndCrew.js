@@ -10,6 +10,7 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
+import c from "./TlAndCrew.module.css";
 
 const TlAndCrew = (p) => {
   const tlByCrew = getEffByTlAndCrew(p.fd);
@@ -42,7 +43,6 @@ const TlAndCrew = (p) => {
   const bgcolorHC = [];
   const bgcolorAB = [];
 
-
   eff.forEach((m) => {
     m.effTar > m.eff ? bgcolor.push("#CF3335") : bgcolor.push("#00AC9E");
   });
@@ -51,12 +51,13 @@ const TlAndCrew = (p) => {
   });
 
   outp.forEach((m) => {
-    m.output < m.outputT ? bgcoloroutput.push("#CF3335") : bgcoloroutput.push("#00AC9E");
+    m.output < m.outputT
+      ? bgcoloroutput.push("#CF3335")
+      : bgcoloroutput.push("#00AC9E");
   });
   abs.forEach((m) => {
     m.abs > m.abst ? bgcolorAB.push("#CF3335") : bgcolorAB.push("#00AC9E");
   });
-
 
   const datac = {
     labels: eff.map((m) => m.name),
@@ -282,19 +283,31 @@ const TlAndCrew = (p) => {
   );
 
   return (
-    <div style={{ width: "90%", height: "44rem" , padding:"1rem", margin:"auto", paddingBottom:"4rem"}}>
-      <h3>Efficiency</h3>
-      <Line data={datac} options={options} />
-      <h3>output</h3>
-      <Bar data={dataOutput} options={options} />
-      <h3>head count</h3>
-      <Bar data={datahc} options={options} />
-      <h3>ab</h3>
-      <Bar data={dataAB} options={options} />
-      <h3>wsd</h3>
-      <Bar data={datawsd} options={options} />
-      <h3>tlo</h3>
-      <Bar data={datatlo} options={options} />
+    <div className={c.wrapper}>
+      <div className={c.chart}>
+        <h3>Efficiency</h3>
+        <Line data={datac} options={options} />
+      </div>
+      <div className={c.chart}>
+        <h3>output</h3>
+        <Bar data={dataOutput} options={options} />
+      </div>
+      <div className={c.chart}>
+        <h3>head count</h3>
+        <Bar data={datahc} options={options} />
+      </div>
+      <div className={c.chart}>
+        <h3>ab</h3>
+        <Bar data={dataAB} options={options} />
+      </div>
+      <div className={c.chart}>
+        <h3>wsd</h3>
+        <Bar data={datawsd} options={options} />
+      </div>
+      <div className={c.chart}>
+        <h3>tlo</h3>
+        <Bar data={datatlo} options={options} />
+      </div>
     </div>
   );
 };
