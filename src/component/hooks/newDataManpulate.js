@@ -94,3 +94,39 @@ const getTlData = (d) => {
   });
   return rd;
 };
+
+export const getdataCTl=d=>{
+    const pd=getTlData(d);
+    const rd = [];
+    pd.forEach((e) => {
+      let eff;
+      let effTar;
+      eff =
+        e.paid !== 0
+          ? e.prod/ e.paid
+          : 0;
+      effTar =
+        e.paidt !== 0
+          ? e.prodt / e.paidt
+          : 0;
+  
+      rd.push({
+        name: e.name,
+        eff: eff * 100,
+        effTar: effTar * 100,
+        gap: eff - effTar,
+        abs: e.abs,
+        abst: e.abst,
+        absGap: e.abs - e.abst,
+        wsd: e.wsd,
+        tlo: e.tlo,
+        output: e.output,
+        outputT: e.outputT,
+        outputGap: e.output - e.outputT,
+        hc: e.hc,
+        hcTarget: e.hcTarget,
+        hcGap: e.hcTarget - e.hc,
+      });
+    });
+    return rd;
+}
