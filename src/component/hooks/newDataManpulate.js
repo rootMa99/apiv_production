@@ -6,34 +6,91 @@ export const destractData = (d) => {
 export const getEffByTlAndCrew = (d) => {
   const rd = [];
   d.forEach((e) => {
-      let eff;
-      let effTar;
-      eff =
-        e.actualDataExcel.paidH !== 0
-          ? e.actualDataExcel.prodH / e.actualDataExcel.paidH
-          : 0;
-      effTar =
-        e.dataTargetExcel.payedTarget !== 0
-          ? e.dataTargetExcel.prodTarget / e.dataTargetExcel.payedTarget
-          : 0;
-      
+    let eff;
+    let effTar;
+    eff =
+      e.actualDataExcel.paidH !== 0
+        ? e.actualDataExcel.prodH / e.actualDataExcel.paidH
+        : 0;
+    effTar =
+      e.dataTargetExcel.payedTarget !== 0
+        ? e.dataTargetExcel.prodTarget / e.dataTargetExcel.payedTarget
+        : 0;
+
+    rd.push({
+      name: e.teamLeader + " * " + e.crew,
+      eff: eff * 100,
+      effTar: effTar * 100,
+      gap: eff - effTar,
+      abs: e.actualDataExcel.ab,
+      abst: e.dataTargetExcel.absTarget,
+      absGap: e.actualDataExcel.ab - e.dataTargetExcel.absTarget,
+      wsd: e.actualDataExcel.wsd,
+      tlo: e.actualDataExcel.tlo,
+      output: e.actualDataExcel.output,
+      outputT: e.dataTargetExcel.outputTarget,
+      outputGap: e.actualDataExcel.output - e.dataTargetExcel.outputTarget,
+      hc: e.actualDataExcel.hc,
+      hcTarget: e.dataTargetExcel.hcTarget,
+      hcGap: e.dataTargetExcel.hcTarget - e.actualDataExcel.hc,
+    });
+  });
+  return rd;
+};
+
+const getTlData = (d) => {
+  const rd = [];
+
+  d.forEach((e) => {
+    if (rd.length === 0) {
       rd.push({
-        name:e.teamLeader+ " * " +e.crew,
-        eff:eff*100,
-        effTar:effTar*100,
-        gap:eff-effTar,
-        abs:e.actualDataExcel.ab,
+        name: e.teamLeader,
+        paid: e.actualDataExcel.paidH,
+        prod: e.actualDataExcel.prodH,
+        paidt: e.dataTargetExcel.payedTarget,
+        prodt: e.dataTargetExcel.prodTarget,
+        abs: e.actualDataExcel.ab,
         abst: e.dataTargetExcel.absTarget,
-        absGap:e.actualDataExcel.ab-e.dataTargetExcel.absTarget,
-        wsd:e.actualDataExcel.wsd,
-        tlo:e.actualDataExcel.tlo,
-        output:e.actualDataExcel.output,
-        outputT:e.dataTargetExcel.outputTarget,
-        outputGap:e.actualDataExcel.output-e.dataTargetExcel.outputTarget,
-        hc:e.actualDataExcel.hc,
-        hcTarget:e.dataTargetExcel.hcTarget,
-        hcGap:e.dataTargetExcel.hcTarget-e.actualDataExcel.hc
-      })
+        wsd: e.actualDataExcel.wsd,
+        tlo: e.actualDataExcel.tlo,
+        output: e.actualDataExcel.output,
+        outputT: e.dataTargetExcel.outputTarget,
+        hc: e.actualDataExcel.hc,
+        hcTarget: e.dataTargetExcel.hcTarget,
+      });
+    } else {
+      const i = rd.findIndex((f) => f.name === e.teamLeader);
+      if (i === -1) {
+        rd.push({
+          name: e.teamLeader,
+          paid: e.actualDataExcel.paidH,
+          prod: e.actualDataExcel.prodH,
+          paidt: e.dataTargetExcel.payedTarget,
+          prodt: e.dataTargetExcel.prodTarget,
+          abs: e.actualDataExcel.ab,
+          abst: e.dataTargetExcel.absTarget,
+          wsd: e.actualDataExcel.wsd,
+          tlo: e.actualDataExcel.tlo,
+          output: e.actualDataExcel.output,
+          outputT: e.dataTargetExcel.outputTarget,
+          hc: e.actualDataExcel.hc,
+          hcTarget: e.dataTargetExcel.hcTarget,
+        });
+      } else {
+        rd[i].paid += e.actualDataExcel.paidH;
+        rd[i].prod += e.actualDataExcel.prodH;
+        rd[i].paidt += e.dataTargetExcel.payedTarget;
+        rd[i].prodt += e.dataTargetExcel.prodTarget;
+        rd[i].abs += e.actualDataExcel.ab;
+        rd[i].abst += e.dataTargetExcel.absTarget;
+        rd[i].wsd += e.actualDataExcel.wsd;
+        rd[i].tlo += e.actualDataExcel.tlo;
+        rd[i].output += e.actualDataExcel.output;
+        rd[i].outputT += e.dataTargetExcel.outputTarget;
+        rd[i].hc += e.actualDataExcel.hc;
+        rd[i].hcTarget += e.dataTargetExcel.hcTarget;
+      }
+    }
   });
   return rd;
 };
