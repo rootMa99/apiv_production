@@ -19,8 +19,8 @@ export const getEffByTlAndCrew = (d) => {
       
       rd.push({
         name:e.teamLeader+ "/" +e.crew,
-        eff:eff,
-        effTar:effTar,
+        eff:eff*100,
+        effTar:effTar*100,
         gap:eff-effTar,
         abs:e.actualDataExcel.ab,
         abst: e.dataTargetExcel.absTarget,
@@ -28,8 +28,10 @@ export const getEffByTlAndCrew = (d) => {
         tlo:e.actualDataExcel.tlo,
         output:e.actualDataExcel.output,
         outputT:e.dataTargetExcel.outputTarget,
+        outputGap:e.actualDataExcel.output-e.dataTargetExcel.outputTarget,
         hc:e.actualDataExcel.hc,
         hcTarget:e.dataTargetExcel.hcTarget,
+        hcGap:e.dataTargetExcel.hcTarget-e.actualDataExcel.hc
       })
   });
   return rd;
