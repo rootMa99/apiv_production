@@ -15,14 +15,20 @@ const TlAndCrew = (p) => {
   const tlByCrew = getEffByTlAndCrew(p.fd);
   console.log(p.fd, tlByCrew);
 
-  const eff=tlByCrew.sort((a, b) => {
+  const eff = tlByCrew.sort((a, b) => {
     return b.gap - a.gap;
   });
-  const hdc=getEffByTlAndCrew(p.fd).sort((a, b) => {
+
+  const hdc = [...tlByCrew].sort((a, b) => {
     return b.hcGap - a.hcGap;
   });
 
+  const outp = [...tlByCrew].sort((a, b) => {
+    return b.outputGap - a.outputGap;
+  });
+
   const bgcolor = [];
+  const bgcoloroutput = [];
   const bgcolorHC = [];
 
   eff.forEach((m) => {
@@ -32,6 +38,9 @@ const TlAndCrew = (p) => {
     m.hcTarget < m.hc ? bgcolorHC.push("#CF3335") : bgcolorHC.push("#00AC9E");
   });
 
+  outp.forEach((m) => {
+    m.output < m.outputT ? bgcoloroutput.push("#CF3335") : bgcoloroutput.push("#00AC9E");
+  });
   const datac = {
     labels: eff.map((m) => m.name),
     datasets: [
@@ -88,6 +97,37 @@ const TlAndCrew = (p) => {
         type: "bar",
         label: "Actual",
         data: hdc.map((m) => m.hc),
+        backgroundColor: bgcolorHC,
+        borderColor: "#F84018",
+        borderWidth: 1,
+      },
+    ],
+  };
+  const dataOutput = {
+    labels: outp.map((m) => m.name),
+    datasets: [
+      {
+        type: "line",
+        label: "Target",
+        data: outp.map((m) => m.outputT),
+        backgroundColor: "#F84018",
+        pointHoverBorderColor: "#FAF0E6",
+        borderColor: "#3BC6EB",
+        fill: false,
+        tension: 0.3,
+        borderWidth: 3,
+        borderCapStyle: "round",
+        pointHoverBackgroundColor: "rgb(88, 3, 3)",
+        pointHoverRadius: 8,
+        pointBorderColor: "#3BC6EB",
+        pointBorderWidth: 8,
+        pointRadius: 1,
+        borderDash: [5, 7],
+      },
+      {
+        type: "bar",
+        label: "Actual",
+        data: hdc.map((m) => m.output),
         backgroundColor: bgcolorHC,
         borderColor: "#F84018",
         borderWidth: 1,
@@ -169,9 +209,11 @@ const TlAndCrew = (p) => {
 
   return (
     <div style={{ width: "100%", height: "44rem" }}>
-        <h3>Efficiency</h3>
+      <h3>Efficiency</h3>
       <Line data={datac} options={options} />
-        <h3>head count</h3>
+      <h3>output</h3>
+      <Bar data={dataOutput} options={options} />
+      <h3>head count</h3>
       <Bar data={datahc} options={options} />
     </div>
   );
