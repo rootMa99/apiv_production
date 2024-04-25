@@ -64,7 +64,7 @@ const Teamleader=p=>{
         {
           type: "line",
           label: "Target",
-          data: eff.map((m) => m.effTar),
+          data: eff.map((m) => m.effTar.toFixed(1)),
           backgroundColor: "#F84018",
           pointHoverBorderColor: "#FAF0E6",
           borderColor: "#3BC6EB",
@@ -82,7 +82,7 @@ const Teamleader=p=>{
         {
           type: "bar",
           label: "Actual",
-          data: eff.map((m) => m.eff),
+          data: eff.map((m) => m.eff.toFixed(1)),
           backgroundColor: bgcolor,
           borderColor: "#F84018",
           borderWidth: 1,
@@ -95,7 +95,7 @@ const Teamleader=p=>{
         {
           type: "line",
           label: "Target",
-          data: hdc.map((m) => m.hcTarget),
+          data: hdc.map((m) => m.hcTarget.toFixed(1)),
           backgroundColor: "#F84018",
           pointHoverBorderColor: "#FAF0E6",
           borderColor: "#3BC6EB",
@@ -113,7 +113,7 @@ const Teamleader=p=>{
         {
           type: "bar",
           label: "Actual",
-          data: hdc.map((m) => m.hc),
+          data: hdc.map((m) => m.hc.toFixed(1)),
           backgroundColor: bgcolorHC,
           borderColor: "#F84018",
           borderWidth: 1,
@@ -157,7 +157,7 @@ const Teamleader=p=>{
         {
           type: "line",
           label: "Target",
-          data: abs.map((m) => m.abst),
+          data: abs.map((m) => m.abst.toFixed(1)),
           backgroundColor: "#F84018",
           pointHoverBorderColor: "#FAF0E6",
           borderColor: "#3BC6EB",
@@ -175,7 +175,7 @@ const Teamleader=p=>{
         {
           type: "bar",
           label: "Actual",
-          data: abs.map((m) => m.abs),
+          data: abs.map((m) => m.abs.toFixed(1)),
           backgroundColor: bgcolorAB,
           borderColor: "#F84018",
           borderWidth: 1,
@@ -188,7 +188,7 @@ const Teamleader=p=>{
         {
           type: "bar",
           label: "Actual",
-          data: wsd.map((m) => m.wsd),
+          data: wsd.map((m) => m.wsd.toFixed(1)),
           backgroundColor: "#00AC9E",
           borderColor: "#F84018",
           borderWidth: 1,
@@ -201,7 +201,7 @@ const Teamleader=p=>{
         {
           type: "bar",
           label: "Actual",
-          data: tlo.map((m) => m.tlo),
+          data: tlo.map((m) => m.tlo.toFixed(1)),
           backgroundColor: "#00AC9E",
           borderColor: "#F84018",
           borderWidth: 1,
@@ -243,33 +243,33 @@ const Teamleader=p=>{
           display: true,
         },
       },
-      // animation: p.home === undefined && {
-      //   onComplete: (animation) => {
-      //     const { chart } = animation;
-      //     const ctx = chart.ctx;
-      //     chart.data.datasets.forEach((dataset, index) => {
-      //       const meta = chart.getDatasetMeta(index);
-      //       meta.data.forEach((element, index) => {
-      //         // const data = `${dataset.data[index]}%`;
-      //         const data = `${dataset.data[index]}`;
-      //         let xPos, yPos;
-      //         if (dataset.type === "bar") {
-      //           xPos = element.x;
-      //           yPos = element.y + element.height / 2;
-      //         } else if (dataset.type === "line") {
-      //           xPos = element.x;
-      //           yPos = element.y - 20;
-      //         }
-      //         ctx.save();
-      //         ctx.textAlign = "center";
-      //         ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
-      //         ctx.font = "17px Arial";
-      //         ctx.fillText(data, xPos, yPos);
-      //         ctx.restore();
-      //       });
-      //     });
-      //   },
-      // },
+      animation: p.home === undefined && {
+        onComplete: (animation) => {
+          const { chart } = animation;
+          const ctx = chart.ctx;
+          chart.data.datasets.forEach((dataset, index) => {
+            const meta = chart.getDatasetMeta(index);
+            meta.data.forEach((element, index) => {
+              // const data = `${dataset.data[index]}%`;
+              const data = `${dataset.data[index]}`;
+              let xPos, yPos;
+              if (dataset.type === "bar") {
+                xPos = element.x;
+                yPos = element.y + element.height / 2;
+              } else if (dataset.type === "line") {
+                xPos = element.x;
+                yPos = element.y - 20;
+              }
+              ctx.save();
+              ctx.textAlign = "center";
+              ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
+              ctx.font = "17px Arial";
+              ctx.fillText(data, xPos, yPos);
+              ctx.restore();
+            });
+          });
+        },
+      },
     };
     ChartJS.register(
       LineElement,
