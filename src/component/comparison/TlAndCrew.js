@@ -90,6 +90,19 @@ const TlAndCrew = (p) => {
       },
     ],
   };
+  const dataGap = {
+    labels: eff.map((m) => m.gap.toFixed(1)),
+    datasets: [
+      {
+        type: "bar",
+        label: "Actual",
+        data: eff.map((m) => m.gap),
+        backgroundColor: bgcolor,
+        borderColor: "#F84018",
+        borderWidth: 1,
+      },
+    ],
+  };
   const datahc = {
     labels: hdc.map((m) => m.name),
     datasets: [
@@ -287,6 +300,10 @@ const TlAndCrew = (p) => {
       <div className={c.chart}>
         <h3>Efficiency</h3>
         <Line data={datac} options={options} />
+      </div>
+      <div className={c.chart} style={{height:"10rem"}}>
+        <h3>eff gap</h3>
+        <Bar data={dataGap} options={options} />
       </div>
       <div className={c.chart}>
         <h3>output</h3>
