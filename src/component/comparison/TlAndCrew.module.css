@@ -17,3 +17,23 @@
     color: rgb(255, 255, 255);
     text-transform: uppercase;
 }
+
+.underList {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .underList li {
+    font-size: medium;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: aliceblue;
+    opacity: 0.5;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+  .underList li:hover{
+    opacity: 1;
+  }
