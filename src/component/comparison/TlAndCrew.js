@@ -33,6 +33,9 @@ const TlAndCrew = (p) => {
   const wsd = [...tlByCrew].sort((a, b) => {
     return b.wsd - a.wsd;
   });
+  const tlo = [...tlByCrew].sort((a, b) => {
+    return b.tlo - a.tlo;
+  });
 
   const bgcolor = [];
   const bgcoloroutput = [];
@@ -141,8 +144,8 @@ const TlAndCrew = (p) => {
       {
         type: "bar",
         label: "Actual",
-        data: hdc.map((m) => m.output),
-        backgroundColor: bgcolorHC,
+        data: outp.map((m) => m.output),
+        backgroundColor: bgcoloroutput,
         borderColor: "#F84018",
         borderWidth: 1,
       },
@@ -186,6 +189,19 @@ const TlAndCrew = (p) => {
         type: "bar",
         label: "Actual",
         data: wsd.map((m) => m.wsd),
+        backgroundColor: "#00AC9E",
+        borderColor: "#F84018",
+        borderWidth: 1,
+      },
+    ],
+  };
+  const datatlo = {
+    labels: tlo.map((m) => m.name),
+    datasets: [
+      {
+        type: "bar",
+        label: "Actual",
+        data: tlo.map((m) => m.tlo),
         backgroundColor: "#00AC9E",
         borderColor: "#F84018",
         borderWidth: 1,
@@ -266,7 +282,7 @@ const TlAndCrew = (p) => {
   );
 
   return (
-    <div style={{ width: "100%", height: "44rem" }}>
+    <div style={{ width: "90%", height: "44rem" , padding:"1rem", margin:"auto", paddingBottom:"4rem"}}>
       <h3>Efficiency</h3>
       <Line data={datac} options={options} />
       <h3>output</h3>
@@ -277,6 +293,8 @@ const TlAndCrew = (p) => {
       <Bar data={dataAB} options={options} />
       <h3>wsd</h3>
       <Bar data={datawsd} options={options} />
+      <h3>tlo</h3>
+      <Bar data={datatlo} options={options} />
     </div>
   );
 };
