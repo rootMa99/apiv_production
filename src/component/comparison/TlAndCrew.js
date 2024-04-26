@@ -11,8 +11,11 @@ import {
   BarElement,
 } from "chart.js";
 import c from "./TlAndCrew.module.css";
+import React, { useState } from "react";
+import OldView from "./OldView";
 
 const TlAndCrew = (p) => {
+  const [control, setControl] = useState("tlc");
   const tlByCrew = getEffByTlAndCrew(p.fd);
   console.log(p.fd, tlByCrew);
 
@@ -296,36 +299,104 @@ const TlAndCrew = (p) => {
   );
 
   return (
-    <div className={c.wrapper}>
-      <div className={c.chart}>
-        <h3>Efficiency</h3>
-        <Line data={datac} options={options} />
-      </div>
-      <div className={c.chart} style={{height:"10rem"}}>
-        <h3>eff gap</h3>
-        <Bar data={dataGap} options={options} />
-      </div>
-      <div className={c.chart}>
-        <h3>output</h3>
-        <Bar data={dataOutput} options={options} />
-      </div>
-      <div className={c.chart}>
-        <h3>head count</h3>
-        <Bar data={datahc} options={options} />
-      </div>
-      <div className={c.chart}>
-        <h3>ab</h3>
-        <Bar data={dataAB} options={options} />
-      </div>
-      <div className={c.chart}>
-        <h3>wsd</h3>
-        <Bar data={datawsd} options={options} />
-      </div>
-      <div className={c.chart}>
-        <h3>tlo</h3>
-        <Bar data={datatlo} options={options} />
-      </div>
-    </div>
+    <React.Fragment>
+      <ul className={c.underList}>
+        <li
+          style={
+            control === "tlc"
+              ? { opacity: 1, borderBottom: "2px solid white" }
+              : {}
+          }
+          onClick={(e) => setControl("tlc")}
+        >
+          charts
+        </li>
+
+        <li
+          style={
+            control === "tl"
+              ? { opacity: 1, borderBottom: "2px solid white" }
+              : {}
+          }
+          onClick={(e) => setControl("tl")}
+        >
+          old view
+        </li>
+      </ul>
+      {control === "tlc"&&<div className={c.wrapper}>
+        <div className={c.chart}>
+          <h3>Efficiency</h3>
+          <Line data={datac} options={options} />
+        </div>
+        <div className={c.chart} style={{ height: "10rem" }}>
+          <Bar data={dataGap} options={options} />
+        </div>
+        <div className={c.chart}>
+          <h3>output</h3>
+          <Bar data={dataOutput} options={options} />
+        </div>
+        <div className={c.chart}>
+          <h3>head count</h3>
+          <Bar data={datahc} options={options} />
+        </div>
+        <div className={c.chart}>
+          <h3>ab</h3>
+          <Bar data={dataAB} options={options} />
+        </div>
+        <div className={c.chart}>
+          <h3>wsd</h3>
+          <Bar data={datawsd} options={options} />
+        </div>
+        <div className={c.chart}>
+          <h3>tlo</h3>
+          <Bar data={datatlo} options={options} />
+        </div>
+      </div>}
+      {control === "tl" && (
+        <React.Fragment>
+          <div className={c.wrapper} style={{ flexDirection: "row" }}>
+            <div className={c.chartO}>
+              <h3>Efficiency</h3>
+              {eff.map((m) => (
+                <OldView data={m} type="gap" tar="effTar" act="eff" />
+              ))}
+            </div>
+            <div className={c.chartO}>
+              <h3>head count</h3>
+              {hdc.map((m) => (
+                <OldView data={m} type="hcGap" tar="hcTarget" act="hc" />
+              ))}
+            </div>
+            <div className={c.chartO}>
+              <h3>output</h3>
+              {outp.map((m) => (
+                <OldView data={m} type="outputGap" tar="outputT" act="output" />
+              ))}
+            </div>
+          </div>
+          <div className={c.wrapper} style={{ flexDirection: "row" }}>
+            <div className={c.chartO}>
+              <h3>abs</h3>
+              {abs.map((m) => (
+                <OldView data={m} type="absGap" tar="abst" act="abs" />
+              ))}
+            </div>
+            <div className={c.chartO}>
+              <h3>wsd</h3>
+              {wsd.map((m) => (
+                <OldView data={m} type="0" tar={0} act="wsd" />
+              ))}
+            </div>
+            <div className={c.chartO}>
+              <h3>tlo</h3>
+              {tlo.map((m) => (
+                <OldView data={m} type="0" tar={0} act="tlo" />
+              ))}
+            </div>
+          </div>
+        </React.Fragment>
+      )}
+    </React.Fragment>
   );
 };
 export default TlAndCrew;
