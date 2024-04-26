@@ -13,7 +13,10 @@
     height: 40rem;
     width: 100%;
 }
-.chart h3{
+.chartO{
+    width: 33%;
+}
+.chart h3, .chartO h3{
     color: rgb(255, 255, 255);
     text-transform: uppercase;
 }
