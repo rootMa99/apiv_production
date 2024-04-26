@@ -12,6 +12,7 @@ import {
 import c from "./TlAndCrew.module.css";
 import { getdataCTl } from "../hooks/newDataManpulate";
 import React, { useState } from "react";
+import OldView from "./OldView";
 const Teamleader = (p) => {
   const [control, setControl] = useState("tlc");
   const tlByCrew = getdataCTl(p.fd);
@@ -309,7 +310,6 @@ const Teamleader = (p) => {
 
   return (
     <React.Fragment>
-      {" "}
       <ul className={c.underList}>
         <li
           style={
@@ -319,7 +319,7 @@ const Teamleader = (p) => {
           }
           onClick={(e) => setControl("tlc")}
         >
-          teamLeader by crew
+          old view
         </li>
 
         <li
@@ -330,10 +330,10 @@ const Teamleader = (p) => {
           }
           onClick={(e) => setControl("tl")}
         >
-          Teamleader
+          charts
         </li>
       </ul>
-      <div className={c.wrapper}>
+      {control === "tlc"&&<div className={c.wrapper}>
         <div className={c.chart}>
           <h3>Efficiency</h3>
           <Line data={datac} options={options} />
@@ -361,7 +361,10 @@ const Teamleader = (p) => {
           <h3>tlo</h3>
           <Bar data={datatlo} options={options} />
         </div>
-      </div>
+      </div>}
+      {control === "tl"&&<div className={c.wrapper}>
+          <OldView />
+      </div>}
     </React.Fragment>
   );
 };
