@@ -24,7 +24,7 @@
 }
 .target,
 .actual {
-    width: 45%;
+    width: 40%;
 }
 .target {
   display: flex;
@@ -59,4 +59,5 @@
 .nameContainer{
     font-weight: bolder;
     color: aliceblue;
+    width: 20%;
 }
