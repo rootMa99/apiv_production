@@ -365,26 +365,48 @@ const Teamleader = (p) => {
         </div>
       )}
       {control === "tl" && (
-        <div className={c.wrapper} style={{ flexDirection: "row" }}>
-          <div className={c.chartO}>
-            <h3>Efficiency</h3>
-            {eff.map((m) => (
-              <OldView data={m} type="gap" tar="effTar" act="eff" />
-            ))}
+        <React.Fragment>
+          <div className={c.wrapper} style={{ flexDirection: "row" }}>
+            <div className={c.chartO}>
+              <h3>Efficiency</h3>
+              {eff.map((m) => (
+                <OldView data={m} type="gap" tar="effTar" act="eff" />
+              ))}
+            </div>
+            <div className={c.chartO}>
+              <h3>head count</h3>
+              {hdc.map((m) => (
+                <OldView data={m} type="hcGap" tar="hcTarget" act="hc" />
+              ))}
+            </div>
+            <div className={c.chartO}>
+              <h3>output</h3>
+              {outp.map((m) => (
+                <OldView data={m} type="outputGap" tar="outputT" act="output" />
+              ))}
+            </div>
           </div>
-          <div className={c.chartO}>
-            <h3>head count</h3>
-            {hdc.map((m) => (
-              <OldView data={m} type="hcGap" tar="hcTarget" act="hc"/>
-            ))}
+          <div className={c.wrapper} style={{ flexDirection: "row" }}>
+            <div className={c.chartO}>
+              <h3>Efficiency</h3>
+              {eff.map((m) => (
+                <OldView data={m} type="gap" tar="effTar" act="eff" />
+              ))}
+            </div>
+            <div className={c.chartO}>
+              <h3>head count</h3>
+              {hdc.map((m) => (
+                <OldView data={m} type="hcGap" tar="hcTarget" act="hc" />
+              ))}
+            </div>
+            <div className={c.chartO}>
+              <h3>output</h3>
+              {outp.map((m) => (
+                <OldView data={m} type="outputGap" tar="outputT" act="output" />
+              ))}
+            </div>
           </div>
-          <div className={c.chartO}>
-            <h3>output</h3>
-            {outp.map((m) => (
-              <OldView data={m} type="outputGap" tar="hcTarget" act="hc"/>
-            ))}
-          </div>
-        </div>
+        </React.Fragment>
       )}
     </React.Fragment>
   );
