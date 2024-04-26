@@ -271,14 +271,14 @@ const Teamleader = (p) => {
               xPos = element.x;
               yPos = element.y + element.height / 2;
             } else if (dataset.type === "line") {
-              xPos = element.x;
+              xPos = element.x - 15;
               yPos = element.y - 20;
             }
             console.log(element, p.monthData);
             ctx.save();
             ctx.textAlign = "center";
             ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
-            ctx.font =dataset.type === "bar"? "16px Arial":"12px Arial" ;
+            ctx.font = dataset.type === "bar" ? "16px Arial" : "12px Arial";
 
             if (dataset.type === "line" && +element.$context.raw !== 0) {
               ctx.translate(xPos, yPos);
