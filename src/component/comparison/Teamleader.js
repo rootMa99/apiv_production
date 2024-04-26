@@ -11,8 +11,9 @@ import {
 } from "chart.js";
 import c from "./TlAndCrew.module.css";
 import { getdataCTl } from "../hooks/newDataManpulate";
-import React from "react";
+import React, { useState } from "react";
 const Teamleader = (p) => {
+  const [control, setControl] = useState("tlc");
   const tlByCrew = getdataCTl(p.fd);
   console.log(p.fd, tlByCrew);
 
@@ -43,7 +44,6 @@ const Teamleader = (p) => {
   const bgcolorHC = [];
   const bgcolorAB = [];
 
-  console.log(eff);
   eff.forEach((m) => {
     m.effTar > m.eff ? bgcolor.push("#CF3335") : bgcolor.push("#00AC9E");
   });
@@ -309,6 +309,30 @@ const Teamleader = (p) => {
 
   return (
     <React.Fragment>
+      {" "}
+      <ul className={c.underList}>
+        <li
+          style={
+            control === "tlc"
+              ? { opacity: 1, borderBottom: "2px solid white" }
+              : {}
+          }
+          onClick={(e) => setControl("tlc")}
+        >
+          teamLeader by crew
+        </li>
+
+        <li
+          style={
+            control === "tl"
+              ? { opacity: 1, borderBottom: "2px solid white" }
+              : {}
+          }
+          onClick={(e) => setControl("tl")}
+        >
+          Teamleader
+        </li>
+      </ul>
       <div className={c.wrapper}>
         <div className={c.chart}>
           <h3>Efficiency</h3>
