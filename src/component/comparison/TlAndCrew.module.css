@@ -47,4 +47,8 @@
     width: auto;
     position: sticky;
     top: 7rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }

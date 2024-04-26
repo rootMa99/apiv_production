@@ -144,24 +144,24 @@ export const getAll = (d) => {
   const coo = [];
   const project = [];
   const teamLeader = [];
-  console.log(d);
-  //  d.forEach((e) => {
-  //   if (family.findIndex((fi) => fi === e.family) > -1) {
-  //     family.push(e.family);
-  //   }
-  //   if (sl.findIndex((fi) => fi === e.shiftLeader) > -1) {
-  //     sl.push(e.shiftLeader);
-  //   }
-  //   if (coo.findIndex((fi) => fi === e.coordinator) > -1) {
-  //     coo.push(e.coordinator);
-  //   }
-  //   if (project.findIndex((fi) => fi === e.project) > -1) {
-  //     coo.push(e.project);
-  //   }
-  //   if (teamLeader.findIndex((fi) => fi === e.teamLeader) > -1) {
-  //     teamLeader.push(e.teamLeader);
-  //   }
-  // });
+
+   d.forEach((e) => {
+    if (family.findIndex((fi) => fi === e.family) === -1) {
+      family.push(e.family);
+    }
+    if (sl.findIndex((fi) => fi === e.shiftLeader) === -1) {
+      sl.push(e.shiftLeader);
+    }
+    if (coo.findIndex((fi) => fi === e.coordinator) === -1) {
+      coo.push(e.coordinator);
+    }
+    if (project.findIndex((fi) => fi === e.project) === -1) {
+      project.push(e.project);
+    }
+    if (teamLeader.findIndex((fi) => fi === e.teamLeader) === -1) {
+      teamLeader.push(e.teamLeader);
+    }
+  });
   return {
     family,
     sl,

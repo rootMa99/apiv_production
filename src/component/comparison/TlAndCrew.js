@@ -389,6 +389,48 @@ const TlAndCrew = (p) => {
           onChange={handleSelectChange}
           styles={customStyles}
         />
+        <Select
+          options={cs.map((m) => ({ label: m, value: m }))}
+          isMulti
+          id="multiSelect"
+          onChange={handleSelectChange}
+          styles={customStyles}
+        />
+        <Select
+          options={cs.map((m) => ({ label: m, value: m }))}
+          isMulti
+          id="multiSelect"
+          onChange={handleSelectChange}
+          styles={customStyles}
+        />
+        <Select
+          options={cs.map((m) => ({ label: m, value: m }))}
+          isMulti
+          id="multiSelect"
+          onChange={handleSelectChange}
+          styles={customStyles}
+        />
+        <Select
+          options={cs.map((m) => ({ label: m, value: m }))}
+          isMulti
+          id="multiSelect"
+          onChange={handleSelectChange}
+          styles={customStyles}
+        />
+        <Select
+          options={cs.map((m) => ({ label: m, value: m }))}
+          isMulti
+          id="multiSelect"
+          onChange={handleSelectChange}
+          styles={customStyles}
+        />
+        <Select
+          options={cs.map((m) => ({ label: m, value: m }))}
+          isMulti
+          id="multiSelect"
+          onChange={handleSelectChange}
+          styles={customStyles}
+        />
       </div>
       <ul className={c.underList}>
         <li
