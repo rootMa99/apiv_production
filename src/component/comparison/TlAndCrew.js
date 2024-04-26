@@ -1,4 +1,4 @@
-import { getEffByTlAndCrew } from "../hooks/newDataManpulate";
+import { getCrews, getEffByTlAndCrew } from "../hooks/newDataManpulate";
 import { Bar, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -17,7 +17,9 @@ import OldView from "./OldView";
 const TlAndCrew = (p) => {
   const [control, setControl] = useState("tlc");
   const tlByCrew = getEffByTlAndCrew(p.fd);
-  console.log(p.fd, tlByCrew);
+  const cs=getCrews(p.fd)
+
+  console.log(cs,p.fd, tlByCrew);
 
   const eff = tlByCrew.sort((a, b) => {
     return b.gap - a.gap;

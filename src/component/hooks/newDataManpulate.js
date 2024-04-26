@@ -133,5 +133,6 @@ export const getdataCTl=d=>{
 }
 export const getCrews=d=>{
   const rd=[];
-
+  d.map(m=>rd.push(m.crew));
+  return rd;
 }
