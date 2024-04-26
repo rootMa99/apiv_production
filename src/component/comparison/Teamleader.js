@@ -13,6 +13,7 @@ import c from "./TlAndCrew.module.css";
 import { getdataCTl } from "../hooks/newDataManpulate";
 import React, { useState } from "react";
 import OldView from "./OldView";
+
 const Teamleader = (p) => {
   const [control, setControl] = useState("tlc");
   const tlByCrew = getdataCTl(p.fd);

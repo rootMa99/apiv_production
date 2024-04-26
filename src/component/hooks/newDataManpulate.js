@@ -18,7 +18,7 @@ export const getEffByTlAndCrew = (d) => {
         : 0;
 
     rd.push({
-    //   name: e.teamLeader + " * " + e.crew,
+      //   name: e.teamLeader + " * " + e.crew,
       name: e.crew,
       eff: eff * 100,
       effTar: effTar * 100,
@@ -34,6 +34,11 @@ export const getEffByTlAndCrew = (d) => {
       hc: e.actualDataExcel.hc,
       hcTarget: e.dataTargetExcel.hcTarget,
       hcGap: e.dataTargetExcel.hcTarget - e.actualDataExcel.hc,
+      family: e.family,
+      project: e.project,
+      coordinator: e.coordinator,
+      shiftLeader: e.shiftLeader,
+      teamLeader: e.teamLeader,
     });
   });
   return rd;
@@ -41,6 +46,8 @@ export const getEffByTlAndCrew = (d) => {
 
 const getTlData = (d) => {
   const rd = [];
+
+  console.log(d);
 
   d.forEach((e) => {
     if (rd.length === 0) {
@@ -96,43 +103,70 @@ const getTlData = (d) => {
   return rd;
 };
 
-export const getdataCTl=d=>{
-    const pd=getTlData(d);
-    const rd = [];
-    pd.forEach((e) => {
-      let eff;
-      let effTar;
-      eff =
-        e.paid !== 0
-          ? e.prod/ e.paid
-          : 0;
-      effTar =
-        e.paidt !== 0
-          ? e.prodt / e.paidt
-          : 0;
-  
-      rd.push({
-        name: e.name,
-        eff: eff * 100,
-        effTar: effTar * 100,
-        gap: eff*100 - effTar*100,
-        abs: e.abs,
-        abst: e.abst,
-        absGap:  e.abst-e.abs,
-        wsd: e.wsd,
-        tlo: e.tlo,
-        output: e.output,
-        outputT: e.outputT,
-        outputGap: e.output - e.outputT,
-        hc: e.hc,
-        hcTarget: e.hcTarget,
-        hcGap: e.hcTarget - e.hc,
-      });
+export const getdataCTl = (d) => {
+  const pd = getTlData(d);
+  const rd = [];
+  pd.forEach((e) => {
+    let eff;
+    let effTar;
+    eff = e.paid !== 0 ? e.prod / e.paid : 0;
+    effTar = e.paidt !== 0 ? e.prodt / e.paidt : 0;
+
+    rd.push({
+      name: e.name,
+      eff: eff * 100,
+      effTar: effTar * 100,
+      gap: eff * 100 - effTar * 100,
+      abs: e.abs,
+      abst: e.abst,
+      absGap: e.abst - e.abs,
+      wsd: e.wsd,
+      tlo: e.tlo,
+      output: e.output,
+      outputT: e.outputT,
+      outputGap: e.output - e.outputT,
+      hc: e.hc,
+      hcTarget: e.hcTarget,
+      hcGap: e.hcTarget - e.hc,
     });
-    return rd;
-}
-export const getCrews=d=>{
-  const rd=[];
-  d.map(m=>rd.push(m.crew));
+  });
   return rd;
-}
+};
+export const getCrews = (d) => {
+  const rd = [];
+  d.map((m) => rd.push(m.crew));
+  return rd;
+};
+
+export const getAll = (d) => {
+  const family = [];
+  const sl = [];
+  const coo = [];
+  const project = [];
+  const teamLeader = [];
+  console.log(d);
+  //  d.forEach((e) => {
+  //   if (family.findIndex((fi) => fi === e.family) > -1) {
+  //     family.push(e.family);
+  //   }
+  //   if (sl.findIndex((fi) => fi === e.shiftLeader) > -1) {
+  //     sl.push(e.shiftLeader);
+  //   }
+  //   if (coo.findIndex((fi) => fi === e.coordinator) > -1) {
+  //     coo.push(e.coordinator);
+  //   }
+  //   if (project.findIndex((fi) => fi === e.project) > -1) {
+  //     coo.push(e.project);
+  //   }
+  //   if (teamLeader.findIndex((fi) => fi === e.teamLeader) > -1) {
+  //     teamLeader.push(e.teamLeader);
+  //   }
+  // });
+  return {
+    family,
+    sl,
+    coo,
+    project,
+    teamLeader,
+  };
+};

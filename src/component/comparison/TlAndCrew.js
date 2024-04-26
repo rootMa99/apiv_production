@@ -1,4 +1,4 @@
-import { getCrews, getEffByTlAndCrew } from "../hooks/newDataManpulate";
+import { getAll, getCrews, getEffByTlAndCrew } from "../hooks/newDataManpulate";
 import { Bar, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -14,6 +14,7 @@ import c from "./TlAndCrew.module.css";
 import React, { useState } from "react";
 import OldView from "./OldView";
 import Select from "react-select";
+
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
@@ -81,15 +82,19 @@ const customStyles = {
 const TlAndCrew = (p) => {
   const [control, setControl] = useState("tlc");
   const [compareb, setCompareb] = useState([]);
-  const tlByCrew = getEffByTlAndCrew(p.fd);
+  const tlByCrew =
+    compareb.length > 0
+      ? getEffByTlAndCrew(p.fd).filter((obj) => {
+          return compareb.some((filterObj) => filterObj.value === obj.name);
+        })
+      : getEffByTlAndCrew(p.fd);
   const cs = getCrews(p.fd);
-
+  const allF= getAll(p.fd);
   const handleSelectChange = (e) => {
     setCompareb(e);
   };
 
-  // const filteredArray = array1.filter(element => filterArray.includes(element));
-  console.log(cs, p.fd, tlByCrew, compareb);
+  console.log(cs, p.fd, tlByCrew, compareb, allF);
 
   const eff = tlByCrew.sort((a, b) => {
     return b.gap - a.gap;
@@ -332,33 +337,37 @@ const TlAndCrew = (p) => {
         display: true,
       },
     },
-    // animation: p.home === undefined && {
-    //   onComplete: (animation) => {
-    //     const { chart } = animation;
-    //     const ctx = chart.ctx;
-    //     chart.data.datasets.forEach((dataset, index) => {
-    //       const meta = chart.getDatasetMeta(index);
-    //       meta.data.forEach((element, index) => {
-    //         // const data = `${dataset.data[index]}%`;
-    //         const data = `${dataset.data[index]}`;
-    //         let xPos, yPos;
-    //         if (dataset.type === "bar") {
-    //           xPos = element.x;
-    //           yPos = element.y + element.height / 2;
-    //         } else if (dataset.type === "line") {
-    //           xPos = element.x;
-    //           yPos = element.y - 20;
-    //         }
-    //         ctx.save();
-    //         ctx.textAlign = "center";
-    //         ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
-    //         ctx.font = "17px Arial";
-    //         ctx.fillText(data, xPos, yPos);
-    //         ctx.restore();
-    //       });
-    //     });
-    //   },
-    // },
+    animation: {
+      onComplete: (animation) => {
+        const { chart } = animation;
+        const ctx = chart.ctx;
+        chart.data.datasets.forEach((dataset, index) => {
+          const meta = chart.getDatasetMeta(index);
+          meta.data.forEach((element, index) => {
+            const data = dataset.data[index];
+            let xPos, yPos;
+            if (dataset.type === "bar") {
+              xPos = element.x;
+              yPos = element.y + element.height / 2;
+            } else if (dataset.type === "line") {
+              xPos = element.x - 15;
+              yPos = element.y - 20;
+            }
+            ctx.save();
+            ctx.textAlign = "center";
+            ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
+            ctx.font = dataset.type === "bar" ? "16px Arial" : "12px Arial";
+
+            if (element.width > 40 && +element.$context.raw !== 0) {
+              ctx.translate(xPos, yPos);
+              ctx.fillText(data, 0, 5);
+            } 
+
+            ctx.restore();
+          });
+        });
+      },
+    },
   };
   ChartJS.register(
     LineElement,
@@ -374,7 +383,7 @@ const TlAndCrew = (p) => {
     <React.Fragment>
       <div className={c.selectm}>
         <Select
-          options={cs.map(m=>({label:m, value:m}))}
+          options={cs.map((m) => ({ label: m, value: m }))}
           isMulti
           id="multiSelect"
           onChange={handleSelectChange}
@@ -411,6 +420,7 @@ const TlAndCrew = (p) => {
             <Line data={datac} options={options} />
           </div>
           <div className={c.chart} style={{ height: "10rem" }}>
+          <h3>Efficiency gap</h3>
             <Bar data={dataGap} options={options} />
           </div>
           <div className={c.chart}>

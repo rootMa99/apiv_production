@@ -45,4 +45,6 @@
   }
   .selectm{
     width: auto;
+    position: sticky;
+    top: 7rem;
   }

@@ -12,7 +12,7 @@ const Comparison = (p) => {
     (f) => f.date === date && f.teamLeader !== null
   );
   const [control, setControl] = useState("tlc");
-
+console.log(fd)
   return (
     <div style={{ width: "100%" }}>
       <ul className={c.underList}>
@@ -38,8 +38,8 @@ const Comparison = (p) => {
           Teamleader
         </li>
       </ul>
-      {control === "tlc" && <TlAndCrew fd={fd} />}
-      {control === "tl" && <Teamleader fd={fd} />}
+      {control === "tlc" && <TlAndCrew fd={fd}/>}
+      {control === "tl" && <Teamleader fd={fd}/>}
     </div>
   );
 };
