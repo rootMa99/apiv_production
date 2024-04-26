@@ -13,13 +13,83 @@ import {
 import c from "./TlAndCrew.module.css";
 import React, { useState } from "react";
 import OldView from "./OldView";
+import Select from "react-select";
+const customStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    width: "auto",
+    height: "3rem",
+    fontWeight: "600",
+    textTransform: "uppercase",
+    borderRadius: "5px",
+    fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+              "Segoe UI Symbol"`,
+    letterSpacing: "2px",
+    textAlign: "center",
+    outline: "none",
+    border: "2px solid #ecf0f162",
+    backgroundColor: "rgba(24, 13, 13, 0.37)",
+    boxShadow: "none",
+    "&:hover": {
+      border: "2px solid rgb(255, 255, 255)",
+      backgroundColor: "rgba(100, 98, 98, 0.37)",
+      cursor: "pointer",
+    },
+  }),
+  option: (provided, state) => ({
+    width: "100%",
+    padding: "0.5rem",
+    color: state.isFocused ? "#f3f3f3" : "#474b4d",
+    backgroundColor: state.isFocused && "#474b4d",
+    fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+              "Segoe UI Symbol"`,
+    textTransform: "uppercase",
+    outline: "none",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  }),
+  input: (provided) => ({
+    ...provided,
+    color: "#f3f3f3",
+  }),
+  singleValue: (p) => ({
+    ...p,
+    color: "#f3f3f3",
+  }),
+  menuList: (provided) => ({
+    maxHeight: "350px",
+    overflowY: "auto",
+    overflowX: "hidden",
+    scrollbarWidth: "thin",
+    msOverflowStyle: "none",
+    "&::-webkit-scrollbar": {
+      width: "9px",
+      backgroundColor: "#535151",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "#8a0101",
+    },
+    "&::-webkit-scrollbar-track": {
+      backgroundColor: "transparent",
+    },
+  }),
+};
 
 const TlAndCrew = (p) => {
   const [control, setControl] = useState("tlc");
+  const [compareb, setCompareb] = useState([]);
   const tlByCrew = getEffByTlAndCrew(p.fd);
-  const cs=getCrews(p.fd)
+  const cs = getCrews(p.fd);
 
-  console.log(cs,p.fd, tlByCrew);
+  const handleSelectChange = (e) => {
+    setCompareb(e);
+  };
+
+  // const filteredArray = array1.filter(element => filterArray.includes(element));
+  console.log(cs, p.fd, tlByCrew, compareb);
 
   const eff = tlByCrew.sort((a, b) => {
     return b.gap - a.gap;
@@ -302,6 +372,15 @@ const TlAndCrew = (p) => {
 
   return (
     <React.Fragment>
+      <div className={c.selectm}>
+        <Select
+          options={cs.map(m=>({label:m, value:m}))}
+          isMulti
+          id="multiSelect"
+          onChange={handleSelectChange}
+          styles={customStyles}
+        />
+      </div>
       <ul className={c.underList}>
         <li
           style={
@@ -325,35 +404,37 @@ const TlAndCrew = (p) => {
           old view
         </li>
       </ul>
-      {control === "tlc"&&<div className={c.wrapper}>
-        <div className={c.chart}>
-          <h3>Efficiency</h3>
-          <Line data={datac} options={options} />
+      {control === "tlc" && (
+        <div className={c.wrapper}>
+          <div className={c.chart}>
+            <h3>Efficiency</h3>
+            <Line data={datac} options={options} />
+          </div>
+          <div className={c.chart} style={{ height: "10rem" }}>
+            <Bar data={dataGap} options={options} />
+          </div>
+          <div className={c.chart}>
+            <h3>output</h3>
+            <Bar data={dataOutput} options={options} />
+          </div>
+          <div className={c.chart}>
+            <h3>head count</h3>
+            <Bar data={datahc} options={options} />
+          </div>
+          <div className={c.chart}>
+            <h3>ab</h3>
+            <Bar data={dataAB} options={options} />
+          </div>
+          <div className={c.chart}>
+            <h3>wsd</h3>
+            <Bar data={datawsd} options={options} />
+          </div>
+          <div className={c.chart}>
+            <h3>tlo</h3>
+            <Bar data={datatlo} options={options} />
+          </div>
         </div>
-        <div className={c.chart} style={{ height: "10rem" }}>
-          <Bar data={dataGap} options={options} />
-        </div>
-        <div className={c.chart}>
-          <h3>output</h3>
-          <Bar data={dataOutput} options={options} />
-        </div>
-        <div className={c.chart}>
-          <h3>head count</h3>
-          <Bar data={datahc} options={options} />
-        </div>
-        <div className={c.chart}>
-          <h3>ab</h3>
-          <Bar data={dataAB} options={options} />
-        </div>
-        <div className={c.chart}>
-          <h3>wsd</h3>
-          <Bar data={datawsd} options={options} />
-        </div>
-        <div className={c.chart}>
-          <h3>tlo</h3>
-          <Bar data={datatlo} options={options} />
-        </div>
-      </div>}
+      )}
       {control === "tl" && (
         <React.Fragment>
           <div className={c.wrapper} style={{ flexDirection: "row" }}>
