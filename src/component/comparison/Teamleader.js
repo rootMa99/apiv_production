@@ -388,21 +388,21 @@ const Teamleader = (p) => {
           </div>
           <div className={c.wrapper} style={{ flexDirection: "row" }}>
             <div className={c.chartO}>
-              <h3>Efficiency</h3>
-              {eff.map((m) => (
-                <OldView data={m} type="gap" tar="effTar" act="eff" />
+              <h3>abs</h3>
+              {abs.map((m) => (
+                <OldView data={m} type="absGap" tar="abst" act="abs" />
               ))}
             </div>
             <div className={c.chartO}>
-              <h3>head count</h3>
-              {hdc.map((m) => (
-                <OldView data={m} type="hcGap" tar="hcTarget" act="hc" />
+              <h3>wsd</h3>
+              {wsd.map((m) => (
+                <OldView data={m} type="0" tar={0} act="wsd" />
               ))}
             </div>
             <div className={c.chartO}>
-              <h3>output</h3>
-              {outp.map((m) => (
-                <OldView data={m} type="outputGap" tar="outputT" act="output" />
+              <h3>tlo</h3>
+              {tlo.map((m) => (
+                <OldView data={m} type="0" tar={0} act="tlo" />
               ))}
             </div>
           </div>

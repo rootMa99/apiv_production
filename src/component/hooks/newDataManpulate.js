@@ -118,7 +118,7 @@ export const getdataCTl=d=>{
         gap: eff*100 - effTar*100,
         abs: e.abs,
         abst: e.abst,
-        absGap: e.abs - e.abst,
+        absGap:  e.abst-e.abs,
         wsd: e.wsd,
         tlo: e.tlo,
         output: e.output,
