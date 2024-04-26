@@ -258,15 +258,14 @@ const Teamleader = (p) => {
         display: true,
       },
     },
-    animation: p.home === undefined && {
+    animation: {
       onComplete: (animation) => {
         const { chart } = animation;
         const ctx = chart.ctx;
         chart.data.datasets.forEach((dataset, index) => {
           const meta = chart.getDatasetMeta(index);
           meta.data.forEach((element, index) => {
-            // const data = `${dataset.data[index]}%`;
-            const data = `${dataset.data[index]}`;
+            const data = dataset.data[index];
             let xPos, yPos;
             if (dataset.type === "bar") {
               xPos = element.x;
@@ -275,11 +274,23 @@ const Teamleader = (p) => {
               xPos = element.x;
               yPos = element.y - 20;
             }
+            console.log(element, p.monthData);
             ctx.save();
             ctx.textAlign = "center";
             ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
-            ctx.font = "17px Arial";
-            ctx.fillText(data, xPos, yPos);
+            ctx.font =dataset.type === "bar"? "16px Arial":"12px Arial" ;
+
+            if (dataset.type === "line" && +element.$context.raw !== 0) {
+              ctx.translate(xPos, yPos);
+              ctx.fillText(data, 20, 5);
+            } else if (element.width < 40 && +element.$context.raw !== 0) {
+              ctx.translate(xPos, yPos);
+              ctx.rotate(-Math.PI / 2);
+              ctx.fillText(data, 0, 5);
+            } else {
+              +element.$context.raw !== 0 && ctx.fillText(data, xPos, yPos);
+            }
+
             ctx.restore();
           });
         });
