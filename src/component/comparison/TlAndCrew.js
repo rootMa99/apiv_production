@@ -19,7 +19,7 @@ const customStyles = {
   control: (provided, state) => ({
     ...provided,
     width: "auto",
-    height: "3rem",
+    height: "auto",
     fontWeight: "600",
     textTransform: "uppercase",
     borderRadius: "5px",
@@ -30,11 +30,11 @@ const customStyles = {
     textAlign: "center",
     outline: "none",
     border: "2px solid #ecf0f162",
-    backgroundColor: "rgba(24, 13, 13, 0.37)",
+    backgroundColor: "#383942",
     boxShadow: "none",
     "&:hover": {
       border: "2px solid rgb(255, 255, 255)",
-      backgroundColor: "rgba(100, 98, 98, 0.37)",
+      backgroundColor: "rgba(100, 98, 98)",
       cursor: "pointer",
     },
   }),
@@ -89,7 +89,7 @@ const TlAndCrew = (p) => {
         })
       : getEffByTlAndCrew(p.fd);
   const cs = getCrews(p.fd);
-  const allF= getAll(p.fd);
+  const allF = getAll(p.fd);
   const handleSelectChange = (e) => {
     setCompareb(e);
   };
@@ -361,7 +361,7 @@ const TlAndCrew = (p) => {
             if (element.width > 40 && +element.$context.raw !== 0) {
               ctx.translate(xPos, yPos);
               ctx.fillText(data, 0, 5);
-            } 
+            }
 
             ctx.restore();
           });
@@ -382,55 +382,60 @@ const TlAndCrew = (p) => {
   return (
     <React.Fragment>
       <div className={c.selectm}>
-        <Select
-          options={cs.map((m) => ({ label: m, value: m }))}
-          isMulti
-          id="multiSelect"
-          onChange={handleSelectChange}
-          styles={customStyles}
-        />
-        <Select
-          options={cs.map((m) => ({ label: m, value: m }))}
-          isMulti
-          id="multiSelect"
-          onChange={handleSelectChange}
-          styles={customStyles}
-        />
-        <Select
-          options={cs.map((m) => ({ label: m, value: m }))}
-          isMulti
-          id="multiSelect"
-          onChange={handleSelectChange}
-          styles={customStyles}
-        />
-        <Select
-          options={cs.map((m) => ({ label: m, value: m }))}
-          isMulti
-          id="multiSelect"
-          onChange={handleSelectChange}
-          styles={customStyles}
-        />
-        <Select
-          options={cs.map((m) => ({ label: m, value: m }))}
-          isMulti
-          id="multiSelect"
-          onChange={handleSelectChange}
-          styles={customStyles}
-        />
-        <Select
-          options={cs.map((m) => ({ label: m, value: m }))}
-          isMulti
-          id="multiSelect"
-          onChange={handleSelectChange}
-          styles={customStyles}
-        />
-        <Select
-          options={cs.map((m) => ({ label: m, value: m }))}
-          isMulti
-          id="multiSelect"
-          onChange={handleSelectChange}
-          styles={customStyles}
-        />
+        <div style={{ minWidth: "14%" }}>
+          <Select
+            options={cs.map((m) => ({ label: m, value: m }))}
+            isMulti
+            id="multiSelect"
+            onChange={handleSelectChange}
+            styles={customStyles}
+          />
+        </div>
+        <div style={{ minWidth: "14%" }}>
+          <Select
+            options={allF.coo.map((m) => ({ label: m, value: m }))}
+            isMulti
+            id="multiSelect"
+            onChange={handleSelectChange}
+            styles={customStyles}
+          />
+        </div>
+        <div style={{ minWidth: "14%" }}>
+          <Select
+            options={allF.family.map((m) => ({ label: m, value: m }))}
+            isMulti
+            id="multiSelect"
+            onChange={handleSelectChange}
+            styles={customStyles}
+          />
+        </div>
+        <div style={{ minWidth: "14%" }}>
+          <Select
+            options={allF.project.map((m) => ({ label: m, value: m }))}
+            isMulti
+            id="multiSelect"
+            onChange={handleSelectChange}
+            styles={customStyles}
+          />
+        </div>
+        <div style={{ minWidth: "14%" }}>
+          <Select
+            options={allF.sl.map((m) => ({ label: m, value: m }))}
+            isMulti
+            id="multiSelect"
+            onChange={handleSelectChange}
+            styles={customStyles}
+          />
+        </div>
+        <div style={{ minWidth: "14%" }}>
+          <Select
+            options={allF.teamLeader.map((m) => ({ label: m, value: m }))}
+            isMulti
+            id="multiSelect"
+            onChange={handleSelectChange}
+            styles={customStyles}
+          />
+        </div>
       </div>
       <ul className={c.underList}>
         <li
@@ -462,7 +467,7 @@ const TlAndCrew = (p) => {
             <Line data={datac} options={options} />
           </div>
           <div className={c.chart} style={{ height: "10rem" }}>
-          <h3>Efficiency gap</h3>
+            <h3>Efficiency gap</h3>
             <Bar data={dataGap} options={options} />
           </div>
           <div className={c.chart}>
