@@ -319,7 +319,7 @@ const Teamleader = (p) => {
           }
           onClick={(e) => setControl("tlc")}
         >
-          old view
+          charts
         </li>
 
         <li
@@ -330,7 +330,7 @@ const Teamleader = (p) => {
           }
           onClick={(e) => setControl("tl")}
         >
-          charts
+          old view
         </li>
       </ul>
       {control === "tlc" && (
@@ -369,7 +369,19 @@ const Teamleader = (p) => {
           <div className={c.chartO}>
             <h3>Efficiency</h3>
             {eff.map((m) => (
-              <OldView data={m} />
+              <OldView data={m} type="gap" tar="effTar" act="eff" />
+            ))}
+          </div>
+          <div className={c.chartO}>
+            <h3>head count</h3>
+            {hdc.map((m) => (
+              <OldView data={m} type="hcGap" tar="hcTarget" act="hc"/>
+            ))}
+          </div>
+          <div className={c.chartO}>
+            <h3>output</h3>
+            {outp.map((m) => (
+              <OldView data={m} type="outputGap" tar="hcTarget" act="hc"/>
             ))}
           </div>
         </div>
