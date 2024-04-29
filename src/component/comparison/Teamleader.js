@@ -10,7 +10,7 @@ import {
   BarElement,
 } from "chart.js";
 import c from "./TlAndCrew.module.css";
-import { getAll, getCrews, getdataCTl } from "../hooks/newDataManpulate";
+import { getAll, getdataCTl } from "../hooks/newDataManpulate";
 import React, { useState } from "react";
 import OldView from "./OldView";
 import Select from "react-select";
@@ -142,7 +142,7 @@ const Teamleader = (p) => {
 
   console.log(p.fd, tlByCrew);
 
-  const cs = getCrews(p.fd);
+  // const cs = getCrews(p.fd);
   const allF = getAll(p.fd);
   const handleSelectChange = (e, t) => {
     switch (t) {
