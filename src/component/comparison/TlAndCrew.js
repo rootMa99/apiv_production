@@ -89,14 +89,45 @@ const TlAndCrew = (p) => {
     sl: [],
     tl: [],
   });
-  const tlByCrew =
-    compareb.length > 0
+  let tlByCrew =
+    compareb.crew.length > 0
       ? getEffByTlAndCrew(p.fd).filter((obj) => {
           return compareb.crew.some(
             (filterObj) => filterObj.value === obj.name
           );
         })
       : getEffByTlAndCrew(p.fd);
+
+  tlByCrew =
+    compareb.coo.length > 0
+      ? tlByCrew.filter((obj) => {
+          return compareb.coo.some((filterObj) => filterObj.value === obj.coordinator);
+        })
+      : tlByCrew;
+  tlByCrew =
+    compareb.family.length > 0
+      ? tlByCrew.filter((obj) => {
+          return compareb.family.some((filterObj) => filterObj.value === obj.family);
+        })
+      : tlByCrew;
+  tlByCrew =
+    compareb.project.length > 0
+      ? tlByCrew.filter((obj) => {
+          return compareb.project.some((filterObj) => filterObj.value === obj.project);
+        })
+      : tlByCrew;
+  tlByCrew =
+    compareb.sl.length > 0
+      ? tlByCrew.filter((obj) => {
+          return compareb.sl.some((filterObj) => filterObj.value === obj.shiftLeader);
+        })
+      : tlByCrew;
+  tlByCrew =
+    compareb.tl.length > 0
+      ? tlByCrew.filter((obj) => {
+          return compareb.tl.some((filterObj) => filterObj.value === obj.teamLeader);
+        })
+      : tlByCrew;
 
   const cs = getCrews(p.fd);
   const allF = getAll(p.fd);
@@ -418,7 +449,7 @@ const TlAndCrew = (p) => {
             options={cs.map((m) => ({ label: m, value: m }))}
             isMulti
             id="multiSelect"
-            onChange={handleSelectChange}
+            onChange={(e) => handleSelectChange(e, "crew")}
             styles={customStyles}
           />
         </div>
@@ -428,7 +459,7 @@ const TlAndCrew = (p) => {
             options={allF.coo.map((m) => ({ label: m, value: m }))}
             isMulti
             id="multiSelect"
-            onChange={handleSelectChange}
+            onChange={(e) => handleSelectChange(e, "coo")}
             styles={customStyles}
           />
         </div>
@@ -438,7 +469,7 @@ const TlAndCrew = (p) => {
             options={allF.family.map((m) => ({ label: m, value: m }))}
             isMulti
             id="multiSelect"
-            onChange={handleSelectChange}
+            onChange={(e) => handleSelectChange(e, "family")}
             styles={customStyles}
           />
         </div>
@@ -448,7 +479,7 @@ const TlAndCrew = (p) => {
             options={allF.project.map((m) => ({ label: m, value: m }))}
             isMulti
             id="multiSelect"
-            onChange={handleSelectChange}
+            onChange={(e) => handleSelectChange(e, "project")}
             styles={customStyles}
           />
         </div>
@@ -458,7 +489,7 @@ const TlAndCrew = (p) => {
             options={allF.sl.map((m) => ({ label: m, value: m }))}
             isMulti
             id="multiSelect"
-            onChange={handleSelectChange}
+            onChange={(e) => handleSelectChange(e, "sl")}
             styles={customStyles}
           />
         </div>
@@ -468,7 +499,7 @@ const TlAndCrew = (p) => {
             options={allF.teamLeader.map((m) => ({ label: m, value: m }))}
             isMulti
             id="multiSelect"
-            onChange={handleSelectChange}
+            onChange={(e) => handleSelectChange(e, "tl")}
             styles={customStyles}
           />
         </div>
