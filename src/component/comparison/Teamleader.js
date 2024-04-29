@@ -10,15 +10,155 @@ import {
   BarElement,
 } from "chart.js";
 import c from "./TlAndCrew.module.css";
-import { getdataCTl } from "../hooks/newDataManpulate";
+import { getAll, getCrews, getdataCTl } from "../hooks/newDataManpulate";
 import React, { useState } from "react";
 import OldView from "./OldView";
+import Select from "react-select";
+
+const customStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    width: "auto",
+    height: "auto",
+    fontWeight: "600",
+    textTransform: "uppercase",
+    borderRadius: "5px",
+    fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+              "Segoe UI Symbol"`,
+    letterSpacing: "2px",
+    textAlign: "center",
+    outline: "none",
+    border: "2px solid #ecf0f162",
+    backgroundColor: "#383942",
+    boxShadow: "none",
+    "&:hover": {
+      border: "2px solid rgb(255, 255, 255)",
+      backgroundColor: "rgba(100, 98, 98)",
+      cursor: "pointer",
+    },
+  }),
+  option: (provided, state) => ({
+    width: "100%",
+    padding: "0.5rem",
+    color: state.isFocused ? "#f3f3f3" : "#474b4d",
+    backgroundColor: state.isFocused && "#474b4d",
+    fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+              "Segoe UI Symbol"`,
+    textTransform: "uppercase",
+    outline: "none",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  }),
+  input: (provided) => ({
+    ...provided,
+    color: "#f3f3f3",
+  }),
+  singleValue: (p) => ({
+    ...p,
+    color: "#f3f3f3",
+  }),
+  menuList: (provided) => ({
+    maxHeight: "350px",
+    overflowY: "auto",
+    overflowX: "hidden",
+    scrollbarWidth: "thin",
+    msOverflowStyle: "none",
+    "&::-webkit-scrollbar": {
+      width: "9px",
+      backgroundColor: "#535151",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "#8a0101",
+    },
+    "&::-webkit-scrollbar-track": {
+      backgroundColor: "transparent",
+    },
+  }),
+};
+
+
 
 const Teamleader = (p) => {
   const [control, setControl] = useState("tlc");
-  const tlByCrew = getdataCTl(p.fd);
+  const [compareb, setCompareb] = useState({
+    crew: [],
+    coo: [],
+    family: [],
+    project: [],
+    sl: [],
+    tl: [],
+  });
+
+  let tlByCrew =
+  compareb.crew.length > 0
+    ? getdataCTl(p.fd).filter((obj) => {
+        return compareb.crew.some(
+          (filterObj) => filterObj.value === obj.name
+        );
+      })
+    : getdataCTl(p.fd);
+
+tlByCrew =
+  compareb.coo.length > 0
+    ? tlByCrew.filter((obj) => {
+        return compareb.coo.some((filterObj) => filterObj.value === obj.coordinator);
+      })
+    : tlByCrew;
+tlByCrew =
+  compareb.family.length > 0
+    ? tlByCrew.filter((obj) => {
+        return compareb.family.some((filterObj) => filterObj.value === obj.family);
+      })
+    : tlByCrew;
+tlByCrew =
+  compareb.project.length > 0
+    ? tlByCrew.filter((obj) => {
+        return compareb.project.some((filterObj) => filterObj.value === obj.project);
+      })
+    : tlByCrew;
+tlByCrew =
+  compareb.sl.length > 0
+    ? tlByCrew.filter((obj) => {
+        return compareb.sl.some((filterObj) => filterObj.value === obj.shiftLeader);
+      })
+    : tlByCrew;
+tlByCrew =
+  compareb.tl.length > 0
+    ? tlByCrew.filter((obj) => {
+        return compareb.tl.some((filterObj) => filterObj.value === obj.teamLeader);
+      })
+    : tlByCrew;
+
   console.log(p.fd, tlByCrew);
 
+  const cs = getCrews(p.fd);
+  const allF = getAll(p.fd);
+  const handleSelectChange = (e, t) => {
+    switch (t) {
+      case "crew":
+        setCompareb((p) => ({ ...p, crew: e }));
+        break;
+      case "coo":
+        setCompareb((p) => ({ ...p, coo: e }));
+        break;
+      case "family":
+        setCompareb((p) => ({ ...p, family: e }));
+        break;
+      case "project":
+        setCompareb((p) => ({ ...p, project: e }));
+        break;
+      case "sl":
+        setCompareb((p) => ({ ...p, sl: e }));
+        break;
+      case "tl":
+        setCompareb((p) => ({ ...p, tl: e }));
+        break;
+      default:
+    }
+  };
   const eff = tlByCrew.sort((a, b) => {
     return b.gap - a.gap;
   });
@@ -311,6 +451,68 @@ const Teamleader = (p) => {
 
   return (
     <React.Fragment>
+    <div className={c.selectm}>
+    <div className={c.selH} style={{ minWidth: "14%" }}>
+      <label>crews</label>
+      <Select
+        options={cs.map((m) => ({ label: m, value: m }))}
+        isMulti
+        id="multiSelect"
+        onChange={(e) => handleSelectChange(e, "crew")}
+        styles={customStyles}
+      />
+    </div>
+    <div className={c.selH} style={{ minWidth: "14%" }}>
+      <label>coordinator</label>
+      <Select
+        options={allF.coo.map((m) => ({ label: m, value: m }))}
+        isMulti
+        id="multiSelect"
+        onChange={(e) => handleSelectChange(e, "coo")}
+        styles={customStyles}
+      />
+    </div>
+    <div className={c.selH} style={{ minWidth: "14%" }}>
+      <label>family</label>
+      <Select
+        options={allF.family.map((m) => ({ label: m, value: m }))}
+        isMulti
+        id="multiSelect"
+        onChange={(e) => handleSelectChange(e, "family")}
+        styles={customStyles}
+      />
+    </div>
+    <div className={c.selH} style={{ minWidth: "14%" }}>
+      <label>project</label>
+      <Select
+        options={allF.project.map((m) => ({ label: m, value: m }))}
+        isMulti
+        id="multiSelect"
+        onChange={(e) => handleSelectChange(e, "project")}
+        styles={customStyles}
+      />
+    </div>
+    <div className={c.selH} style={{ minWidth: "14%" }}>
+      <label>shiftLeader</label>
+      <Select
+        options={allF.sl.map((m) => ({ label: m, value: m }))}
+        isMulti
+        id="multiSelect"
+        onChange={(e) => handleSelectChange(e, "sl")}
+        styles={customStyles}
+      />
+    </div>
+    <div className={c.selH} style={{ minWidth: "14%" }}>
+      <label>teamLeader</label>
+      <Select
+        options={allF.teamLeader.map((m) => ({ label: m, value: m }))}
+        isMulti
+        id="multiSelect"
+        onChange={(e) => handleSelectChange(e, "tl")}
+        styles={customStyles}
+      />
+    </div>
+  </div>
       <ul className={c.underList}>
         <li
           style={

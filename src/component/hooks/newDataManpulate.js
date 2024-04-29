@@ -65,6 +65,12 @@ const getTlData = (d) => {
         outputT: e.dataTargetExcel.outputTarget,
         hc: e.actualDataExcel.hc,
         hcTarget: e.dataTargetExcel.hcTarget,
+        family: e.family,
+        project: e.project,
+        coordinator: e.coordinator,
+        shiftLeader: e.shiftLeader,
+        teamLeader: e.teamLeader,
+        crew: e.crew,
       });
     } else {
       const i = rd.findIndex((f) => f.name === e.teamLeader);
@@ -83,6 +89,12 @@ const getTlData = (d) => {
           outputT: e.dataTargetExcel.outputTarget,
           hc: e.actualDataExcel.hc,
           hcTarget: e.dataTargetExcel.hcTarget,
+          family: e.family,
+          project: e.project,
+          coordinator: e.coordinator,
+          shiftLeader: e.shiftLeader,
+          teamLeader: e.teamLeader,
+          crew: e.crew,
         });
       } else {
         rd[i].paid += e.actualDataExcel.paidH;
