@@ -50,7 +50,7 @@ function App() {
   const callback = useCallback(async () => {
     setLoading(true);
     const data = await getData(`http://10.236.148.13:8081/data/projects`);
-    console.log(data)
+    console.log(data);
     //dispatch(dataAction.addData(DEMO_DATA));
     if (data !== "error") {
       dispatch(dataAction.addData(data));

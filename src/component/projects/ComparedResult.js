@@ -27,7 +27,12 @@ const ComparedResult = (p) => {
         return getDataYear(shiftLeader[0].data, checkBox);
       }
       if (p.actual === "scrap") {
-        return getscrapDataYear(shiftLeader[0].data, "month", p.actual, p.target);
+        return getscrapDataYear(
+          shiftLeader[0].data,
+          "month",
+          p.actual,
+          p.target
+        );
       }
 
       return getOutputDataYear(
@@ -48,7 +53,7 @@ const ComparedResult = (p) => {
           checkBox
         );
       }
-      
+
       const filtredMonth = getMonthData(
         shiftLeader[0].data,
         month[months - 1],

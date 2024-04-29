@@ -35,11 +35,16 @@ const Home = (p) => {
             esa
           </label>
 
-            <p className={show ? `${c.plabelCheck} ${c.aniIn}`:`${c.plabelCheck} ${c.aniOut}`}>
-              (by cheking this checkbox all efficiencies will be displayed as
-              esa efficiency.)*
-            </p>
-          
+          <p
+            className={
+              show
+                ? `${c.plabelCheck} ${c.aniIn}`
+                : `${c.plabelCheck} ${c.aniOut}`
+            }
+          >
+            (by cheking this checkbox all efficiencies will be displayed as esa
+            efficiency.)*
+          </p>
         </div>
         {project === undefined && (
           <Efficiency

@@ -14,7 +14,8 @@ import { useEffect } from "react";
 
 const ProjectEfficiency = (p) => {
   const data = useSelector((s) => s.datas);
-  const { date, month, chartDay, chartWeek, chartmonth, checkBox } = useSelector((s) => s.additionalData);
+  const { date, month, chartDay, chartWeek, chartmonth, checkBox } =
+    useSelector((s) => s.additionalData);
   const dispatch = useDispatch();
   // const [toggle, isToggle] = useState(false);
   // const [toggleD, isToggleD] = useState(true);
@@ -71,8 +72,6 @@ const ProjectEfficiency = (p) => {
   const dataDays = getDataDays(filtredMonthDays, "", checkBox);
   console.log(dataDays);
 
-
-
   let classes;
   let classesW;
   let classesD;
@@ -97,33 +96,49 @@ const ProjectEfficiency = (p) => {
     classesD = { width: "66%" };
   }
 
-
   return (
     <div className={c.projectEfficiencyContainer}>
       <h3>{p.title} efficiency</h3>
       <div className={c.toggleBtnContainer}>
-        <button className={c.toggleBtn} onClick={() => dispatch(additionalDataAction.editChartMonth(!chartmonth))}>
+        <button
+          className={c.toggleBtn}
+          onClick={() =>
+            dispatch(additionalDataAction.editChartMonth(!chartmonth))
+          }
+        >
           {chartmonth ? "hide month" : "show month"}
         </button>
-        <button className={c.toggleBtn} onClick={() => dispatch(additionalDataAction.editChartWeek(!chartWeek))}>
+        <button
+          className={c.toggleBtn}
+          onClick={() =>
+            dispatch(additionalDataAction.editChartWeek(!chartWeek))
+          }
+        >
           {chartWeek ? "hide week" : "show week"}
         </button>
-        <button className={c.toggleBtn} onClick={() => dispatch(additionalDataAction.editChartDay(!chartDay))}>
+        <button
+          className={c.toggleBtn}
+          onClick={() => dispatch(additionalDataAction.editChartDay(!chartDay))}
+        >
           {chartDay ? "hide day" : "show day"}
         </button>
       </div>
       <div className={c.chartContainer}>
-        {chartmonth && <div className={c.chart} style={classes}>
-          <MonthChart monthData={monthData} title="" />
-        </div>}
+        {chartmonth && (
+          <div className={c.chart} style={classes}>
+            <MonthChart monthData={monthData} title="" />
+          </div>
+        )}
         {chartWeek && (
           <div className={c.chart} style={classesW}>
             <MonthChart monthData={filtredWeek} title="" />
           </div>
         )}
-        {chartDay && <div className={c.chart} style={classesD}>
-          <MonthChart monthData={dataDays} title="" />
-        </div>}
+        {chartDay && (
+          <div className={c.chart} style={classesD}>
+            <MonthChart monthData={dataDays} title="" />
+          </div>
+        )}
       </div>
     </div>
   );

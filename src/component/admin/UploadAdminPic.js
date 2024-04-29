@@ -46,30 +46,30 @@ const UploadAdminPic = (p) => {
   };
 
   const handleButtonClick = () => {
-    setLoading(true)
+    setLoading(true);
     const jwtToken = login.token;
     if (file && jwtToken) {
       const formData = new FormData();
       formData.append("file", file);
-        fetch(`http://10.236.148.13:8081/admin/adminpic`, {
-          method: "POST",
-          body: formData,
-          headers: {
-            Authorization: `Bearer ${jwtToken}`,
-          },
+      fetch(`http://10.236.148.13:8081/admin/adminpic`, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Upload successful:", data);
+          setSuccessfully(true);
+          setShowbutton(false);
+          setLoading(false);
         })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Upload successful:", data);
-            setSuccessfully(true);
-            setShowbutton(false);
-            setLoading(false);
-          })
-          .catch((error) => {
-            console.error("Error uploading file:", error);
-            setError(true);
-            setLoading(false);
-          });
+        .catch((error) => {
+          console.error("Error uploading file:", error);
+          setError(true);
+          setLoading(false);
+        });
     }
   };
 

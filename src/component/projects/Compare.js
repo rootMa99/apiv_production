@@ -86,7 +86,7 @@ const Compare = (p) => {
   const data = useSelector((s) => s.datas);
 
   const [countDown, setCountDown] = useState(counter);
-  const [third, setThird]= useState(false);
+  const [third, setThird] = useState(false);
 
   const [selectedOptions, setSelectedOptions] = useState({
     shiftleader1: "",
@@ -112,14 +112,20 @@ const Compare = (p) => {
   shiftLeaders.map(
     (m) => m.name !== null && optionsSH1.push({ value: m.name, label: m.name })
   );
-  const optionsSH11=optionsSH1.filter(
-    (f) => f.value !== selectedOptions.shiftleader2.value && f.value !== selectedOptions.shiftleader3.value
+  const optionsSH11 = optionsSH1.filter(
+    (f) =>
+      f.value !== selectedOptions.shiftleader2.value &&
+      f.value !== selectedOptions.shiftleader3.value
   );
   const optionsSH2 = optionsSH1.filter(
-    (f) => f.value !== selectedOptions.shiftleader1.value && f.value !== selectedOptions.shiftleader3.value
+    (f) =>
+      f.value !== selectedOptions.shiftleader1.value &&
+      f.value !== selectedOptions.shiftleader3.value
   );
   const optionsSH3 = optionsSH1.filter(
-    (f) => f.value !== selectedOptions.shiftleader1.value && f.value !== selectedOptions.shiftleader2.value
+    (f) =>
+      f.value !== selectedOptions.shiftleader1.value &&
+      f.value !== selectedOptions.shiftleader2.value
   );
 
   const onChangeHandlerType = (e) => {
@@ -178,12 +184,12 @@ const Compare = (p) => {
           <p>
             to proceed, Please choose the {p.title}s you'd like to compare (
             {countDown}
-            <span style={{ textTransform:"lowercase"}}>s</span>)
+            <span style={{ textTransform: "lowercase" }}>s</span>)
           </p>
         </div>
       )}
       <div className={c.selectsContatainer}>
-      <label className={c["cyberpunk-checkbox-label"]}>
+        <label className={c["cyberpunk-checkbox-label"]}>
           <input
             type="checkbox"
             className={c["cyberpunk-checkbox"]}
@@ -194,7 +200,7 @@ const Compare = (p) => {
         </label>
         <h1>compare between:</h1>
         <div className={c.selectContatainer}>
-          <div className={c.select} style={third ? {"width":"30%"} : {}}>
+          <div className={c.select} style={third ? { width: "30%" } : {}}>
             <label htmlFor="multiSelect">Select {p.title} 1:</label>
             <Select
               options={optionsSH11}
@@ -205,7 +211,7 @@ const Compare = (p) => {
               defaultValue={" "}
             />
           </div>
-          <div className={c.select} style={third ? {"width":"30%"} : {}}>
+          <div className={c.select} style={third ? { width: "30%" } : {}}>
             <label htmlFor="multiSelect">Select {p.title} 2:</label>
             <Select
               options={optionsSH2}
@@ -216,17 +222,19 @@ const Compare = (p) => {
               defaultValue={" "}
             />
           </div>
-          {third && <div className={c.select} style={third ? {"width":"30%"} : {}}>
-            <label htmlFor="multiSelect">Select {p.title} 3:</label>
-            <Select
-              options={optionsSH3}
-              id="multiSelect"
-              inputId="shiftleader1"
-              onChange={onChangeHandler2}
-              styles={customStyles}
-              defaultValue={" "}
-            />
-          </div>}
+          {third && (
+            <div className={c.select} style={third ? { width: "30%" } : {}}>
+              <label htmlFor="multiSelect">Select {p.title} 3:</label>
+              <Select
+                options={optionsSH3}
+                id="multiSelect"
+                inputId="shiftleader1"
+                onChange={onChangeHandler2}
+                styles={customStyles}
+                defaultValue={" "}
+              />
+            </div>
+          )}
         </div>
         <div className={c.selectm}>
           <div className={c.selectt}>

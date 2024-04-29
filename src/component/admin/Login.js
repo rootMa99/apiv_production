@@ -3,12 +3,12 @@ import c from "./Login.module.css";
 import { useDispatch } from "react-redux";
 import { additionalDataAction } from "../../store/AdditionalData";
 
-const getData =  async (uri, body) => {
+const getData = async (uri, body) => {
   try {
     const response = await fetch(uri, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
     });
@@ -16,46 +16,45 @@ const getData =  async (uri, body) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 };
 
-
 const Login = (p) => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [cred, setCred] = useState({
     adminName: "",
     adminPassword: "",
   });
 
-  const submitHandler =async (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    if (cred.adminName.trim()==="" || cred.adminPassword.trim()===""){
+    if (cred.adminName.trim() === "" || cred.adminPassword.trim() === "") {
       alert("please make sure all field not empty");
       return;
     }
-    const body={
-      adminName:cred.adminName,
-      password:cred.adminPassword
+    const body = {
+      adminName: cred.adminName,
+      password: cred.adminPassword,
     };
-    try{
-      const data=await getData("http://10.236.148.13:8081/auth/signin", body);
-      console.log(data)
-      dispatch(additionalDataAction.isLoggin(data.token))
-    }catch (e) {
-      console.log(e)
+    try {
+      const data = await getData("http://10.236.148.13:8081/auth/signin", body);
+      console.log(data);
+      dispatch(additionalDataAction.isLoggin(data.token));
+    } catch (e) {
+      console.log(e);
     }
   };
   const adminNameHandler = (e) => {
     setCred((prev) => ({
-        ...prev,
-        adminName:e.target.value
+      ...prev,
+      adminName: e.target.value,
     }));
   };
   const passwordHandler = (e) => {
     setCred((prev) => ({
-        ...prev,
-        adminPassword:e.target.value
+      ...prev,
+      adminPassword: e.target.value,
     }));
   };
 
@@ -67,7 +66,10 @@ const Login = (p) => {
         <div id="error" className={c["error-message"]}></div>
       </div>
       <div className={c.imageHolder}>
-        <img src={"http://10.236.148.13:8081/data/downloadFile/admin"} alt="admin"/>
+        <img
+          src={"http://10.236.148.13:8081/data/downloadFile/admin"}
+          alt="admin"
+        />
       </div>
       <div className={c["user-container"]}>
         <input

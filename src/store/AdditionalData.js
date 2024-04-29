@@ -44,12 +44,12 @@ const AdditionalData = createSlice({
     chartDay: true,
     chartWeek: false,
     chartmonth: true,
-    checkBox:false,
-    coordinatoor:[],
-    login:{
-      isLogged:false,
-      token:""
-    }
+    checkBox: false,
+    coordinatoor: [],
+    login: {
+      isLogged: false,
+      token: "",
+    },
   },
   reducers: {
     addDate(s, p) {
@@ -74,26 +74,26 @@ const AdditionalData = createSlice({
       }
     },
     editChartDay(s, p) {
-      s.chartDay=p.payload
+      s.chartDay = p.payload;
     },
-    editChartWeek(s,p){
-      s.chartWeek=p.payload
+    editChartWeek(s, p) {
+      s.chartWeek = p.payload;
     },
-    editChartMonth(s, p){
-      s.chartmonth=p.payload
+    editChartMonth(s, p) {
+      s.chartmonth = p.payload;
     },
-    editCheckBox(s,p){
-      s.checkBox=p.payload
+    editCheckBox(s, p) {
+      s.checkBox = p.payload;
     },
-    addCoordinator(s,p){
-      if(s.coordinatoor.length===0){
+    addCoordinator(s, p) {
+      if (s.coordinatoor.length === 0) {
         s.coordinatoor.push(...p.payload);
       }
     },
-    isLoggin(s,p){
-      s.login.isLogged=true;
-      s.login.token=p.payload;
-    }
+    isLoggin(s, p) {
+      s.login.isLogged = true;
+      s.login.token = p.payload;
+    },
   },
 });
 

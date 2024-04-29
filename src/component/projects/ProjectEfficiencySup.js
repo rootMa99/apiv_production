@@ -66,7 +66,7 @@ const ProjectEfficiencySup = (p) => {
         actual="ot"
         target=""
       />
-      
+
       <OuputFilter
         data={filtredData}
         date={date}

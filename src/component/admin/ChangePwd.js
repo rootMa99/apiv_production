@@ -32,7 +32,7 @@ const ChangePwd = (p) => {
     const jwtToken = login.token;
     if (
       cred.adminPasswordi.trim() === "" ||
-      cred.adminPasswordii.trim()==="" ||
+      cred.adminPasswordii.trim() === "" ||
       !match
     ) {
       console.log("not submmit");

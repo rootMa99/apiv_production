@@ -36,15 +36,16 @@ const getStartmonth = (date) => {
   return `${year}-${month}-${day}`;
 };
 
-const getStartYear=date=>{
-  const year= date.split('-')[0];
+const getStartYear = (date) => {
+  const year = date.split("-")[0];
 
   return `${year}-01-01`;
-}
+};
 
 export const effMonth = (dataArray, endDate, year) => {
   const filteredData = [];
-  const startDate = year==="year"? getStartYear(endDate) : getStartmonth(endDate);
+  const startDate =
+    year === "year" ? getStartYear(endDate) : getStartmonth(endDate);
   console.log(startDate);
   dataArray.forEach((element) => {
     filteredData.push(
@@ -103,10 +104,10 @@ export const getEfficiencyYearUntil = (dataArray) => {
   let prodTY = 0;
   let paidTY = 0;
   dataArray.forEach((e) => {
-      prodHY += e.actualDataExcel.prodH;
-      paidHY += e.actualDataExcel.paidH;
-      prodTY += e.dataTargetExcel.prodTarget;
-      paidTY += e.dataTargetExcel.payedTarget;
+    prodHY += e.actualDataExcel.prodH;
+    paidHY += e.actualDataExcel.paidH;
+    prodTY += e.dataTargetExcel.prodTarget;
+    paidTY += e.dataTargetExcel.payedTarget;
   });
 
   return { prodHY, paidHY, prodTY, paidTY };
@@ -155,7 +156,7 @@ export const getFiltredProjectOther = (dataArray) => {
         f.name === "AFM" ||
         f.name === "Sequencing" ||
         f.name === "B78-T9" ||
-        f.name === "B78 T9" 
+        f.name === "B78 T9"
       );
     })
   );
@@ -165,10 +166,7 @@ export const getFiltredProjectCutting = (dataArray) => {
   const datafiltred = [];
   datafiltred.push(
     ...dataArray.filter((f) => {
-      return (
-        f.name === "CUTTING AREA" ||
-        f.name === "LEAD PREP AREA" 
-      );
+      return f.name === "CUTTING AREA" || f.name === "LEAD PREP AREA";
     })
   );
   return datafiltred;

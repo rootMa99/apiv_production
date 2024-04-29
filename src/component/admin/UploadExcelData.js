@@ -53,19 +53,18 @@ const UploadExcelData = (p) => {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
-    })
-      .then((response) => {
-        if (response.status === 200) {
-            console.log("Upload successful:");
-            setSuccessfully(true);
-            setLoading(false);
-        } else {
-            setError(true);
+    }).then((response) => {
+      if (response.status === 200) {
+        console.log("Upload successful:");
+        setSuccessfully(true);
+        setLoading(false);
+      } else {
+        setError(true);
         setLoading(false);
         setShowbutton(true);
-          throw new Error(`Request failed with status: ${response.status}`);
-        }
-      })
+        throw new Error(`Request failed with status: ${response.status}`);
+      }
+    });
   };
 
   if (successfully) {
@@ -81,7 +80,7 @@ const UploadExcelData = (p) => {
   console.log(file);
   return (
     <div className={c.wrap}>
-      {successfully && <Notification file={true}/>}
+      {successfully && <Notification file={true} />}
       {error && <Notification error={true} />}
       <label
         htmlFor="images"

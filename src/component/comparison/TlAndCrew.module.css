@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper {
   width: 90%;
   margin: auto;
   display: flex;
@@ -9,55 +9,56 @@
   gap: 2.5rem;
 }
 
-.chart{
-    height: 30rem;
-    width: 100%;
+.chart {
+  height: 30rem;
+  width: 100%;
 }
-.chartO{
+.chartO {
   width: 33%;
   display: flex;
   gap: 15px;
   flex-direction: column;
 }
-.chart h3, .chartO h3{
-    color: rgb(255, 255, 255);
-    text-transform: uppercase;
+.chart h3,
+.chartO h3 {
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
 }
 
 .underList {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 2rem;
-    list-style: none;
-  }
-  .underList li {
-    font-size: medium;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: aliceblue;
-    opacity: 0.5;
-    border-bottom: 2px solid transparent;
-    cursor: pointer;
-  }
-  .underList li:hover{
-    opacity: 1;
-  }
-  .selectm{
-    width: auto;
-    position: sticky;
-    z-index: 111;
-    top: 6.5rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    backdrop-filter: blur(16px);
-    padding: 10px 0;
-  }
-  .selH label{
-    color: aliceblue;
-    text-transform: uppercase;
-    font-weight: bold;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+}
+.underList li {
+  font-size: medium;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: aliceblue;
+  opacity: 0.5;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+.underList li:hover {
+  opacity: 1;
+}
+.selectm {
+  width: auto;
+  position: sticky;
+  z-index: 111;
+  top: 6.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  backdrop-filter: blur(16px);
+  padding: 10px 0;
+}
+.selH label {
+  color: aliceblue;
+  text-transform: uppercase;
+  font-weight: bold;
+}

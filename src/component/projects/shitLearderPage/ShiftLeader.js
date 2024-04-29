@@ -49,8 +49,8 @@ const ShiftLeader = (p) => {
   } catch (e) {
     alert(e);
   }
-  const teamLeaders=[];
-  shiftLeaders.map(m=>teamLeaders.push(...getTeamLeaders(m.data)) );
+  const teamLeaders = [];
+  shiftLeaders.map((m) => teamLeaders.push(...getTeamLeaders(m.data)));
 
   const monthData = getDataYear(shiftLeader[0].data);
   const dataM = monthData.map((m) => ({
@@ -150,9 +150,7 @@ const ShiftLeader = (p) => {
                 </div>
                 <h5>best day :</h5>
                 <div className={c.bestData}>
-                  <span>
-                    {maxObjectDay.name}
-                  </span>
+                  <span>{maxObjectDay.name}</span>
                   <span> {maxObjectDay.total} %</span>
                 </div>
               </div>

@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { getFiltredProject, getFiltredProjectCutting, getFiltredProjectOther, getSortedData } from "../hooks/getEfficiencyData";
+import {
+  getFiltredProject,
+  getFiltredProjectCutting,
+  getFiltredProjectOther,
+  getSortedData,
+} from "../hooks/getEfficiencyData";
 import ProjectCard from "./ProjectCard";
 import c from "./Projects.module.css";
 import { useSelector } from "react-redux";
@@ -20,20 +25,27 @@ const Projects = (p) => {
   const sortedData = getSortedData(datafiltred);
   const month = day.month[day.date.split("-")[1] - 1];
   console.log(datafiltred);
-const sortedDataot=getFiltredProjectOther(data);
-const sortedDatacut=getFiltredProjectCutting(data);
+  const sortedDataot = getFiltredProjectOther(data);
+  const sortedDatacut = getFiltredProjectCutting(data);
 
-
-  const clickH=e=>{
+  const clickH = (e) => {
     setOther(false);
     setCutting(false);
-  }
+  };
 
   return (
     <React.Fragment>
       {(other || cutting) && <BackDrop click={clickH} />}
-      {other && <OtherProjects day={day.date} month={month} sortedData={sortedDataot} />}
-      {cutting && <OtherProjects day={day.date} month={month} sortedData={sortedDatacut} />}
+      {other && (
+        <OtherProjects day={day.date} month={month} sortedData={sortedDataot} />
+      )}
+      {cutting && (
+        <OtherProjects
+          day={day.date}
+          month={month}
+          sortedData={sortedDatacut}
+        />
+      )}
       <div className={c.titleContainer}>
         <h3 className={c.title}>Projects</h3>
       </div>
