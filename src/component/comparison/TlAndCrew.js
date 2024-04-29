@@ -30,7 +30,7 @@ const customStyles = {
     textAlign: "center",
     outline: "none",
     border: "2px solid #ecf0f162",
-    backgroundColor: "#383942",
+    backgroundColor: "#000",
     boxShadow: "none",
     "&:hover": {
       border: "2px solid rgb(255, 255, 255)",
