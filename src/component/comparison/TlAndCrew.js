@@ -92,35 +92,35 @@ const TlAndCrew = (p) => {
   const tlByCrew =
     compareb.length > 0
       ? getEffByTlAndCrew(p.fd).filter((obj) => {
-          return compareb.crew.some((filterObj) => filterObj.value === obj.name);
+          return compareb.crew.some(
+            (filterObj) => filterObj.value === obj.name
+          );
         })
       : getEffByTlAndCrew(p.fd);
 
   const cs = getCrews(p.fd);
   const allF = getAll(p.fd);
   const handleSelectChange = (e, t) => {
-    
     switch (t) {
-      case 'crew':
-        setCompareb(p=>({...p, crew: e}));    
+      case "crew":
+        setCompareb((p) => ({ ...p, crew: e }));
         break;
-      case 'coo':
-        setCompareb(p=>({...p, coo:e}))
+      case "coo":
+        setCompareb((p) => ({ ...p, coo: e }));
         break;
-      case 'family':
-        setCompareb(p=>({...p, family:e}))
+      case "family":
+        setCompareb((p) => ({ ...p, family: e }));
         break;
-      case 'project':
-        setCompareb(p=>({...p, project:e}))
+      case "project":
+        setCompareb((p) => ({ ...p, project: e }));
         break;
-      case 'sl':
-        setCompareb(p=>({...p, sl:e}))
+      case "sl":
+        setCompareb((p) => ({ ...p, sl: e }));
         break;
-      case 'tl':
-        setCompareb(p=>({...p, tl:e}))
+      case "tl":
+        setCompareb((p) => ({ ...p, tl: e }));
         break;
       default:
-        
     }
   };
 
