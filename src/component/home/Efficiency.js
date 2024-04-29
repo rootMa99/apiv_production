@@ -25,7 +25,8 @@ const Efficiency = (p) => {
   console.log(cutting, lp);
 
   const getEffic = (data, type, month) => {
-    const filtredData =month==="month"?effMonth(data, type): getEfficiencyDay(data, type);
+    const filtredData =
+      month === "month" ? effMonth(data, type) : getEfficiencyDay(data, type);
     console.log(filtredData, type);
     return getEfficiencyDatas(filtredData);
   };
@@ -56,12 +57,12 @@ const Efficiency = (p) => {
           getEfficiencyDatas(filtredDatacutting);
         const { prodH: prodHDlp, paidH: paidHDlp } =
           getEfficiencyDatas(filtredDatalp);
-          console.log(prodHDfa, paidHDfa, "MONTH ACT")
-        return (
-          ((prodHD * 1.443 + prodHDlp * 1.138 + prodHDfa * 1.078) /
-            (paidHD + paidHDlp + paidHDfa)) *
-          100
-        );
+        console.log(prodHDfa, paidHDfa, "MONTH ACT");
+        return paidHD + paidHDlp + paidHDfa !== 0
+          ? ((prodHD * 1.443 + prodHDlp * 1.138 + prodHDfa * 1.078) /
+              (paidHD + paidHDlp + paidHDfa)) *
+              100
+          : 0;
       }
       if (type === "tar") {
         const { prodT: prodTD, paidT: paidTD } =
@@ -69,11 +70,11 @@ const Efficiency = (p) => {
 
         const { prodT: prodTDlp, paidT: paidTDlp } =
           getEfficiencyDatas(filtredDatalp);
-        return (
-          ((prodTD * 1.443 + prodTDlp * 1.138 + prodTDfa * 1.078) /
-            (paidTD + paidTDlp + paidTDfa)) *
-          100
-        );
+        return paidTD + paidTDlp + paidTDfa !== 0
+          ? ((prodTD * 1.443 + prodTDlp * 1.138 + prodTDfa * 1.078) /
+              (paidTD + paidTDlp + paidTDfa)) *
+              100
+          : 0;
       }
     }
     if (tem === "year") {
@@ -97,18 +98,18 @@ const Efficiency = (p) => {
       } = getEfficiencyYear(fa);
       console.log("year", prodHYfa, paidHYfa, prodTYfa, paidTYfa);
       if (type === "act") {
-        return (
-          ((prodHYC * 1.443 + prodHYlp * 1.138 + prodHYfa * 1.078) /
-            (paidHYC + paidTYlp + paidHYfa)) *
-          100
-        );
+        return paidHYC + paidTYlp + paidHYfa !== 0
+          ? ((prodHYC * 1.443 + prodHYlp * 1.138 + prodHYfa * 1.078) /
+              (paidHYC + paidTYlp + paidHYfa)) *
+              100
+          : 0;
       }
       if (type === "tar") {
-        return (
-          ((prodTYC * 1.443 + prodTYlp * 1.138 + prodTYfa * 1.078) /
-            (paidTYC + paidHYlp + paidTYfa)) *
-          100
-        );
+        return paidTYC + paidHYlp + paidTYfa !== 0
+          ? ((prodTYC * 1.443 + prodTYlp * 1.138 + prodTYfa * 1.078) /
+              (paidTYC + paidHYlp + paidTYfa)) *
+              100
+          : 0;
       }
     }
   };
@@ -138,8 +139,16 @@ const Efficiency = (p) => {
     paidT: paidTD,
   } = getEffic(data, p.day);
   console.log(prodHD, paidHD, prodTD, paidTD, p.title);
-  const totalP = esa(paidHD === 0 ? 0 : (prodHD / paidHD) * 100, "day", "act").toFixed(2);
-  const totalT = esa(paidTD === 0 ? 0 : (prodTD / paidTD) * 100, "day", "tar").toFixed(2);
+  const totalP = esa(
+    paidHD === 0 ? 0 : (prodHD / paidHD) * 100,
+    "day",
+    "act"
+  ).toFixed(2);
+  const totalT = esa(
+    paidTD === 0 ? 0 : (prodTD / paidTD) * 100,
+    "day",
+    "tar"
+  ).toFixed(2);
   const gap = (totalP - totalT).toFixed(2);
   console.log(totalP, totalT, gap);
   //hc Day using filtred Day
@@ -150,7 +159,7 @@ const Efficiency = (p) => {
   //Efficiency Month
   // const filtredDataMonth = getEfficiencyMonth(data, p.month);
   const filtredDataMonth = effMonth(data, p.day);
-  console.log(filtredDataMonth, data)
+  console.log(filtredDataMonth, data);
   const {
     prodH: prodHM,
     paidH: paidHM,
@@ -170,11 +179,15 @@ const Efficiency = (p) => {
   ).toFixed(2);
   const gapM = (totalPM - totalTM).toFixed(2);
   //Efficiency Year
-  const dataYR=effMonth(data, p.day, "year");
+  const dataYR = effMonth(data, p.day, "year");
   console.log(dataYR);
   // const { prodHY, paidHY, prodTY, paidTY } = getEfficiencyYear(data);
-  const { prodHY, paidHY, prodTY, paidTY } =getEfficiencyYearUntil(dataYR);
-  let totalPY = esa(paidHY === 0 ? 0 : (prodHY / paidHY) * 100, "year", "act").toFixed(2);
+  const { prodHY, paidHY, prodTY, paidTY } = getEfficiencyYearUntil(dataYR);
+  let totalPY = esa(
+    paidHY === 0 ? 0 : (prodHY / paidHY) * 100,
+    "year",
+    "act"
+  ).toFixed(2);
   const totalTY = esa(
     paidTY === 0 ? 0 : (prodTY / paidTY) * 100,
     "year",
@@ -183,9 +196,7 @@ const Efficiency = (p) => {
   const gapY = (totalPY - totalTY).toFixed(2);
   return (
     <React.Fragment>
-      <div
-        className={c.efficiency}
-      >
+      <div className={c.efficiency}>
         <div className={c.efficiencyContent}>
           <EfficiencyData
             day={p.day}
