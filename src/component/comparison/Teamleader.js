@@ -79,8 +79,6 @@ const customStyles = {
   }),
 };
 
-
-
 const Teamleader = (p) => {
   const [control, setControl] = useState("tlc");
   const [compareb, setCompareb] = useState({
@@ -93,44 +91,54 @@ const Teamleader = (p) => {
   });
 
   let tlByCrew =
-  compareb.crew.length > 0
-    ? getdataCTl(p.fd).filter((obj) => {
-        return compareb.crew.some(
-          (filterObj) => filterObj.value === obj.name
-        );
-      })
-    : getdataCTl(p.fd);
+    compareb.crew.length > 0
+      ? getdataCTl(p.fd).filter((obj) => {
+          return compareb.crew.some(
+            (filterObj) => filterObj.value === obj.crew
+          );
+        })
+      : getdataCTl(p.fd);
 
-tlByCrew =
-  compareb.coo.length > 0
-    ? tlByCrew.filter((obj) => {
-        return compareb.coo.some((filterObj) => filterObj.value === obj.coordinator);
-      })
-    : tlByCrew;
-tlByCrew =
-  compareb.family.length > 0
-    ? tlByCrew.filter((obj) => {
-        return compareb.family.some((filterObj) => filterObj.value === obj.family);
-      })
-    : tlByCrew;
-tlByCrew =
-  compareb.project.length > 0
-    ? tlByCrew.filter((obj) => {
-        return compareb.project.some((filterObj) => filterObj.value === obj.project);
-      })
-    : tlByCrew;
-tlByCrew =
-  compareb.sl.length > 0
-    ? tlByCrew.filter((obj) => {
-        return compareb.sl.some((filterObj) => filterObj.value === obj.shiftLeader);
-      })
-    : tlByCrew;
-tlByCrew =
-  compareb.tl.length > 0
-    ? tlByCrew.filter((obj) => {
-        return compareb.tl.some((filterObj) => filterObj.value === obj.teamLeader);
-      })
-    : tlByCrew;
+  tlByCrew =
+    compareb.coo.length > 0
+      ? tlByCrew.filter((obj) => {
+          return compareb.coo.some(
+            (filterObj) => filterObj.value === obj.coordinator
+          );
+        })
+      : tlByCrew;
+  tlByCrew =
+    compareb.family.length > 0
+      ? tlByCrew.filter((obj) => {
+          return compareb.family.some(
+            (filterObj) => filterObj.value === obj.family
+          );
+        })
+      : tlByCrew;
+  tlByCrew =
+    compareb.project.length > 0
+      ? tlByCrew.filter((obj) => {
+          return compareb.project.some(
+            (filterObj) => filterObj.value === obj.project
+          );
+        })
+      : tlByCrew;
+  tlByCrew =
+    compareb.sl.length > 0
+      ? tlByCrew.filter((obj) => {
+          return compareb.sl.some(
+            (filterObj) => filterObj.value === obj.shiftLeader
+          );
+        })
+      : tlByCrew;
+  tlByCrew =
+    compareb.tl.length > 0
+      ? tlByCrew.filter((obj) => {
+          return compareb.tl.some(
+            (filterObj) => filterObj.value === obj.teamLeader
+          );
+        })
+      : tlByCrew;
 
   console.log(p.fd, tlByCrew);
 
@@ -451,68 +459,68 @@ tlByCrew =
 
   return (
     <React.Fragment>
-    <div className={c.selectm}>
-    <div className={c.selH} style={{ minWidth: "14%" }}>
-      <label>crews</label>
-      <Select
-        options={cs.map((m) => ({ label: m, value: m }))}
-        isMulti
-        id="multiSelect"
-        onChange={(e) => handleSelectChange(e, "crew")}
-        styles={customStyles}
-      />
-    </div>
-    <div className={c.selH} style={{ minWidth: "14%" }}>
-      <label>coordinator</label>
-      <Select
-        options={allF.coo.map((m) => ({ label: m, value: m }))}
-        isMulti
-        id="multiSelect"
-        onChange={(e) => handleSelectChange(e, "coo")}
-        styles={customStyles}
-      />
-    </div>
-    <div className={c.selH} style={{ minWidth: "14%" }}>
-      <label>family</label>
-      <Select
-        options={allF.family.map((m) => ({ label: m, value: m }))}
-        isMulti
-        id="multiSelect"
-        onChange={(e) => handleSelectChange(e, "family")}
-        styles={customStyles}
-      />
-    </div>
-    <div className={c.selH} style={{ minWidth: "14%" }}>
-      <label>project</label>
-      <Select
-        options={allF.project.map((m) => ({ label: m, value: m }))}
-        isMulti
-        id="multiSelect"
-        onChange={(e) => handleSelectChange(e, "project")}
-        styles={customStyles}
-      />
-    </div>
-    <div className={c.selH} style={{ minWidth: "14%" }}>
-      <label>shiftLeader</label>
-      <Select
-        options={allF.sl.map((m) => ({ label: m, value: m }))}
-        isMulti
-        id="multiSelect"
-        onChange={(e) => handleSelectChange(e, "sl")}
-        styles={customStyles}
-      />
-    </div>
-    <div className={c.selH} style={{ minWidth: "14%" }}>
-      <label>teamLeader</label>
-      <Select
-        options={allF.teamLeader.map((m) => ({ label: m, value: m }))}
-        isMulti
-        id="multiSelect"
-        onChange={(e) => handleSelectChange(e, "tl")}
-        styles={customStyles}
-      />
-    </div>
-  </div>
+      <div className={c.selectm}>
+        <div className={c.selH} style={{ minWidth: "14%" }}>
+          <label>crews</label>
+          <Select
+            options={cs.map((m) => ({ label: m, value: m }))}
+            isMulti
+            id="multiSelect"
+            onChange={(e) => handleSelectChange(e, "crew")}
+            styles={customStyles}
+          />
+        </div>
+        <div className={c.selH} style={{ minWidth: "14%" }}>
+          <label>coordinator</label>
+          <Select
+            options={allF.coo.map((m) => ({ label: m, value: m }))}
+            isMulti
+            id="multiSelect"
+            onChange={(e) => handleSelectChange(e, "coo")}
+            styles={customStyles}
+          />
+        </div>
+        <div className={c.selH} style={{ minWidth: "14%" }}>
+          <label>family</label>
+          <Select
+            options={allF.family.map((m) => ({ label: m, value: m }))}
+            isMulti
+            id="multiSelect"
+            onChange={(e) => handleSelectChange(e, "family")}
+            styles={customStyles}
+          />
+        </div>
+        <div className={c.selH} style={{ minWidth: "14%" }}>
+          <label>project</label>
+          <Select
+            options={allF.project.map((m) => ({ label: m, value: m }))}
+            isMulti
+            id="multiSelect"
+            onChange={(e) => handleSelectChange(e, "project")}
+            styles={customStyles}
+          />
+        </div>
+        <div className={c.selH} style={{ minWidth: "14%" }}>
+          <label>shiftLeader</label>
+          <Select
+            options={allF.sl.map((m) => ({ label: m, value: m }))}
+            isMulti
+            id="multiSelect"
+            onChange={(e) => handleSelectChange(e, "sl")}
+            styles={customStyles}
+          />
+        </div>
+        <div className={c.selH} style={{ minWidth: "14%" }}>
+          <label>teamLeader</label>
+          <Select
+            options={allF.teamLeader.map((m) => ({ label: m, value: m }))}
+            isMulti
+            id="multiSelect"
+            onChange={(e) => handleSelectChange(e, "tl")}
+            styles={customStyles}
+          />
+        </div>
+      </div>
       <ul className={c.underList}>
         <li
           style={
@@ -543,6 +551,7 @@ tlByCrew =
             <Line data={datac} options={options} />
           </div>
           <div className={c.chart} style={{ height: "10rem" }}>
+            <h3>Efficiency gap</h3>
             <Bar data={dataGap} options={options} />
           </div>
           <div className={c.chart}>

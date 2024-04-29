@@ -140,6 +140,12 @@ export const getdataCTl = (d) => {
       hc: e.hc,
       hcTarget: e.hcTarget,
       hcGap: e.hcTarget - e.hc,
+      family: e.family,
+      project: e.project,
+      coordinator: e.coordinator,
+      shiftLeader: e.shiftLeader,
+      teamLeader: e.teamLeader,
+      crew: e.crew,
     });
   });
   return rd;
@@ -157,7 +163,7 @@ export const getAll = (d) => {
   const project = [];
   const teamLeader = [];
 
-   d.forEach((e) => {
+  d.forEach((e) => {
     if (family.findIndex((fi) => fi === e.family) === -1) {
       family.push(e.family);
     }
