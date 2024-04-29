@@ -4,7 +4,7 @@ const OldView = (p) => {
   return (
     <div className={c.container}>
       {p.data[p.type] < 0 && (
-        <span className={c.ngap}>{p.data[p.type].toFixed(1)}</span>
+        <span className={c.ngap} style={p.act==="abs"?{color:"green"}:{}} >{p.data[p.type].toFixed(1)}</span>
       )}
       <div className={c.mainChart}>
         {p.tar!==0&&<div className={c.target}>
@@ -20,7 +20,7 @@ const OldView = (p) => {
         </div>
       </div>
       {p.data[p.type] > 0 && (
-        <span className={c.pgap}>{p.data[p.type].toFixed(1)}</span>
+        <span className={c.pgap} style={p.act==="abs"?{color:"red"}:{}} >{p.data[p.type].toFixed(1)}</span>
       )}
     </div>
   );
