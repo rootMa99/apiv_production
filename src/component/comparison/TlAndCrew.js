@@ -206,7 +206,7 @@ const TlAndCrew = (p) => {
       {
         type: "line",
         label: "Target",
-        data: eff.map((m) => m.effTar),
+        data: eff.map((m) => m.effTar.toFixed(1)),
         backgroundColor: "#F84018",
         pointHoverBorderColor: "#FAF0E6",
         borderColor: "#3BC6EB",
@@ -224,7 +224,7 @@ const TlAndCrew = (p) => {
       {
         type: "bar",
         label: "Actual",
-        data: eff.map((m) => m.eff),
+        data: eff.map((m) => m.eff.toFixed(1)),
         backgroundColor: bgcolor,
         borderColor: "#F84018",
         borderWidth: 1,
@@ -250,7 +250,7 @@ const TlAndCrew = (p) => {
       {
         type: "line",
         label: "Target",
-        data: hdc.map((m) => m.hcTarget),
+        data: hdc.map((m) => m.hcTarget.toFixed(1)),
         backgroundColor: "#F84018",
         pointHoverBorderColor: "#FAF0E6",
         borderColor: "#3BC6EB",
@@ -268,7 +268,7 @@ const TlAndCrew = (p) => {
       {
         type: "bar",
         label: "Actual",
-        data: hdc.map((m) => m.hc),
+        data: hdc.map((m) => m.hc.toFixed(1)),
         backgroundColor: bgcolorHC,
         borderColor: "#F84018",
         borderWidth: 1,
@@ -281,7 +281,7 @@ const TlAndCrew = (p) => {
       {
         type: "line",
         label: "Target",
-        data: outp.map((m) => m.outputT),
+        data: outp.map((m) => m.outputT.toFixed(1)),
         backgroundColor: "#F84018",
         pointHoverBorderColor: "#FAF0E6",
         borderColor: "#3BC6EB",
@@ -299,7 +299,7 @@ const TlAndCrew = (p) => {
       {
         type: "bar",
         label: "Actual",
-        data: outp.map((m) => m.output),
+        data: outp.map((m) => m.output.toFixed(1)),
         backgroundColor: bgcoloroutput,
         borderColor: "#F84018",
         borderWidth: 1,
@@ -312,7 +312,7 @@ const TlAndCrew = (p) => {
       {
         type: "line",
         label: "Target",
-        data: abs.map((m) => m.abst),
+        data: abs.map((m) => m.abst.toFixed(1)),
         backgroundColor: "#F84018",
         pointHoverBorderColor: "#FAF0E6",
         borderColor: "#3BC6EB",
@@ -330,7 +330,7 @@ const TlAndCrew = (p) => {
       {
         type: "bar",
         label: "Actual",
-        data: abs.map((m) => m.abs),
+        data: abs.map((m) => m.abs.toFixed(1)),
         backgroundColor: bgcolorAB,
         borderColor: "#F84018",
         borderWidth: 1,
@@ -343,7 +343,7 @@ const TlAndCrew = (p) => {
       {
         type: "bar",
         label: "Actual",
-        data: wsd.map((m) => m.wsd),
+        data: wsd.map((m) => m.wsd.toFixed(1)),
         backgroundColor: "#00AC9E",
         borderColor: "#F84018",
         borderWidth: 1,
@@ -356,7 +356,7 @@ const TlAndCrew = (p) => {
       {
         type: "bar",
         label: "Actual",
-        data: tlo.map((m) => m.tlo),
+        data: tlo.map((m) => m.tlo.toFixed(1)),
         backgroundColor: "#00AC9E",
         borderColor: "#F84018",
         borderWidth: 1,
