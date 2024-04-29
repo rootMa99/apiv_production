@@ -461,16 +461,6 @@ const Teamleader = (p) => {
     <React.Fragment>
       <div className={c.selectm}>
         <div className={c.selH} style={{ minWidth: "14%" }}>
-          <label>crews</label>
-          <Select
-            options={cs.map((m) => ({ label: m, value: m }))}
-            isMulti
-            id="multiSelect"
-            onChange={(e) => handleSelectChange(e, "crew")}
-            styles={customStyles}
-          />
-        </div>
-        <div className={c.selH} style={{ minWidth: "14%" }}>
           <label>coordinator</label>
           <Select
             options={allF.coo.map((m) => ({ label: m, value: m }))}
