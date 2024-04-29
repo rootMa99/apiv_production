@@ -237,7 +237,7 @@ const TlAndCrew = (p) => {
       {
         type: "bar",
         label: "Actual",
-        data: eff.map((m) => m.gap),
+        data: eff.map((m) => m.gap.toFixed(1)),
         backgroundColor: bgcolor,
         borderColor: "#F84018",
         borderWidth: 1,
