@@ -81,17 +81,47 @@ const customStyles = {
 
 const TlAndCrew = (p) => {
   const [control, setControl] = useState("tlc");
-  const [compareb, setCompareb] = useState([]);
+  const [compareb, setCompareb] = useState({
+    crew: [],
+    coo: [],
+    family: [],
+    project: [],
+    sl: [],
+    tl: [],
+  });
   const tlByCrew =
     compareb.length > 0
       ? getEffByTlAndCrew(p.fd).filter((obj) => {
-          return compareb.some((filterObj) => filterObj.value === obj.name);
+          return compareb.crew.some((filterObj) => filterObj.value === obj.name);
         })
       : getEffByTlAndCrew(p.fd);
+
   const cs = getCrews(p.fd);
   const allF = getAll(p.fd);
-  const handleSelectChange = (e) => {
-    setCompareb(e);
+  const handleSelectChange = (e, t) => {
+    
+    switch (t) {
+      case 'crew':
+        setCompareb(p=>({...p, crew: e}));    
+        break;
+      case 'coo':
+        setCompareb(p=>({...p, coo:e}))
+        break;
+      case 'family':
+        setCompareb(p=>({...p, family:e}))
+        break;
+      case 'project':
+        setCompareb(p=>({...p, project:e}))
+        break;
+      case 'sl':
+        setCompareb(p=>({...p, sl:e}))
+        break;
+      case 'tl':
+        setCompareb(p=>({...p, tl:e}))
+        break;
+      default:
+        
+    }
   };
 
   console.log(cs, p.fd, tlByCrew, compareb, allF);
@@ -382,7 +412,8 @@ const TlAndCrew = (p) => {
   return (
     <React.Fragment>
       <div className={c.selectm}>
-        <div style={{ minWidth: "14%" }}>
+        <div className={c.selH} style={{ minWidth: "14%" }}>
+          <label>crews</label>
           <Select
             options={cs.map((m) => ({ label: m, value: m }))}
             isMulti
@@ -391,7 +422,8 @@ const TlAndCrew = (p) => {
             styles={customStyles}
           />
         </div>
-        <div style={{ minWidth: "14%" }}>
+        <div className={c.selH} style={{ minWidth: "14%" }}>
+          <label>coordinator</label>
           <Select
             options={allF.coo.map((m) => ({ label: m, value: m }))}
             isMulti
@@ -400,7 +432,8 @@ const TlAndCrew = (p) => {
             styles={customStyles}
           />
         </div>
-        <div style={{ minWidth: "14%" }}>
+        <div className={c.selH} style={{ minWidth: "14%" }}>
+          <label>family</label>
           <Select
             options={allF.family.map((m) => ({ label: m, value: m }))}
             isMulti
@@ -409,7 +442,8 @@ const TlAndCrew = (p) => {
             styles={customStyles}
           />
         </div>
-        <div style={{ minWidth: "14%" }}>
+        <div className={c.selH} style={{ minWidth: "14%" }}>
+          <label>project</label>
           <Select
             options={allF.project.map((m) => ({ label: m, value: m }))}
             isMulti
@@ -418,7 +452,8 @@ const TlAndCrew = (p) => {
             styles={customStyles}
           />
         </div>
-        <div style={{ minWidth: "14%" }}>
+        <div className={c.selH} style={{ minWidth: "14%" }}>
+          <label>shiftLeader</label>
           <Select
             options={allF.sl.map((m) => ({ label: m, value: m }))}
             isMulti
@@ -427,7 +462,8 @@ const TlAndCrew = (p) => {
             styles={customStyles}
           />
         </div>
-        <div style={{ minWidth: "14%" }}>
+        <div className={c.selH} style={{ minWidth: "14%" }}>
+          <label>teamLeader</label>
           <Select
             options={allF.teamLeader.map((m) => ({ label: m, value: m }))}
             isMulti

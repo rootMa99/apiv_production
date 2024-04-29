@@ -53,3 +53,8 @@
     justify-content: center;
     gap: 10px;
   }
+  .selH label{
+    color: aliceblue;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
