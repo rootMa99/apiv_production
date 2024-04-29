@@ -9,7 +9,6 @@ const getData =  async (uri, body) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // Add any other headers you may need
       },
       body: JSON.stringify(body),
     });
@@ -40,7 +39,7 @@ const Login = (p) => {
       password:cred.adminPassword
     };
     try{
-      const data=await getData("http://localhost:8081/auth/signin", body);
+      const data=await getData("http://10.236.148.13:8081/auth/signin", body);
       console.log(data)
       dispatch(additionalDataAction.isLoggin(data.token))
     }catch (e) {
@@ -68,7 +67,7 @@ const Login = (p) => {
         <div id="error" className={c["error-message"]}></div>
       </div>
       <div className={c.imageHolder}>
-        <img src={"http://localhost:8081/data/downloadFile/admin"} alt="admin"/>
+        <img src={"http://10.236.148.13:8081/data/downloadFile/admin"} alt="admin"/>
       </div>
       <div className={c["user-container"]}>
         <input
