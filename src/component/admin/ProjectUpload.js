@@ -24,7 +24,7 @@ const ProjectUpload = (p) => {
     if (selectedFile && jwtToken) {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      fetch(`http://localhost:8081/admin/project/${p.title}`, {
+      fetch(`http://10.236.148.13:8081/admin/project/${p.title}`, {
         method: "POST",
         body: formData,
         headers: {

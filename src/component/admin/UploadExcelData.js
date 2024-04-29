@@ -47,7 +47,7 @@ const UploadExcelData = (p) => {
     const jwtToken = login.token;
     const formData = new FormData();
     formData.append("file", file);
-    fetch(`http://localhost:8081/admin/uploadData`, {
+    fetch(`http://10.236.148.13:8081/admin/uploadData`, {
       method: "POST",
       body: formData,
       headers: {

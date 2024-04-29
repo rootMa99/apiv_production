@@ -44,7 +44,7 @@ const ChangePwd = (p) => {
     };
     try {
       const data = await getData(
-        "http://localhost:8081/admin/changePwd",
+        "http://10.236.148.13:8081/admin/changePwd",
         body,
         jwtToken
       );

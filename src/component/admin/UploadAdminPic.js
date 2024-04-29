@@ -51,7 +51,7 @@ const UploadAdminPic = (p) => {
     if (file && jwtToken) {
       const formData = new FormData();
       formData.append("file", file);
-        fetch(`http://localhost:8081/admin/adminpic`, {
+        fetch(`http://10.236.148.13:8081/admin/adminpic`, {
           method: "POST",
           body: formData,
           headers: {

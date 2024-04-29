@@ -27,7 +27,7 @@ const Coordinator = (p) => {
       const formData = new FormData();
       formData.append("file", selectedFile);
       if (p.level === "coordinator") {
-        fetch(`http://localhost:8081/admin/coordinator/${p.name}`, {
+        fetch(`http://10.236.148.13:8081/admin/coordinator/${p.name}`, {
           method: "POST",
           body: formData,
           headers: {
@@ -45,7 +45,7 @@ const Coordinator = (p) => {
             setError(true);
           });
       } else {
-        fetch(`http://localhost:8081/admin/shiftleader/${p.name}`, {
+        fetch(`http://10.236.148.13:8081/admin/shiftleader/${p.name}`, {
           method: "POST",
           body: formData,
           headers: {
