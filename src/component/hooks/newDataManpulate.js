@@ -79,7 +79,7 @@ export const getEffByTlAndCrew = (ds) => {
   const rd = [];
   const d = getcrData(ds);
   d.forEach((e) => {
-    console.log(e.wd, "here's the wd", e.crew);
+    console.log(e.wd, "here's the wd", e.crew, e.ab, e.abst);
     let eff;
     let effTar;
     eff = e.paid !== 0 ? e.prod / e.paid : 0;
@@ -90,10 +90,10 @@ export const getEffByTlAndCrew = (ds) => {
       eff: eff * 100,
       effTar: effTar * 100,
       gap: eff - effTar,
-      abs: e.abs,
-      abst: e.abst,
-      absGap: e.ab - e.abst,
-      wsd: e.wsd,
+      abs: e.wd === 0 ? e.abs : e.abs / e.wd,
+      abst: e.wd === 0 ? e.abst : e.abst / e.wd,
+      absGap: e.wd === 0 ? e.abs - e.abst : (e.abs - e.abst) / e.wd,
+      wsd: e.wd === 0 ? e.wsd : e.wsd / e.wd,
       tlo: e.wd === 0 ? e.tlo : e.tlo / e.wd,
       output: e.wd === 0 ? e.output : e.output / e.wd,
       outputT: e.wd === 0 ? e.outputT : e.outputT / e.wd,
@@ -140,6 +140,7 @@ const getTlData = (d) => {
         shiftLeader: e.shiftLeader,
         teamLeader: e.teamLeader,
         crew: e.crew,
+        wd: e.actualDataExcel.output > 0 ? 1 : 0,
       });
     } else {
       const i = rd.findIndex((f) => f.name === e.teamLeader);
@@ -164,6 +165,7 @@ const getTlData = (d) => {
           shiftLeader: e.shiftLeader,
           teamLeader: e.teamLeader,
           crew: e.crew,
+          wd: e.actualDataExcel.output > 0 ? 1 : 0,
         });
       } else {
         rd[i].paid += e.actualDataExcel.paidH;
@@ -178,6 +180,7 @@ const getTlData = (d) => {
         rd[i].outputT += e.dataTargetExcel.outputTarget;
         rd[i].hc += e.actualDataExcel.hc;
         rd[i].hcTarget += e.dataTargetExcel.hcTarget;
+        rd[i].wd += e.actualDataExcel.output > 0 ? 1 : 0;
       }
     }
   });

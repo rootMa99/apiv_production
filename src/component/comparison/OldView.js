@@ -1,6 +1,7 @@
 import c from "./OldView.module.css";
 
 const OldView = (p) => {
+  console.log(p.type, p.data[p.type])
   return (
     <div className={c.container}>
       {p.data[p.type] < 0 && (
