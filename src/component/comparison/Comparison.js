@@ -6,17 +6,25 @@ import c from "./TlAndCrew.module.css";
 import Teamleader from "./Teamleader";
 
 function getStartOfMonth(date) {
-  return new Date(date.getFullYear(), date.getMonth(), 1);
+  const d=date.split('-');
+  return `${d[0]}-${d[1]}-1`;
+}
+
+function filterDataByDateRange(startDate, endDate, data) {
+  return data.filter(
+    (item) =>
+      item.date >= startDate && item.date <= endDate && item.teamLeader !== null
+  );
 }
 
 const Comparison = (p) => {
   let data = useSelector((s) => s.datas);
   const { date } = useSelector((s) => s.additionalData);
   const [control, setControl] = useState("tlc");
-  const [daily, setDaily]=useState(false);
-  const fd = destractData(data).filter(
-    (f) => f.date === date && f.teamLeader !== null
-  );
+  const [daily, setDaily] = useState(true);
+  let fd = daily
+    ? destractData(data).filter((f) => f.date === date && f.teamLeader !== null)
+    : filterDataByDateRange(getStartOfMonth(date), date, destractData(data));
 
   console.log(fd);
   return (
@@ -45,7 +53,12 @@ const Comparison = (p) => {
         </li>
       </ul>
       <div>
-        <input type="checkbox" id="month" name="cm"/>
+        <input
+          type="checkbox"
+          id="month"
+          name="cm"
+          onChange={(e) => setDaily((p) => !p)}
+        />
         <label htmlFor="month"> Comule per month</label>
       </div>
       {control === "tlc" && <TlAndCrew fd={fd} />}
