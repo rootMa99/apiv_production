@@ -22,7 +22,7 @@ const OldView = (p) => {
         )}
         <div className={c.nameContainer}> {p.data.name} </div>
         <div className={c.actual}>
-          <div
+          {p.act !== "abs" && <div
             className={c.colrize}
             style={
               p.data[p.type] > 0 || p.data[p.type] === undefined
@@ -31,7 +31,17 @@ const OldView = (p) => {
             }
           >
             {p.data[p.act].toFixed(1)}
-          </div>
+          </div>}
+          {p.act === "abs" && <div
+            className={c.colrize}
+            style={
+              p.data[p.type] < 0
+                ? { width: `${p.data[p.act]}%` }
+                : { width: `${p.data[p.act]}%`, backgroundColor: "#CF3335" }
+            }
+          >
+            {p.data[p.act].toFixed(1)}
+          </div>}
         </div>
       </div>
       {p.data[p.type] > 0 && (
