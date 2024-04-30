@@ -11,7 +11,7 @@ const getcrData = (d) => {
   d.forEach((e) => {
     if (rd.length === 0) {
       rd.push({
-        name: e.teamLeader,
+        name: e.crew,
         paid: e.actualDataExcel.paidH,
         prod: e.actualDataExcel.prodH,
         paidt: e.dataTargetExcel.payedTarget,
@@ -32,10 +32,10 @@ const getcrData = (d) => {
         crew: e.crew,
       });
     } else {
-      const i = rd.findIndex((f) => f.name === e.teamLeader);
+      const i = rd.findIndex((f) => f.name === e.crew);
       if (i === -1) {
         rd.push({
-          name: e.teamLeader,
+          name: e.crew,
           paid: e.actualDataExcel.paidH,
           prod: e.actualDataExcel.prodH,
           paidt: e.dataTargetExcel.payedTarget,
@@ -77,18 +77,19 @@ const getcrData = (d) => {
 
 
 
-export const getEffByTlAndCrew = (d) => {
+export const getEffByTlAndCrew = (ds) => {
   const rd = [];
+  const d=getcrData(ds)
   d.forEach((e) => {
     let eff;
     let effTar;
     eff =
-      e.actualDataExcel.paidH !== 0
-        ? e.actualDataExcel.prodH / e.actualDataExcel.paidH
+      e.paid !== 0
+        ? e.prod / e.paid
         : 0;
     effTar =
-      e.dataTargetExcel.payedTarget !== 0
-        ? e.dataTargetExcel.prodTarget / e.dataTargetExcel.payedTarget
+      e.paidt !== 0
+        ? e.prodt / e.paidt
         : 0;
 
     rd.push({
@@ -97,17 +98,17 @@ export const getEffByTlAndCrew = (d) => {
       eff: eff * 100,
       effTar: effTar * 100,
       gap: eff - effTar,
-      abs: e.actualDataExcel.ab,
-      abst: e.dataTargetExcel.absTarget,
-      absGap: e.actualDataExcel.ab - e.dataTargetExcel.absTarget,
-      wsd: e.actualDataExcel.wsd,
-      tlo: e.actualDataExcel.tlo,
-      output: e.actualDataExcel.output,
-      outputT: e.dataTargetExcel.outputTarget,
-      outputGap: e.actualDataExcel.output - e.dataTargetExcel.outputTarget,
-      hc: e.actualDataExcel.hc,
-      hcTarget: e.dataTargetExcel.hcTarget,
-      hcGap: e.dataTargetExcel.hcTarget - e.actualDataExcel.hc,
+      abs: e.abs,
+      abst: e.abst,
+      absGap: e.ab - e.abst,
+      wsd: e.wsd,
+      tlo: e.tlo,
+      output: e.output,
+      outputT: e.outputT,
+      outputGap: e.output - e.outputT,
+      hc: e.hc,
+      hcTarget: e.hcTarget,
+      hcGap: e.hcTarget - e.hc,
       family: e.family,
       project: e.project,
       coordinator: e.coordinator,
