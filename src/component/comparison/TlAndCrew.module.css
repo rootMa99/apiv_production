@@ -65,5 +65,5 @@
 
 .monthlyCb label:hover, .monthlyCb input{
   cursor: pointer;
-  color: brown;
+  color: #F84018;
 }

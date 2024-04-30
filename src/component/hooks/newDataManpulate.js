@@ -89,7 +89,7 @@ export const getEffByTlAndCrew = (ds) => {
       name: e.crew,
       eff: eff * 100,
       effTar: effTar * 100,
-      gap: eff - effTar,
+      gap: eff * 100 - effTar * 100,
       abs: e.wd === 0 ? e.abs : e.abs / e.wd,
       abst: e.wd === 0 ? e.abst : e.abst / e.wd,
       absGap: e.wd === 0 ? e.abs - e.abst : (e.abs - e.abst) / e.wd,
