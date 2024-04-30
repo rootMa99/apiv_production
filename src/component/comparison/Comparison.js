@@ -12,11 +12,12 @@ function getStartOfMonth(date) {
 const Comparison = (p) => {
   let data = useSelector((s) => s.datas);
   const { date } = useSelector((s) => s.additionalData);
+  const [control, setControl] = useState("tlc");
+  const [daily, setDaily]=useState(false);
   const fd = destractData(data).filter(
     (f) => f.date === date && f.teamLeader !== null
   );
-  const [control, setControl] = useState("tlc");
-  const [daily, setDaily]=useState(false)
+
   console.log(fd);
   return (
     <div style={{ width: "100%" }}>
