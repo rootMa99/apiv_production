@@ -7,7 +7,7 @@ import Teamleader from "./Teamleader";
 
 function getStartOfMonth(date) {
   const d=date.split('-');
-  return `${d[0]}-${d[1]}-1`;
+  return `${d[0]}-${d[1]}-01`;
 }
 
 function filterDataByDateRange(startDate, endDate, data) {
