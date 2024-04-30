@@ -52,7 +52,7 @@ const Comparison = (p) => {
           Teamleader
         </li>
       </ul>
-      <div>
+      <div className={c.monthlyCb}>
         <input
           type="checkbox"
           id="month"

@@ -57,8 +57,13 @@
   backdrop-filter: blur(16px);
   padding: 10px 0;
 }
-.selH label {
+.selH label, .monthlyCb label {
   color: aliceblue;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.monthlyCb label:hover, .monthlyCb input{
+  cursor: pointer;
+  color: brown;
 }
