@@ -43,9 +43,8 @@ const Comparison = (p) => {
         </li>
       </ul>
       <div>
-        <input type="checkbox" id="month" name="vehicle1" value="Bike" />
+        <input type="checkbox" id="month" name="cm"/>
         <label htmlFor="month"> Comule per month</label>
-        <br></br>
       </div>
       {control === "tlc" && <TlAndCrew fd={fd} />}
       {control === "tl" && <Teamleader fd={fd} />}
