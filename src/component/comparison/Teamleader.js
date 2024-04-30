@@ -278,7 +278,7 @@ const Teamleader = (p) => {
       {
         type: "line",
         label: "Target",
-        data: outp.map((m) => m.outputT),
+        data: outp.map((m) => m.outputT.toFixed(1)),
         backgroundColor: "#F84018",
         pointHoverBorderColor: "#FAF0E6",
         borderColor: "#3BC6EB",
@@ -296,7 +296,7 @@ const Teamleader = (p) => {
       {
         type: "bar",
         label: "Actual",
-        data: outp.map((m) => m.output),
+        data: outp.map((m) => m.output.toFixed(1)),
         backgroundColor: bgcoloroutput,
         borderColor: "#F84018",
         borderWidth: 1,
