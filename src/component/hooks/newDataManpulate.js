@@ -5,10 +5,11 @@ export const destractData = (d) => {
 };
 const getcrData = (d) => {
   const rd = [];
-
-  console.log(d);
-
+  let wd=0;
   d.forEach((e) => {
+    if(e.actualDataExcel.output>0){
+      wd++
+    }
     if (rd.length === 0) {
       rd.push({
         name: e.crew,
