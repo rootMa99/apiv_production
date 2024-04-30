@@ -3,6 +3,80 @@ export const destractData = (d) => {
   d.map((m) => rd.push(...m.data));
   return rd;
 };
+const getcrData = (d) => {
+  const rd = [];
+
+  console.log(d);
+
+  d.forEach((e) => {
+    if (rd.length === 0) {
+      rd.push({
+        name: e.teamLeader,
+        paid: e.actualDataExcel.paidH,
+        prod: e.actualDataExcel.prodH,
+        paidt: e.dataTargetExcel.payedTarget,
+        prodt: e.dataTargetExcel.prodTarget,
+        abs: e.actualDataExcel.ab,
+        abst: e.dataTargetExcel.absTarget,
+        wsd: e.actualDataExcel.wsd,
+        tlo: e.actualDataExcel.tlo,
+        output: e.actualDataExcel.output,
+        outputT: e.dataTargetExcel.outputTarget,
+        hc: e.actualDataExcel.hc,
+        hcTarget: e.dataTargetExcel.hcTarget,
+        family: e.family,
+        project: e.project,
+        coordinator: e.coordinator,
+        shiftLeader: e.shiftLeader,
+        teamLeader: e.teamLeader,
+        crew: e.crew,
+      });
+    } else {
+      const i = rd.findIndex((f) => f.name === e.teamLeader);
+      if (i === -1) {
+        rd.push({
+          name: e.teamLeader,
+          paid: e.actualDataExcel.paidH,
+          prod: e.actualDataExcel.prodH,
+          paidt: e.dataTargetExcel.payedTarget,
+          prodt: e.dataTargetExcel.prodTarget,
+          abs: e.actualDataExcel.ab,
+          abst: e.dataTargetExcel.absTarget,
+          wsd: e.actualDataExcel.wsd,
+          tlo: e.actualDataExcel.tlo,
+          output: e.actualDataExcel.output,
+          outputT: e.dataTargetExcel.outputTarget,
+          hc: e.actualDataExcel.hc,
+          hcTarget: e.dataTargetExcel.hcTarget,
+          family: e.family,
+          project: e.project,
+          coordinator: e.coordinator,
+          shiftLeader: e.shiftLeader,
+          teamLeader: e.teamLeader,
+          crew: e.crew,
+        });
+      } else {
+        rd[i].paid += e.actualDataExcel.paidH;
+        rd[i].prod += e.actualDataExcel.prodH;
+        rd[i].paidt += e.dataTargetExcel.payedTarget;
+        rd[i].prodt += e.dataTargetExcel.prodTarget;
+        rd[i].abs += e.actualDataExcel.ab;
+        rd[i].abst += e.dataTargetExcel.absTarget;
+        rd[i].wsd += e.actualDataExcel.wsd;
+        rd[i].tlo += e.actualDataExcel.tlo;
+        rd[i].output += e.actualDataExcel.output;
+        rd[i].outputT += e.dataTargetExcel.outputTarget;
+        rd[i].hc += e.actualDataExcel.hc;
+        rd[i].hcTarget += e.dataTargetExcel.hcTarget;
+      }
+    }
+  });
+  return rd;
+};
+
+
+
+
 export const getEffByTlAndCrew = (d) => {
   const rd = [];
   d.forEach((e) => {
