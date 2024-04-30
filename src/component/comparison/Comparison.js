@@ -5,6 +5,10 @@ import { useState } from "react";
 import c from "./TlAndCrew.module.css";
 import Teamleader from "./Teamleader";
 
+function getStartOfMonth(date) {
+  return new Date(date.getFullYear(), date.getMonth(), 1);
+}
+
 const Comparison = (p) => {
   let data = useSelector((s) => s.datas);
   const { date } = useSelector((s) => s.additionalData);
@@ -38,6 +42,11 @@ const Comparison = (p) => {
           Teamleader
         </li>
       </ul>
+      <div>
+        <input type="checkbox" id="month" name="vehicle1" value="Bike" />
+        <label htmlFor="month"> Comule per month</label>
+        <br></br>
+      </div>
       {control === "tlc" && <TlAndCrew fd={fd} />}
       {control === "tl" && <Teamleader fd={fd} />}
     </div>

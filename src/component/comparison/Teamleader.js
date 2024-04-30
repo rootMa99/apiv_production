@@ -424,7 +424,6 @@ const Teamleader = (p) => {
               xPos = element.x - 15;
               yPos = element.y - 20;
             }
-            console.log(element, p.monthData);
             ctx.save();
             ctx.textAlign = "center";
             ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
