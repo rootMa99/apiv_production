@@ -16,6 +16,7 @@ const Comparison = (p) => {
     (f) => f.date === date && f.teamLeader !== null
   );
   const [control, setControl] = useState("tlc");
+  const [daily, setDaily]=useState(false)
   console.log(fd);
   return (
     <div style={{ width: "100%" }}>
