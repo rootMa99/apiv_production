@@ -13,7 +13,7 @@ function getStartOfMonth(date) {
 function filterDataByDateRange(startDate, endDate, data) {
   return data.filter(
     (item) =>
-      item.date >= startDate && item.date <= endDate && item.teamLeader !== null
+      item.date >= startDate && item.date <= endDate && item.teamLeader !== null && item.crew!=='SOP 1'
   );
 }
 
@@ -23,7 +23,7 @@ const Comparison = (p) => {
   const [control, setControl] = useState("tlc");
   const [daily, setDaily] = useState(true);
   let fd = daily
-    ? destractData(data).filter((f) => f.date === date && f.teamLeader !== null)
+    ? destractData(data).filter((f) => f.date === date && f.teamLeader !== null && f.crew!=='SOP 1')
     : filterDataByDateRange(getStartOfMonth(date), date, destractData(data));
 
   console.log(fd);

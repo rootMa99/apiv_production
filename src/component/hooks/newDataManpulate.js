@@ -5,11 +5,8 @@ export const destractData = (d) => {
 };
 const getcrData = (d) => {
   const rd = [];
-  let wd=0;
+
   d.forEach((e) => {
-    if(e.actualDataExcel.output>0){
-      wd++
-    }
     if (rd.length === 0) {
       rd.push({
         name: e.crew,
@@ -31,6 +28,7 @@ const getcrData = (d) => {
         shiftLeader: e.shiftLeader,
         teamLeader: e.teamLeader,
         crew: e.crew,
+        wd: e.actualDataExcel.output > 0 ? 1 : 0,
       });
     } else {
       const i = rd.findIndex((f) => f.name === e.crew);
@@ -55,6 +53,7 @@ const getcrData = (d) => {
           shiftLeader: e.shiftLeader,
           teamLeader: e.teamLeader,
           crew: e.crew,
+          wd: e.actualDataExcel.output > 0 ? 1 : 0,
         });
       } else {
         rd[i].paid += e.actualDataExcel.paidH;
@@ -69,32 +68,24 @@ const getcrData = (d) => {
         rd[i].outputT += e.dataTargetExcel.outputTarget;
         rd[i].hc += e.actualDataExcel.hc;
         rd[i].hcTarget += e.dataTargetExcel.hcTarget;
+        rd[i].wd += e.actualDataExcel.output > 0 ? 1 : 0;
       }
     }
   });
   return rd;
 };
 
-
-
-
 export const getEffByTlAndCrew = (ds) => {
   const rd = [];
-  const d=getcrData(ds)
+  const d = getcrData(ds);
   d.forEach((e) => {
+    console.log(e.wd, "here's the wd", e.crew);
     let eff;
     let effTar;
-    eff =
-      e.paid !== 0
-        ? e.prod / e.paid
-        : 0;
-    effTar =
-      e.paidt !== 0
-        ? e.prodt / e.paidt
-        : 0;
+    eff = e.paid !== 0 ? e.prod / e.paid : 0;
+    effTar = e.paidt !== 0 ? e.prodt / e.paidt : 0;
 
     rd.push({
-      //   name: e.teamLeader + " * " + e.crew,
       name: e.crew,
       eff: eff * 100,
       effTar: effTar * 100,
@@ -107,14 +98,15 @@ export const getEffByTlAndCrew = (ds) => {
       output: e.output,
       outputT: e.outputT,
       outputGap: e.output - e.outputT,
-      hc: e.hc,
-      hcTarget: e.hcTarget,
+      hc: e.wd === 0 ? e.hc : e.hc / e.wd,
+      hcTarget: e.wd === 0 ? e.hcTarget : e.hcTarget / e.wd,
       hcGap: e.hcTarget - e.hc,
       family: e.family,
       project: e.project,
       coordinator: e.coordinator,
       shiftLeader: e.shiftLeader,
       teamLeader: e.teamLeader,
+      wd: e.wd,
     });
   });
   return rd;
