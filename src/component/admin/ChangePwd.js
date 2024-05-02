@@ -42,14 +42,12 @@ const ChangePwd = (p) => {
       password: cred.adminPasswordi,
     };
     try {
-      const data = await getData(
+      await getData(
         "http://10.236.148.13:8081/admin/changePwd",
         body,
         jwtToken
       );
-      console.log(data);
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   const passwordiHandler = (e) => {

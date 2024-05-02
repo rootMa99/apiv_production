@@ -95,11 +95,9 @@ const Coordinators = (p) => {
   const scrollToRef = useRef();
   const scrollToRefChart = useRef();
   const coordinatoor = getCoordinatorsData(data);
-  console.log(coordinatoor, name);
   const dataCoordinator = coordinatoor.filter(
     (f) => f.name.toLowerCase() === name.toLowerCase()
   )[0];
-  console.log(dataCoordinator);
   const setShiftleader = (name) => {
     setTeamLeader({ name: name, show: true });
     setTimeout(() => {
@@ -116,7 +114,6 @@ const Coordinators = (p) => {
   const teamleaders = dataCoordinator.shiftleader.filter(
     (f) => f.name === teamLeader.name
   )[0];
-  console.log(teamleaders);
 
   const clickHadler = (e) => {
     setShowMoreSL(false);

@@ -22,12 +22,11 @@ const Efficiency = (p) => {
   );
   const cutting = data.filter((f) => f.name === "CUTTING AREA");
   const lp = data.filter((f) => f.name === "LEAD PREP AREA");
-  console.log(cutting, lp);
+
 
   const getEffic = (data, type, month) => {
     const filtredData =
       month === "month" ? effMonth(data, type) : getEfficiencyDay(data, type);
-    console.log(filtredData, type);
     return getEfficiencyDatas(filtredData);
   };
   const plant = (tem, type) => {
@@ -43,21 +42,17 @@ const Efficiency = (p) => {
       if (tem === "day") {
         filtredDatacutting = getEfficiencyDay(cutting, p.day);
         filtredDatalp = getEfficiencyDay(lp, p.day);
-        console.log(filtredDatacutting, filtredDatalp);
+
       }
       if (tem === "month") {
-        // filtredDatacutting = getEfficiencyMonth(cutting, p.month);
         filtredDatacutting = effMonth(cutting, p.day);
-        // filtredDatalp = getEfficiencyMonth(lp, p.month);
         filtredDatalp = effMonth(lp, p.day);
-        console.log("MONTH", filtredDatacutting, filtredDatalp);
       }
       if (type === "act") {
         const { prodH: prodHD, paidH: paidHD } =
           getEfficiencyDatas(filtredDatacutting);
         const { prodH: prodHDlp, paidH: paidHDlp } =
           getEfficiencyDatas(filtredDatalp);
-        console.log(prodHDfa, paidHDfa, "MONTH ACT");
         return paidHD + paidHDlp + paidHDfa !== 0
           ? ((prodHD * 1.443 + prodHDlp * 1.138 + prodHDfa * 1.078) /
               (paidHD + paidHDlp + paidHDfa)) *
@@ -96,7 +91,6 @@ const Efficiency = (p) => {
         prodTY: prodTYfa,
         paidTY: paidTYfa,
       } = getEfficiencyYear(fa);
-      console.log("year", prodHYfa, paidHYfa, prodTYfa, paidTYfa);
       if (type === "act") {
         return paidHYC + paidTYlp + paidHYfa !== 0
           ? ((prodHYC * 1.443 + prodHYlp * 1.138 + prodHYfa * 1.078) /
@@ -128,17 +122,14 @@ const Efficiency = (p) => {
       : p.title === "plant"
       ? data
       : fa;
-  console.log(data, p.singleProject);
   //Efficiency Day
   const filtredData = getEfficiencyDay(data, p.day);
-  console.log(filtredData);
   const {
     prodH: prodHD,
     paidH: paidHD,
     prodT: prodTD,
     paidT: paidTD,
   } = getEffic(data, p.day);
-  console.log(prodHD, paidHD, prodTD, paidTD, p.title);
   const totalP = esa(
     paidHD === 0 ? 0 : (prodHD / paidHD) * 100,
     "day",
@@ -150,16 +141,13 @@ const Efficiency = (p) => {
     "tar"
   ).toFixed(2);
   const gap = (totalP - totalT).toFixed(2);
-  console.log(totalP, totalT, gap);
+
   //hc Day using filtred Day
-  console.log(filtredData);
   const { hc, hcTarget } = getHC(filtredData);
   const gapHc = (hc - hcTarget).toFixed(0);
 
   //Efficiency Month
-  // const filtredDataMonth = getEfficiencyMonth(data, p.month);
   const filtredDataMonth = effMonth(data, p.day);
-  console.log(filtredDataMonth, data);
   const {
     prodH: prodHM,
     paidH: paidHM,
@@ -180,8 +168,6 @@ const Efficiency = (p) => {
   const gapM = (totalPM - totalTM).toFixed(2);
   //Efficiency Year
   const dataYR = effMonth(data, p.day, "year");
-  console.log(dataYR);
-  // const { prodHY, paidHY, prodTY, paidTY } = getEfficiencyYear(data);
   const { prodHY, paidHY, prodTY, paidTY } = getEfficiencyYearUntil(dataYR);
   let totalPY = esa(
     paidHY === 0 ? 0 : (prodHY / paidHY) * 100,

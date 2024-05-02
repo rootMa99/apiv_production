@@ -21,10 +21,10 @@ const Projects = (p) => {
 
   //const data = p.data;
   const datafiltred = getFiltredProject(data);
-  console.log(data);
+
   const sortedData = getSortedData(datafiltred);
   const month = day.month[day.date.split("-")[1] - 1];
-  console.log(datafiltred);
+
   const sortedDataot = getFiltredProjectOther(data);
   const sortedDatacut = getFiltredProjectCutting(data);
 

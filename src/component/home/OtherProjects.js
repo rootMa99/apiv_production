@@ -2,7 +2,6 @@ import ProjectCard from "./ProjectCard";
 import c from "./OtherProjects.module.css";
 
 const OtherProjects = (p) => {
-  console.log(p.sortedData);
   return (
     <div className={c.container}>
       {p.sortedData.map((m) => (

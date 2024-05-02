@@ -23,7 +23,6 @@ const ProjectCard = (p) => {
     return checkBox ? totalP * 1.078 : totalP;
   };
   const clickHandler = (e) => {
-    console.log("card clicked", p.title);
     navigate(`/home/project/${p.title}`);
   };
 

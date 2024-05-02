@@ -259,7 +259,6 @@ export const coordinatorEfficiency = (data, type, level) => {
       filtredData.push(...element.data.filter((f) => f[type] === sher));
     });
   }
-  console.log(filtredData);
   filtredData.forEach((e) => {
     returnedData.totalPaidH += e.actualDataExcel.paidH;
     returnedData.totalPaidHT += e.dataTargetExcel.payedTarget;

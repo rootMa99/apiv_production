@@ -8,11 +8,9 @@ import {
   getCoordinatorsData,
 } from "../hooks/coordinatorDataFilters";
 import React, { useState } from "react";
-//import { additionalDataAction } from "../../store/AdditionalData";
 import Select from "react-select";
 import { additionalDataAction } from "../../store/AdditionalData";
 import CoordinatorChart from "./CoordinatorCharts";
-//import logo from "../../assets/aptiv_logo_rev_orange_rgb.png";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -85,7 +83,6 @@ const options = [
 const CoordinatorList = (p) => {
   const data = useSelector((s) => s.datas);
   const { date } = useSelector((s) => s.additionalData);
-  //const dispatch = useDispatch();
   const coordinators = getCoordinatorsData(data);
   const [type, setType] = useState({ value: "date", label: "yesterday" });
   const [show, setShow] = useState(false);
@@ -93,10 +90,7 @@ const CoordinatorList = (p) => {
   dispatch(additionalDataAction.editCheckBox(false));
   const datafa = faData(coordinators);
 
-  // useEffect(() => {
-  //   console.log("console log coordinator re run");
-  //   dispatch(additionalDataAction.addCoordinator(coordinators));
-  // }, [dispatch, coordinators]);
+
 
 
   const clickHadler = (e) => {
