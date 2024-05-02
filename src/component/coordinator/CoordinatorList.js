@@ -1,5 +1,5 @@
 import c from "./Coordinators.module.css";
-//import hamzaKhartaoui from "../../assets/hamzaKhartaoui.png";
+import fa from "../../assets/managerbr.png";
 import Coordinator from "./Coordinator";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -132,7 +132,7 @@ const CoordinatorList = (p) => {
       <div className={c.fa}>
         <Coordinator
           name="Amjad Bouoidina"
-          pic={null}
+          pic={fa}
           flags={true}
           clickhHandler={clickHadler}
           data={datafa}
