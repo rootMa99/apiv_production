@@ -21,14 +21,12 @@ const ShiftLeader = (p) => {
   const { date, month } = useSelector((s) => s.additionalData);
   const navigate = useNavigate();
   const params = useParams();
-  console.log(data, params);
   const [toggle, isToggle] = useState(false);
   const [isCompare, setIsCompare] = useState(false);
   const [compareData, setCompareData] = useState(false);
 
   const filtredData = filterProjectsByName(data, params.project);
   const shiftLeaders = getShiftLeaders(filtredData[0].data);
-  console.log(shiftLeaders);
   const shiftLeader = shiftLeaders.filter((f) => f.name === params.shitLeader);
   const clickHandler = (e) => {
     isToggle(!toggle);
@@ -80,15 +78,7 @@ const ShiftLeader = (p) => {
     }
     return max;
   });
-  console.log(
-    shiftLeaders,
-    shiftLeader,
-    teamLeader,
-    dataDaysYear,
-    maxObjectDay,
-    maxObject,
-    teamLeaders
-  );
+
   const comparedata = (data) => {
     setCompareData(data);
     isToggle(false);

@@ -26,7 +26,6 @@ const TeamLeaders = (p) => {
   const [isCompare, setIsCompare] = useState(false);
   const [compareData, setCompareData] = useState(false);
   const navigate = useNavigate();
-  console.log(params);
   const clickHandler = (e) => {
     isToggle(!toggle);
   };
@@ -40,8 +39,6 @@ const TeamLeaders = (p) => {
   };
   useEffect(() => {
     if (params.teamLeader === undefined) {
-      console.log("params.teamLeader");
-
       navigate("/home");
     }
   }, [params.teamLeader, navigate]);
@@ -54,20 +51,11 @@ const TeamLeaders = (p) => {
   const teamleaders =
     shiftLeader.length !== 0 &&
     getTeamLeaders(shiftLeader[0].data).filter((f) => f.name !== null);
-  console.log(params);
   const teamLeader =
     teamleaders.length !== 0 &&
     teamleaders.filter((f) => f.name.trim() === params.teamLeader);
   const crews = teamLeader.length !== 0 && getCrew(teamLeader[0].data);
-  console.log(
-    params,
-    filtredData,
-    shiftLeaders,
-    shiftLeader,
-    teamleaders,
-    teamLeader,
-    crews
-  );
+
   const monthData = getDataYear(teamLeader[0].data);
   const dataM = monthData.map((m) => ({
     name: m.name,
@@ -102,7 +90,6 @@ const TeamLeaders = (p) => {
       isOneCrew(true);
     }
   }, [crews]);
-  console.log("oneCre<", oneCrew, crews.length);
   const comparedata = (data) => {
     setCompareData(data);
     isToggle(false);
