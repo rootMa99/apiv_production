@@ -6,14 +6,12 @@ import { additionalDataAction } from "../store/AdditionalData";
 import { useState } from "react";
 
 const Home = (p) => {
-  const data = useSelector((s) => s.datas);
   const day = useSelector((s) => s.additionalData);
   const dispatch = useDispatch();
   const { project } = useParams();
   const [show, isShown] = useState(false);
 
   const month = day.month[day.date.split("-")[1] - 1];
-  console.log(data, project);
 
   return (
     <div className={c.container}>

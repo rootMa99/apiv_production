@@ -20,7 +20,6 @@ import Comparison from "./component/comparison/Comparison";
 // import { getstartAndendDate } from "./component/hooks/chart2excel";
 
 const getData = async (url) => {
-  console.log("runing.....");
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -45,13 +44,11 @@ function App() {
   const [dataCome, setDataCome] = useState(false);
   const dispatch = useDispatch();
   // const {startYear, endYear}=getstartAndendDate(date);
-  // console.log(date, startYear, endYear)
+
 
   const callback = useCallback(async () => {
     setLoading(true);
     const data = await getData(`http://10.236.148.13:8081/data/projects`);
-    console.log(data);
-    //dispatch(dataAction.addData(DEMO_DATA));
     if (data !== "error") {
       dispatch(dataAction.addData(data));
     } else {

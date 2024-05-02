@@ -19,7 +19,6 @@ const Admin = (p) => {
     admin: false,
   });
   const data = useSelector((s) => s.datas);
-  console.log(data);
   const excelHandelr = (e) => {
     setRendred({
       excel: true,
