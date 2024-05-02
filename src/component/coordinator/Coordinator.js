@@ -94,11 +94,9 @@ const Coordinator = (p) => {
           <div
             className={styles["aptiv-log"]}
             style={
-              p.level === "coordinator"
+              p.level === "coordinator" || p.level === "fa"
                 ? { width: "6rem", height: "3rem" }
-                : (p.level === "fa"
-                ? { width: "19rem", height: "8rem" }
-                : {})
+                : {}
             }
           >
             <img src={apticlogo} alt="aptiv" draggable="false" />
