@@ -35,7 +35,6 @@ const ChangePwd = (p) => {
       cred.adminPasswordii.trim() === "" ||
       !match
     ) {
-      console.log("not submmit");
       return;
     }
 
@@ -50,7 +49,6 @@ const ChangePwd = (p) => {
       );
       console.log(data);
     } catch (e) {
-      console.log(e);
     }
   };
 

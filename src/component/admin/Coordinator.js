@@ -13,7 +13,6 @@ const Coordinator = (p) => {
   const [error, setError] = useState(false);
   const { login } = useSelector((s) => s.additionalData);
 
-  console.log(login);
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
@@ -35,8 +34,7 @@ const Coordinator = (p) => {
           },
         })
           .then((response) => response.json())
-          .then((data) => {
-            console.log("Upload successful:", data);
+          .then(() => {
             setSuccessfully(true);
             setShowbutton(false);
           })
@@ -53,8 +51,7 @@ const Coordinator = (p) => {
           },
         })
           .then((response) => response.json())
-          .then((data) => {
-            console.log("Upload successful:", data);
+          .then(() => {
             setSuccessfully(true);
             setShowbutton(false);
           })
