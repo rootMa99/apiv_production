@@ -24,22 +24,11 @@ const Crew = (p) => {
   const teamleaders =
     shiftLeader.length !== 0 &&
     getTeamLeaders(shiftLeader[0].data).filter((f) => f.name !== null);
-  console.log(params);
   const teamLeader =
     teamleaders.length !== 0 &&
     teamleaders.filter((f) => f.name.trim() === params.teamLeader);
   const crews = teamLeader.length !== 0 && getCrew(teamLeader[0].data);
   const crew = crews.filter((f) => f.name === params.crew);
-  console.log(
-    params,
-    filtredData,
-    shiftLeaders,
-    shiftLeader,
-    teamleaders,
-    teamLeader,
-    crews,
-    crew
-  );
 
   const projectClickHandler = (e) => {
     navigate(`/home/project/${params.project}`);

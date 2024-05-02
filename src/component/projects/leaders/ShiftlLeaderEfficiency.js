@@ -22,7 +22,6 @@ const ShiftLeaderEfficiency = (p) => {
   const [toggle, isToggle] = useState(chartWeek);
   const [toggleD, isToggleD] = useState(chartDay);
   const [toggleM, isToggleM] = useState(chartmonth);
-  console.log(chartDay, chartWeek, chartmonth, toggle, toggleD, toggleM);
   const monthly = getDataYear(p.data, checkBox);
   const month = p.date.date.split("-")[1];
   const weekly = getWeekData(

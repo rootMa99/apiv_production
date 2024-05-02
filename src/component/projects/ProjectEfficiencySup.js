@@ -8,12 +8,9 @@ import Dt from "./projectEfficiencySupCharts/Dt";
 const ProjectEfficiencySup = (p) => {
   const data = useSelector((s) => s.datas);
   const date = useSelector((s) => s.additionalData);
-  console.log(data);
   const params = useParams();
-  console.log(params);
   const filtredData =
     p.data === undefined ? filterProjectsByName(data, params.project) : p.data;
-  console.log(filtredData);
 
   return (
     <div className={c.projectEfficiencySup}>

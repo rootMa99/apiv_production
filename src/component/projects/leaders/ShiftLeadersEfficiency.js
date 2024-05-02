@@ -14,7 +14,6 @@ const ShiftLeadersEfficiency = (p) => {
   const filtredData = filterProjectsByName(data, params.project);
   const shiftLeaders = getShiftLeaders(filtredData[0].data);
   shiftLeaders[0].name === null && shiftLeaders.reverse();
-  console.log(shiftLeaders)
   dispatch(
     additionalDataAction.addShitLeaderEfficiency({
       name: params.project,

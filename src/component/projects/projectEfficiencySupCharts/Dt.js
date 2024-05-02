@@ -6,10 +6,8 @@ import MonthChart from "../MonthChart";
 import c from "./OutputFilter.module.css";
 
 const Dt = (p) => {
-  console.log(p.data, p.date, "down time");
 
   const monthly = getDtEfficiency(p.data[0].data, "month");
-  console.log(monthly, "monthl");
   const filtredMonth = getMonthData(
     p.data[0].data,
     p.date.month[p.date.date.split("-")[1] - 1],

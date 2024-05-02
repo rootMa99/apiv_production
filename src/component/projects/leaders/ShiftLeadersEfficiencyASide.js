@@ -10,15 +10,12 @@ const ShiftLeadersEfficiencyASide = (p) => {
   const date = useSelector((s) => s.additionalData);
   const navigate = useNavigate();
   const mnt = date.date.split("-")[1];
-  console.log(date.shiftLeader);
   const data = p.data === undefined ? date.shiftLeader.shiftLeader : p.data;
-  console.log(data);
   const efficiency = [];
   for (let d of data) {
     if (d.name === null) {
       continue;
     }
-    console.log(d.data);
     const filtredDay = getEfficiencyMonthSL(d.data, date.date, "date");
     const efficiencyDay = getEfficiencyDatas(filtredDay);
     const filtredMonth = getEfficiencyMonthSL(
@@ -58,7 +55,6 @@ const ShiftLeadersEfficiencyASide = (p) => {
     })
   );
   totalEfficiency.sort((a, b) => a.gapDay - b.gapDay);
-  console.log(efficiency, totalEfficiency);
   const clickHandlerLink = (name) => {
     if(p.dontNavigate){
       return;
