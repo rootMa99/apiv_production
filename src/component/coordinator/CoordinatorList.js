@@ -91,21 +91,18 @@ const CoordinatorList = (p) => {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   dispatch(additionalDataAction.editCheckBox(false));
-  console.log(coordinators);
   const datafa = faData(coordinators);
-  console.log(datafa);
+
   // useEffect(() => {
   //   console.log("console log coordinator re run");
   //   dispatch(additionalDataAction.addCoordinator(coordinators));
   // }, [dispatch, coordinators]);
 
-  console.log(type);
 
   const clickHadler = (e) => {
     setShow(!show);
   };
   const dataFa = getCoordinatorData(coordinators);
-  console.log(dataFa);
   return (
     <div className={`${c.wrapper}`}>
       <div className={c.select}>
