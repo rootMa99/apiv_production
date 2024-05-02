@@ -39,10 +39,8 @@ const Login = (p) => {
     };
     try {
       const data = await getData("http://10.236.148.13:8081/auth/signin", body);
-      console.log(data);
       dispatch(additionalDataAction.isLoggin(data.token));
     } catch (e) {
-      console.log(e);
     }
   };
   const adminNameHandler = (e) => {

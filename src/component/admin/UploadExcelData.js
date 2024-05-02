@@ -55,7 +55,6 @@ const UploadExcelData = (p) => {
       },
     }).then((response) => {
       if (response.status === 200) {
-        console.log("Upload successful:");
         setSuccessfully(true);
         setLoading(false);
       } else {
@@ -77,7 +76,6 @@ const UploadExcelData = (p) => {
       setError(false);
     }, 8000);
   }
-  console.log(file);
   return (
     <div className={c.wrap}>
       {successfully && <Notification file={true} />}

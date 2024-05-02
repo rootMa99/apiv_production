@@ -4,20 +4,17 @@ import { useNavigate } from "react-router-dom";
 import {
   coordinatorEfficiency,
   getScrap,
-  getWeek,
   getdatacal,
-  gettoday,
-  lastMonth,
 } from "../hooks/coordinatorDataFilters";
 const Coordinator = (p) => {
   const navigate = useNavigate();
 
   const clickHandler = (e) => {
-    if(p.flags){
+    if (p.flags) {
       p.clickhHandler();
       return;
     }
-    if(p.flagss){
+    if (p.flagss) {
       p.clickhHandler();
       return;
     }
@@ -29,7 +26,6 @@ const Coordinator = (p) => {
     p.level === "shiftLeader" && p.setShiftleader(p.name);
     p.level === "teamleader" && p.setShiftleaderi(p.name);
   };
-  console.log(p.data, p.name, p.type);
   let efficiency;
   let effi = { act: 0, target: 0, gap: 0 };
   let output = 0;
@@ -51,8 +47,6 @@ const Coordinator = (p) => {
   hc = getdatacal(p.data, p.type.value, "hc", p.level);
   wsd = getdatacal(p.data, p.type.value, "wsd", p.level);
   scrap = getScrap(p.data, p.type.value, p.level).toFixed(0);
-
-  console.log(efficiency, gettoday(), getWeek(), lastMonth());
 
   return (
     <div

@@ -26,7 +26,6 @@ const Comparison = (p) => {
     ? destractData(data).filter((f) => f.date === date && f.teamLeader !== null && f.crew!=='SOP 1')
     : filterDataByDateRange(getStartOfMonth(date), date, destractData(data));
 
-  console.log(fd);
   return (
     <div style={{ width: "100%" }}>
       <ul className={c.underList}>

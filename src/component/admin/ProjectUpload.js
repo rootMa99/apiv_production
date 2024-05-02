@@ -11,7 +11,6 @@ const ProjectUpload = (p) => {
   const [successfully, setSuccessfully] = useState(false);
   const { login } = useSelector((s) => s.additionalData);
 
-  console.log(login, selectedFile);
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
@@ -32,8 +31,7 @@ const ProjectUpload = (p) => {
         },
       })
         .then((response) => response.json())
-        .then((data) => {
-          console.log("Upload successful:", data);
+        .then(() => {
           setSuccessfully(true);
         })
         .catch((error) => {

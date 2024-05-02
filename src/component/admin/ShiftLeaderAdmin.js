@@ -4,7 +4,6 @@ import Coordinator from "./Coordinator";
 
 const ShiftLeaderAdmin = (p) => {
   const coord = getCoordinatorsAdmin(p.data).filter((f) => f.name !== null);
-  console.log(coord);
 
   return (
     <React.Fragment>

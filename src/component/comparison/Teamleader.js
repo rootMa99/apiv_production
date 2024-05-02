@@ -140,7 +140,6 @@ const Teamleader = (p) => {
         })
       : tlByCrew;
 
-  console.log(p.fd, tlByCrew);
 
   // const cs = getCrews(p.fd);
   const allF = getAll(p.fd);

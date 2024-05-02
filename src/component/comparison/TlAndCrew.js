@@ -155,7 +155,7 @@ const TlAndCrew = (p) => {
     }
   };
 
-  console.log(cs, p.fd, tlByCrew, compareb, allF);
+
 
   const eff = tlByCrew.sort((a, b) => {
     return b.gap - a.gap;

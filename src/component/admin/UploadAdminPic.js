@@ -59,8 +59,7 @@ const UploadAdminPic = (p) => {
         },
       })
         .then((response) => response.json())
-        .then((data) => {
-          console.log("Upload successful:", data);
+        .then(() => {
           setSuccessfully(true);
           setShowbutton(false);
           setLoading(false);
@@ -83,7 +82,6 @@ const UploadAdminPic = (p) => {
       setError(false);
     }, 8000);
   }
-  console.log(file);
   return (
     <div className={c.wrap}>
       {successfully && <Notification />}

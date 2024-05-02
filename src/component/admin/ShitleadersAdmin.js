@@ -4,7 +4,6 @@ import Coordinator from "./Coordinator";
 
 const ShiftLeadersAdmin = (p) => {
   const data = getSlsAdmin(p.data).filter((f) => f.name !== null);
-  console.log(data);
 
   return (
     <React.Fragment>
