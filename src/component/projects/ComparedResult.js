@@ -14,12 +14,10 @@ import c from "./CompareResult.module.css";
 
 const ComparedResult = (p) => {
   const { date, checkBox, month } = useSelector((s) => s.additionalData);
-  console.log(p);
 
   const months = date.split("-")[1];
 
   const shiftLeader = p.data.filter((f) => f.name === p.name);
-  console.log(month, shiftLeader);
 
   const dataBytype = () => {
     if (p.typeS === "monthly") {
@@ -62,7 +60,6 @@ const ComparedResult = (p) => {
       if (p.actual === "scrap") {
         return getscrapDataYear(filtredMonth, "week", p.actual, p.target);
       }
-      console.log(filtredMonth);
       return getOutputDataYear(filtredMonth, "week", p.actual, p.target);
     }
     if (p.typeS === "daily") {

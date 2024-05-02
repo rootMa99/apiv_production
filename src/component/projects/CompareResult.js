@@ -68,7 +68,6 @@ const customStyles = {
 };
 
 const CompareResult = (p) => {
-  console.log(p);
   const [third, setThird] = useState(
     p.compareData.selectedOptions.shiftleader3 !== ""
   );
@@ -108,7 +107,6 @@ const CompareResult = (p) => {
   const handleSelectChange = (e) => {
     setCompareb(e);
   };
-  console.log(p.compareData, compareb);
   const chooseSL1Handler = (e) => {
     setChooseSL({
       ...chooseSL,

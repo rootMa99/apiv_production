@@ -79,7 +79,6 @@ export const getEffByTlAndCrew = (ds) => {
   const rd = [];
   const d = getcrData(ds);
   d.forEach((e) => {
-    console.log(e.wd, "here's the wd", e.crew, e.ab, e.abst);
     let eff;
     let effTar;
     eff = e.paid !== 0 ? e.prod / e.paid : 0;
@@ -115,8 +114,6 @@ export const getEffByTlAndCrew = (ds) => {
 
 const getTlData = (d) => {
   const rd = [];
-
-  console.log(d);
 
   d.forEach((e) => {
     if (rd.length === 0) {

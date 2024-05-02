@@ -108,7 +108,6 @@ const Compare = (p) => {
   const filtredData = filterProjectsByName(data, p.project);
   const shiftLeaders = p.data ? p.data : getShiftLeaders(filtredData[0].data);
 
-  console.log(shiftLeaders);
   shiftLeaders.map(
     (m) => m.name !== null && optionsSH1.push({ value: m.name, label: m.name })
   );
@@ -175,7 +174,6 @@ const Compare = (p) => {
   const handleSelectChange = (event) => {
     setSelectedOptions({ ...selectedOptions, compareBy: event });
   };
-  console.log(selectedOptions);
 
   return (
     <React.Fragment>

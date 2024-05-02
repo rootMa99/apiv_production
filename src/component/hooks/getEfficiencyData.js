@@ -46,7 +46,6 @@ export const effMonth = (dataArray, endDate, year) => {
   const filteredData = [];
   const startDate =
     year === "year" ? getStartYear(endDate) : getStartmonth(endDate);
-  console.log(startDate);
   dataArray.forEach((element) => {
     filteredData.push(
       ...element.data.filter((f) => f.date >= startDate && f.date <= endDate)
@@ -222,7 +221,6 @@ export const getEfficiencyDataByMonth = (dataArray, month) => {
 };
 
 export const getEfficiencyDataByYear = (dataArray) => {
-  console.log("this mrthod runing...");
   const dataY = {
     prodH: 0,
     paidH: 0,

@@ -27,7 +27,6 @@ const ProjectDetails = (p) => {
     isToggle(false);
   };
 
-  console.log(compareData);
   return (
     <React.Fragment>
       <div className={c.projectContent}>

@@ -21,16 +21,12 @@ const ProjectEfficiency = (p) => {
   // const [toggleD, isToggleD] = useState(true);
   // const [toggleM, isToggleM] = useState(true);
   const months = date.split("-")[1];
-  console.log(data);
   const params = useParams();
-  console.log(params);
   const filtredData = filterProjectsByName(data, params.project);
-  console.log(filtredData);
   const monthData = getDataYear(filtredData[0].data, checkBox);
 
   useEffect(() => {
     const dataDaysYear = getDataDays(filtredData[0].data, "allDate");
-    console.log(dataDaysYear);
     const datan = dataDaysYear.map((m) => ({
       name: m.name,
       total: +m.total,
@@ -55,22 +51,16 @@ const ProjectEfficiency = (p) => {
     });
     dispatch(additionalDataAction.addMaxMonthValue(maxObject));
     dispatch(additionalDataAction.addMaxDayValue(maxObjectDay));
-    console.log(maxObject, "max data");
   }, [monthData, filtredData, dispatch]);
 
-  console.log(monthData);
   const filtredMonth = getMonthData(
     filtredData[0].data,
     month[months - 1],
     month[months - 2]
   );
-  console.log(filtredMonth);
   const filtredWeek = getWeekData(filtredMonth, checkBox);
-  console.log(filtredWeek);
   const filtredMonthDays = getMonthData(filtredData[0].data, month[months - 1]);
-  console.log(filtredMonthDays);
   const dataDays = getDataDays(filtredMonthDays, "", checkBox);
-  console.log(dataDays);
 
   let classes;
   let classesW;

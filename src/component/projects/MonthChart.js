@@ -216,7 +216,6 @@ const MonthChart = (p) => {
               xPos = element.x;
               yPos = element.y - 20;
             }
-            console.log(element, p.monthData);
             ctx.save();
             ctx.textAlign = "center";
             ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
