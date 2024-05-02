@@ -67,3 +67,6 @@
   cursor: pointer;
   color: #F84018;
 }
+.monthlyCb input:hover{
+  transform: scale(1.1);
+}
