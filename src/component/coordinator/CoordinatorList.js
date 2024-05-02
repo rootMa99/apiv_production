@@ -131,7 +131,7 @@ const CoordinatorList = (p) => {
       </div>
       <div className={c.fa}>
         <Coordinator
-          name="FA"
+          name="Amjad Bouoidina"
           pic={null}
           flags={true}
           clickhHandler={clickHadler}
